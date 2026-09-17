@@ -1196,6 +1196,7 @@ export const serviceLines: ServiceLine[] = [
       "Structures decisions so leaders can see assumptions, options, tradeoffs, second-order effects, evidence, and implementation consequences.",
     workProducts: [
       "COA comparison brief",
+      "RCOA (Recommended Course of Action) brief",
       "Assumption and risk register",
       "Decision memorandum",
       "Second-order effects map",

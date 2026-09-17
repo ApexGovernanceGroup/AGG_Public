@@ -173,6 +173,7 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Knowledge taxonomy and metadata profile/);
   assert.match(combined, /Objective-to-task traceability map/);
   assert.match(combined, /COA comparison brief/);
+  assert.match(combined, /RCOA \(Recommended Course of Action\) brief/);
   assert.match(combined, /MOP\/MOE\/KPI\/KRI dictionary/);
   assert.match(combined, /Repository operating model/);
   assert.match(combined, /Private cohort syllabus/);
