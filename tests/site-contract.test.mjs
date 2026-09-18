@@ -241,7 +241,7 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Engagement Style/);
   assert.match(combined, /Package inclusions/);
   assert.match(combined, /hybrid, in-person, and remote customer work/i);
-  assert.match(combined, /secure client portal access for communication, status updates, and delivery visibility/i);
+  assert.match(combined, /staged secure portal access for communication, status updates, and delivery visibility/i);
   assert.match(combined, /root-cause analysis findings/i);
   assert.match(combined, /Solution recommendation white paper/i);
   assert.match(combined, /Minimum of three benchmark check-ins/i);
@@ -265,7 +265,9 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /carry-to-engagement/);
   assert.match(combined, /public-client-led-self-determination/);
   assert.match(clientConfigurationsRoute, /runtime\s*=\s*"nodejs"/);
-  assert.match(clientConfigurationsRoute, /KAIGES_RECORD_FILE/);
+  assert.match(clientConfigurationsRoute, /MAX_BODY_BYTES/);
+  assert.match(clientConfigurationsRoute, /invalid_origin/);
+  assert.match(clientConfigurationsRoute, /rate_limited/);
   assert.match(clientConfigurationsRoute, /appendKaigesConfigurationRecord/);
   assert.match(clientConfigurationsRoute, /REQUIRED_REVIEW_SECTIONS/);
   assert.match(clientConfigurationsRoute, /\^KAIGE\[SD\]\$/);
@@ -377,13 +379,19 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /owned in the Apex codebase/i);
   assert.match(combined, /CLIENT_SERVICES_COOKIE/);
   assert.match(combined, /clientServicesSessionToken/);
+  assert.match(combined, /isClientServicesConfigured/);
+  assert.match(combined, /DEVELOPMENT_PASSWORD_SHA256/);
+  assert.match(combined, /return isProduction\(\) \? null : DEVELOPMENT_PASSWORD_SHA256/);
   assert.match(combined, /httpOnly:\s*true/);
   assert.match(clientServicesAccessRoute, /requestOrigin/);
   assert.match(clientServicesAccessRoute, /headers\.get\("host"\)/);
   assert.match(clientServicesLogoutRoute, /requestOrigin/);
   assert.match(clientServicesLogoutRoute, /headers\.get\("host"\)/);
-  assert.match(combined, /disallow:\s*\["\/client-services"\]/);
-  assert.match(combined, /client-specific dashboard/i);
+  assert.match(combined, /disallow:\s*\["\/client-services",\s*"\/client-portal"\]/);
+  assert.doesNotMatch(sitemap, /\/client-portal/);
+  assert.match(combined, /Client Portal Preview/);
+  assert.match(combined, /Preview data only/);
+  assert.match(combined, /Public, non-operational preview/i);
   assert.match(combined, /Current Progress/);
   assert.match(combined, /Project Efforts, Programs, and Actions/);
   assert.match(combined, /Chats and Comments/);
@@ -393,14 +401,15 @@ test("AGG public site contract is present", async () => {
     /AI, automation, data\s+governance, repository operations, and ecosystem development/i,
   );
   assert.match(combined, /GitHub-ready/);
-  assert.match(combined, /ApexG207\/Agentic_Systems/);
-  assert.match(combined, /ApexG207\/Agentic Systems/);
-  assert.match(combined, /Agentic Systems repository/);
+  assert.match(combined, /ApexGovernanceGroup\/AGG_Public/);
+  assert.match(combined, /AGG public repository/);
+  assert.doesNotMatch(combined, /ApexG207\/Agentic_Systems/);
+  assert.doesNotMatch(combined, /Agentic Systems repository/);
   assert.match(combined, /apexgov56\.sharepoint\.com/);
   assert.match(combined, /Tenant boundary for SharePoint and OneDrive workspaces/);
-  assert.match(combined, /Insights connect to Agentic Systems and the Apex Microsoft 365 tenant/);
-  assert.match(combined, /Configured tenant endpoint/);
-  assert.match(combined, /Site, library, permission, and records policies are confirmed during engagement intake/);
+  assert.match(combined, /Insights connect to the public AGG repository and intake-governed records boundary/);
+  assert.match(combined, /Boundary signal only/);
+  assert.match(combined, /records\s+controls are confirmed during intake/);
   assert.match(combined, /About the Founder/);
   assert.match(combined, /Benjamin Bragdon/);
   assert.match(combined, /Founder & Chief Executive Officer/);
@@ -423,7 +432,7 @@ test("AGG public site contract is present", async () => {
   assert.match(home, /Scale, scope, and pricing/);
   assert.match(combined, /Pricing Principle/);
   assert.match(combined, /Pricing is based on scale, not content depth/);
-  assert.match(combined, /Product pricing is\s+based on scale, not depth of content/);
+  assert.match(combined, /Product\s+pricing is\s+based on scale, not depth of content/i);
   assert.match(combined, /Scale basis/);
   assert.match(combined, /One sponsor group, one operating problem, one decision brief/);
   assert.match(combined, /Audience or cohort size/);
@@ -437,7 +446,7 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Assessment opens; proof closes/);
   assert.match(combined, /AGG brings the architecture\. The client keeps the toolset/);
   assert.match(combined, /does not sell, resell, broker, or require tooling/);
-  assert.match(combined, /apex@apexgovernancegroup\.com/);
+  assert.match(combined, /contact@apexgovernancegroup\.com/);
   assert.match(combined, /\/api\/checkout/);
   assert.doesNotMatch(combined, /execution cadence/i);
 });
@@ -476,7 +485,29 @@ test("brand assets and palette are wired", async () => {
     "../public/brand/apex-governance-group-symbol.png",
     import.meta.url,
   );
-  await access(symbolUrl);
+  const symbol160Url = new URL(
+    "../public/brand/apex-governance-group-symbol-160.webp",
+    import.meta.url,
+  );
+  const symbol320Url = new URL(
+    "../public/brand/apex-governance-group-symbol-320.webp",
+    import.meta.url,
+  );
+  const symbol640Url = new URL(
+    "../public/brand/apex-governance-group-symbol-640.webp",
+    import.meta.url,
+  );
+  const symbol1024Url = new URL(
+    "../public/brand/apex-governance-group-symbol-1024.webp",
+    import.meta.url,
+  );
+  await Promise.all([
+    access(symbolUrl),
+    access(symbol160Url),
+    access(symbol320Url),
+    access(symbol640Url),
+    access(symbol1024Url),
+  ]);
 
   const symbol = await readFile(symbolUrl);
   assert.equal(symbol.toString("ascii", 1, 4), "PNG");
@@ -484,6 +515,10 @@ test("brand assets and palette are wired", async () => {
   assert.ok(symbol.readUInt32BE(16) >= 1000);
   assert.equal(symbol[25], 6);
   assert.equal(symbol.readUInt32BE(16), 1200);
+  assert.match(css, /--agg-seal-small:\s*image-set/);
+  assert.match(css, /--agg-seal-large:\s*image-set/);
+  assert.match(css, /apex-governance-group-symbol-160\.webp/);
+  assert.match(css, /apex-governance-group-symbol-1024\.webp/);
 });
 
 test("masthead keeps distressed backdrop separate from clean symbol", async () => {
@@ -735,7 +770,7 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(css, /background-image:\s*var\(--maine-topographic-contours\)/);
   assert.match(heroTexture, /repeating-linear-gradient/);
   assert.doesNotMatch(heroTexture, /apex-governance-group-symbol\.png/);
-  assert.match(heroSymbol, /apex-governance-group-symbol\.png/);
+  assert.match(heroSymbol, /var\(--agg-seal-large\)/);
   assert.match(heroSymbol, /top clamp\(146px,\s*17svh,\s*166px\)/);
   assert.doesNotMatch(heroSymbol, /linear-gradient|radial-gradient|repeating-linear-gradient/);
   assert.doesNotMatch(heroSymbol, /filter\s*:/);
@@ -749,7 +784,7 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.hero__actions \.button,[\s\S]*?\.hero__secondary-actions \.button\s*{[^}]*white-space:\s*normal/);
   assert.match(pageHeroTexture, /repeating-linear-gradient/);
   assert.doesNotMatch(pageHeroTexture, /apex-governance-group-symbol\.png/);
-  assert.match(pageHeroSymbol, /apex-governance-group-symbol\.png/);
+  assert.match(pageHeroSymbol, /var\(--agg-seal-large\)/);
   assert.doesNotMatch(pageHeroSymbol, /linear-gradient|radial-gradient|repeating-linear-gradient/);
   assert.doesNotMatch(pageHeroSymbol, /filter\s*:/);
   assert.doesNotMatch(
@@ -770,6 +805,7 @@ test("checkout keeps price authority on the server", async () => {
   ]);
 
   assert.match(route, /process\.env\.STRIPE_SECRET_KEY/);
+  assert.match(route, /sourceIsAllowed/);
   assert.match(route, /getEngagementPackage\(await packageIdFrom\(request\)\)/);
   assert.match(route, /selectedPackage\.unitAmount/);
   assert.match(route, /https:\/\/api\.stripe\.com\/v1\/checkout\/sessions/);
@@ -783,7 +819,48 @@ test("checkout keeps price authority on the server", async () => {
   assert.match(commerce, /unitAmount:\s*950000/);
   assert.match(commerce, /unitAmount:\s*1800000/);
   assert.match(engage, /name="packageId" value=\{item\.id\}/);
+  assert.match(engage, /checkoutConfigured/);
+  assert.match(engage, /Start secure checkout/);
+  assert.match(engage, /Request intake activation/);
   assert.match(engage, /PackageInclusions/);
+});
+
+test("security and public-readiness controls are configured", async () => {
+  const [nextConfig, worker, robots, sitemap, clientServicesAuth, intakeRoute] =
+    await Promise.all([
+      read("next.config.ts"),
+      read("worker/index.ts"),
+      read("app/robots.ts"),
+      read("app/sitemap.ts"),
+      read("app/client-services/auth.ts"),
+      read("app/api/client-configurations/route.ts"),
+    ]);
+
+  assert.match(nextConfig, /Content-Security-Policy/);
+  assert.match(nextConfig, /Strict-Transport-Security/);
+  assert.match(nextConfig, /X-Frame-Options/);
+  assert.match(nextConfig, /Permissions-Policy/);
+  assert.match(nextConfig, /poweredByHeader:\s*false/);
+  assert.match(nextConfig, /apexgov\.ai/);
+  assert.match(nextConfig, /https:\/\/www\.apexgov\.ai\/:path\*/);
+
+  assert.match(worker, /SECURITY_HEADERS/);
+  assert.match(worker, /hardenResponse/);
+  assert.match(worker, /Cache-Control/);
+  assert.match(worker, /max-age=31536000, immutable/);
+  assert.match(worker, /url\.hostname === "apexgov\.ai"/);
+  assert.match(worker, /Response\.redirect\(url\.toString\(\), 308\)/);
+
+  assert.match(robots, /"\/client-services",\s*"\/client-portal"/);
+  assert.doesNotMatch(sitemap, /client-portal/);
+  assert.match(clientServicesAuth, /return isProduction\(\) \? null : DEVELOPMENT_PASSWORD_SHA256/);
+  assert.match(intakeRoute, /MAX_BODY_BYTES/);
+  assert.match(intakeRoute, /contentTypeIsJson/);
+  assert.match(intakeRoute, /declaredBodyExceedsLimit/);
+  assert.match(intakeRoute, /unsupported_media_type/);
+  assert.match(intakeRoute, /sourceIsAllowed/);
+  assert.match(intakeRoute, /rateLimitAllows/);
+  assert.match(intakeRoute, /Cache-Control": "no-store"/);
 });
 
 test("starter artifacts are removed and GitHub operations are present", async () => {

@@ -15,6 +15,16 @@
   --paper: #f4f1ea;
   --maroon: var(--oxblood);
   --bronze-dark: #6b4d2f;
+  --agg-seal-small: image-set(
+    url("/brand/apex-governance-group-symbol-160.webp") type("image/webp") 1x,
+    url("/brand/apex-governance-group-symbol-320.webp") type("image/webp") 2x,
+    url("/brand/apex-governance-group-symbol.png") type("image/png") 3x
+  );
+  --agg-seal-large: image-set(
+    url("/brand/apex-governance-group-symbol-640.webp") type("image/webp") 1x,
+    url("/brand/apex-governance-group-symbol-1024.webp") type("image/webp") 2x,
+    url("/brand/apex-governance-group-symbol.png") type("image/png") 3x
+  );
   --maine-topographic-contours: url("/brand/maine-topographic-contours.svg");
   --maine-topographic-contours-smoke: url("/brand/maine-topographic-contours-smoke.svg");
   --line: rgba(195, 194, 189, 0.24);
@@ -125,7 +135,7 @@ button {
   position: absolute;
   inset: 0;
   content: "";
-  background: url("/brand/apex-governance-group-symbol.png") center / contain no-repeat;
+  background: var(--agg-seal-small) center / contain no-repeat;
 }
 
 .brand-seal--compact {
@@ -383,7 +393,7 @@ button {
   inset: 0;
   z-index: -2;
   content: "";
-  background: url("/brand/apex-governance-group-symbol.png") right 6% top clamp(146px, 17svh, 166px) / min(520px, 38vw) no-repeat;
+  background: var(--agg-seal-large) right 6% top clamp(146px, 17svh, 166px) / min(520px, 38vw) no-repeat;
   opacity: 0.92;
 }
 
@@ -2948,7 +2958,7 @@ button.configuration-relation-card:disabled {
   inset: 0;
   z-index: -2;
   content: "";
-  background: url("/brand/apex-governance-group-symbol.png") right -110px center / 460px no-repeat;
+  background: var(--agg-seal-large) right -110px center / 460px no-repeat;
   opacity: 0.82;
 }
 
@@ -2965,7 +2975,7 @@ button.configuration-relation-card:disabled {
 }
 
 .page-hero--seal::after {
-  background: url("/brand/apex-governance-group-symbol.png") right 4% center / min(520px, 50vw) no-repeat;
+  background: var(--agg-seal-large) right 4% center / min(520px, 50vw) no-repeat;
   opacity: 0.9;
 }
 
@@ -3650,7 +3660,7 @@ button.configuration-relation-card:disabled {
   border-radius: var(--radius);
   background:
     linear-gradient(90deg, rgba(244, 241, 234, 0.96), rgba(244, 241, 234, 0.76)),
-    url("/brand/apex-governance-group-symbol.png") right -90px center / 360px no-repeat;
+    var(--agg-seal-large) right -90px center / 360px no-repeat;
   box-shadow: var(--shadow);
   padding: clamp(28px, 6vw, 56px);
 }
@@ -4307,6 +4317,15 @@ button.configuration-relation-card:disabled {
 
 .footer-links a:hover {
   color: var(--bronze);
+}
+
+.footer-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  color: rgba(244, 241, 234, 0.62);
+  font-weight: 800;
 }
 
 .site-footer__bottom {

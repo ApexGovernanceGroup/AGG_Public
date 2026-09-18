@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CreditCard, GraduationCap, ShieldCheck } from "lucide-react";
+import { ArrowRight, CreditCard, GraduationCap, Mail, ShieldCheck } from "lucide-react";
 import { PackageInclusions } from "../components/PackageInclusions";
 import {
   brandStandard,
   clientAccessCards,
+  contactEmail,
   customizationLevers,
   engagementPackages,
   packageInclusions,
@@ -23,7 +24,7 @@ const checkoutMessages: Record<string, string> = {
   success: "Checkout received. AGG will move the engagement into intake.",
   canceled: "Checkout was canceled. The engagement options remain available.",
   setup:
-    "Secure checkout is staged. Use the contact channel while payment credentials are activated.",
+    "Secure checkout is staged. Use the intake channel while payment credentials are activated.",
   error:
     "Checkout did not complete. Use the contact channel and AGG will reconcile the next step.",
 };
@@ -36,6 +37,7 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
   const params = await searchParams;
   const checkoutState = params?.checkout;
   const message = checkoutState ? checkoutMessages[checkoutState] : null;
+  const checkoutConfigured = Boolean(process.env.STRIPE_SECRET_KEY);
 
   return (
     <main>
@@ -57,10 +59,10 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
             <p className="eyebrow">Immediate Purchase</p>
             <h2>Apex Digital Storefront</h2>
             <p>
-              Each card opens a server-priced checkout path. Product pricing is
-              based on scale, not depth of content. Customization is captured
-              during intake so the purchased package can be shaped to the
-              client&apos;s sector, operating boundary, and required product.
+              Each card is scoped for a server-priced checkout path. Product
+              pricing is based on scale, not depth of content. Customization is
+              captured during intake so the selected package can be shaped to
+              the client&apos;s sector, operating boundary, and required product.
             </p>
           </div>
           <article className="pricing-principle" aria-label="Pricing principle">
@@ -79,6 +81,15 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
             <div className="status-banner" role="status">
               <ShieldCheck size={19} aria-hidden="true" />
               <span>{message}</span>
+            </div>
+          )}
+          {!checkoutConfigured && (
+            <div className="status-banner" role="status">
+              <ShieldCheck size={19} aria-hidden="true" />
+              <span>
+                Secure checkout is staged for activation. Current public
+                engagement starts through intake at {contactEmail}.
+              </span>
             </div>
           )}
           <div className="pricing-grid">
@@ -113,13 +124,25 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
                 </ul>
                 <div className="pricing-card__actions">
                   <PackageInclusions inclusions={packageInclusions} />
-                  <form action="/api/checkout" method="post">
-                    <input type="hidden" name="packageId" value={item.id} />
-                    <button className="button button--primary button--full" type="submit">
-                      <CreditCard size={18} aria-hidden="true" />
-                      Purchase package
-                    </button>
-                  </form>
+                  {checkoutConfigured ? (
+                    <form action="/api/checkout" method="post">
+                      <input type="hidden" name="packageId" value={item.id} />
+                      <button className="button button--primary button--full" type="submit">
+                        <CreditCard size={18} aria-hidden="true" />
+                        Start secure checkout
+                      </button>
+                    </form>
+                  ) : (
+                    <Link
+                      className="button button--primary button--full"
+                      href={`mailto:${contactEmail}?subject=${encodeURIComponent(
+                        `AGG intake request: ${item.name}`,
+                      )}`}
+                    >
+                      <Mail size={18} aria-hidden="true" />
+                      Request intake activation
+                    </Link>
+                  )}
                 </div>
               </article>
             ))}

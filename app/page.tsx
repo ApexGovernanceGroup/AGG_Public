@@ -26,7 +26,10 @@ export default function Home() {
       <section className="hero">
         <div className="container hero__content">
           <p className="eyebrow">{site.name}</p>
-          <h1 className="hero__headline">
+          <h1
+            aria-label={brandStandard.tier2.mastheadLines.join(". ")}
+            className="hero__headline"
+          >
             {brandStandard.tier2.mastheadLines.map((line) => (
               <span key={line}>{line}</span>
             ))}

@@ -24,6 +24,7 @@ import {
 import {
   CLIENT_SERVICES_COOKIE,
   hasClientServicesAccess,
+  isClientServicesConfigured,
 } from "./auth";
 
 export const dynamic = "force-dynamic";
@@ -47,6 +48,7 @@ export default async function ClientServicesPage({
 }: ClientServicesPageProps) {
   const params = await searchParams;
   const cookieStore = await cookies();
+  const authConfigured = await isClientServicesConfigured();
   const hasAccess = await hasClientServicesAccess(
     cookieStore.get(CLIENT_SERVICES_COOKIE)?.value,
   );
@@ -68,13 +70,22 @@ export default async function ClientServicesPage({
       {hasAccess ? (
         <ClientServicesWorkspace />
       ) : (
-        <ClientServicesGate accessDenied={params?.access === "denied"} />
+        <ClientServicesGate
+          accessDenied={params?.access === "denied"}
+          authConfigured={authConfigured}
+        />
       )}
     </main>
   );
 }
 
-function ClientServicesGate({ accessDenied }: { accessDenied: boolean }) {
+function ClientServicesGate({
+  accessDenied,
+  authConfigured,
+}: {
+  accessDenied: boolean;
+  authConfigured: boolean;
+}) {
   return (
     <section className="section client-services-section">
       <div className="container protected-access-shell">
@@ -93,21 +104,37 @@ function ClientServicesGate({ accessDenied }: { accessDenied: boolean }) {
               <span>Access password was not accepted.</span>
             </div>
           )}
-          <form className="access-form" action="/api/client-services/access" method="post">
-            <label htmlFor="client-services-password">Access password</label>
-            <input
-              autoComplete="current-password"
-              id="client-services-password"
-              name="password"
-              placeholder="Enter access password"
-              required
-              type="password"
-            />
-            <button className="button button--primary" type="submit">
+          {!authConfigured && (
+            <div className="status-banner status-banner--compact" role="status">
+              <ShieldCheck size={18} aria-hidden="true" />
+              <span>
+                Client Services access is staged until hosted credentials and
+                session secrets are configured.
+              </span>
+            </div>
+          )}
+          {authConfigured ? (
+            <form className="access-form" action="/api/client-services/access" method="post">
+              <label htmlFor="client-services-password">Access password</label>
+              <input
+                autoComplete="current-password"
+                id="client-services-password"
+                name="password"
+                placeholder="Enter access password"
+                required
+                type="password"
+              />
+              <button className="button button--primary" type="submit">
+                <LockKeyhole size={18} aria-hidden="true" />
+                Unlock Client Services
+              </button>
+            </form>
+          ) : (
+            <Link className="button button--primary" href="/contact">
               <LockKeyhole size={18} aria-hidden="true" />
-              Unlock Client Services
-            </button>
-          </form>
+              Request client access
+            </Link>
+          )}
         </div>
 
         <aside className="protected-access-note">

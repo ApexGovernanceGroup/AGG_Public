@@ -7,8 +7,6 @@ import {
   founderProfile,
   githubRepositoryUrl,
   navItems,
-  sharePointTenantHost,
-  sharePointTenantUrl,
   site,
 } from "../site-data";
 
@@ -39,16 +37,16 @@ export function SiteFooter() {
             </a>
             <a href={githubRepositoryUrl}>
               <GitBranch size={16} aria-hidden="true" />
-              Agentic Systems repository
+              AGG public repository
             </a>
             <a href={founderProfile.linkedinUrl}>
               <ExternalLink size={16} aria-hidden="true" />
               {founderProfile.name} on LinkedIn
             </a>
-            <a href={sharePointTenantUrl}>
+            <span className="footer-note">
               <Building2 size={16} aria-hidden="true" />
-              {sharePointTenantHost}
-            </a>
+              M365 boundary confirmed during intake
+            </span>
           </div>
         </div>
       </div>

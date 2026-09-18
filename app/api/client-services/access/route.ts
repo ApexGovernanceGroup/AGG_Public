@@ -3,6 +3,7 @@ import {
   CLIENT_SERVICES_COOKIE,
   clientServicesCookieOptions,
   clientServicesSessionToken,
+  isClientServicesConfigured,
   isClientServicesPassword,
 } from "../../../client-services/auth";
 
@@ -13,19 +14,27 @@ function requestOrigin(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  const configured = await isClientServicesConfigured();
   const form = await request.formData();
-  const passwordIsValid = await isClientServicesPassword(form.get("password"));
+  const passwordIsValid =
+    configured && (await isClientServicesPassword(form.get("password")));
   const target = new URL("/client-services", requestOrigin(request));
 
   if (!passwordIsValid) {
-    target.searchParams.set("access", "denied");
+    target.searchParams.set("access", configured ? "denied" : "unavailable");
+    return NextResponse.redirect(target, 303);
+  }
+
+  const sessionToken = await clientServicesSessionToken();
+  if (!sessionToken) {
+    target.searchParams.set("access", "unavailable");
     return NextResponse.redirect(target, 303);
   }
 
   const response = NextResponse.redirect(target, 303);
   response.cookies.set(
     CLIENT_SERVICES_COOKIE,
-    await clientServicesSessionToken(),
+    sessionToken,
     clientServicesCookieOptions(),
   );
   return response;

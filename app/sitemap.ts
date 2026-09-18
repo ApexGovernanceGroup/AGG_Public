@@ -6,7 +6,6 @@ const routes = [
   "/methodology",
   "/solutions",
   "/academy",
-  "/client-portal",
   "/insights",
   "/about",
   "/contact",

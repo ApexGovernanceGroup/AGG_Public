@@ -22,6 +22,42 @@ function redirectTo(request: Request, state: string) {
   return NextResponse.redirect(url, 303);
 }
 
+function configuredSiteOrigin() {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!configured) return null;
+
+  try {
+    return new URL(configured).origin;
+  } catch {
+    return null;
+  }
+}
+
+function sourceOriginFrom(request: Request) {
+  const origin = request.headers.get("origin");
+  if (origin) return origin;
+
+  const referer = request.headers.get("referer");
+  if (!referer) return null;
+
+  try {
+    return new URL(referer).origin;
+  } catch {
+    return null;
+  }
+}
+
+function sourceIsAllowed(request: Request) {
+  const sourceOrigin = sourceOriginFrom(request);
+  if (!sourceOrigin) return false;
+
+  const allowed = new Set([new URL(request.url).origin]);
+  const configured = configuredSiteOrigin();
+  if (configured) allowed.add(configured);
+
+  return allowed.has(sourceOrigin);
+}
+
 async function packageIdFrom(request: Request) {
   const contentType = request.headers.get("content-type") ?? "";
   if (contentType.includes("application/json")) {
@@ -37,6 +73,8 @@ async function packageIdFrom(request: Request) {
 }
 
 export async function POST(request: Request) {
+  if (!sourceIsAllowed(request)) return redirectTo(request, "error");
+
   const selectedPackage = getEngagementPackage(await packageIdFrom(request));
   if (!selectedPackage) return redirectTo(request, "error");
 

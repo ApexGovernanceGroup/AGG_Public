@@ -1,9 +1,9 @@
 export const CLIENT_SERVICES_COOKIE = "agg_client_services_access";
 export const CLIENT_SERVICES_COOKIE_MAX_AGE = 60 * 60 * 8;
 
-const DEFAULT_PASSWORD_SHA256 =
+const DEVELOPMENT_PASSWORD_SHA256 =
   "8bc0ef5940193b9f8633c982bf1773e270014a27f3de4f7c248391c5f791db85";
-const DEFAULT_SESSION_SECRET = "agg-client-services-session-v1";
+const DEVELOPMENT_SESSION_SECRET = "agg-client-services-session-v1";
 
 export type ClientServicesCookieOptions = {
   httpOnly: true;
@@ -18,6 +18,8 @@ export async function isClientServicesPassword(value: FormDataEntryValue | null)
 
   const submittedHash = await sha256Hex(value.trim());
   const expectedHash = await configuredPasswordHash();
+  if (!expectedHash) return false;
+
   return constantTimeEqual(submittedHash, expectedHash);
 }
 
@@ -25,14 +27,27 @@ export async function hasClientServicesAccess(cookieValue: string | undefined): 
   if (!cookieValue) return false;
 
   const expectedToken = await clientServicesSessionToken();
+  if (!expectedToken) return false;
+
   return constantTimeEqual(cookieValue, expectedToken);
 }
 
-export async function clientServicesSessionToken(): Promise<string> {
+export async function clientServicesSessionToken(): Promise<string | null> {
   const passwordHash = await configuredPasswordHash();
+  if (!passwordHash) return null;
+
   const sessionSecret =
-    process.env.CLIENT_SERVICES_SESSION_SECRET ?? DEFAULT_SESSION_SECRET;
+    process.env.CLIENT_SERVICES_SESSION_SECRET?.trim() ||
+    (isProduction() ? null : DEVELOPMENT_SESSION_SECRET);
+  if (!sessionSecret) return null;
+
   return sha256Hex(`${passwordHash}.${sessionSecret}`);
+}
+
+export async function isClientServicesConfigured(): Promise<boolean> {
+  return Boolean(await configuredPasswordHash()) && Boolean(
+    process.env.CLIENT_SERVICES_SESSION_SECRET?.trim() || !isProduction(),
+  );
 }
 
 export function clientServicesCookieOptions(): ClientServicesCookieOptions {
@@ -45,7 +60,7 @@ export function clientServicesCookieOptions(): ClientServicesCookieOptions {
   };
 }
 
-async function configuredPasswordHash(): Promise<string> {
+async function configuredPasswordHash(): Promise<string | null> {
   const plaintextPassword = process.env.CLIENT_SERVICES_PASSWORD?.trim();
   if (plaintextPassword) return sha256Hex(plaintextPassword);
 
@@ -54,7 +69,11 @@ async function configuredPasswordHash(): Promise<string> {
     return configuredHash.toLowerCase();
   }
 
-  return DEFAULT_PASSWORD_SHA256;
+  return isProduction() ? null : DEVELOPMENT_PASSWORD_SHA256;
+}
+
+function isProduction() {
+  return process.env.NODE_ENV === "production";
 }
 
 async function sha256Hex(value: string): Promise<string> {

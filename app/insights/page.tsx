@@ -39,13 +39,13 @@ export default function InsightsPage() {
         <div className="container split split--center">
           <div>
             <p className="eyebrow">Publishing Spine</p>
-            <h2>Insights connect to Agentic Systems and the Apex Microsoft 365 tenant.</h2>
+            <h2>Insights connect to the public AGG repository and intake-governed records boundary.</h2>
           </div>
           <p className="large-copy">
             The content model is aligned to GitHub-backed drafting, review,
-            versioning, and release notes, with SharePoint and OneDrive acting
-            as the governed tenant boundary for working records and knowledge
-            assets.
+            versioning, and release notes. Microsoft 365 and SharePoint records
+            controls are confirmed during intake before client-owned material
+            is accepted or represented as operational.
           </p>
         </div>
         <div className="container integration-grid" aria-label="Connected systems">
@@ -59,10 +59,17 @@ export default function InsightsPage() {
                 <h3>{connection.label}</h3>
                 <p>{connection.role}</p>
                 <strong>{connection.status}</strong>
-                <a className="text-link" href={connection.href}>
-                  Open connection
-                  <ArrowRight size={16} aria-hidden="true" />
-                </a>
+                {connection.system === "GitHub" ? (
+                  <a className="text-link" href={connection.href}>
+                    Open public repository
+                    <ArrowRight size={16} aria-hidden="true" />
+                  </a>
+                ) : (
+                  <Link className="text-link" href="/contact">
+                    Confirm boundary during intake
+                    <ArrowRight size={16} aria-hidden="true" />
+                  </Link>
+                )}
               </article>
             );
           })}

@@ -3,13 +3,19 @@
 Deployable multipage website for Apex Governance Group, built on the Sites
 vinext stack for Cloudflare Worker-compatible output.
 
+This repository is the public source spine for the AGG website. It is intended
+only for material approved for public release under the repository AGPL-3.0
+license. Do not commit client records, credentials, private operational data,
+or non-public implementation artifacts.
+
 ## Current Surface
 
 - Home page with the AGG circular seal, brand palette, and primary positioning.
 - Services, methodology, solutions, Client Services, Apex Academy, client
   portal, insights, about, contact, and engage pages.
 - Stripe checkout route at `/api/checkout`.
-- GitHub-ready repository links, CI workflow, and engagement issue template.
+- GitHub-ready public repository links, CI workflow, and engagement issue
+  template.
 - Apex Academy workforce and private education tracks for AI, automation,
   data governance, repository operations, and ecosystem development.
 - Client-Led Self-Determination architecture with 18 operationalized
@@ -23,8 +29,9 @@ vinext stack for Cloudflare Worker-compatible output.
 - Split navigation: brand, GitHub, Client login, and Engage remain in the
   masthead; Home, Services, Methodology, Solutions, Apex Academy, About,
   Contact, and Insights travel in the floating navigation rail.
-- Interactive client portal preview for progress, status, project efforts,
-  programs, actions, and working comments.
+- Public client portal preview for progress, status, project efforts, programs,
+  actions, and working comments. The preview is noindexed and excluded from the
+  sitemap; live client access remains an onboarding-controlled capability.
 - Maine topographic contour accents: oxblood on white/cream/pearl cards and
   smoke gray on black-scale cards.
 - SEO metadata, robots, sitemap, and social preview image wiring.
@@ -94,13 +101,15 @@ without AGG.
 
 ## Client Portal
 
-The `/client-portal` route is a front-end portal preview for client-specific
-delivery visibility. It includes portfolio switching, work-type filters,
+The `/client-portal` route is a public, non-operational front-end preview of
+client delivery visibility. It includes portfolio switching, work-type filters,
 status counters, progress bars, project/program/action registers, and local
 chat/comment entry.
 
 Production activation still requires an identity provider, role-based access,
 persistent project records, audit logging, and a governed communication store.
+The preview is marked `noindex`, excluded from `sitemap.xml`, and disallowed in
+`robots.txt` so public search surfaces do not imply live client operations.
 
 ## Client Services
 
@@ -110,10 +119,10 @@ and governed delivery content inside the Apex codebase rather than relying on
 external artifact hosting.
 
 The route uses a server-side password check and an HTTP-only session cookie.
-The committed default is a hash-backed access setting for the initial password;
-hosted production should set `CLIENT_SERVICES_PASSWORD` or
-`CLIENT_SERVICES_PASSWORD_SHA256`, plus `CLIENT_SERVICES_SESSION_SECRET`, in
-secret storage.
+Production fails closed unless hosted secret storage provides
+`CLIENT_SERVICES_PASSWORD` or `CLIENT_SERVICES_PASSWORD_SHA256`, plus
+`CLIENT_SERVICES_SESSION_SECRET`. Development retains a local-only fallback so
+the interface can be tested without committing live credentials.
 
 Inside the protected workspace, the Client-Led Self-Determination configuration
 card turns the 04 Sep 2026 ruling into an owned interface. It supports the fixed
@@ -124,9 +133,11 @@ lock-in state stored in the browser for the active client session.
 
 The public selector records selections through `/api/client-configurations`,
 which appends server-readable JSONL records for the protected Client Services
-readback panel. Production client execution still requires authenticated client
-identity, role authorization, retention policy, and auditable record lifecycle
-controls around those records.
+readback panel. The public write route enforces same-origin submission, a
+bounded request body, no-store responses, and a small per-client in-memory rate
+limit. Production client execution still requires authenticated client identity,
+role authorization, retention policy, and auditable record lifecycle controls
+around those records.
 
 ## Local Commands
 
@@ -153,13 +164,14 @@ Create a local `.env.local` or set hosted runtime variables:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://www.apexgov.ai
-NEXT_PUBLIC_CONTACT_EMAIL=apex@apexgovernancegroup.com
+NEXT_PUBLIC_CONTACT_EMAIL=contact@apexgovernancegroup.com
 NEXT_PUBLIC_CALENDAR_URL=https://your-scheduling-link
 NEXT_PUBLIC_FOUNDER_LINKEDIN_URL=https://www.linkedin.com/in/benjamin-bragdon
-NEXT_PUBLIC_GITHUB_REPOSITORY_URL=https://github.com/ApexG207/Agentic_Systems
+NEXT_PUBLIC_GITHUB_REPOSITORY_URL=https://github.com/ApexGovernanceGroup/AGG_Public
 NEXT_PUBLIC_SHAREPOINT_TENANT_HOST=apexgov56.sharepoint.com
 NEXT_PUBLIC_SHAREPOINT_TENANT_URL=https://apexgov56.sharepoint.com
 CLIENT_SERVICES_PASSWORD=
+CLIENT_SERVICES_PASSWORD_SHA256=
 CLIENT_SERVICES_SESSION_SECRET=
 STRIPE_SECRET_KEY=replace_with_hosted_stripe_secret
 STRIPE_SUCCESS_URL=https://your-production-url/engage?checkout=success
@@ -178,11 +190,24 @@ The site is ready to connect to GitHub through:
 
 The canonical repository target is:
 
-- `ApexG207/Agentic_Systems`
-- `https://github.com/ApexG207/Agentic_Systems`
+- `ApexGovernanceGroup/AGG_Public`
+- `https://github.com/ApexGovernanceGroup/AGG_Public`
 
 Set `NEXT_PUBLIC_GITHUB_REPOSITORY_URL` to that URL unless a later release
-changes the canonical source spine.
+changes the canonical public source spine.
+
+## Security Hardening
+
+The site defines defense-in-depth headers in both `next.config.ts` and
+`worker/index.ts`: CSP, HSTS, frame denial, content-type nosniff,
+referrer-policy, DNS prefetch control, and a restrictive permissions policy.
+The Worker also redirects `apexgov.ai` to `www.apexgov.ai` when apex DNS routes
+to the deployment and adds stronger cache headers for hashed assets and brand
+media.
+
+The AGG seal is retained as the source PNG and also published as WebP variants
+for smaller public delivery. The CSS uses responsive `image-set()` references
+so routine pages do not need to load the 1200px PNG as the default asset.
 
 ## Microsoft 365 / SharePoint Tenant Boundary
 

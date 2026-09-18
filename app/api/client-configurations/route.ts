@@ -2,15 +2,17 @@ import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import {
   appendKaigesConfigurationRecord,
-  KAIGES_RECORD_FILE,
 } from "../../client-configurations/records";
 import type { StoredKaigesConfigurationRecord } from "../../client-configurations/records";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
+const MAX_BODY_BYTES = 20_000;
 const MAX_TEXT_LENGTH = 280;
 const MAX_REVIEW_LENGTH = 8000;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX_REQUESTS = 8;
 const REQUIRED_REVIEW_SECTIONS = [
   "Defining Principles",
   "Attributes",
@@ -18,6 +20,8 @@ const REQUIRED_REVIEW_SECTIONS = [
   "End-State Products",
   "Client Priorities",
 ] as const;
+
+const requestCounters = new Map<string, { count: number; resetAt: number }>();
 
 type IncomingPosition = {
   id: string;
@@ -49,7 +53,15 @@ type IncomingPayload = {
 };
 
 function errorResponse(message: string, status: number) {
-  return NextResponse.json({ error: message }, { status });
+  return NextResponse.json(
+    { error: message },
+    {
+      status,
+      headers: {
+        "Cache-Control": "no-store",
+      },
+    },
+  );
 }
 
 function cleanText(value: unknown, maxLength = MAX_TEXT_LENGTH) {
@@ -195,8 +207,109 @@ function sanitizePayload(body: IncomingPayload) {
   } as const;
 }
 
+function requestOrigin(request: Request) {
+  return new URL(request.url).origin;
+}
+
+function configuredSiteOrigin() {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!configured) return null;
+
+  try {
+    return new URL(configured).origin;
+  } catch {
+    return null;
+  }
+}
+
+function sourceOriginFrom(request: Request) {
+  const origin = request.headers.get("origin");
+  if (origin) return origin;
+
+  const referer = request.headers.get("referer");
+  if (!referer) return null;
+
+  try {
+    return new URL(referer).origin;
+  } catch {
+    return null;
+  }
+}
+
+function sourceIsAllowed(request: Request) {
+  const sourceOrigin = sourceOriginFrom(request);
+  if (!sourceOrigin) return false;
+
+  const allowed = new Set([requestOrigin(request)]);
+  const configured = configuredSiteOrigin();
+  if (configured) allowed.add(configured);
+
+  return allowed.has(sourceOrigin);
+}
+
+function contentTypeIsJson(request: Request) {
+  const contentType = request.headers.get("content-type") ?? "";
+  return contentType.toLowerCase().includes("application/json");
+}
+
+function declaredBodyExceedsLimit(request: Request) {
+  const contentLength = request.headers.get("content-length");
+  if (!contentLength) return false;
+
+  const parsedLength = Number(contentLength);
+  return Number.isFinite(parsedLength) && parsedLength > MAX_BODY_BYTES;
+}
+
+function clientKeyFrom(request: Request) {
+  const direct =
+    request.headers.get("cf-connecting-ip") ??
+    request.headers.get("x-real-ip");
+  if (direct) return direct;
+
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) return forwarded.split(",")[0]?.trim() || "unknown";
+
+  return "unknown";
+}
+
+function rateLimitAllows(request: Request) {
+  const now = Date.now();
+  const key = clientKeyFrom(request);
+  const current = requestCounters.get(key);
+
+  if (!current || current.resetAt <= now) {
+    requestCounters.set(key, {
+      count: 1,
+      resetAt: now + RATE_LIMIT_WINDOW_MS,
+    });
+    return true;
+  }
+
+  current.count += 1;
+  return current.count <= RATE_LIMIT_MAX_REQUESTS;
+}
+
 export async function POST(request: Request) {
-  const body = (await request.json().catch(() => null)) as IncomingPayload | null;
+  if (!sourceIsAllowed(request)) return errorResponse("invalid_origin", 403);
+  if (!contentTypeIsJson(request)) {
+    return errorResponse("unsupported_media_type", 415);
+  }
+  if (declaredBodyExceedsLimit(request)) {
+    return errorResponse("invalid_body_size", 413);
+  }
+  if (!rateLimitAllows(request)) return errorResponse("rate_limited", 429);
+
+  const rawBody = await request.text().catch(() => "");
+  if (!rawBody || new TextEncoder().encode(rawBody).byteLength > MAX_BODY_BYTES) {
+    return errorResponse("invalid_body_size", 413);
+  }
+
+  let body: IncomingPayload | null = null;
+  try {
+    body = JSON.parse(rawBody) as IncomingPayload | null;
+  } catch {
+    return errorResponse("invalid_json", 400);
+  }
   if (!body) return errorResponse("invalid_json", 400);
 
   const sanitized = sanitizePayload(body);
@@ -235,12 +348,22 @@ export async function POST(request: Request) {
     recordId: record.recordId,
     receivedAt: record.receivedAt,
     status: "recorded",
+  }, {
+    headers: {
+      "Cache-Control": "no-store",
+    },
   });
 }
 
 export function GET() {
-  return NextResponse.json({
-    status: "write-only",
-    recordFile: KAIGES_RECORD_FILE,
-  });
+  return NextResponse.json(
+    {
+      status: "write-only",
+    },
+    {
+      headers: {
+        "Cache-Control": "no-store",
+      },
+    },
+  );
 }

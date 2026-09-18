@@ -149,7 +149,7 @@ export const solutionPillarIntro = {
 export const packageInclusions = {
   title: "Package inclusions",
   summary:
-    "Engagements are shaped for hybrid, in-person, and remote customer work, with secure client portal access for communication, status updates, and delivery visibility. Package customization is confirmed after intake.",
+    "Engagements are shaped for hybrid, in-person, and remote customer work, with staged secure portal access for communication, status updates, and delivery visibility after onboarding. Package customization is confirmed after intake.",
   items: [
     "Full publication package, including the initial assessment, problem statement development, and root-cause analysis findings.",
     "Solution recommendation white paper.",
@@ -210,11 +210,11 @@ export const navItems: NavItem[] = [
 ];
 
 export const contactEmail =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "apex@apexgovernancegroup.com";
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@apexgovernancegroup.com";
 
 export const githubRepositoryUrl =
   process.env.NEXT_PUBLIC_GITHUB_REPOSITORY_URL ??
-  "https://github.com/ApexG207/Agentic_Systems";
+  "https://github.com/ApexGovernanceGroup/AGG_Public";
 
 export const sharePointTenantHost =
   process.env.NEXT_PUBLIC_SHAREPOINT_TENANT_HOST ??
@@ -231,12 +231,12 @@ export const calendarUrl =
 export const integrationConnections = [
   {
     system: "GitHub",
-    label: "ApexG207/Agentic Systems",
+    label: "ApexGovernanceGroup/AGG_Public",
     href: githubRepositoryUrl,
     role:
-      "Repository spine for agentic systems, source-controlled delivery records, release discipline, and implementation artifacts.",
+      "Public source spine for the AGG website, release discipline, public-safe issue intake, and implementation artifacts.",
     status:
-      "Configured to the verified GitHub repository URL ApexG207/Agentic_Systems.",
+      "Configured to the verified public repository ApexGovernanceGroup/AGG_Public.",
   },
   {
     system: "Microsoft 365",
@@ -245,7 +245,7 @@ export const integrationConnections = [
     role:
       "Tenant boundary for SharePoint and OneDrive workspaces, client-owned records, knowledge assets, and governed collaboration.",
     status:
-      "Configured tenant endpoint. Site, library, permission, and records policies are confirmed during engagement intake.",
+      "Boundary signal only. Site, library, permission, and records policies are confirmed during engagement intake before client work is accepted.",
   },
 ] as const;
 
@@ -270,11 +270,11 @@ export const clientAccessCards: ClientAccessCard[] = [
   },
   {
     title: "Client Portal",
-    label: "Portal",
+    label: "Portal Preview",
     summary:
-      "A client-specific dashboard for project progress, program status, actions, decisions, and working communication.",
+      "A public preview of project progress, program status, actions, decisions, and working communication patterns.",
     href: "/client-portal",
-    action: "Open portal",
+    action: "Preview portal model",
     icon: Gauge,
   },
   {

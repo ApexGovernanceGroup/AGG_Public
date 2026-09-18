@@ -18,7 +18,7 @@ export function SiteHeader() {
           </nav>
         )}
         <div className="site-header__actions">
-          <a className="icon-link" href={githubRepositoryUrl} aria-label="Open Agentic Systems repository">
+          <a className="icon-link" href={githubRepositoryUrl} aria-label="Open AGG public repository">
             <GitBranch size={18} aria-hidden="true" />
           </a>
           <Link className="button button--small button--quiet" href="/client-services">
