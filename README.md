@@ -12,7 +12,8 @@ appropriate for public distribution.
 
 This repository is licensed under the GNU Affero General Public License v3.0.
 
-- Inbound contributions are accepted under the repository's AGPL-3.0 license.
+- Inbound contributions are accepted under the repository's AGPL-3.0 license
+  as published in the top-level [`LICENSE`](LICENSE) file.
 - Outbound copies, changes, and distributions from this repository remain
   subject to AGPL-3.0.
 

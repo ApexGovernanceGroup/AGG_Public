@@ -10,7 +10,12 @@ release and covered by the repository license.
 If you discover a security issue, do not disclose it publicly in an issue,
 discussion, or pull request.
 
-Instead, report the issue privately to the repository maintainers with:
+Instead, use GitHub's private vulnerability reporting for this repository when
+it is available. If that option is not available, contact the repository
+maintainers through a verified non-public channel before sharing details more
+widely.
+
+Include:
 
 - a description of the issue
 - the affected files or paths
