@@ -1,0 +1,19 @@
+# Local secrets
+.env
+.env.*
+*.key
+*.pem
+*.p12
+
+# Common local/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Common build artifacts
+build/
+dist/
+node_modules/
+__pycache__/
+*.pyc
