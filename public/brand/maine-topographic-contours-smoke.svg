@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="520" viewBox="0 0 640 520" fill="none">
+  <title>Maine topographic contour accent, smoke gray</title>
+  <defs>
+    <clipPath id="maine-outline-smoke">
+      <path d="M375 15L397 45L423 39L441 73L481 84L468 119L511 151L493 184L535 228L498 250L511 289L473 305L462 349L424 362L396 407L352 412L325 469L281 454L252 491L214 462L178 474L154 431L119 421L130 374L100 337L124 296L103 256L140 230L135 185L172 160L181 114L224 102L247 61L300 72L333 30L375 15Z" />
+    </clipPath>
+    <filter id="smoke-soften" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="0.12" />
+    </filter>
+  </defs>
+  <path
+    d="M375 15L397 45L423 39L441 73L481 84L468 119L511 151L493 184L535 228L498 250L511 289L473 305L462 349L424 362L396 407L352 412L325 469L281 454L252 491L214 462L178 474L154 431L119 421L130 374L100 337L124 296L103 256L140 230L135 185L172 160L181 114L224 102L247 61L300 72L333 30L375 15Z"
+    stroke="#C3C2BD"
+    stroke-linejoin="round"
+    stroke-width="2.4"
+    opacity="0.32"
+  />
+  <g clip-path="url(#maine-outline-smoke)" filter="url(#smoke-soften)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M42 72C118 33 206 38 273 81C320 111 354 119 405 105C476 86 543 110 601 155" stroke="#B8BAB7" stroke-width="2" opacity="0.34" />
+    <path d="M32 118C94 88 163 82 226 108C287 133 332 171 393 154C472 132 548 152 616 207" stroke="#9EA3A0" stroke-width="1.8" opacity="0.32" />
+    <path d="M37 166C102 132 181 132 247 169C305 202 354 222 422 195C489 168 551 185 607 235" stroke="#C3C2BD" stroke-width="1.6" opacity="0.3" />
+    <path d="M49 211C119 178 192 182 254 222C318 263 376 281 444 244C505 211 567 230 621 282" stroke="#A9ADAA" stroke-width="1.7" opacity="0.34" />
+    <path d="M38 259C111 230 181 242 245 286C310 331 366 345 430 303C496 260 558 278 611 331" stroke="#C3C2BD" stroke-width="1.5" opacity="0.28" />
+    <path d="M55 310C118 287 187 299 240 338C301 382 361 395 420 358C479 320 544 333 602 384" stroke="#9EA3A0" stroke-width="1.7" opacity="0.32" />
+    <path d="M75 360C132 344 190 356 239 389C296 429 351 438 405 409C462 379 527 391 584 435" stroke="#B8BAB7" stroke-width="1.5" opacity="0.28" />
+    <path d="M98 409C154 395 211 406 255 437C304 471 356 476 400 454C450 428 508 435 559 474" stroke="#C3C2BD" stroke-width="1.6" opacity="0.3" />
+    <path d="M225 44C252 83 246 129 206 162C170 192 164 237 196 271C236 314 231 359 184 397" stroke="#A9ADAA" stroke-width="1.4" opacity="0.28" />
+    <path d="M300 39C329 83 328 131 286 169C246 205 245 256 289 292C337 332 338 382 295 423" stroke="#C3C2BD" stroke-width="1.5" opacity="0.3" />
+    <path d="M373 40C399 86 402 137 365 177C329 215 337 267 385 298C437 331 446 382 411 430" stroke="#B8BAB7" stroke-width="1.4" opacity="0.28" />
+    <path d="M452 78C470 117 464 157 433 191C402 224 412 269 456 293C496 315 505 358 478 397" stroke="#9EA3A0" stroke-width="1.4" opacity="0.3" />
+  </g>
+  <g opacity="0.2" stroke="#C3C2BD" stroke-width="1.2" stroke-linecap="round">
+    <path d="M80 88H188" />
+    <path d="M67 434H173" />
+    <path d="M458 58H550" />
+    <path d="M474 467H590" />
+  </g>
+</svg>
