@@ -124,7 +124,7 @@ test("AGG public site contract is present", async () => {
     data.indexOf("export const academyFormats"),
   );
   const configurationPositionBlocks = configurationPositionsData
-    .split(/\n    \{\n      id: "/)
+    .split(/\r?\n    \{\r?\n      id: "/)
     .slice(1);
 
   assert.match(combined, /Apex Governance Group/);
@@ -179,6 +179,17 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Private cohort syllabus/);
   assert.match(combined, /service-work-grid/);
   assert.match(combined, /service-work-card/);
+  assert.match(combined, /Executive Service Decision Path/);
+  assert.match(combined, /Buy the first move, then scale only what proves useful/);
+  assert.match(combined, /diagnose, architect, install, and sustain/);
+  assert.match(combined, /Scope Gate/);
+  assert.match(combined, /Evidence Gate/);
+  assert.match(combined, /Control Gate/);
+  assert.match(combined, /Transfer Gate/);
+  assert.match(combined, /ISO-Strengthened Quality Logic/);
+  assert.match(combined, /certification-neutral controls/i);
+  assert.match(combined, /Catalog Detail/);
+  assert.match(combined, /Open the layer that matches the\s+decision you are making/);
   assert.match(combined, /Methodology/);
   assert.match(combined, /\/methodology/);
   assert.match(combined, /Assessment, architecture, governance, execution, and proof/);
@@ -223,11 +234,11 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /729 selectable configurations/);
   assert.equal(configurationPositionBlocks.length, 6);
   assert.equal(
-    (configurationPositionsData.match(/\n          term: "/g) ?? []).length,
+    (configurationPositionsData.match(/\r?\n          term: "/g) ?? []).length,
     18,
   );
   for (const positionBlock of configurationPositionBlocks) {
-    assert.equal((positionBlock.match(/\n          term: "/g) ?? []).length, 3);
+    assert.equal((positionBlock.match(/\r?\n          term: "/g) ?? []).length, 3);
   }
   assert.match(combined, /Output/);
   assert.match(combined, /Engagement/);
@@ -449,6 +460,10 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /contact@apexgovernancegroup\.com/);
   assert.match(combined, /\/api\/checkout/);
   assert.doesNotMatch(combined, /execution cadence/i);
+  const servicesCss = await read("app/globals.css");
+  assert.match(servicesCss, /service-decision-grid/);
+  assert.match(servicesCss, /service-quality-grid/);
+  assert.match(servicesCss, /service-accordion/);
 });
 
 test("brand assets and palette are wired", async () => {
