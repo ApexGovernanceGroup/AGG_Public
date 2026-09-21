@@ -10,7 +10,7 @@ import {
 export const metadata: Metadata = {
   title: "Methodology",
   description:
-    "Apex Governance Group methodology for assessment, operating architecture, governance installation, engineered delivery, and measurable transfer.",
+    "Apex Governance Group methodology for assessment, architecture, infrastructure, governance, change management, hand off, and measured improvement.",
 };
 
 export default function MethodologyPage() {
@@ -19,7 +19,10 @@ export default function MethodologyPage() {
       <section className="page-hero page-hero--seal page-hero--methodology">
         <div className="container page-hero__inner">
           <p className="eyebrow">Methodology</p>
-          <h1>Assessment, architecture, governance, execution, and proof.</h1>
+          <h1>
+            Assessment. Architecture. Infrastructure. Governance. Change
+            Management. Hand Off. Measured Improvement.
+          </h1>
           <p>
             AGG methodology converts executive intent into an installed operating
             system: observed baseline, designed architecture, governed controls,

@@ -236,7 +236,14 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Open the layer that matches the\s+decision you are making/);
   assert.match(combined, /Methodology/);
   assert.match(combined, /\/methodology/);
-  assert.match(combined, /Assessment, architecture, governance, execution, and proof/);
+  assert.match(
+    combined,
+    /Assessment\. Architecture\. Infrastructure\. Governance\. Change\s+Management\. Hand Off\. Measured Improvement\./,
+  );
+  assert.doesNotMatch(
+    combined,
+    /Assessment, architecture, governance, execution, and proof/,
+  );
   assert.match(combined, /root cause of an issue,[\s\S]*vulnerability, or gap/);
   assert.match(combined, /executable tasks that achieve intent/);
   assert.match(combined, /topNavItems/);
