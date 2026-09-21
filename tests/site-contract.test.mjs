@@ -227,6 +227,8 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /parameters, expectations, personal priorities, and products/);
   assert.match(combined, /global leadership in intelligent engineered solutions/);
   assert.match(combined, /active author of the experience/);
+  assert.match(combined, /self-determined, client-led partnership experience/);
+  assert.match(combined, /product-delivery controls on your terms/);
   assert.match(combined, /ClientLedSelfDeterminationCards/);
   assert.match(combined, /agg-public-client-led-self-determination-v1/);
   assert.match(combined, /kaigedClientConfiguration\.positions/);
