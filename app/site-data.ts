@@ -1549,14 +1549,14 @@ export const storefrontCollections: StorefrontCollection[] = [
     title: "Custom Solution for Singular Needs",
     buyer: "Program owner, division lead, content owner, small team",
     summary:
-      "Not every need is enterprise-echelon, decades-long, or mass-impacting. AGG can right-size support when the answer is a focused policy memo, content strategy, governing document set, template, checklist, or single product that clears work from the client's plate.",
+      "Not every organizational need requires enterprise-scale transformation. Sometimes the right answer is a focused policy memo, content strategy, governing document set, template, checklist, or practical product that helps a team stand up a division, launch a program, or move work forward.",
     examples: [
       "Policy memo or content strategy",
-      "Self Design Architecture Template",
-      "Performance Assessment Template or Project Management Checklist",
+      "Division or program governing-document set",
+      "Self-design architecture, performance assessment, or project management checklist",
     ],
     value:
-      "Starts with a conversation, shapes the practical artifact, and works with the team until the result matches what the client wants and needs.",
+      "Begins with a conversation, then scopes, builds, and refines the artifact with the client team until it does exactly what the work requires.",
     icon: Compass,
   },
   {
