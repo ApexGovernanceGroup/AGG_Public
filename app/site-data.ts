@@ -1353,6 +1353,20 @@ export const serviceLines: ServiceLine[] = [
     icon: Gauge,
   },
   {
+    title: "Low-to-Medium System, Application Coding, and Custom Design",
+    summary:
+      "Scoped system and application builds for practical workflows, interfaces, dashboards, and delivery tools.",
+    detail:
+      "Builds low-to-medium complexity system/application coding and custom design work when the client needs a practical working layer: internal tools, dashboards, forms, workflow helpers, repository-backed pages, and focused application features that can be maintained after handoff.",
+    workProducts: [
+      "Scoped system or application feature build",
+      "Custom interface, workflow, or dashboard design",
+      "Automation, form, and integration prototype",
+      "Technical handoff and maintenance notes",
+    ],
+    icon: Workflow,
+  },
+  {
     title: "Centers of Gravity",
     summary:
       "The decisive sources of strength, friction, influence, dependency, and vulnerability around the problem.",

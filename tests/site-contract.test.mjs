@@ -206,6 +206,11 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Analytics requirements and question map/);
   assert.match(combined, /Data architecture and lineage profile/);
   assert.match(combined, /Application roadmap and decision dashboard/);
+  assert.match(combined, /Low-to-Medium System, Application Coding, and Custom Design/);
+  assert.match(combined, /low-to-medium complexity system\/application coding/);
+  assert.match(combined, /Scoped system or application feature build/);
+  assert.match(combined, /Custom interface, workflow, or dashboard design/);
+  assert.match(combined, /Technical handoff and maintenance notes/);
   assert.match(combined, /Centers of Gravity/);
   assert.match(combined, /Critical capability and vulnerability map/);
   assert.match(combined, /Communities of Practice/);

@@ -16,7 +16,7 @@ import {
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Governance architecture, knowledge systems, strategy execution, decision support, data analytics, applied analysis, communities of practice, repository governance, product kits, seminars, sprints, and Apex Academy education.",
+    "Governance architecture, knowledge systems, strategy execution, decision support, data analytics, applied analysis, low-to-medium system and application coding, custom design, communities of practice, repository governance, product kits, seminars, sprints, and Apex Academy education.",
 };
 
 const serviceDecisionPath = [
