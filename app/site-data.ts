@@ -146,6 +146,53 @@ export const solutionPillarIntro = {
   headingLines: ["Apex Solutions", "are all comprised of:"],
 };
 
+export const solutionDeliveryBridge = {
+  lead:
+    "Apex Solutions are addressed through eight operating lanes, each tuned to the client's baseline and imbued with Knowledge, Strategy, Governance, and Velocity.",
+  lanes: [
+    {
+      label: "Assessment",
+      definition:
+        "Establish the operating baseline, decision need, risk exposure, and evidence required before prescribing work.",
+    },
+    {
+      label: "Architecture",
+      definition:
+        "Shape the solution model: roles, decisions, workflows, measures, interfaces, and sequencing.",
+    },
+    {
+      label: "Infrastructure",
+      definition:
+        "Prepare the repositories, systems, data pathways, collaboration spaces, and operating rails the solution depends on.",
+    },
+    {
+      label: "Governing Control",
+      definition:
+        "Set the decision rights, standards, authority, access, review cadence, and accountability that make the solution trustworthy.",
+    },
+    {
+      label: "Sustainment",
+      definition:
+        "Keep capability current, owned, measured, and resilient after the first implementation or handoff.",
+    },
+    {
+      label: "Change Management",
+      definition:
+        "Move people through adoption with communications, training, stakeholder alignment, resistance handling, and role readiness.",
+    },
+    {
+      label: "Innovation & Modernization",
+      definition:
+        "Apply AI, automation, analytics, and modern work practices where they improve speed, traceability, or quality.",
+    },
+    {
+      label: "Futures",
+      definition:
+        "Scan emerging conditions, decision points, scenarios, and second-order effects so today's solution stays useful tomorrow.",
+    },
+  ],
+} as const;
+
 export const packageInclusions = {
   title: "Package inclusions",
   summary:

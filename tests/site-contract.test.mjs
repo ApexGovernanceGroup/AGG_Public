@@ -123,6 +123,10 @@ test("AGG public site contract is present", async () => {
     data.indexOf("export const academyTracks"),
     data.indexOf("export const academyFormats"),
   );
+  const solutionDeliveryBridgeData = data.slice(
+    data.indexOf("export const solutionDeliveryBridge"),
+    data.indexOf("export const packageInclusions"),
+  );
   const configurationPositionBlocks = configurationPositionsData
     .split(/\r?\n    \{\r?\n      id: "/)
     .slice(1);
@@ -141,6 +145,19 @@ test("AGG public site contract is present", async () => {
   assert.match(home, /hero__secondary-actions/);
   assert.match(home, /solutionPillarIntro\.headingLines\.map/);
   assert.match(home, /hero__pillar-intro/);
+  assert.match(home, /solutionDeliveryBridge\.lanes\.map/);
+  assert.match(home, /hero__solution-bridge/);
+  assert.equal((solutionDeliveryBridgeData.match(/label:\s*"/g) ?? []).length, 8);
+  assert.match(combined, /Apex Solutions are addressed through eight operating lanes/i);
+  assert.match(combined, /imbued with Knowledge, Strategy, Governance, and Velocity/i);
+  assert.match(combined, /Assessment/);
+  assert.match(combined, /Architecture/);
+  assert.match(combined, /Infrastructure/);
+  assert.match(combined, /Governing Control/);
+  assert.match(combined, /Sustainment/);
+  assert.match(combined, /Change Management/);
+  assert.match(combined, /Innovation & Modernization/);
+  assert.match(combined, /Futures/);
   assert.match(combined, /custom-tailored solutions for each client/i);
   assert.match(combined, /crafted first from the client's own organic systems/i);
   assert.match(combined, /We engineer holistic solutions before introducing a commercial option/i);
@@ -579,6 +596,15 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const heroPillarHeading = cssBlock(css, ".hero__pillar-heading");
   const heroPillarHeadingSpan = cssBlock(css, ".hero__pillar-heading span");
   const heroPillarHeadingSecondLine = cssBlock(css, ".hero__pillar-heading span + span");
+  const heroSolutionBridge = cssBlock(css, ".hero__solution-bridge");
+  const heroSolutionBridgeLede = cssBlock(css, ".hero__solution-bridge-lede");
+  const heroSolutionLanes = cssBlock(css, ".hero__solution-lanes");
+  const heroSolutionLane = cssBlock(css, ".hero__solution-lane");
+  const heroSolutionLaneContour = cssBlock(css, ".hero__solution-lane::before");
+  const heroSolutionLaneHover = cssBlock(css, ".hero__solution-lane:hover");
+  const heroSolutionLaneIndex = cssBlock(css, ".hero__solution-lane span");
+  const heroSolutionLaneTitle = cssBlock(css, ".hero__solution-lane h3");
+  const heroSolutionLaneCopy = cssBlock(css, ".hero__solution-lane p");
   const heroMetricCard = cssBlock(css, ".hero__metrics div");
   const sideNav = cssBlock(css, ".site-side-nav");
   const sideNavLinks = cssBlock(css, ".site-side-nav__links");
@@ -688,6 +714,23 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(heroPillarHeadingSecondLine, /font-family:\s*"Archivo",\s*"Aptos",\s*"Segoe UI",\s*Arial,\s*sans-serif/);
   assert.match(heroPillarHeadingSecondLine, /font-size:\s*0\.56em/);
   assert.match(heroPillarHeadingSecondLine, /font-weight:\s*400/);
+  assert.match(heroSolutionBridge, /max-width:\s*1120px/);
+  assert.match(heroSolutionBridge, /margin:\s*clamp\(26px,\s*4svh,\s*42px\)\s*auto\s*0/);
+  assert.match(heroSolutionBridgeLede, /max-width:\s*820px/);
+  assert.match(heroSolutionBridgeLede, /text-align:\s*center/);
+  assert.match(heroSolutionLanes, /grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(heroSolutionLane, /grid-template-columns:\s*auto 1fr/);
+  assert.match(heroSolutionLane, /min-height:\s*150px/);
+  assert.match(heroSolutionLane, /border:\s*1px solid rgba\(244,\s*241,\s*234,\s*0\.24\)/);
+  assert.match(heroSolutionLane, /transition:[\s\S]*?transform 0\.18s ease/);
+  assert.match(heroSolutionLaneContour, /background-image:\s*var\(--maine-topographic-contours-smoke\)/);
+  assert.match(heroSolutionLaneContour, /opacity:\s*0\.11/);
+  assert.match(heroSolutionLaneHover, /transform:\s*translateY\(-3px\)/);
+  assert.match(heroSolutionLaneHover, /border-color:\s*rgba\(136,\s*98,\s*60,\s*0\.66\)/);
+  assert.match(heroSolutionLaneIndex, /place-items:\s*center/);
+  assert.match(heroSolutionLaneTitle, /font-size:\s*0\.84rem/);
+  assert.match(heroSolutionLaneTitle, /text-transform:\s*uppercase/);
+  assert.match(heroSolutionLaneCopy, /line-height:\s*1\.48/);
   assert.match(brandLockup, /flex:\s*1 1 380px/);
   assert.match(brandLockup, /min-width:\s*0/);
   assert.match(brandTagline, /max-width:\s*420px/);
@@ -833,8 +876,13 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(css, /@media \(max-width:\s*1200px\)[\s\S]*?\.hero::after\s*{[^}]*top clamp\(126px,\s*15svh,\s*148px\)/);
   assert.match(css, /@media \(max-width:\s*1200px\)[\s\S]*?\.hero__pillar-intro\s*{[^}]*margin-top:\s*220px/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.hero::after\s*{[^}]*top 118px/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.hero__solution-lanes\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.hero__solution-lane\s*{[^}]*min-height:\s*132px/);
   assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.hero h1\s*{[^}]*font-size:\s*clamp\(1\.32rem,\s*5\.7vw,\s*1\.52rem\)/);
   assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.hero__pillar-intro\s*{[^}]*margin-top:\s*46px/);
+  assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.hero__solution-bridge\s*{[^}]*margin-top:\s*24px/);
+  assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.hero__solution-lanes\s*{[^}]*grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.hero__solution-lane\s*{[^}]*min-height:\s*auto/);
   assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.hero__actions,[\s\S]*?\.hero__secondary-actions\s*{[^}]*width:\s*100%/);
   assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.hero__actions \.button,[\s\S]*?\.hero__secondary-actions \.button\s*{[^}]*white-space:\s*normal/);
   assert.match(pageHeroTexture, /repeating-linear-gradient/);

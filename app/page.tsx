@@ -16,6 +16,7 @@ import {
   pillarDefinitions,
   serviceLines,
   site,
+  solutionDeliveryBridge,
   solutionPillarIntro,
 } from "./site-data";
 import { ClientLedSelfDeterminationCards } from "./components/ClientLedSelfDeterminationCards";
@@ -67,6 +68,20 @@ export default function Home() {
                 <span key={line}>{line}</span>
               ))}
             </p>
+          </div>
+          <div className="hero__solution-bridge" aria-label="Apex solution delivery lanes">
+            <p className="hero__solution-bridge-lede">{solutionDeliveryBridge.lead}</p>
+            <div className="hero__solution-lanes">
+              {solutionDeliveryBridge.lanes.map((lane, index) => (
+                <article className="hero__solution-lane" key={lane.label}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <div>
+                    <h3>{lane.label}</h3>
+                    <p>{lane.definition}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
           <dl className="hero__metrics" aria-label="Operating focus">
             {pillarDefinitions.map((pillar) => (
