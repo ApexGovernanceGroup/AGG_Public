@@ -188,6 +188,11 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Governance Architecture/);
   assert.match(combined, /Knowledge Systems/);
   assert.match(combined, /Apex Academy/);
+  assert.match(combined, /Custom Solution for Singular Needs/);
+  assert.match(combined, /Not every need is enterprise-echelon, decades-long, or mass-impacting/);
+  assert.match(combined, /Policy memo or content strategy/);
+  assert.match(combined, /Self Design Architecture Template/);
+  assert.match(combined, /Performance Assessment Template or Project Management Checklist/);
   assert.match(combined, /Example work products/);
   assert.match(combined, /Decision-rights matrix/);
   assert.match(combined, /Knowledge taxonomy and metadata profile/);
