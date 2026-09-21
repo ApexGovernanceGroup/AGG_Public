@@ -38,7 +38,7 @@ export const brandStandard = {
     masthead: "Advantage Is Engineered. Not Inherited.",
     mastheadLines: ["Advantage Is Engineered", "Not Inherited"],
     descriptor:
-      "Knowledge, Strategy, Governance, and Velocity - imbued as architectural pillars, not static initiatives or discussion points.",
+      "Advantage is intelligent application of institutional Knowledge, Strategy, and Governance to achieve Velocity:",
     lead:
       "We install the decision architecture inside enterprises that already own everything needed to run it: the people, the data, the systems, and the licenses already on the books.",
   },

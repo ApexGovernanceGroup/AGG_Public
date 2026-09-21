@@ -136,7 +136,10 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Not Inherited/);
   assert.match(data, /mastheadLines:\s*\["Advantage Is Engineered",\s*"Not Inherited"\]/);
   assert.match(home, /brandStandard\.tier2\.mastheadLines\.map/);
-  assert.match(combined, /imbued as architectural pillars, not static initiatives or discussion points/i);
+  assert.match(
+    combined,
+    /Advantage is intelligent application of institutional Knowledge, Strategy, and Governance to achieve Velocity:/,
+  );
   assert.match(home, /Request the executive diagnostic/);
   assert.match(home, /See how an engagement runs/);
   assert.match(home, /Our Formal Process/);
