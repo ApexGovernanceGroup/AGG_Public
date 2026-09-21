@@ -325,6 +325,7 @@ export function ClientLedSelfDeterminationCards() {
         ...position,
         icon: kaigedCategories[index]?.icon ?? kaigedCategories[0].icon,
         selected: selectedOptionFor(position.id, selectionState),
+        selectedIndex: selectionState[position.id].selectedIndex,
         locked: selectionState[position.id].locked,
       })),
     [selectionState],
@@ -550,6 +551,8 @@ export function ClientLedSelfDeterminationCards() {
       <div className="kaiges-grid" aria-label="Client-Led Self-Determination word bank">
         {selectedPositions.map((position, index) => {
           const selected = position.selected ?? position.options[0];
+          const nextOption =
+            position.options[(position.selectedIndex + 1) % position.options.length];
           const Icon = position.icon;
 
           return (
@@ -572,11 +575,17 @@ export function ClientLedSelfDeterminationCards() {
                 >
                   <span className="kaiges-card__stage">{position.position}</span>
                   <div className="kaiges-card__top">
-                    <span>{selected.letter}</span>
+                    <span className="kaiges-card__letter">{selected.letter}</span>
                     <Icon size={21} aria-hidden="true" />
                   </div>
                   <h3>{selected.term}</h3>
                   <p>{selected.definition}</p>
+                  <div className="kaiges-card__option-meta" aria-hidden="true">
+                    <span>
+                      Term {position.selectedIndex + 1} of {position.options.length}
+                    </span>
+                    <small>Next: {nextOption.term}</small>
+                  </div>
                 </div>
               </button>
               <button
@@ -596,6 +605,51 @@ export function ClientLedSelfDeterminationCards() {
           );
         })}
       </div>
+      <section
+        className="kaiges-term-bank"
+        aria-label="KAIGES and KAIGED term definitions"
+      >
+        <div className="kaiges-term-bank__heading">
+          <p className="eyebrow">Expanded Term Bank</p>
+          <h3>K-A-I-G-E-S|D definitions</h3>
+          <p>
+            The client selects the operating emphasis for each fixed position:
+            customer experience, solution expectation, delivery proof, and
+            relationship shape are carried together into the engagement record.
+          </p>
+        </div>
+        <div className="kaiges-term-bank__grid">
+          {selectedPositions.map((position) => {
+            const selected = position.selected ?? position.options[0];
+
+            return (
+              <article className="kaiges-term-column" key={position.id}>
+                <div className="kaiges-term-column__top">
+                  <span>{position.defaultLetter}</span>
+                  <div>
+                    <strong>{position.position}</strong>
+                    <small>{position.options.length} client terms</small>
+                  </div>
+                </div>
+                <ul>
+                  {position.options.map((option) => (
+                    <li
+                      className={option.term === selected.term ? "is-selected" : undefined}
+                      key={`${position.id}-${option.term}`}
+                    >
+                      <span>{option.letter}</span>
+                      <div>
+                        <strong>{option.term}</strong>
+                        <p>{option.definition}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            );
+          })}
+        </div>
+      </section>
       <section className="kaiges-election-panel" aria-label="Client configuration summary">
         <div className="kaiges-selected-summary">
           <p className="eyebrow">Selected Configuration</p>

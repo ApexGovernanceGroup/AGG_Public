@@ -2393,10 +2393,10 @@ button.configuration-relation-card:disabled {
 
 .kaiges-grid {
   display: grid;
-  gap: 14px;
-  grid-template-columns: repeat(6, minmax(158px, 1fr));
+  gap: 16px;
+  grid-template-columns: repeat(6, minmax(190px, 1fr));
   overflow-x: auto;
-  padding-bottom: 6px;
+  padding: 4px 2px 12px;
   scrollbar-color: rgba(136, 98, 60, 0.5) transparent;
   scroll-snap-type: x proximity;
 }
@@ -2449,18 +2449,47 @@ button.configuration-relation-card:disabled {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  min-height: 306px;
+  min-height: 382px;
   flex-direction: column;
-  border: 1px solid rgba(12, 12, 12, 0.12);
+  border: 2px solid rgba(23, 44, 63, 0.22);
   border-radius: var(--radius);
-  background: rgba(244, 241, 234, 0.9);
-  padding: 16px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(244, 241, 234, 0.9)),
+    rgba(244, 241, 234, 0.94);
+  box-shadow:
+    0 18px 44px rgba(12, 12, 12, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  padding: 18px;
   scroll-snap-align: start;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.kaiges-card::after {
+  position: absolute;
+  inset: auto 18px 52px;
+  z-index: 0;
+  height: 1px;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(136, 98, 60, 0.42), transparent);
+}
+
+.kaiges-card:hover,
+.kaiges-card:focus-within {
+  border-color: rgba(136, 98, 60, 0.62);
+  box-shadow:
+    0 24px 58px rgba(12, 12, 12, 0.13),
+    0 0 0 4px rgba(136, 98, 60, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  transform: translateY(-3px);
 }
 
 .kaiges-card__select {
   display: flex;
-  min-height: 236px;
+  min-height: 294px;
   flex: 1 1 auto;
   flex-direction: column;
   border: 0;
@@ -2472,7 +2501,7 @@ button.configuration-relation-card:disabled {
 
 .kaiges-card__flip {
   display: flex;
-  min-height: 236px;
+  min-height: 294px;
   flex: 1 1 auto;
   flex-direction: column;
   animation: kaiges-card-flip 460ms ease both;
@@ -2487,6 +2516,13 @@ button.configuration-relation-card:disabled {
   cursor: default;
 }
 
+.kaiges-card__select:focus-visible,
+.kaiges-lock-chip:focus-visible,
+.kaiges-preference button:focus-visible {
+  outline: 3px solid rgba(136, 98, 60, 0.48);
+  outline-offset: 4px;
+}
+
 .kaiges-card__stage {
   display: block;
   margin-bottom: 10px;
@@ -2498,13 +2534,36 @@ button.configuration-relation-card:disabled {
 }
 
 .kaiges-card__top {
-  display: flex;
+  display: grid;
+  position: relative;
+  min-height: 86px;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
+  justify-items: center;
+  margin-bottom: 16px;
 }
 
-.kaiges-card__top span,
+.kaiges-card__letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 76px;
+  min-height: 76px;
+  border: 2px solid rgba(136, 98, 60, 0.58);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(244, 241, 234, 0.98), rgba(23, 44, 63, 0.12)),
+    rgba(23, 44, 63, 0.08);
+  box-shadow:
+    0 14px 30px rgba(23, 44, 63, 0.16),
+    inset 0 0 0 5px rgba(255, 255, 255, 0.38);
+  color: var(--navy);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 1.28rem;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+}
+
 .kaiges-list__item > span {
   display: inline-flex;
   align-items: center;
@@ -2524,6 +2583,18 @@ button.configuration-relation-card:disabled {
   color: var(--bronze);
 }
 
+.kaiges-card__top svg {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 7px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(136, 98, 60, 0.22);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.42);
+}
+
 .kaiges-card h3,
 .kaiges-list__item h3 {
   margin-bottom: 10px;
@@ -2538,26 +2609,45 @@ button.configuration-relation-card:disabled {
 
 .kaiges-card p {
   margin-bottom: 0;
-  font-size: 0.9rem;
-  line-height: 1.48;
+  font-size: 0.92rem;
+  line-height: 1.5;
 }
 
-.kaiges-card strong {
-  display: block;
+.kaiges-card__option-meta {
+  display: grid;
+  gap: 4px;
   margin-top: auto;
+  border-top: 1px solid rgba(12, 12, 12, 0.1);
+  padding-top: 14px;
+}
+
+.kaiges-card__option-meta span {
   color: var(--navy);
-  font-size: 0.92rem;
-  line-height: 1.45;
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.kaiges-card__option-meta small {
+  color: rgba(62, 67, 70, 0.7);
+  font-size: 0.74rem;
+  line-height: 1.35;
 }
 
 .kaiges-card--terminal {
-  border-color: rgba(23, 44, 63, 0.28);
-  background: rgba(244, 241, 234, 0.96);
+  border-color: rgba(121, 55, 53, 0.36);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(244, 241, 234, 0.94)),
+    rgba(244, 241, 234, 0.98);
 }
 
 .kaiges-card.is-locked {
-  border-color: rgba(23, 44, 63, 0.38);
-  box-shadow: inset 0 0 0 1px rgba(23, 44, 63, 0.16);
+  border-color: rgba(23, 44, 63, 0.66);
+  box-shadow:
+    0 18px 44px rgba(12, 12, 12, 0.08),
+    0 0 0 4px rgba(23, 44, 63, 0.08),
+    inset 0 0 0 1px rgba(23, 44, 63, 0.24);
 }
 
 .kaiges-lock-chip {
@@ -2582,6 +2672,139 @@ button.configuration-relation-card:disabled {
   border-color: var(--navy);
   background: var(--navy);
   color: var(--paper);
+}
+
+.kaiges-term-bank {
+  display: grid;
+  gap: 18px;
+  margin-top: 20px;
+  border: 1px solid rgba(23, 44, 63, 0.16);
+  border-radius: var(--radius);
+  background: rgba(12, 12, 12, 0.035);
+  padding: 20px;
+}
+
+.kaiges-term-bank__heading {
+  display: grid;
+  gap: 8px;
+  max-width: 820px;
+}
+
+.kaiges-term-bank__heading h3 {
+  margin-bottom: 0;
+  color: var(--black);
+  font-size: clamp(1.18rem, 1.8vw, 1.52rem);
+}
+
+.kaiges-term-bank__heading p:not(.eyebrow) {
+  margin-bottom: 0;
+  color: rgba(62, 67, 70, 0.76);
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.kaiges-term-bank__grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.kaiges-term-column {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-width: 0;
+  border: 1px solid rgba(12, 12, 12, 0.1);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.3);
+  padding: 14px;
+}
+
+.kaiges-term-column__top {
+  display: grid;
+  align-items: center;
+  gap: 10px;
+  grid-template-columns: auto 1fr;
+  border-bottom: 1px solid rgba(12, 12, 12, 0.1);
+  padding-bottom: 10px;
+}
+
+.kaiges-term-column__top > span {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(136, 98, 60, 0.44);
+  border-radius: 50%;
+  background: rgba(23, 44, 63, 0.08);
+  color: var(--navy);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.kaiges-term-column__top strong {
+  display: block;
+  color: var(--black);
+  font-size: 0.92rem;
+}
+
+.kaiges-term-column__top small {
+  color: rgba(62, 67, 70, 0.66);
+  font-size: 0.72rem;
+}
+
+.kaiges-term-column ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kaiges-term-column li {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: auto 1fr;
+  border: 1px solid rgba(12, 12, 12, 0.08);
+  border-radius: var(--radius);
+  background: rgba(244, 241, 234, 0.42);
+  padding: 10px;
+}
+
+.kaiges-term-column li.is-selected {
+  border-color: rgba(136, 98, 60, 0.42);
+  background: rgba(136, 98, 60, 0.1);
+  box-shadow: inset 3px 0 0 rgba(136, 98, 60, 0.62);
+}
+
+.kaiges-term-column li > span {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(23, 44, 63, 0.09);
+  color: var(--navy);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.kaiges-term-column li strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--black);
+  font-size: 0.84rem;
+}
+
+.kaiges-term-column li p {
+  margin-bottom: 0;
+  color: rgba(62, 67, 70, 0.74);
+  font-size: 0.74rem;
+  line-height: 1.4;
 }
 
 .kaiges-election-panel {
@@ -4603,6 +4826,7 @@ button.configuration-relation-card:disabled {
   .sprint-grid,
   .service-work-grid,
   .kaiges-election-panel,
+  .kaiges-term-bank__grid,
   .kaiges-preference-grid,
   .kaiges-generated-panel,
   .kaiges-election-panel__commitment,

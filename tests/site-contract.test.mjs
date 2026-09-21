@@ -233,14 +233,31 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /agg-public-client-led-self-determination-v1/);
   assert.match(combined, /kaigedClientConfiguration\.positions/);
   assert.match(combined, /Client-Led Self-Determination word bank/);
-  assert.match(combined, /729 selectable configurations/);
+  assert.match(combined, /15,625 selectable configurations/);
+  assert.match(combined, /K-A-I-G-E-S\|D definitions/);
+  assert.match(combined, /Expanded Term Bank/);
+  assert.match(combined, /solution expectations, evidence, and delivery control/);
+  assert.match(combined, /Keystone/);
+  assert.match(combined, /Knowledge Continuity/);
+  assert.match(combined, /Alignment/);
+  assert.match(combined, /Accountability/);
+  assert.match(combined, /Intake/);
+  assert.match(combined, /Interoperability/);
+  assert.match(combined, /Guardrails/);
+  assert.match(combined, /Goals/);
+  assert.match(combined, /Evidence/);
+  assert.match(combined, /Experience/);
+  assert.match(combined, /Sustainment/);
+  assert.match(combined, /Deployment/);
+  assert.match(combined, /Term \{position\.selectedIndex \+ 1\} of \{position\.options\.length\}/);
+  assert.match(combined, /Next: \{nextOption\.term\}/);
   assert.equal(configurationPositionBlocks.length, 6);
   assert.equal(
     (configurationPositionsData.match(/\r?\n          term: "/g) ?? []).length,
-    18,
+    30,
   );
   for (const positionBlock of configurationPositionBlocks) {
-    assert.equal((positionBlock.match(/\r?\n          term: "/g) ?? []).length, 3);
+    assert.equal((positionBlock.match(/\r?\n          term: "/g) ?? []).length, 5);
   }
   assert.match(combined, /Output/);
   assert.match(combined, /Engagement/);
@@ -571,8 +588,14 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const kaigesCard = cssBlock(css, ".kaiges-card");
   const kaigesCardSelect = cssBlock(css, ".kaiges-card__select");
   const kaigesCardFlip = cssBlock(css, ".kaiges-card__flip");
+  const kaigesCardLetter = cssBlock(css, ".kaiges-card__letter");
+  const kaigesCardOptionMeta = cssBlock(css, ".kaiges-card__option-meta");
   const kaigesLockChip = cssBlock(css, ".kaiges-lock-chip");
   const kaigesLockedChip = cssBlock(css, ".kaiges-lock-chip.is-locked");
+  const kaigesTermBank = cssBlock(css, ".kaiges-term-bank");
+  const kaigesTermBankGrid = cssBlock(css, ".kaiges-term-bank__grid");
+  const kaigesTermColumn = cssBlock(css, ".kaiges-term-column");
+  const kaigesSelectedTerm = cssBlock(css, ".kaiges-term-column li.is-selected");
   const kaigesElectionPanel = cssBlock(css, ".kaiges-election-panel");
   const kaigesSelectedAttributes = cssBlock(css, ".kaiges-selected-attributes");
   const kaigesSelectedAttribute = cssBlock(css, ".kaiges-selected-attributes li");
@@ -724,16 +747,27 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.command-cell,[\s\S]*?min-height:\s*auto/);
   assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.configuration-stage-card,[\s\S]*?min-height:\s*auto/);
   assert.match(commitmentCard, /grid-template-columns:\s*auto 1fr/);
-  assert.match(kaigesGrid, /grid-template-columns:\s*repeat\(6,\s*minmax\(158px,\s*1fr\)\)/);
+  assert.match(kaigesGrid, /grid-template-columns:\s*repeat\(6,\s*minmax\(190px,\s*1fr\)\)/);
   assert.match(kaigesGrid, /overflow-x:\s*auto/);
   assert.match(kaigesGrid, /scroll-snap-type:\s*x proximity/);
   assert.match(kaigesToolbar, /justify-content:\s*space-between/);
-  assert.match(kaigesCard, /min-height:\s*306px/);
-  assert.match(kaigesCardSelect, /min-height:\s*236px/);
+  assert.match(kaigesCard, /min-height:\s*382px/);
+  assert.match(kaigesCard, /border:\s*2px solid rgba\(23,\s*44,\s*63,\s*0\.22\)/);
+  assert.match(kaigesCard, /transition:[\s\S]*?transform 0\.18s ease/);
+  assert.match(kaigesCardSelect, /min-height:\s*294px/);
   assert.match(kaigesCardFlip, /animation:\s*kaiges-card-flip 460ms ease both/);
+  assert.match(kaigesCardLetter, /min-width:\s*76px/);
+  assert.match(kaigesCardLetter, /min-height:\s*76px/);
+  assert.match(kaigesCardLetter, /text-align:\s*center/);
+  assert.match(kaigesCardOptionMeta, /margin-top:\s*auto/);
+  assert.match(kaigesCardOptionMeta, /border-top:\s*1px solid rgba\(12,\s*12,\s*12,\s*0\.1\)/);
   assert.match(css, /@keyframes kaiges-card-flip/);
   assert.match(kaigesLockChip, /text-transform:\s*uppercase/);
   assert.match(kaigesLockedChip, /background:\s*var\(--navy\)/);
+  assert.match(kaigesTermBank, /margin-top:\s*20px/);
+  assert.match(kaigesTermBankGrid, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(kaigesTermColumn, /align-content:\s*start/);
+  assert.match(kaigesSelectedTerm, /box-shadow:\s*inset 3px 0 0 rgba\(136,\s*98,\s*60,\s*0\.62\)/);
   assert.match(kaigesElectionPanel, /grid-template-columns:\s*minmax\(0,\s*0\.86fr\)\s*minmax\(300px,\s*1\.14fr\)/);
   assert.match(kaigesSelectedAttributes, /list-style:\s*none/);
   assert.match(kaigesSelectedAttribute, /grid-template-columns:\s*auto 1fr/);

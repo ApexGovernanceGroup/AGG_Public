@@ -578,9 +578,9 @@ export const kaigedClientConfiguration = {
     "Kinetic · Adaptive · Intelligence · Growth · Execution · Scalability",
   defaultSequence:
     "Kinetic · Adaptive · Intelligence · Growth · Execution · Scalability",
-  count: "729 selectable configurations",
+  count: "15,625 selectable configurations",
   intro:
-    "Six positions, fixed and in order. What each position means is the client's selection. The structure is ours and does not move; the emphasis is theirs and sets the terms of reference. The sixth position is the shape of the relationship, and the client elects it first.",
+    "Six positions, fixed and in order. What each position means is the client's selection. The structure is ours and does not move; the emphasis is theirs and sets the terms of reference for customer service, solution expectations, evidence, and delivery control. The sixth position is the shape of the relationship, and the client elects it first.",
   scopeRecord:
     "Lock positions one at a time on the cards above, or commit the whole configuration here. A locked configuration becomes the scope of record - carried into the entry assessment and re-tested at close.",
   positions: [
@@ -609,6 +609,18 @@ export const kaigedClientConfiguration = {
           definition:
             "Name the missing capability, decision requirement, or exposure that anchors scope and proves need.",
         },
+        {
+          letter: "K",
+          term: "Keystone",
+          definition:
+            "Identify the essential capability, control, evidence source, or service promise the whole solution must support.",
+        },
+        {
+          letter: "K",
+          term: "Knowledge Continuity",
+          definition:
+            "Protect at-risk know-how, owner logic, lessons, and records so service quality survives turnover and change.",
+        },
       ],
     },
     {
@@ -635,6 +647,18 @@ export const kaigedClientConfiguration = {
           term: "Architecture",
           definition:
             "Define the operating structure, owners, data flows, controls, measures, and delivery sequence.",
+        },
+        {
+          letter: "A",
+          term: "Alignment",
+          definition:
+            "Synchronize expectations, authorities, service boundaries, and success criteria before product work begins.",
+        },
+        {
+          letter: "A",
+          term: "Accountability",
+          definition:
+            "Assign named owners, review points, escalation paths, and evidence responsibilities before outputs become commitments.",
         },
       ],
     },
@@ -663,6 +687,18 @@ export const kaigedClientConfiguration = {
           definition:
             "Bind the solution into existing systems, taxonomies, repositories, and work rhythms.",
         },
+        {
+          letter: "I",
+          term: "Intake",
+          definition:
+            "Capture client needs, constraints, preferences, risks, and desired experience before solution promises are made.",
+        },
+        {
+          letter: "I",
+          term: "Interoperability",
+          definition:
+            "Make the configured solution operate across the client's tools, teams, evidence stores, and approval paths.",
+        },
       ],
     },
     {
@@ -689,6 +725,18 @@ export const kaigedClientConfiguration = {
           term: "Governance",
           definition:
             "Set authority, stewardship, access, review, and accountability before outputs are trusted.",
+        },
+        {
+          letter: "G",
+          term: "Guardrails",
+          definition:
+            "Define the boundaries, handling rules, quality thresholds, and decision lanes that keep speed legitimate.",
+        },
+        {
+          letter: "G",
+          term: "Goals",
+          definition:
+            "Translate the client's desired service experience into measurable outcomes, acceptance criteria, and proof.",
         },
       ],
     },
@@ -717,6 +765,18 @@ export const kaigedClientConfiguration = {
           definition:
             "Transfer skills, playbooks, dashboards, and habits so the client can operate the capability.",
         },
+        {
+          letter: "E",
+          term: "Evidence",
+          definition:
+            "Define what must be observable, measured, recorded, and accepted before the client calls the solution successful.",
+        },
+        {
+          letter: "E",
+          term: "Experience",
+          definition:
+            "Shape the partnership touchpoints, review rhythm, communications, and delivery feel around the client's needs.",
+        },
       ],
     },
     {
@@ -739,10 +799,22 @@ export const kaigedClientConfiguration = {
             "Deliver configured products that solve the named operating problem and remain usable after close.",
         },
         {
+          letter: "S",
+          term: "Sustainment",
+          definition:
+            "Keep the capability current, owned, measured, and improved with the client after initial delivery.",
+        },
+        {
           letter: "D",
           term: "Delivery",
           definition:
             "Codify the capability to run without AGG and close on evidence that it works.",
+        },
+        {
+          letter: "D",
+          term: "Deployment",
+          definition:
+            "Move the approved solution into the operating environment with adoption support, handoff, and verification.",
         },
       ],
     },
