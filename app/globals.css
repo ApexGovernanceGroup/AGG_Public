@@ -2703,6 +2703,19 @@ button.configuration-relation-card:disabled {
   line-height: 1.55;
 }
 
+.kaiges-term-bank__count {
+  width: fit-content;
+  border: 1px solid rgba(136, 98, 60, 0.34);
+  border-radius: 999px;
+  background: rgba(136, 98, 60, 0.1);
+  color: var(--navy);
+  padding: 7px 11px;
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
 .kaiges-term-bank__grid {
   display: grid;
   gap: 12px;

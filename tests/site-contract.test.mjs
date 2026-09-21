@@ -236,6 +236,7 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /15,625 selectable configurations/);
   assert.match(combined, /K-A-I-G-E-S\|D definitions/);
   assert.match(combined, /Expanded Term Bank/);
+  assert.match(combined, /kaigedClientConfiguration\.count/);
   assert.match(combined, /solution expectations, evidence, and delivery control/);
   assert.match(combined, /Keystone/);
   assert.match(combined, /Knowledge Continuity/);
@@ -593,6 +594,7 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const kaigesLockChip = cssBlock(css, ".kaiges-lock-chip");
   const kaigesLockedChip = cssBlock(css, ".kaiges-lock-chip.is-locked");
   const kaigesTermBank = cssBlock(css, ".kaiges-term-bank");
+  const kaigesTermBankCount = cssBlock(css, ".kaiges-term-bank__count");
   const kaigesTermBankGrid = cssBlock(css, ".kaiges-term-bank__grid");
   const kaigesTermColumn = cssBlock(css, ".kaiges-term-column");
   const kaigesSelectedTerm = cssBlock(css, ".kaiges-term-column li.is-selected");
@@ -765,6 +767,8 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(kaigesLockChip, /text-transform:\s*uppercase/);
   assert.match(kaigesLockedChip, /background:\s*var\(--navy\)/);
   assert.match(kaigesTermBank, /margin-top:\s*20px/);
+  assert.match(kaigesTermBankCount, /border-radius:\s*999px/);
+  assert.match(kaigesTermBankCount, /text-transform:\s*uppercase/);
   assert.match(kaigesTermBankGrid, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(kaigesTermColumn, /align-content:\s*start/);
   assert.match(kaigesSelectedTerm, /box-shadow:\s*inset 3px 0 0 rgba\(136,\s*98,\s*60,\s*0\.62\)/);

@@ -612,6 +612,9 @@ export function ClientLedSelfDeterminationCards() {
         <div className="kaiges-term-bank__heading">
           <p className="eyebrow">Expanded Term Bank</p>
           <h3>K-A-I-G-E-S|D definitions</h3>
+          <p className="kaiges-term-bank__count">
+            {kaigedClientConfiguration.count}
+          </p>
           <p>
             The client selects the operating emphasis for each fixed position:
             customer experience, solution expectation, delivery proof, and
