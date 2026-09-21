@@ -83,7 +83,9 @@ export default function ServicesPage() {
       <section className="page-hero">
         <div className="container page-hero__inner">
           <p className="eyebrow">Services</p>
-          <h1>Services, products, sprints, and seminars for governed advantage.</h1>
+          <h1 className="services-hero__title">
+            Services, products, sprints, and seminars for governed advantage.
+          </h1>
           <p>
             AGG converts fragmented planning, knowledge, policy, technology,
             evidence, and performance work into a decision path a sponsor can

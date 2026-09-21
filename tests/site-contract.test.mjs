@@ -200,6 +200,8 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /service-work-grid/);
   assert.match(combined, /service-work-card/);
   assert.match(combined, /Executive Service Decision Path/);
+  assert.match(services, /className="services-hero__title"/);
+  assert.match(services, /Services, products, sprints, and seminars for governed advantage\./);
   assert.match(combined, /Buy the first move, then scale only what proves useful/);
   assert.match(combined, /diagnose, architect, install, and sustain/);
   assert.match(combined, /Scope Gate/);
@@ -696,6 +698,7 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const portalWorkLayout = cssBlock(css, ".portal-work-layout");
   const pageHeroTexture = cssBlock(css, ".page-hero::before");
   const pageHeroSymbol = cssBlock(css, ".page-hero::after");
+  const servicesHeroTitle = cssBlock(css, ".page-hero .services-hero__title");
 
   assert.match(heroHeadline, /font-size:\s*clamp\(2\.05rem,\s*3\.8vw,\s*3\.2rem\)/);
   assert.match(heroHeadlineClass, /text-shadow:\s*0 2px 18px rgba\(0,\s*0,\s*0,\s*0\.42\)/);
@@ -893,6 +896,7 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(pageHeroSymbol, /var\(--agg-seal-large\)/);
   assert.doesNotMatch(pageHeroSymbol, /linear-gradient|radial-gradient|repeating-linear-gradient/);
   assert.doesNotMatch(pageHeroSymbol, /filter\s*:/);
+  assert.match(servicesHeroTitle, /font-size:\s*clamp\(2\.05rem,\s*3\.8vw,\s*3\.2rem\)/);
   assert.doesNotMatch(
     css,
     /\.hero::before\s*{[^}]*apex-governance-group-symbol\.png/,
