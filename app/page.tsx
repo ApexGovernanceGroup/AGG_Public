@@ -117,6 +117,7 @@ export default function Home() {
             <p className="eyebrow">{kaiged.acronym}</p>
             <h2>{kaiged.headline}</h2>
             <p>{kaiged.description}</p>
+            <p>{kaiged.partnershipStatement}</p>
           </div>
           <ClientLedSelfDeterminationCards />
         </div>

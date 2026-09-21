@@ -392,6 +392,8 @@ export const kaiged = {
     "Six fixed positions. Client-selected terms. One configured engagement shape.",
   description:
     "The KAIGES|D approach empowers each client to define the parameters, expectations, personal priorities, and products that guide our work together. Apex is building toward global leadership in intelligent engineered solutions by making the client an active author of the experience, the operating rhythm, and the outcomes expected.",
+  partnershipStatement:
+    "A self-determined, client-led partnership experience that puts engagement design, performance expectations, and product-delivery controls on your terms, calibrated to your needs.",
 };
 
 export const kaigedPublicPreferences = [
