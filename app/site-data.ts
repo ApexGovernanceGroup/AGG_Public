@@ -257,7 +257,7 @@ export const navItems: NavItem[] = [
 ];
 
 export const contactEmail =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@apexgovernancegroup.com";
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "apex@apexgovernancegroup.com";
 
 export const githubRepositoryUrl =
   process.env.NEXT_PUBLIC_GITHUB_REPOSITORY_URL ??

@@ -505,7 +505,8 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Assessment opens; proof closes/);
   assert.match(combined, /AGG brings the architecture\. The client keeps the toolset/);
   assert.match(combined, /does not sell, resell, broker, or require tooling/);
-  assert.match(combined, /contact@apexgovernancegroup\.com/);
+  assert.match(combined, /apex@apexgovernancegroup\.com/);
+  assert.doesNotMatch(combined, /contact@apexgovernancegroup\.com/);
   assert.match(combined, /\/api\/checkout/);
   assert.doesNotMatch(combined, /execution cadence/i);
   const servicesCss = await read("app/globals.css");
