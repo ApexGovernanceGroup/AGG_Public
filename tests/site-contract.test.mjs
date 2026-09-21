@@ -202,6 +202,17 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /RCOA \(Recommended Course of Action\) brief/);
   assert.match(combined, /MOP\/MOE\/KPI\/KRI dictionary/);
   assert.match(combined, /Repository operating model/);
+  assert.match(combined, /Data Analytics, Analysis, Architecture, and Application/);
+  assert.match(combined, /Analytics requirements and question map/);
+  assert.match(combined, /Data architecture and lineage profile/);
+  assert.match(combined, /Application roadmap and decision dashboard/);
+  assert.match(combined, /Centers of Gravity/);
+  assert.match(combined, /Critical capability and vulnerability map/);
+  assert.match(combined, /Communities of Practice/);
+  assert.match(combined, /Community-of-practice charter/);
+  assert.match(combined, /Repository Establishment, Governance, and Sustainment/);
+  assert.match(combined, /Repository establishment plan/);
+  assert.match(combined, /Sustainment backlog and stewardship cadence/);
   assert.match(combined, /Private cohort syllabus/);
   assert.match(combined, /service-work-grid/);
   assert.match(combined, /service-work-card/);
@@ -483,6 +494,9 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Apex Academy Private Lab/);
   assert.match(combined, /Governance Design Sprint/);
   assert.match(combined, /Executive Advisory Retainer/);
+  assert.match(combined, /Data analytics architecture and application map/);
+  assert.match(combined, /Data Analytics Architecture and Application Sprint/);
+  assert.match(combined, /Centers of Gravity and Community of Practice Sprint/);
   assert.match(home, /Six ways to start/);
   assert.match(combined, /Workbook-Derived Storefront/);
   assert.match(combined, /149 proposed product patterns/);

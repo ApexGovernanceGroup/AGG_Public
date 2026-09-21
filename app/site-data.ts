@@ -1339,16 +1339,59 @@ export const serviceLines: ServiceLine[] = [
     icon: Gauge,
   },
   {
-    title: "Repository Operations",
+    title: "Data Analytics, Analysis, Architecture, and Application",
     summary:
-      "Source control, release flow, and version discipline for work products.",
+      "Analytical questions, data structure, models, dashboards, and action logic connected to decisions.",
     detail:
-      "Creates controlled patterns for issues, releases, documentation, change logs, and artifacts so the authoritative copy is never in question.",
+      "Turns data into governed analytical capability: define the decision questions, structure source data, establish analysis methods, build reusable views, and translate findings into applications leaders and teams can act on.",
     workProducts: [
-      "Repository operating model",
+      "Analytics requirements and question map",
+      "Data architecture and lineage profile",
+      "Analysis plan and model register",
+      "Application roadmap and decision dashboard",
+    ],
+    icon: Gauge,
+  },
+  {
+    title: "Centers of Gravity",
+    summary:
+      "The decisive sources of strength, friction, influence, dependency, and vulnerability around the problem.",
+    detail:
+      "Identifies the capabilities, constraints, relationships, knowledge assets, systems, and vulnerabilities that determine the outcome, so effort concentrates where it can change the operating system instead of scattering across symptoms.",
+    workProducts: [
+      "Center-of-gravity analysis",
+      "Critical capability and vulnerability map",
+      "Influence and dependency register",
+      "Priority intervention brief",
+    ],
+    icon: Compass,
+  },
+  {
+    title: "Communities of Practice",
+    summary:
+      "Structured practitioner networks that make knowledge, standards, and improvement repeatable.",
+    detail:
+      "Establishes communities of practice with charters, role definitions, evidence standards, shared repositories, learning loops, and review cadence so expertise becomes an operating asset rather than informal personal memory.",
+    workProducts: [
+      "Community-of-practice charter",
+      "Role and participation model",
+      "Practice standards and knowledge-sharing rhythm",
+      "Improvement backlog and learning agenda",
+    ],
+    icon: Network,
+  },
+  {
+    title: "Repository Establishment, Governance, and Sustainment",
+    summary:
+      "Authoritative repositories established, governed, and sustained as the operating record.",
+    detail:
+      "Designs repository structure, ownership, release workflow, content standards, stewardship cadence, and sustainment controls so the authoritative copy remains clear after launch.",
+    workProducts: [
+      "Repository establishment plan",
+      "Repository operating model and governance model",
       "Issue and release workflow",
       "Change log and artifact register",
-      "Version-control job aid",
+      "Sustainment backlog and stewardship cadence",
     ],
     icon: GitBranch,
   },
@@ -1577,14 +1620,15 @@ export const storefrontCollections: StorefrontCollection[] = [
     title: "Analytics and Measurement Packages",
     buyer: "Performance lead, transformation office, resource owner",
     summary:
-      "Measurement architecture, MOP/MOE/KPI/KRI design, baseline logic, forecast review, and scorecard implementation support.",
+      "Data analytics, applied analysis, measurement architecture, MOP/MOE/KPI/KRI design, baseline logic, forecast review, and scorecard implementation support.",
     examples: [
       "Executive measurement dictionary",
+      "Data analytics architecture and application map",
       "Benefits-realization scorecard",
       "Forecast validation and running estimate pack",
     ],
     value:
-      "Connects activity to effect and makes the next action obvious when performance changes.",
+      "Connects activity, data, and analysis to effect, then makes the next action obvious when performance changes.",
     icon: Gauge,
   },
   {
@@ -1687,8 +1731,8 @@ export const productCatalogGroups: ProductCatalogGroup[] = [
     title: "IT Service, Cyber, and Architecture",
     count: 17,
     purpose:
-      "Control system ownership, access, configuration, incidents, recovery, architecture, and service performance.",
-    examples: ["Architecture record", "Incident SOP", "AI governance kit"],
+      "Control system ownership, access, configuration, incidents, recovery, architecture, application fit, and service performance.",
+    examples: ["Architecture record", "Application map", "AI governance kit"],
   },
   {
     domain: "INF",
@@ -1777,11 +1821,33 @@ export const seminarSprints: SeminarSprint[] = [
     artifacts: ["Measure dictionary", "Scorecard wireframe", "Action thresholds"],
   },
   {
+    title: "Data Analytics Architecture and Application Sprint",
+    format: "Analytical design sprint",
+    outcome:
+      "Connects data analytics, analysis methods, architecture, and practical application so leaders know which data matters, how it is interpreted, and what action it should inform.",
+    artifacts: [
+      "Analytics question map",
+      "Data architecture profile",
+      "Application decision dashboard",
+    ],
+  },
+  {
     title: "Running Estimate and Forecast Validation Sprint",
     format: "Analytical sprint",
     outcome:
       "Builds functional estimates that separate facts, assumptions, unknowns, forecasts, and recommendations.",
     artifacts: ["Estimate template", "Forecast ledger", "Backtest notes"],
+  },
+  {
+    title: "Centers of Gravity and Community of Practice Sprint",
+    format: "Operating-design sprint",
+    outcome:
+      "Identifies the decisive intervention points and stands up the practitioner network needed to keep the improvement alive after the sprint closes.",
+    artifacts: [
+      "Center-of-gravity analysis",
+      "Community-of-practice charter",
+      "Sustainment rhythm",
+    ],
   },
   {
     title: "Release Control and Assurance Case Sprint",
