@@ -572,87 +572,187 @@ h3 {
   text-align: center;
 }
 
-.hero__solution-lanes {
+.hero__solution-selector {
   display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
 }
 
-.hero__solution-lane {
+.hero__solution-lanes {
+  display: grid;
+  max-width: 760px;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 8px;
+  margin-inline: auto;
+}
+
+button.hero__solution-lane {
   display: grid;
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  align-items: flex-start;
-  grid-template-columns: auto 1fr;
-  min-height: 150px;
-  gap: 12px;
+  aspect-ratio: 1 / 1;
+  min-height: 58px;
+  place-items: center;
   border: 1px solid rgba(244, 241, 234, 0.24);
   border-radius: var(--radius);
   background:
-    linear-gradient(135deg, rgba(244, 241, 234, 0.1), rgba(23, 44, 63, 0.22)),
-    rgba(12, 12, 12, 0.26);
-  padding: 15px;
+    linear-gradient(135deg, rgba(244, 241, 234, 0.1), rgba(23, 44, 63, 0.24)),
+    rgba(12, 12, 12, 0.34);
+  color: rgba(244, 241, 234, 0.82);
+  padding: 0;
   transition:
     transform 0.18s ease,
     border-color 0.18s ease,
-    background 0.18s ease;
+    background 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
-.hero__solution-lane::before {
+button.hero__solution-lane::before {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   content: "";
   background-image: var(--maine-topographic-contours-smoke);
-  background-position: right -166px top -138px;
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: min(420px, 130%) auto;
-  opacity: 0.11;
+  background-size: 240px auto;
+  opacity: 0.12;
 }
 
-.hero__solution-lane:hover {
+button.hero__solution-lane:hover,
+button.hero__solution-lane:focus-visible {
   transform: translateY(-3px);
-  border-color: rgba(136, 98, 60, 0.66);
+  border-color: rgba(136, 98, 60, 0.72);
   background:
-    linear-gradient(135deg, rgba(136, 98, 60, 0.18), rgba(23, 44, 63, 0.32)),
-    rgba(12, 12, 12, 0.32);
+    linear-gradient(135deg, rgba(136, 98, 60, 0.24), rgba(23, 44, 63, 0.34)),
+    rgba(12, 12, 12, 0.42);
+  color: #ffffff;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.26);
 }
 
-.hero__solution-lane > * {
+button.hero__solution-lane.is-active {
+  border-color: rgba(136, 98, 60, 0.9);
+  background:
+    linear-gradient(135deg, rgba(136, 98, 60, 0.42), rgba(121, 55, 53, 0.28)),
+    rgba(12, 12, 12, 0.52);
+  color: #ffffff;
+  box-shadow:
+    inset 0 0 0 1px rgba(244, 241, 234, 0.16),
+    0 20px 44px rgba(0, 0, 0, 0.3);
+}
+
+.hero__solution-lane-number {
   position: relative;
   z-index: 1;
-}
-
-.hero__solution-lane span {
   display: grid;
-  min-width: 38px;
-  min-height: 38px;
+  width: 38px;
+  height: 38px;
   place-items: center;
   border: 1px solid rgba(244, 241, 234, 0.22);
   border-radius: 999px;
-  color: rgba(244, 241, 234, 0.78);
-  font-size: 0.72rem;
-  font-weight: 800;
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.74rem;
+  font-weight: 900;
   letter-spacing: 0.08em;
 }
 
-.hero__solution-lane h3 {
-  margin: 0;
-  color: #ffffff;
-  font-size: 0.84rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  line-height: 1.22;
+.hero__solution-popout {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  max-width: 860px;
+  margin: 2px auto 0;
+  border: 1px solid rgba(136, 98, 60, 0.5);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(244, 241, 234, 0.12), rgba(23, 44, 63, 0.3)),
+    rgba(5, 5, 5, 0.82);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+  padding: 18px 20px 20px;
+  text-align: left;
+  animation: hero-solution-pop 0.18s ease-out both;
+}
+
+.hero__solution-popout::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background-image: var(--maine-topographic-contours-smoke);
+  background-position: right -120px top -144px;
+  background-repeat: no-repeat;
+  background-size: min(520px, 112%) auto;
+  opacity: 0.14;
+}
+
+.hero__solution-popout-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.hero__solution-popout-index {
+  color: var(--bronze);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.hero__solution-lane p {
-  margin: 8px 0 0;
-  color: rgba(244, 241, 234, 0.76);
-  font-size: 0.78rem;
-  line-height: 1.48;
+.hero__solution-popout-close {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(244, 241, 234, 0.24);
+  border-radius: 999px;
+  background: rgba(244, 241, 234, 0.08);
+  color: var(--paper);
+  padding: 0;
+}
+
+.hero__solution-popout-close:hover {
+  border-color: rgba(136, 98, 60, 0.72);
+  background: rgba(136, 98, 60, 0.18);
+}
+
+.hero__solution-popout h3 {
+  margin: 8px 0 10px;
+  color: #ffffff;
+  font-size: clamp(1.2rem, 2.5vw, 1.62rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hero__solution-popout p {
+  max-width: 760px;
+  margin: 0;
+  color: rgba(244, 241, 234, 0.82);
+  font-size: 0.94rem;
+  line-height: 1.58;
+}
+
+.hero__solution-popout p + p {
+  margin-top: 10px;
+  color: rgba(244, 241, 234, 0.72);
+}
+
+@keyframes hero-solution-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .hero__metrics {
@@ -4955,11 +5055,12 @@ button.configuration-relation-card:disabled {
   }
 
   .hero__solution-lanes {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 520px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .hero__solution-lane {
-    min-height: 132px;
+  button.hero__solution-lane {
+    min-height: 58px;
   }
 
   .hero__metrics,
@@ -5167,11 +5268,16 @@ button.configuration-relation-card:disabled {
   }
 
   .hero__solution-lanes {
-    grid-template-columns: 1fr;
+    max-width: 100%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .hero__solution-lane {
-    min-height: auto;
+  button.hero__solution-lane {
+    min-height: 60px;
+  }
+
+  .hero__solution-popout {
+    padding: 16px;
   }
 
   .hero__actions,

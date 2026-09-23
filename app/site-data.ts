@@ -154,41 +154,57 @@ export const solutionDeliveryBridge = {
       label: "Assessment",
       definition:
         "Establish the operating baseline, decision need, risk exposure, and evidence required before prescribing work.",
+      detail:
+        "AGG starts by separating symptoms from operating causes. This lane clarifies the current state, evidence gaps, constraints, stakeholders, and success conditions before resources are committed.",
     },
     {
       label: "Architecture",
       definition:
         "Shape the solution model: roles, decisions, workflows, measures, interfaces, and sequencing.",
+      detail:
+        "This lane turns intent into a workable design. It defines how the people, data, systems, governance points, and work products connect so delivery has a durable structure.",
     },
     {
       label: "Infrastructure",
       definition:
         "Prepare the repositories, systems, data pathways, collaboration spaces, and operating rails the solution depends on.",
+      detail:
+        "Infrastructure gives the solution a place to live and operate. AGG aligns repositories, collaboration space, templates, data paths, and control points so the work can be sustained after launch.",
     },
     {
       label: "Governing Control",
       definition:
         "Set the decision rights, standards, authority, access, review cadence, and accountability that make the solution trustworthy.",
+      detail:
+        "Governing control keeps speed legitimate. This lane establishes who decides, who owns, who reviews, what evidence is required, and how changes are authorized.",
     },
     {
       label: "Sustainment",
       definition:
         "Keep capability current, owned, measured, and resilient after the first implementation or handoff.",
+      detail:
+        "Sustainment prevents the solution from becoming a one-time artifact. AGG defines ownership, maintenance rhythm, review triggers, continuity expectations, and improvement records.",
     },
     {
       label: "Change Management",
       definition:
         "Move people through adoption with communications, training, stakeholder alignment, resistance handling, and role readiness.",
+      detail:
+        "Change management treats adoption as part of the design, not an afterthought. This lane aligns communications, training, stakeholder readiness, resistance handling, and role transition.",
     },
     {
       label: "Innovation & Modernization",
       definition:
         "Apply AI, automation, analytics, and modern work practices where they improve speed, traceability, or quality.",
+      detail:
+        "Modernization is applied where it improves the mission, not where it creates novelty. AGG evaluates automation, analytics, AI, and digital workflow opportunities against risk, value, and control.",
     },
     {
       label: "Futures",
       definition:
         "Scan emerging conditions, decision points, scenarios, and second-order effects so today's solution stays useful tomorrow.",
+      detail:
+        "The futures lane keeps the solution alert to what may change next. It identifies decision points, emerging risks, scenarios, second-order effects, and adaptation paths.",
     },
   ],
 } as const;
