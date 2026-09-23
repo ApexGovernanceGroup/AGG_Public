@@ -615,6 +615,7 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const css = await read("app/globals.css");
   const heroTexture = cssBlock(css, ".hero::before");
   const heroSymbol = cssBlock(css, ".hero::after");
+  const heroContentContrast = cssBlock(css, ".hero__content::before");
   const brandLockup = cssBlock(css, ".brand-lockup");
   const brandTagline = cssBlock(css, ".brand-text span");
   const darkSection = cssBlock(css, ".section--dark");
@@ -624,6 +625,7 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const heroHeadline = cssBlock(css, ".hero h1");
   const heroHeadlineClass = cssBlock(css, ".hero__headline");
   const heroHeadlineSpan = cssBlock(css, ".hero__headline span");
+  const heroReadableCopy = cssBlock(css, ".hero__statement,\n.hero__lede,\n.hero .eyebrow");
   const proseParagraph = cssBlock(css, ".prose p");
   const heroStatement = cssBlock(css, ".hero__statement");
   const heroLede = cssBlock(css, ".hero__lede");
@@ -734,7 +736,13 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const servicesHeroTitle = cssBlock(css, ".page-hero .services-hero__title");
 
   assert.match(heroHeadline, /font-size:\s*clamp\(2\.05rem,\s*3\.8vw,\s*3\.2rem\)/);
-  assert.match(heroHeadlineClass, /text-shadow:\s*0 2px 18px rgba\(0,\s*0,\s*0,\s*0\.42\)/);
+  assert.match(heroContentContrast, /z-index:\s*-1/);
+  assert.match(heroContentContrast, /radial-gradient\(ellipse at 28% 28%,\s*rgba\(5,\s*5,\s*5,\s*0\.96\)/);
+  assert.match(heroContentContrast, /linear-gradient\(90deg,\s*rgba\(5,\s*5,\s*5,\s*0\.82\)/);
+  assert.match(heroHeadlineClass, /0 2px 14px rgba\(0,\s*0,\s*0,\s*0\.92\)/);
+  assert.match(heroHeadlineClass, /0 0 42px rgba\(0,\s*0,\s*0,\s*0\.64\)/);
+  assert.match(heroReadableCopy, /0 2px 12px rgba\(0,\s*0,\s*0,\s*0\.84\)/);
+  assert.match(heroReadableCopy, /0 0 34px rgba\(0,\s*0,\s*0,\s*0\.58\)/);
   assert.match(heroHeadlineSpan, /display:\s*block/);
   assert.match(heroHeadlineSpan, /white-space:\s*nowrap/);
   assert.match(proseParagraph, /text-indent:\s*1\.35em/);

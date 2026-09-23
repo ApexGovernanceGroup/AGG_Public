@@ -40,25 +40,25 @@ export default function Home() {
           <div className="hero__actions" aria-label="Primary actions">
             <Link className="button button--primary" href="/engage">
               <CreditCard size={18} aria-hidden="true" />
-              Request the executive diagnostic
+              <span>Request the executive diagnostic</span>
             </Link>
             <Link className="button button--quiet" href="/methodology">
               <ArrowRight size={18} aria-hidden="true" />
-              See how an engagement runs
+              <span>See how an engagement runs</span>
             </Link>
           </div>
           <div className="hero__secondary-actions" aria-label="Secondary actions">
             <Link className="button button--quiet" href="/methodology">
               <ArrowRight size={18} aria-hidden="true" />
-              Our Formal Process
+              <span>Our Formal Process</span>
             </Link>
             <Link className="button button--quiet" href="/academy">
               <GraduationCap size={18} aria-hidden="true" />
-              Apex Academy
+              <span>Apex Academy</span>
             </Link>
             <Link className="button button--quiet" href="/engage">
               <CreditCard size={18} aria-hidden="true" />
-              Services | Apex Digital Store
+              <span>Services | Apex Digital Store</span>
             </Link>
           </div>
           <div className="hero__pillar-intro" aria-label="Apex solution composition">
