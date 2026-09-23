@@ -579,9 +579,9 @@ h3 {
 
 .hero__solution-lanes {
   display: grid;
-  max-width: 760px;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-  gap: 8px;
+  max-width: 980px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
   margin-inline: auto;
 }
 
@@ -590,16 +590,17 @@ button.hero__solution-lane {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  aspect-ratio: 1 / 1;
-  min-height: 58px;
-  place-items: center;
+  min-height: 76px;
+  align-content: center;
+  justify-items: center;
+  gap: 8px;
   border: 1px solid rgba(244, 241, 234, 0.24);
   border-radius: var(--radius);
   background:
     linear-gradient(135deg, rgba(244, 241, 234, 0.1), rgba(23, 44, 63, 0.24)),
     rgba(12, 12, 12, 0.34);
   color: rgba(244, 241, 234, 0.82);
-  padding: 0;
+  padding: 10px;
   transition:
     transform 0.18s ease,
     border-color 0.18s ease,
@@ -656,6 +657,21 @@ button.hero__solution-lane.is-active {
   font-size: 0.74rem;
   font-weight: 900;
   letter-spacing: 0.08em;
+}
+
+.hero__solution-lane-title {
+  position: relative;
+  z-index: 1;
+  display: block;
+  max-width: 100%;
+  color: rgba(244, 241, 234, 0.88);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .hero__solution-popout {
@@ -5055,12 +5071,12 @@ button.configuration-relation-card:disabled {
   }
 
   .hero__solution-lanes {
-    max-width: 520px;
+    max-width: 680px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   button.hero__solution-lane {
-    min-height: 58px;
+    min-height: 82px;
   }
 
   .hero__metrics,
@@ -5269,11 +5285,11 @@ button.configuration-relation-card:disabled {
 
   .hero__solution-lanes {
     max-width: 100%;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   button.hero__solution-lane {
-    min-height: 60px;
+    min-height: 86px;
   }
 
   .hero__solution-popout {

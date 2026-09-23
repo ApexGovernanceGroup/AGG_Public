@@ -48,6 +48,7 @@ export function HeroSolutionLanes({ lanes }: HeroSolutionLanesProps) {
               <span className="hero__solution-lane-number" aria-hidden="true">
                 {laneNumber}
               </span>
+              <span className="hero__solution-lane-title">{lane.label}</span>
             </button>
           );
         })}
