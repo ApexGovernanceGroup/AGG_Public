@@ -25,8 +25,12 @@
     url("/brand/apex-governance-group-symbol-1024.webp") type("image/webp") 2x,
     url("/brand/apex-governance-group-symbol.png") type("image/png") 3x
   );
-  --maine-topographic-contours: url("/brand/maine-topographic-contours.svg");
-  --maine-topographic-contours-smoke: url("/brand/maine-topographic-contours-smoke.svg");
+  --alabama-topographic-contours: url("/brand/alabama-topographic-contours.svg");
+  --alabama-topographic-contours-smoke: url("/brand/alabama-topographic-contours-smoke.svg");
+  --maine-topographic-contours: var(--alabama-topographic-contours);
+  --maine-topographic-contours-smoke: var(--alabama-topographic-contours-smoke);
+  --alabama-contour-x: 0px;
+  --alabama-contour-y: 0px;
   --line: rgba(195, 194, 189, 0.24);
   --shadow: 0 22px 60px rgba(12, 12, 12, 0.22);
   --radius: 8px;
@@ -49,6 +53,7 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
   background: var(--paper);
   color: var(--black);
@@ -60,6 +65,45 @@ body {
     sans-serif;
   font-size: 16px;
   line-height: 1.55;
+}
+
+.site-topography-backdrop {
+  position: fixed;
+  inset: -14vh -10vw;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    var(--alabama-topographic-contours),
+    radial-gradient(circle at 24% 18%, rgba(136, 98, 60, 0.1), transparent 34%),
+    linear-gradient(135deg, rgba(244, 241, 234, 0.86), rgba(244, 241, 234, 0.62));
+  background-position:
+    calc(50% + var(--alabama-contour-x)) calc(12vh + var(--alabama-contour-y)),
+    center,
+    center;
+  background-repeat: no-repeat;
+  background-size:
+    min(1040px, 92vw) auto,
+    100% 100%,
+    100% 100%;
+  opacity: 0.105;
+  transform: translate3d(0, 0, 0);
+  will-change: background-position;
+}
+
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-topography-backdrop {
+    background-position:
+      center 12vh,
+      center,
+      center;
+    will-change: auto;
+  }
 }
 
 img,
@@ -882,6 +926,32 @@ button.hero__solution-lane.is-active {
   z-index: 1;
 }
 
+.section--doctrine {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-block: 1px solid rgba(23, 44, 63, 0.1);
+  background: rgba(244, 241, 234, 0.72);
+}
+
+.section--doctrine::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background-image: var(--alabama-topographic-contours);
+  background-position: right -180px center;
+  background-repeat: no-repeat;
+  background-size: min(700px, 70vw) auto;
+  opacity: 0.12;
+}
+
+.section--doctrine > * {
+  position: relative;
+  z-index: 1;
+}
+
 .section-heading {
   max-width: 720px;
   margin-bottom: 34px;
@@ -914,6 +984,178 @@ button.hero__solution-lane.is-active {
 .prose p:last-child,
 .large-copy:last-child {
   margin-bottom: 0;
+}
+
+.doctrine-band,
+.doctrine-split {
+  display: grid;
+  align-items: start;
+  gap: 34px;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+}
+
+.doctrine-band h2,
+.doctrine-command h2,
+.doctrine-split h2 {
+  max-width: 760px;
+}
+
+.doctrine-band__sequence,
+.doctrine-sequence,
+.doctrine-key-tasks ol {
+  list-style: none;
+}
+
+.doctrine-band__sequence {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.doctrine-band__sequence li,
+.doctrine-sequence li,
+.doctrine-key-tasks li {
+  display: grid;
+  align-items: center;
+  gap: 12px;
+  grid-template-columns: auto 1fr;
+  border: 1px solid rgba(23, 44, 63, 0.14);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.58);
+  padding: 12px 14px;
+}
+
+.doctrine-band__sequence span,
+.doctrine-sequence span,
+.doctrine-key-tasks span,
+.doctrine-stack span {
+  color: var(--bronze);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.doctrine-command {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.doctrine-command article,
+.doctrine-value-card,
+.doctrine-stack article {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(23, 44, 63, 0.12);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.64);
+  box-shadow: 0 18px 42px rgba(12, 12, 12, 0.08);
+}
+
+.doctrine-command article {
+  padding: 22px;
+}
+
+.doctrine-command article::before,
+.doctrine-value-card::before,
+.doctrine-stack article::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background-image: var(--alabama-topographic-contours);
+  background-position: right -160px top -120px;
+  background-repeat: no-repeat;
+  background-size: min(420px, 114%) auto;
+  opacity: 0.1;
+}
+
+.doctrine-command p,
+.doctrine-value-card p,
+.doctrine-stack p {
+  color: rgba(62, 67, 70, 0.88);
+}
+
+.doctrine-sequence {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+}
+
+.doctrine-sequence li {
+  min-height: 112px;
+  align-content: center;
+  grid-template-columns: 1fr;
+}
+
+.doctrine-value-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.doctrine-value-card {
+  display: grid;
+  align-items: start;
+  gap: 12px;
+  grid-template-columns: auto 1fr;
+  padding: 18px;
+}
+
+.doctrine-value-card svg {
+  color: var(--bronze);
+}
+
+.doctrine-value-card h3,
+.doctrine-stack h3 {
+  margin-bottom: 6px;
+}
+
+.doctrine-value-card small {
+  display: block;
+  margin-top: 10px;
+  color: rgba(12, 12, 12, 0.62);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.doctrine-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.doctrine-stack article {
+  background: rgba(244, 241, 234, 0.08);
+  padding: 18px;
+}
+
+.section--dark .doctrine-stack article {
+  border-color: rgba(244, 241, 234, 0.16);
+}
+
+.section--dark .doctrine-stack p {
+  color: rgba(244, 241, 234, 0.74);
+}
+
+.doctrine-key-tasks ol {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+}
+
+.doctrine-key-tasks li {
+  min-height: 76px;
+  align-items: start;
+  font-weight: 800;
 }
 
 .card-grid {
@@ -5084,6 +5326,11 @@ button.configuration-relation-card:disabled {
   .pricing-principle,
   .integration-grid,
   .founder-spotlight,
+  .doctrine-band,
+  .doctrine-command,
+  .doctrine-split,
+  .doctrine-value-grid,
+  .doctrine-key-tasks ol,
   .catalog-stat-grid,
   .service-decision-grid,
   .service-inventory,
@@ -5139,6 +5386,10 @@ button.configuration-relation-card:disabled {
     min-height: auto;
   }
 
+  .doctrine-sequence {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .pricing-card__meta {
     grid-template-columns: 1fr;
   }
@@ -5175,6 +5426,15 @@ button.configuration-relation-card:disabled {
 }
 
 @media (max-width: 680px) {
+  .site-topography-backdrop {
+    inset: -10vh -18vw;
+    background-size:
+      620px auto,
+      100% 100%,
+      100% 100%;
+    opacity: 0.085;
+  }
+
   .container {
     width: min(100% - 24px, 1120px);
   }
@@ -5332,6 +5592,16 @@ button.configuration-relation-card:disabled {
 
   .hero__metrics div {
     min-height: 86px;
+  }
+
+  .doctrine-sequence {
+    grid-template-columns: 1fr;
+  }
+
+  .doctrine-band__sequence li,
+  .doctrine-sequence li,
+  .doctrine-key-tasks li {
+    min-height: auto;
   }
 
   .portal-work-card__top,

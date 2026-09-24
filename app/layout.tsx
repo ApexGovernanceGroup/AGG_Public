@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import { AlabamaTopographicBackdrop } from "./components/AlabamaTopographicBackdrop";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { SideNavigation } from "./components/SideNavigation";
@@ -74,6 +75,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <AlabamaTopographicBackdrop />
         <SiteHeader />
         <SideNavigation />
         {children}

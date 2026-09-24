@@ -8,6 +8,7 @@ import {
   githubRepositoryUrl,
   navItems,
   site,
+  strategicDoctrine,
 } from "../site-data";
 
 export function SiteFooter() {
@@ -53,6 +54,7 @@ export function SiteFooter() {
       <div className="container site-footer__bottom">
         <span>© {new Date().getFullYear()} Apex Governance Group.</span>
         <span>{brandStandard.tier1.pillarLine}</span>
+        <span>{strategicDoctrine.sequence.join(" | ")}</span>
       </div>
     </footer>
   );

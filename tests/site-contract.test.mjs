@@ -22,11 +22,13 @@ function cssBlock(css, selector) {
 test("AGG public site contract is present", async () => {
   const [
     home,
+    layout,
     siteHeader,
     sideNavigation,
     services,
     methodology,
     solutions,
+    doctrine,
     academy,
     clientPortal,
     clientPortalDashboard,
@@ -35,6 +37,7 @@ test("AGG public site contract is present", async () => {
     clientConfigurationCard,
     clientLedSelfDeterminationCards,
     heroSolutionLanes,
+    alabamaTopographicBackdrop,
     packageInclusionsComponent,
     clientServicesAuth,
     clientServicesAccessRoute,
@@ -53,11 +56,13 @@ test("AGG public site contract is present", async () => {
   ] =
     await Promise.all([
       read("app/page.tsx"),
+      read("app/layout.tsx"),
       read("app/components/SiteHeader.tsx"),
       read("app/components/SideNavigation.tsx"),
       read("app/services/page.tsx"),
       read("app/methodology/page.tsx"),
       read("app/solutions/page.tsx"),
+      read("app/doctrine/page.tsx"),
       read("app/academy/page.tsx"),
       read("app/client-portal/page.tsx"),
       read("app/components/ClientPortalDashboard.tsx"),
@@ -66,6 +71,7 @@ test("AGG public site contract is present", async () => {
       read("app/components/ClientConfigurationCard.tsx"),
       read("app/components/ClientLedSelfDeterminationCards.tsx"),
       read("app/components/HeroSolutionLanes.tsx"),
+      read("app/components/AlabamaTopographicBackdrop.tsx"),
       read("app/components/PackageInclusions.tsx"),
       read("app/client-services/auth.ts"),
       read("app/api/client-services/access/route.ts"),
@@ -85,11 +91,13 @@ test("AGG public site contract is present", async () => {
 
   const combined = [
     home,
+    layout,
     siteHeader,
     sideNavigation,
     services,
     methodology,
     solutions,
+    doctrine,
     academy,
     clientPortal,
     clientPortalDashboard,
@@ -97,6 +105,7 @@ test("AGG public site contract is present", async () => {
     clientServicesCommandCenter,
     clientConfigurationCard,
     clientLedSelfDeterminationCards,
+    alabamaTopographicBackdrop,
     packageInclusionsComponent,
     clientServicesAuth,
     clientServicesAccessRoute,
@@ -173,6 +182,28 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /custom-tailored solutions for each client/i);
   assert.match(combined, /crafted first from the client's own organic systems/i);
   assert.match(combined, /We engineer holistic solutions before introducing a commercial option/i);
+  assert.match(data, /export const strategicDoctrine/);
+  assert.match(home, /section--doctrine/);
+  assert.match(home, /doctrine-band__sequence/);
+  assert.match(doctrine, /strategicDoctrine\.values\.map/);
+  assert.match(doctrine, /strategicDoctrine\.priorities\.map/);
+  assert.match(doctrine, /strategicDoctrine\.pillars\.map/);
+  assert.match(doctrine, /strategicDoctrine\.keyTasks\.map/);
+  assert.match(combined, /Corporate Strategic Doctrine/);
+  assert.match(combined, /Apex Governance Group partners with clients, strategic partners, and community governments/);
+  assert.match(combined, /The client possesses the architecture, infrastructure, governance, operational cognition/);
+  assert.match(combined, /Apex does not seek merely to deliver a product to the client/);
+  assert.match(combined, /People Always/);
+  assert.match(combined, /Integrity of Knowledge/);
+  assert.match(combined, /Full Spectrum Readiness/);
+  assert.match(combined, /Operational Cognition/);
+  assert.match(combined, /Sustain Decision Advantage/);
+  assert.match(sitemap, /"\/doctrine"/);
+  assert.match(layout, /<AlabamaTopographicBackdrop \/>/);
+  assert.match(alabamaTopographicBackdrop, /prefers-reduced-motion: reduce/);
+  assert.match(alabamaTopographicBackdrop, /requestAnimationFrame/);
+  assert.match(alabamaTopographicBackdrop, /--alabama-contour-y/);
+  assert.match(alabamaTopographicBackdrop, /passive:\s*true/);
   assert.match(combined, /Apex Solutions/);
   assert.match(combined, /are all comprised of:/);
   assert.match(combined, /Most enterprises are not short on capability\. They are short on coherence/i);
@@ -267,6 +298,7 @@ test("AGG public site contract is present", async () => {
   assert.match(sideNavigation, /sideNavItems\.map/);
   assert.match(data, /export const topNavItems: NavItem\[\] = \[\];/);
   assert.doesNotMatch(sideNavData, /href: "\/client-portal"/);
+  assert.match(sideNavData, /href: "\/doctrine", label: "Doctrine", icon: BookOpenCheck/);
   assert.match(
     data,
     /sideNavItems: NavItem\[\] = \[[\s\S]*href: "\/about", label: "About", icon: Landmark[\s\S]*href: "\/contact", label: "Contact", icon: Mail[\s\S]*href: "\/insights", label: "Insights", icon: Newspaper/,
@@ -551,11 +583,22 @@ test("AGG public site contract is present", async () => {
 });
 
 test("brand assets and palette are wired", async () => {
-  const [layout, css, maineContours, maineSmokeContours] = await Promise.all([
+  const [
+    layout,
+    css,
+    maineContours,
+    maineSmokeContours,
+    alabamaContours,
+    alabamaSmokeContours,
+    alabamaTopographicBackdrop,
+  ] = await Promise.all([
     read("app/layout.tsx"),
     read("app/globals.css"),
     read("public/brand/maine-topographic-contours.svg"),
     read("public/brand/maine-topographic-contours-smoke.svg"),
+    read("public/brand/alabama-topographic-contours.svg"),
+    read("public/brand/alabama-topographic-contours-smoke.svg"),
+    read("app/components/AlabamaTopographicBackdrop.tsx"),
   ]);
 
   assert.match(layout, /apex-governance-group-symbol\.png/);
@@ -570,8 +613,13 @@ test("brand assets and palette are wired", async () => {
   assert.match(css, /--charcoal:\s*var\(--graphite\)/);
   assert.match(css, /--silver:\s*var\(--platinum\)/);
   assert.match(css, /--maroon:\s*var\(--oxblood\)/);
-  assert.match(css, /--maine-topographic-contours:\s*url\("\/brand\/maine-topographic-contours\.svg"\)/);
-  assert.match(css, /--maine-topographic-contours-smoke:\s*url\("\/brand\/maine-topographic-contours-smoke\.svg"\)/);
+  assert.match(css, /--alabama-topographic-contours:\s*url\("\/brand\/alabama-topographic-contours\.svg"\)/);
+  assert.match(css, /--alabama-topographic-contours-smoke:\s*url\("\/brand\/alabama-topographic-contours-smoke\.svg"\)/);
+  assert.match(css, /--maine-topographic-contours:\s*var\(--alabama-topographic-contours\)/);
+  assert.match(css, /--maine-topographic-contours-smoke:\s*var\(--alabama-topographic-contours-smoke\)/);
+  assert.match(css, /--alabama-contour-x:\s*0px/);
+  assert.match(css, /--alabama-contour-y:\s*0px/);
+  assert.match(css, /\.site-topography-backdrop\s*{/);
   assert.match(css, /border-radius:\s*50%/);
   assert.match(maineContours, /Maine topographic contour accent, oxblood/);
   assert.match(maineContours, /clipPath id="maine-outline"/);
@@ -579,6 +627,27 @@ test("brand assets and palette are wired", async () => {
   assert.match(maineSmokeContours, /Maine topographic contour accent, smoke gray/);
   assert.match(maineSmokeContours, /clipPath id="maine-outline-smoke"/);
   assert.match(maineSmokeContours, /stroke="#C3C2BD"/);
+  assert.match(alabamaContours, /Alabama topographic contour accent, oxblood/);
+  assert.match(alabamaContours, /clipPath id="alabama-outline"/);
+  assert.match(alabamaContours, /stroke="#793735"/);
+  assert.match(alabamaSmokeContours, /Alabama topographic contour accent, smoke gray/);
+  assert.match(alabamaSmokeContours, /clipPath id="alabama-outline-smoke"/);
+  assert.match(alabamaSmokeContours, /stroke="#C3C2BD"/);
+  assert.match(layout, /AlabamaTopographicBackdrop/);
+  assert.match(alabamaTopographicBackdrop, /window\.addEventListener\("scroll", requestUpdate, \{ passive: true \}\)/);
+  assert.match(alabamaTopographicBackdrop, /window\.removeEventListener\("scroll", requestUpdate\)/);
+  const siteTopographyBackdrop = cssBlock(css, ".site-topography-backdrop");
+  assert.match(siteTopographyBackdrop, /position:\s*fixed/);
+  assert.match(siteTopographyBackdrop, /pointer-events:\s*none/);
+  assert.match(siteTopographyBackdrop, /background-image:[\s\S]*?var\(--alabama-topographic-contours\)/);
+  assert.match(siteTopographyBackdrop, /calc\(50% \+ var\(--alabama-contour-x\)\)/);
+  assert.match(siteTopographyBackdrop, /var\(--alabama-contour-y\)/);
+  assert.match(siteTopographyBackdrop, /will-change:\s*background-position/);
+  assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.site-topography-backdrop/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.doctrine-command,[\s\S]*?grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.doctrine-sequence\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.site-topography-backdrop\s*{[^}]*opacity:\s*0\.085/);
+  assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.doctrine-sequence\s*{[^}]*grid-template-columns:\s*1fr/);
 
   const symbolUrl = new URL(
     "../public/brand/apex-governance-group-symbol.png",

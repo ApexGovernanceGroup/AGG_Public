@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="960" viewBox="0 0 720 960" fill="none">
+  <title>Alabama topographic contour accent, smoke gray</title>
+  <defs>
+    <clipPath id="alabama-outline-smoke">
+      <path d="M230 42H522L533 778L495 780L482 820L441 819L421 856L376 846L337 878L292 850L246 864L224 824L178 813L184 764L154 714L172 656L151 594L177 541L171 474L204 420L201 344L229 292V42Z" />
+    </clipPath>
+    <filter id="alabama-smoke-soften" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="0.14" />
+    </filter>
+  </defs>
+  <path
+    d="M230 42H522L533 778L495 780L482 820L441 819L421 856L376 846L337 878L292 850L246 864L224 824L178 813L184 764L154 714L172 656L151 594L177 541L171 474L204 420L201 344L229 292V42Z"
+    stroke="#C3C2BD"
+    stroke-linejoin="round"
+    stroke-width="3"
+    opacity="0.32"
+  />
+  <g clip-path="url(#alabama-outline-smoke)" filter="url(#alabama-smoke-soften)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M82 96C165 57 259 60 331 98C392 130 447 134 517 108C581 84 632 95 690 134" stroke="#B8BAB7" stroke-width="2.2" opacity="0.34" />
+    <path d="M64 156C148 121 234 121 304 156C376 192 444 205 519 174C586 147 644 162 698 206" stroke="#9EA3A0" stroke-width="2" opacity="0.32" />
+    <path d="M71 217C150 184 237 190 307 231C376 272 440 289 513 247C580 209 644 221 703 269" stroke="#C3C2BD" stroke-width="1.8" opacity="0.3" />
+    <path d="M54 278C133 245 226 257 297 303C367 348 438 363 514 318C582 278 650 292 704 344" stroke="#A9ADAA" stroke-width="2" opacity="0.34" />
+    <path d="M70 345C153 318 232 335 300 382C370 431 441 443 509 396C575 350 641 365 698 420" stroke="#C3C2BD" stroke-width="1.8" opacity="0.3" />
+    <path d="M52 415C132 390 217 407 290 460C362 512 435 522 502 474C571 426 638 441 694 498" stroke="#9EA3A0" stroke-width="1.7" opacity="0.3" />
+    <path d="M73 487C148 468 222 486 285 532C355 583 428 594 493 552C562 508 626 519 684 572" stroke="#B8BAB7" stroke-width="1.9" opacity="0.32" />
+    <path d="M55 557C130 540 209 561 276 610C345 661 414 670 479 631C544 591 615 601 676 653" stroke="#C3C2BD" stroke-width="1.7" opacity="0.3" />
+    <path d="M80 628C147 614 216 632 272 675C331 721 397 733 458 703C518 673 593 679 660 724" stroke="#A9ADAA" stroke-width="1.6" opacity="0.28" />
+    <path d="M105 701C166 690 229 706 282 740C334 775 391 783 442 760C499 735 570 741 635 782" stroke="#B8BAB7" stroke-width="1.6" opacity="0.3" />
+    <path d="M162 123C204 181 208 243 169 302C133 357 141 417 185 464C236 519 234 581 181 636" stroke="#9EA3A0" stroke-width="1.5" opacity="0.28" />
+    <path d="M255 88C296 150 300 219 258 279C217 337 226 410 279 462C335 517 342 594 294 657" stroke="#C3C2BD" stroke-width="1.6" opacity="0.32" />
+    <path d="M356 82C389 148 390 217 351 278C313 337 328 408 385 455C447 506 461 584 421 653" stroke="#B8BAB7" stroke-width="1.5" opacity="0.3" />
+    <path d="M459 93C485 150 481 213 444 269C410 321 423 389 478 430C531 470 548 540 516 602" stroke="#9EA3A0" stroke-width="1.5" opacity="0.28" />
+    <path d="M520 172C556 227 558 286 526 339C498 385 510 441 555 478C600 514 612 572 585 626" stroke="#C3C2BD" stroke-width="1.5" opacity="0.28" />
+  </g>
+  <g opacity="0.2" stroke="#C3C2BD" stroke-linecap="round" stroke-width="1.3">
+    <path d="M119 88H206" />
+    <path d="M98 807H202" />
+    <path d="M526 70H640" />
+    <path d="M502 850H644" />
+  </g>
+</svg>

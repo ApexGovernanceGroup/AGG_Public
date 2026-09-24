@@ -246,6 +246,178 @@ export const pillarDefinitions = [
   },
 ];
 
+export const strategicDoctrine = {
+  status: "Canonical Strategic Doctrine",
+  expansion: "Elevated Edition",
+  sequence: [
+    "Assess",
+    "Engineer",
+    "Govern",
+    "Operationalize",
+    "Sustain Decision Advantage",
+  ],
+  mission: {
+    heading: "Mission",
+    statement:
+      "Apex Governance Group partners with clients, strategic partners, and community governments to assess complex organizational challenges; engineer, govern, and operationalize custom organic solutions; preserve institutional knowledge; apply strategic foresight; and establish dynamic governance layers that strengthen resilience, improve organizational performance, and generate sustained decision advantage.",
+    definition:
+      "Apex exists to build durable institutional capability. The work starts by understanding how the client actually operates, then shaping solutions around people, knowledge, authorities, processes, data, technology, constraints, risk, and the decision environment.",
+  },
+  vision: {
+    heading: "Vision",
+    statement:
+      "Apex Governance Group will be the national authority on enterprise knowledge governance and digital ecosystem modernization, setting the standard for how institutions design, govern, and operate in an era defined by complexity, velocity, and persistent disruption.",
+    definition:
+      "The desired future is the governed intelligent enterprise: knowledge-positive, governed, interoperable, adaptive, resilient, foresight-enabled, and decision-advantaged.",
+  },
+  intent: {
+    heading: "Executive Intent",
+    statement:
+      "Partner deeply. Understand before prescribing. Preserve institutional knowledge. Engineer for the actual operating environment. Govern what matters. Operationalize what works. Build organic capability. Measure effects. Transfer ownership. Continuously adapt.",
+    endState:
+      "The client possesses the architecture, infrastructure, governance, operational cognition, trained workforce, institutional knowledge, measures, and authority required to operate and improve the capability organically.",
+  },
+  valueProposition:
+    "Apex does not seek merely to deliver a product to the client. Apex seeks to leave behind a stronger institution.",
+  values: [
+    {
+      title: "People Always",
+      definition:
+        "People are the decisive component of every organizational system.",
+      test: "Does the solution make capable people more effective?",
+    },
+    {
+      title: "Integrity of Knowledge",
+      definition:
+        "Decisions are only as defensible as the knowledge environment supporting them.",
+      test:
+        "Can the organization explain source, trust, uncertainty, and decision effect?",
+    },
+    {
+      title: "Clarity Creates Velocity",
+      definition:
+        "Clear intent, roles, authority, information, and process reduce avoidable friction.",
+      test:
+        "Does the architecture reduce the time required to understand what matters and what happens next?",
+    },
+    {
+      title: "Stewardship",
+      definition:
+        "Resources, knowledge, data, technology, trust, and client time are assets to be protected and used deliberately.",
+      test:
+        "Does the work create durable value without avoidable waste or dependency?",
+    },
+    {
+      title: "Accountability",
+      definition:
+        "Meaningful work requires identifiable ownership, decision authority, standards, evidence, and consequences.",
+      test:
+        "Can the organization identify who owns the outcome and who has authority to act?",
+    },
+    {
+      title: "Disciplined Innovation",
+      definition:
+        "Innovation must convert a new or improved idea into adopted, measurable value.",
+      test: "Did the innovation measurably improve an important outcome?",
+    },
+    {
+      title: "Interoperability",
+      definition:
+        "Enterprise capability must connect across boundaries without losing meaning, authority, fidelity, or trust.",
+      test:
+        "Can people, functions, systems, and organizations coordinate with shared meaning?",
+    },
+    {
+      title: "Resilience",
+      definition:
+        "Critical capability must remain functional when preferred conditions no longer exist.",
+      test: "What happens when the primary method fails?",
+    },
+    {
+      title: "Continuous Improvement",
+      definition:
+        "No organizational architecture should be assumed permanently optimal.",
+      test: "Can evidence from execution change the system?",
+    },
+    {
+      title: "Organic Ownership",
+      definition:
+        "Sustainable capability ultimately belongs to the institution that must operate it.",
+      test:
+        "Can the client operate, govern, assess, repair, and improve the capability without unnecessary dependency?",
+    },
+  ],
+  priorities: [
+    {
+      code: "SP1",
+      title: "People Always",
+      effect:
+        "Capable people operating within systems that amplify rather than constrain performance.",
+    },
+    {
+      code: "SP2",
+      title: "Full Spectrum Readiness",
+      effect:
+        "An institution that maintains essential functions, understanding, control, and decision capacity through steady state, surge, crisis, degradation, transition, and recovery.",
+    },
+    {
+      code: "SP3",
+      title: "Modernization, Transformation, and Innovation",
+      effect:
+        "An adaptable institution that absorbs emerging capabilities while maintaining governance, interoperability, human accountability, and mission continuity.",
+    },
+    {
+      code: "SP4",
+      title: "Strategic Partnerships, Communications, and Governance",
+      effect:
+        "A networked enterprise that coordinates across boundaries without sacrificing clarity, authority, accountability, or shared meaning.",
+    },
+  ],
+  pillars: [
+    {
+      title: "Architecture",
+      effect: "Coherence",
+      definition:
+        "The deliberate design of relationships among mission, people, knowledge, data, processes, decisions, authorities, technology, resources, and outcomes.",
+    },
+    {
+      title: "Infrastructure",
+      effect: "Enablement",
+      definition:
+        "The physical, digital, informational, and enabling environment through which enterprise architecture becomes executable.",
+    },
+    {
+      title: "Governance",
+      effect: "Institutional Control and Trust",
+      definition:
+        "The system of authority, accountability, standards, decision rights, controls, assurance, and review through which the enterprise maintains integrity.",
+    },
+    {
+      title: "Operational Cognition",
+      effect: "Understanding and Action",
+      definition:
+        "The enterprise capability to convert information and experience into shared understanding, judgment, coordinated decisions, effective action, and learning.",
+    },
+  ],
+  keyTasks: [
+    "Assess the enterprise",
+    "Frame the problem",
+    "Preserve institutional knowledge",
+    "Apply strategic foresight",
+    "Map the enterprise",
+    "Engineer the future state",
+    "Develop and evaluate COAs",
+    "Engineer dynamic governance",
+    "Reduce friction and improve processes",
+    "Govern knowledge and data",
+    "Optimize infrastructure",
+    "Enable governed AI and automation",
+    "Develop human capability",
+    "Operationalize",
+    "Measure, assure, learn, and transfer",
+  ],
+} as const;
+
 export type NavItem = {
   href: string;
   label: string;
@@ -259,6 +431,7 @@ export const sideNavItems: NavItem[] = [
   { href: "/services", label: "Services", icon: BriefcaseBusiness },
   { href: "/methodology", label: "Methodology", icon: Workflow },
   { href: "/solutions", label: "Solutions", icon: Compass },
+  { href: "/doctrine", label: "Doctrine", icon: BookOpenCheck },
   { href: "/academy", label: "Apex Academy", icon: GraduationCap },
   { href: "/about", label: "About", icon: Landmark },
   { href: "/contact", label: "Contact", icon: Mail },

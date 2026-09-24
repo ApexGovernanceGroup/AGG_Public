@@ -18,6 +18,7 @@ import {
   site,
   solutionDeliveryBridge,
   solutionPillarIntro,
+  strategicDoctrine,
 } from "./site-data";
 import { ClientLedSelfDeterminationCards } from "./components/ClientLedSelfDeterminationCards";
 import { HeroSolutionLanes } from "./components/HeroSolutionLanes";
@@ -96,6 +97,28 @@ export default function Home() {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section section--doctrine">
+        <div className="container doctrine-band">
+          <div>
+            <p className="eyebrow">{strategicDoctrine.status}</p>
+            <h2>Corporate doctrine governs how Apex builds advantage.</h2>
+            <p className="large-copy">{strategicDoctrine.mission.statement}</p>
+            <Link className="text-link" href="/doctrine">
+              Read mission, vision, intent, values, and key tasks
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
+          <ol className="doctrine-band__sequence" aria-label="Governing operating sequence">
+            {strategicDoctrine.sequence.map((step, index) => (
+              <li key={step}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{step}</strong>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
