@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, ShieldCheck } from "lucide-react";
-import { academyFormats, academyTracks } from "../site-data";
+import {
+  academyFormats,
+  academyProgramOutcomes,
+  academyTopicDomains,
+  academyTracks,
+} from "../site-data";
 
 export const metadata: Metadata = {
   title: "Apex Academy",
   description:
-    "Private workforce education for governed AI, automation, data governance, repository operations, and ecosystem development.",
+    "Private professional development, labor force certification, and skills training for governed AI, automation, data governance, repository operations, and enterprise planning.",
 };
 
 export default function AcademyPage() {
@@ -42,6 +47,52 @@ export default function AcademyPage() {
               organization, a mission set, a transformation office, a steward
               community, or a product team that needs disciplined execution.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--academy-display">
+        <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow">Academy Development Model</p>
+            <h2>
+              Professional development, labor force certification, and skills
+              training for modern governed work.
+            </h2>
+            <p>
+              Apex Academy organizes education around visible capability:
+              individual proficiency, collective execution, certification
+              evidence, and mission-relevant application.
+            </p>
+          </div>
+          <div className="academy-program-grid">
+            {academyProgramOutcomes.map((program) => (
+              <article className="service-card academy-program-card" key={program.title}>
+                <program.icon size={26} aria-hidden="true" />
+                <h3>{program.title}</h3>
+                <p>{program.summary}</p>
+                <strong className="card-outcome">{program.proof}</strong>
+              </article>
+            ))}
+          </div>
+          <div className="academy-topic-panel">
+            <div>
+              <p className="eyebrow">Training Topics</p>
+              <h3>Core domains taught through applied work.</h3>
+              <p>
+                Topic coverage can be delivered as private cohorts, role-based
+                certification paths, working labs, seminars, or embedded team
+                training.
+              </p>
+            </div>
+            <ul className="academy-topic-list" aria-label="Apex Academy training topics">
+              {academyTopicDomains.map((topic) => (
+                <li key={topic}>
+                  <BadgeCheck size={17} aria-hidden="true" />
+                  <span>{topic}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>

@@ -9,6 +9,8 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import {
+  academyProgramOutcomes,
+  academyTopicDomains,
   brandStandard,
   engagementPackages,
   githubRepositoryUrl,
@@ -242,6 +244,12 @@ export default function Home() {
               Private cohorts build applied capability in AI, automation, data
               governance, repository operations, and ecosystem development.
             </p>
+            <div className="academy-signal" aria-label="Apex Academy offerings">
+              <strong>
+                {academyProgramOutcomes.map((program) => program.title).join(" | ")}
+              </strong>
+              <span>{academyTopicDomains.join(" | ")}</span>
+            </div>
             <Link className="text-link" href="/academy">
               View academy tracks
               <ArrowRight size={16} aria-hidden="true" />

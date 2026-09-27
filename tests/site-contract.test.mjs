@@ -146,6 +146,10 @@ test("AGG public site contract is present", async () => {
     data.indexOf("export const academyTracks"),
     data.indexOf("export const academyFormats"),
   );
+  const academyProgramOutcomesData = data.slice(
+    data.indexOf("export const academyProgramOutcomes"),
+    data.indexOf("export const academyTracks"),
+  );
   const solutionDeliveryBridgeData = data.slice(
     data.indexOf("export const solutionDeliveryBridge"),
     data.indexOf("export const packageInclusions"),
@@ -321,6 +325,19 @@ test("AGG public site contract is present", async () => {
     /sideNavItems: NavItem\[\] = \[[\s\S]*href: "\/about", label: "About", icon: Landmark[\s\S]*href: "\/contact", label: "Contact", icon: Mail[\s\S]*href: "\/insights", label: "Insights", icon: Newspaper/,
   );
   assert.match(combined, /Apex Academy/);
+  assert.match(combined, /Professional Development/);
+  assert.match(combined, /Labor Force Certification/);
+  assert.match(combined, /Individual & Collective Skills Training/);
+  assert.match(combined, /Knowledge Management Ecosystems/);
+  assert.match(combined, /Data Governance Application/);
+  assert.match(combined, /Artificial Intelligence/);
+  assert.match(combined, /Automation/);
+  assert.match(combined, /Innovation & Interoperability/);
+  assert.match(combined, /Enterprise Strategic Planning/);
+  assert.match(academy, /academyProgramOutcomes\.map/);
+  assert.match(academy, /academyTopicDomains\.map/);
+  assert.match(home, /academyProgramOutcomes\.map/);
+  assert.equal((academyProgramOutcomesData.match(/title: "/g) ?? []).length, 3);
   assert.match(combined, /The KAIGED\|S Approach/);
   assert.match(combined, /Six lanes for governed digital operating capability/);
   assert.match(combined, /Enterprise knowledge management systems/);

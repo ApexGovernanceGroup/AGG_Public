@@ -1507,6 +1507,30 @@ button.hero__solution-lane.is-active {
   color: rgba(62, 67, 70, 0.78);
 }
 
+.academy-signal {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 2px;
+  border-left: 3px solid var(--bronze);
+  background: rgba(23, 44, 63, 0.06);
+  padding: 14px 16px;
+}
+
+.academy-signal strong {
+  color: var(--black);
+  font-size: 0.82rem;
+  font-weight: 950;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.academy-signal span {
+  color: rgba(62, 67, 70, 0.82);
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.55;
+}
+
 .client-access-grid {
   display: grid;
   gap: 18px;
@@ -5416,6 +5440,80 @@ button.configuration-relation-card:disabled {
   margin-top: 4px;
 }
 
+.section--academy-display {
+  background:
+    linear-gradient(180deg, rgba(244, 241, 234, 0.96), rgba(225, 229, 228, 0.84)),
+    var(--paper);
+}
+
+.academy-program-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.academy-program-card {
+  min-height: 310px;
+  border-color: rgba(136, 98, 60, 0.28);
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.academy-program-card h3 {
+  margin-bottom: 12px;
+  font-size: clamp(1.18rem, 2vw, 1.48rem);
+}
+
+.academy-topic-panel {
+  display: grid;
+  align-items: start;
+  gap: 26px;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  margin-top: 22px;
+  border: 1px solid rgba(23, 44, 63, 0.16);
+  border-radius: var(--radius);
+  background: rgba(12, 12, 12, 0.9);
+  color: var(--paper);
+  padding: 26px;
+}
+
+.academy-topic-panel h3 {
+  margin-bottom: 10px;
+  color: var(--paper);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
+}
+
+.academy-topic-panel p:not(.eyebrow) {
+  max-width: 620px;
+  color: rgba(244, 241, 234, 0.74);
+}
+
+.academy-topic-list {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.academy-topic-list li {
+  display: flex;
+  min-height: 56px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(195, 194, 189, 0.18);
+  background: rgba(244, 241, 234, 0.08);
+  color: rgba(244, 241, 234, 0.9);
+  padding: 12px 14px;
+  font-weight: 900;
+}
+
+.academy-topic-list svg {
+  flex: 0 0 auto;
+  color: var(--bronze);
+}
+
 .academy-control-list {
   display: grid;
   gap: 10px;
@@ -5579,6 +5677,9 @@ button.configuration-relation-card:disabled {
   .service-decision-grid,
   .service-inventory,
   .service-quality-grid,
+  .academy-program-grid,
+  .academy-topic-panel,
+  .academy-topic-list,
   .package-grid,
   .catalog-grid,
   .sprint-grid,

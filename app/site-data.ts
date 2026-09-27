@@ -2193,6 +2193,49 @@ export type AcademyTrack = {
   icon: LucideIcon;
 };
 
+export type AcademyProgramOutcome = {
+  title: string;
+  summary: string;
+  proof: string;
+  icon: LucideIcon;
+};
+
+export const academyProgramOutcomes: AcademyProgramOutcome[] = [
+  {
+    title: "Professional Development",
+    summary:
+      "Role-based development for leaders, stewards, analysts, operators, and builders who need governed digital capability they can apply immediately.",
+    proof:
+      "Participants leave with shared vocabulary, operating behaviors, decision discipline, and reusable job aids tied to their mission environment.",
+    icon: BriefcaseBusiness,
+  },
+  {
+    title: "Labor Force Certification",
+    summary:
+      "Certification-oriented learning paths that translate institutional knowledge, data governance, AI, automation, and planning practices into measurable workforce proficiency.",
+    proof:
+      "Each path can be structured around defined competencies, completion evidence, practical checks, and role-specific readiness expectations.",
+    icon: ClipboardCheck,
+  },
+  {
+    title: "Individual & Collective Skills Training",
+    summary:
+      "Hands-on training for individual skill growth and team-level execution across real work products, repositories, governance routines, and operating decisions.",
+    proof:
+      "Learners practice the work together so adoption becomes a collective habit, not a one-time classroom event.",
+    icon: GraduationCap,
+  },
+];
+
+export const academyTopicDomains = [
+  "Knowledge Management Ecosystems",
+  "Data Governance Application",
+  "Artificial Intelligence",
+  "Automation",
+  "Innovation & Interoperability",
+  "Enterprise Strategic Planning",
+];
+
 export const academyTracks: AcademyTrack[] = [
   {
     code: "K",
