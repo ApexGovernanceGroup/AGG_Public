@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
+  BookOpenCheck,
   ClipboardCheck,
+  Download,
   GraduationCap,
   ShieldCheck,
 } from "lucide-react";
@@ -12,9 +14,12 @@ import {
   clientAccessCards,
   contactEmail,
   customizationLevers,
+  educationDeliveryOptions,
   engagementPackages,
+  longTermEngagementOptions,
   packageInclusions,
   pricingPrinciple,
+  purchaseLibraryItems,
   storefrontCollections,
   trustBuildingSignals,
 } from "../site-data";
@@ -22,7 +27,7 @@ import {
 export const metadata: Metadata = {
   title: "Engage",
   description:
-    "Start an Apex Governance Group engagement through diagnostics, assessments, governed product kits, private seminars, design sprints, or advisory retainers.",
+    "Start an Apex Governance Group engagement through diagnostics, assessments, governed product kits, private seminars, design sprints, advisory retainers, education delivery, credentialing support, and 6-12 month solution contracts.",
 };
 
 const checkoutMessages: Record<string, string> = {
@@ -47,6 +52,7 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
   const checkoutState = params?.checkout;
   const message = checkoutState ? checkoutMessages[checkoutState] : null;
   const checkoutConfigured = Boolean(process.env.STRIPE_SECRET_KEY);
+  const packagesById = new Map(engagementPackages.map((item) => [item.id, item]));
 
   return (
     <main>
@@ -127,7 +133,7 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
           )}
           <div className="pricing-grid">
             {engagementPackages.map((item) => (
-              <article className="pricing-card" key={item.id}>
+              <article className="pricing-card" id={`storefront-${item.id}`} key={item.id}>
                 <div className="pricing-card__top">
                   <div>
                     <p className="eyebrow">
@@ -176,6 +182,76 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
               </article>
             ))}
           </div>
+          <div
+            aria-labelledby="purchase-library-heading"
+            className="purchase-library-shell"
+          >
+            <div className="section-heading section-heading--compact">
+              <p className="eyebrow">Client Purchase Library</p>
+              <h2 id="purchase-library-heading">Review the offer in plain language. Download the product after purchase.</h2>
+              <p>
+                The library uses plain-speak product names first, then ties
+                each item back to its formal storefront SKU for purchase,
+                records, and delivery control. Downloads are made available
+                through the client portal after purchase, intake validation,
+                and credential activation.
+              </p>
+            </div>
+            <div className="purchase-library-grid">
+              {purchaseLibraryItems.map((libraryItem) => {
+                const packageItem = packagesById.get(libraryItem.packageId);
+                if (!packageItem) return null;
+
+                return (
+                  <article className="purchase-library-card" key={libraryItem.packageId}>
+                    <div className="purchase-library-card__top">
+                      <BookOpenCheck size={22} aria-hidden="true" />
+                      <div>
+                        <p className="eyebrow">
+                          {packageItem.sku} | {packageItem.name}
+                        </p>
+                        <h3>{libraryItem.plainName}</h3>
+                      </div>
+                    </div>
+                    <p className="purchase-library-card__question">
+                      {libraryItem.clientQuestion}
+                    </p>
+                    <dl className="purchase-library-card__details">
+                      <div>
+                        <dt>Review</dt>
+                        <dd>{libraryItem.reviewSummary}</dd>
+                      </div>
+                      <div>
+                        <dt>Download after purchase</dt>
+                        <dd>{libraryItem.downloadSummary}</dd>
+                      </div>
+                    </dl>
+                    <ul className="mini-list">
+                      {libraryItem.downloadableItems.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                    <p className="purchase-library-card__note">{libraryItem.accessNote}</p>
+                    <div className="purchase-library-card__actions">
+                      <Link className="text-link" href={`#storefront-${packageItem.id}`}>
+                        Review listing
+                        <ArrowRight size={16} aria-hidden="true" />
+                      </Link>
+                      <Link
+                        className="button button--quiet"
+                        href={`/client-onboarding?intent=product-purchase&packageId=${encodeURIComponent(
+                          packageItem.id,
+                        )}`}
+                      >
+                        <Download size={17} aria-hidden="true" />
+                        Request download access
+                      </Link>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -205,6 +281,70 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
                 </ul>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow">Education, Credentialing, and Long-Term Support</p>
+            <h2>Choose the delivery model before the product is shaped.</h2>
+            <p>
+              AGG can provide in-person, remote-distance learning, and hybrid
+              professional education, certification support, credentialing
+              evidence, advisory retainers, and 6-12 month solution contracts.
+              Scope, access, pricing, and download rights are confirmed during
+              intake.
+            </p>
+          </div>
+          <div className="delivery-library-grid">
+            {educationDeliveryOptions.map((option) => (
+              <article className="delivery-option-card" key={option.title}>
+                <option.icon size={24} aria-hidden="true" />
+                <p className="eyebrow">{option.plainName}</p>
+                <h3>{option.title}</h3>
+                <p>{option.summary}</p>
+                <strong>Best for</strong>
+                <p>{option.bestFor}</p>
+                <ul className="mini-list">
+                  {option.outputs.map((output) => (
+                    <li key={output}>{output}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <div className="contract-option-panel">
+            <div className="section-heading section-heading--compact">
+              <p className="eyebrow">Retainers and 6-12 Month Contracts</p>
+              <h2>When the need is not a single purchase, convert it into a governed engagement rhythm.</h2>
+            </div>
+            <div className="contract-option-grid">
+              {longTermEngagementOptions.map((option) => (
+                <article className="contract-option-card" key={option.title}>
+                  <div className="contract-option-card__top">
+                    <option.icon size={23} aria-hidden="true" />
+                    <span>{option.term}</span>
+                  </div>
+                  <h3>{option.title}</h3>
+                  <p className="contract-option-card__plain">{option.plainName}</p>
+                  <p>{option.summary}</p>
+                  <ul className="mini-list">
+                    {option.includes.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <Link
+                    className="text-link"
+                    href="/client-onboarding?intent=long-term-solution"
+                  >
+                    Start long-term solution intake
+                    <ArrowRight size={16} aria-hidden="true" />
+                  </Link>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>

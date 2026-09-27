@@ -4579,6 +4579,183 @@ button.configuration-relation-card:disabled {
   text-transform: uppercase;
 }
 
+.purchase-library-shell {
+  margin-top: 36px;
+  border-top: 1px solid rgba(23, 44, 63, 0.14);
+  padding-top: 32px;
+}
+
+.purchase-library-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.purchase-library-card {
+  display: grid;
+  min-height: 420px;
+  gap: 14px;
+  border: 1px solid rgba(23, 44, 63, 0.16);
+  border-left: 5px solid var(--navy);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.84), rgba(244, 241, 234, 0.68)),
+    var(--paper);
+  padding: 18px;
+}
+
+.purchase-library-card__top {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.purchase-library-card__top svg {
+  color: var(--bronze);
+}
+
+.purchase-library-card__top h3 {
+  margin: 4px 0 0;
+  color: var(--black);
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.purchase-library-card__question {
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.04rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.purchase-library-card__details {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.purchase-library-card__details div {
+  display: grid;
+  gap: 4px;
+}
+
+.purchase-library-card__details dt {
+  color: var(--bronze-dark);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.74rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.purchase-library-card__details dd {
+  margin: 0;
+  color: rgba(62, 67, 70, 0.82);
+  line-height: 1.52;
+}
+
+.purchase-library-card__note {
+  margin-top: auto;
+  border-top: 1px solid rgba(23, 44, 63, 0.12);
+  padding-top: 12px;
+  color: rgba(62, 67, 70, 0.76);
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.purchase-library-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delivery-library-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.delivery-option-card {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  border: 1px solid rgba(23, 44, 63, 0.16);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.64);
+  min-height: 430px;
+  padding: 18px;
+}
+
+.delivery-option-card svg,
+.contract-option-card svg {
+  color: var(--bronze);
+}
+
+.delivery-option-card h3,
+.contract-option-card h3 {
+  margin: 0;
+  color: var(--black);
+  font-size: 1.08rem;
+  line-height: 1.22;
+}
+
+.delivery-option-card strong {
+  margin-top: 4px;
+  color: var(--navy);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.contract-option-panel {
+  margin-top: 34px;
+  border-top: 1px solid rgba(23, 44, 63, 0.14);
+  padding-top: 28px;
+}
+
+.contract-option-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.contract-option-card {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  border: 1px solid rgba(23, 44, 63, 0.16);
+  min-height: 360px;
+  border-left: 5px solid var(--bronze);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.64);
+  padding: 18px;
+}
+
+.contract-option-card__top {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contract-option-card__top span {
+  border: 1px solid rgba(136, 98, 60, 0.34);
+  color: var(--bronze-dark);
+  padding: 5px 8px;
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.74rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.contract-option-card__plain {
+  color: var(--navy);
+  font-weight: 900;
+}
+
 .pricing-card__meta {
   display: grid;
   gap: 10px;
@@ -5874,6 +6051,9 @@ button.configuration-relation-card:disabled {
   .academy-topic-panel,
   .academy-topic-list,
   .storefront-product-index,
+  .purchase-library-grid,
+  .delivery-library-grid,
+  .contract-option-grid,
   .package-grid,
   .catalog-grid,
   .sprint-grid,

@@ -1865,6 +1865,240 @@ export const storefrontCollections: StorefrontCollection[] = [
   },
 ];
 
+export type PurchaseLibraryItem = {
+  packageId: string;
+  plainName: string;
+  clientQuestion: string;
+  reviewSummary: string;
+  downloadSummary: string;
+  downloadableItems: string[];
+  accessNote: string;
+};
+
+export const purchaseLibraryItems: PurchaseLibraryItem[] = [
+  {
+    packageId: "diagnostic",
+    plainName: "Get a clear first decision",
+    clientQuestion:
+      "What is actually wrong, what matters first, and what should leadership do next?",
+    reviewSummary:
+      "Review the executive problem frame, evidence baseline, decision friction, and 90-day action path before scope grows.",
+    downloadSummary:
+      "After purchase and client-portal activation, download the decision brief, action list, and evidence notes.",
+    downloadableItems: [
+      "Plain-language decision brief",
+      "90-day action list",
+      "Evidence notes and assumptions",
+    ],
+    accessNote:
+      "Best first move when the client needs a fast, bounded answer before committing to larger work.",
+  },
+  {
+    packageId: "continuity-assessment",
+    plainName: "Find knowledge-loss risk",
+    clientQuestion:
+      "Where would the organization break if a key person, process, record, or handoff disappeared?",
+    reviewSummary:
+      "Review continuity exposure, critical knowledge owners, retrieval gaps, handoff risk, and remediation priorities.",
+    downloadSummary:
+      "After purchase and client-portal activation, download the exposure map, owner inventory, and remediation backlog.",
+    downloadableItems: [
+      "Continuity exposure map",
+      "Critical knowledge inventory",
+      "Risk-ranked remediation backlog",
+    ],
+    accessNote:
+      "Best for teams concerned about turnover, fragile handoffs, undocumented expertise, or single points of failure.",
+  },
+  {
+    packageId: "product-kit",
+    plainName: "Build a ready-to-use policy, SOP, or checklist kit",
+    clientQuestion:
+      "What practical document set would remove friction from the work right now?",
+    reviewSummary:
+      "Review the product boundary, required authority, intended users, evidence standard, and handoff expectations.",
+    downloadSummary:
+      "After purchase and client-portal activation, download the tailored document set, checklist, and implementation notes.",
+    downloadableItems: [
+      "Tailored policy, SOP, plan, or checklist",
+      "Authority and review logic",
+      "Implementation and handoff notes",
+    ],
+    accessNote:
+      "Best when the need is specific: a memo, content strategy, template, governing document, or practical operating artifact.",
+  },
+  {
+    packageId: "academy-lab",
+    plainName: "Train a private team or cohort",
+    clientQuestion:
+      "What does the workforce need to learn, practice, prove, and carry back into daily work?",
+    reviewSummary:
+      "Review cohort size, audience role, delivery format, topic focus, certification evidence, and expected performance outcome.",
+    downloadSummary:
+      "After purchase and client-portal activation, download the cohort packet, applied exercises, job aids, and participation record.",
+    downloadableItems: [
+      "Private cohort packet",
+      "Applied exercises and job aids",
+      "Participation and skill-evidence record",
+    ],
+    accessNote:
+      "Best for professional education, labor-force certification support, private labs, seminars, and credentialing evidence.",
+  },
+  {
+    packageId: "sprint",
+    plainName: "Design the operating model",
+    clientQuestion:
+      "How should decisions, roles, measures, workflows, and controls fit together so the work can run?",
+    reviewSummary:
+      "Review the decision rights, control points, stakeholders, implementation sequence, and proof requirements for a bounded sprint.",
+    downloadSummary:
+      "After purchase and client-portal activation, download the operating model, decision rhythm, and implementation backlog.",
+    downloadableItems: [
+      "Governance operating model",
+      "Decision and review rhythm",
+      "Implementation backlog",
+    ],
+    accessNote:
+      "Best when the client is ready to build the structure, not just diagnose the problem.",
+  },
+  {
+    packageId: "retainer",
+    plainName: "Keep executive support on call",
+    clientQuestion:
+      "What recurring advisory rhythm keeps priorities, risks, and delivery decisions moving?",
+    reviewSummary:
+      "Review cadence, sponsor needs, advisory scope, decision products, standing meetings, and monthly delivery controls.",
+    downloadSummary:
+      "After purchase and client-portal activation, download monthly decision briefs, review notes, and priority action records.",
+    downloadableItems: [
+      "Monthly executive decision brief",
+      "Portfolio and performance review notes",
+      "Priority action and issue record",
+    ],
+    accessNote:
+      "Best for executives who need continuing counsel, delivery control, and an inspectable decision cadence.",
+  },
+];
+
+export type EducationDeliveryOption = {
+  title: string;
+  plainName: string;
+  summary: string;
+  bestFor: string;
+  outputs: string[];
+  icon: LucideIcon;
+};
+
+export const educationDeliveryOptions: EducationDeliveryOption[] = [
+  {
+    title: "In-Person Professional Education",
+    plainName: "Bring AGG to your team",
+    summary:
+      "Instructor-led professional education, workshops, and applied labs delivered at the client location or an agreed venue.",
+    bestFor:
+      "Executive off-sites, launch events, sensitive teams, hands-on governance labs, and cohorts that benefit from direct facilitation.",
+    outputs: [
+      "Live instruction and facilitation",
+      "Applied exercises and job aids",
+      "Attendance and completion record",
+    ],
+    icon: Home,
+  },
+  {
+    title: "Remote-Distance Learning",
+    plainName: "Run a live online cohort",
+    summary:
+      "Synchronous remote instruction, working sessions, and office-hour support for distributed teams.",
+    bestFor:
+      "Multi-location teams, constrained travel windows, recurring professional development, and rapid workforce reach.",
+    outputs: [
+      "Virtual cohort plan",
+      "Digital packet and exercises",
+      "Recorded decision and action notes when scoped",
+    ],
+    icon: Network,
+  },
+  {
+    title: "Hybrid Professional Education",
+    plainName: "Blend live events with remote sustainment",
+    summary:
+      "A combined model using in-person launch or capstone events with remote-distance learning, coaching, and follow-up labs.",
+    bestFor:
+      "6-12 month capability-building efforts, change campaigns, credentialing pathways, and enterprise adoption work.",
+    outputs: [
+      "Hybrid delivery schedule",
+      "Cohort assignments and progress checks",
+      "Sustainment and transfer package",
+    ],
+    icon: GraduationCap,
+  },
+  {
+    title: "Certification and Credentialing Services",
+    plainName: "Document what people can now do",
+    summary:
+      "Performance-based certification support and credentialing evidence that show what participants learned, practiced, and can apply.",
+    bestFor:
+      "Professional development programs, labor-force certification support, internal credential pathways, and role-readiness evidence.",
+    outputs: [
+      "Capability rubric",
+      "Completion certificate or credential evidence package",
+      "Third-party certification mapping when separately scoped",
+    ],
+    icon: ShieldCheck,
+  },
+];
+
+export type LongTermEngagementOption = {
+  title: string;
+  plainName: string;
+  term: string;
+  summary: string;
+  includes: string[];
+  icon: LucideIcon;
+};
+
+export const longTermEngagementOptions: LongTermEngagementOption[] = [
+  {
+    title: "Executive Advisory Retainer",
+    plainName: "Keep AGG inside the decision rhythm",
+    term: "Monthly retainer",
+    summary:
+      "Recurring executive support for priority decisions, performance review, governance correction, and delivery control.",
+    includes: [
+      "Standing advisory cadence",
+      "Priority decision briefs",
+      "Monthly issue, risk, and action review",
+    ],
+    icon: BriefcaseBusiness,
+  },
+  {
+    title: "Six-Month Solution Contract",
+    plainName: "Install the first durable capability",
+    term: "6 months",
+    summary:
+      "A medium-term contract for assessment, design, implementation support, workforce enablement, and measured handoff.",
+    includes: [
+      "Baseline and target architecture",
+      "Product build and implementation support",
+      "Measured improvement and handoff package",
+    ],
+    icon: ClipboardCheck,
+  },
+  {
+    title: "Twelve-Month Sustainment Contract",
+    plainName: "Build, govern, and improve over a full operating cycle",
+    term: "12 months",
+    summary:
+      "A full-year operating partnership for governance, academy delivery, repository sustainment, analytics, and continuous improvement.",
+    includes: [
+      "Quarterly governance and performance reviews",
+      "Education, credentialing, and adoption support",
+      "Sustainment backlog and improvement rhythm",
+    ],
+    icon: Gauge,
+  },
+];
+
 export type ProductCatalogGroup = {
   domain: string;
   title: string;

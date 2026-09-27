@@ -156,6 +156,18 @@ test("AGG public site contract is present", async () => {
     data.indexOf("export const academyProgramOutcomes"),
     data.indexOf("export const academyTracks"),
   );
+  const purchaseLibraryItemsData = data.slice(
+    data.indexOf("export const purchaseLibraryItems"),
+    data.indexOf("export type EducationDeliveryOption"),
+  );
+  const educationDeliveryOptionsData = data.slice(
+    data.indexOf("export const educationDeliveryOptions"),
+    data.indexOf("export type LongTermEngagementOption"),
+  );
+  const longTermEngagementOptionsData = data.slice(
+    data.indexOf("export const longTermEngagementOptions"),
+    data.indexOf("export type ProductCatalogGroup"),
+  );
   const solutionDeliveryBridgeData = data.slice(
     data.indexOf("export const solutionDeliveryBridge"),
     data.indexOf("export const packageInclusions"),
@@ -662,6 +674,40 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /149 proposed product patterns/);
   assert.match(combined, /Seminars and Sprints/);
   assert.match(combined, /Customization Levers/);
+  assert.match(combined, /Client Purchase Library/);
+  assert.match(combined, /plain-speak product names first/);
+  assert.match(combined, /Download after purchase/);
+  assert.match(combined, /Request download access/);
+  assert.match(combined, /client-portal activation/);
+  assert.match(combined, /Get a clear first decision/);
+  assert.match(combined, /Find knowledge-loss risk/);
+  assert.match(combined, /Build a ready-to-use policy, SOP, or checklist kit/);
+  assert.match(combined, /Train a private team or cohort/);
+  assert.match(combined, /Design the operating model/);
+  assert.match(combined, /Keep executive support on call/);
+  assert.match(engage, /purchaseLibraryItems\.map/);
+  assert.match(engage, /packagesById\.get\(libraryItem\.packageId\)/);
+  assert.match(engage, /href=\{`#storefront-\$\{packageItem\.id\}`\}/);
+  assert.match(engage, /id=\{`storefront-\$\{item\.id\}`\}/);
+  assert.equal((purchaseLibraryItemsData.match(/packageId:\s*"/g) ?? []).length, 6);
+  assert.equal((purchaseLibraryItemsData.match(/downloadSummary:\s*"/g) ?? []).length, 6);
+  assert.match(combined, /Education, Credentialing, and Long-Term Support/);
+  assert.match(combined, /in-person, remote-distance learning, and hybrid\s+professional education/);
+  assert.match(combined, /certification support, credentialing\s+evidence, advisory retainers, and 6-12 month solution contracts/);
+  assert.match(combined, /In-Person Professional Education/);
+  assert.match(combined, /Remote-Distance Learning/);
+  assert.match(combined, /Hybrid Professional Education/);
+  assert.match(combined, /Certification and Credentialing Services/);
+  assert.match(combined, /Third-party certification mapping when separately scoped/);
+  assert.match(engage, /educationDeliveryOptions\.map/);
+  assert.equal((educationDeliveryOptionsData.match(/title:\s*"/g) ?? []).length, 4);
+  assert.match(combined, /Retainers and 6-12 Month Contracts/);
+  assert.match(combined, /Six-Month Solution Contract/);
+  assert.match(combined, /Twelve-Month Sustainment Contract/);
+  assert.match(combined, /Monthly retainer/);
+  assert.match(engage, /longTermEngagementOptions\.map/);
+  assert.match(engage, /\/client-onboarding\?intent=long-term-solution/);
+  assert.equal((longTermEngagementOptionsData.match(/term:\s*"/g) ?? []).length, 3);
   assert.match(home, /Scale, scope, and pricing/);
   assert.match(combined, /Pricing Principle/);
   assert.match(combined, /Pricing is based on scale, not content depth/);
@@ -882,6 +928,13 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const storefrontProductIndexItem = cssBlock(css, ".storefront-product-index__item");
   const pricingCardSaleStatus = cssBlock(css, ".pricing-card__sale-status");
   const saleBadge = cssBlock(css, ".sale-badge");
+  const purchaseLibraryGrid = cssBlock(css, ".purchase-library-grid");
+  const purchaseLibraryCard = cssBlock(css, ".purchase-library-card");
+  const purchaseLibraryCardActions = cssBlock(css, ".purchase-library-card__actions");
+  const deliveryLibraryGrid = cssBlock(css, ".delivery-library-grid");
+  const deliveryOptionCard = cssBlock(css, ".delivery-option-card");
+  const contractOptionGrid = cssBlock(css, ".contract-option-grid");
+  const contractOptionCard = cssBlock(css, ".contract-option-card");
   const integrationGrid = cssBlock(css, ".integration-grid");
   const integrationCard = cssBlock(css, ".integration-card");
   const founderSpotlight = cssBlock(css, ".founder-spotlight");
@@ -1037,7 +1090,19 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(pricingCardSaleStatus, /display:\s*flex/);
   assert.match(pricingCardSaleStatus, /flex-wrap:\s*wrap/);
   assert.match(saleBadge, /text-transform:\s*uppercase/);
+  assert.match(purchaseLibraryGrid, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(purchaseLibraryCard, /min-height:\s*420px/);
+  assert.match(purchaseLibraryCard, /border-left:\s*5px solid var\(--navy\)/);
+  assert.match(purchaseLibraryCardActions, /justify-content:\s*space-between/);
+  assert.match(deliveryLibraryGrid, /grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(deliveryOptionCard, /min-height:\s*430px/);
+  assert.match(contractOptionGrid, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(contractOptionCard, /min-height:\s*360px/);
+  assert.match(contractOptionCard, /border-left:\s*5px solid var\(--bronze\)/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.storefront-product-index,[\s\S]*?grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.purchase-library-grid,[\s\S]*?grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.delivery-library-grid,[\s\S]*?grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.contract-option-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(integrationGrid, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(integrationCard, /background:\s*rgba\(255,\s*255,\s*255,\s*0\.06\)/);
   assert.match(integrationCard, /min-height:\s*284px/);
