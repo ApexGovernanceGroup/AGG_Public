@@ -30,6 +30,7 @@ test("AGG public site contract is present", async () => {
     solutions,
     doctrine,
     academy,
+    clientOnboarding,
     clientPortal,
     clientPortalDashboard,
     clientServices,
@@ -42,6 +43,9 @@ test("AGG public site contract is present", async () => {
     clientServicesAuth,
     clientServicesAccessRoute,
     clientServicesLogoutRoute,
+    checkoutRoute,
+    clientOnboardingRoute,
+    clientOnboardingRecords,
     clientConfigurationsRoute,
     clientConfigurationRecords,
     insights,
@@ -64,6 +68,7 @@ test("AGG public site contract is present", async () => {
       read("app/solutions/page.tsx"),
       read("app/doctrine/page.tsx"),
       read("app/academy/page.tsx"),
+      read("app/client-onboarding/page.tsx"),
       read("app/client-portal/page.tsx"),
       read("app/components/ClientPortalDashboard.tsx"),
       read("app/client-services/page.tsx"),
@@ -76,6 +81,9 @@ test("AGG public site contract is present", async () => {
       read("app/client-services/auth.ts"),
       read("app/api/client-services/access/route.ts"),
       read("app/api/client-services/logout/route.ts"),
+      read("app/api/checkout/route.ts"),
+      read("app/api/client-onboarding/route.ts"),
+      read("app/client-onboarding/records.ts"),
       read("app/api/client-configurations/route.ts"),
       read("app/client-configurations/records.ts"),
       read("app/insights/page.tsx"),
@@ -99,6 +107,7 @@ test("AGG public site contract is present", async () => {
     solutions,
     doctrine,
     academy,
+    clientOnboarding,
     clientPortal,
     clientPortalDashboard,
     clientServices,
@@ -110,6 +119,9 @@ test("AGG public site contract is present", async () => {
     clientServicesAuth,
     clientServicesAccessRoute,
     clientServicesLogoutRoute,
+    checkoutRoute,
+    clientOnboardingRoute,
+    clientOnboardingRecords,
     clientConfigurationsRoute,
     clientConfigurationRecords,
     insights,
@@ -198,6 +210,7 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Full Spectrum Readiness/);
   assert.match(combined, /Operational Cognition/);
   assert.match(combined, /Sustain Decision Advantage/);
+  assert.match(sitemap, /"\/client-onboarding"/);
   assert.match(sitemap, /"\/doctrine"/);
   assert.match(layout, /<AlabamaTopographicBackdrop \/>/);
   assert.match(alabamaTopographicBackdrop, /prefers-reduced-motion: reduce/);
@@ -293,11 +306,15 @@ test("AGG public site contract is present", async () => {
   assert.match(siteHeader, /topNavItems\.length > 0/);
   assert.match(siteHeader, /topNavItems\.map/);
   assert.match(siteHeader, /Client login/);
+  assert.match(siteHeader, /Apex Admin/);
+  assert.match(siteHeader, /\/client-services\?role=admin/);
   assert.match(siteHeader, /LockKeyhole/);
+  assert.match(siteHeader, /ShieldCheck/);
   assert.doesNotMatch(siteHeader, /navItems\.map/);
   assert.match(sideNavigation, /sideNavItems\.map/);
   assert.match(data, /export const topNavItems: NavItem\[\] = \[\];/);
   assert.doesNotMatch(sideNavData, /href: "\/client-portal"/);
+  assert.match(sideNavData, /href: "\/client-onboarding", label: "Onboarding", icon: ClipboardCheck/);
   assert.match(sideNavData, /href: "\/doctrine", label: "Doctrine", icon: BookOpenCheck/);
   assert.match(
     data,
@@ -441,11 +458,38 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Enablement/);
   assert.match(combined, /Client-Led Self-Determination word bank/);
   assert.match(combined, /Private workforce education/i);
-  assert.match(combined, /Client Engagement/);
+  assert.match(combined, /Client Onboarding/);
+  assert.match(combined, /Register first\. Then enter the client login gate\./);
+  assert.match(combined, /Register before checkout/);
+  assert.match(combined, /Submit registration/);
+  assert.match(combined, /\/api\/client-onboarding/);
+  assert.match(clientOnboarding, /name="organization"/);
+  assert.match(clientOnboarding, /name="contactName"/);
+  assert.match(clientOnboarding, /name="email"/);
+  assert.match(clientOnboarding, /name="intent"/);
+  assert.match(clientOnboarding, /name="accessNeed"/);
+  assert.match(clientOnboarding, /name="consent"/);
+  assert.doesNotMatch(clientOnboarding, /name="password"/);
+  assert.match(clientOnboardingRoute, /runtime\s*=\s*"nodejs"/);
+  assert.match(clientOnboardingRoute, /MAX_BODY_BYTES/);
+  assert.match(clientOnboardingRoute, /VALID_INTENTS/);
+  assert.match(clientOnboardingRoute, /sourceIsAllowed/);
+  assert.match(clientOnboardingRoute, /rateLimitAllows/);
+  assert.match(clientOnboardingRoute, /appendClientOnboardingRecord/);
+  assert.match(clientOnboardingRoute, /record-unavailable/);
+  assert.match(clientOnboardingRoute, /write-only/);
+  assert.match(clientOnboardingRecords, /CLIENT_ONBOARDING_RECORD_FILE\s*=\s*"client-onboarding-registrations\.jsonl"/);
+  assert.match(clientOnboardingRecords, /readRecentClientOnboardingRecords/);
+  assert.match(clientOnboardingRecords, /appendClientOnboardingRecord/);
   assert.match(combined, /Client Portal/);
   assert.match(combined, /\/client-portal/);
   assert.match(combined, /Client Services/);
   assert.match(combined, /\/client-services/);
+  assert.match(clientServices, /readRecentClientOnboardingRecords/);
+  assert.match(clientServices, /Onboarding Queue/);
+  assert.match(clientServices, /Client registrations awaiting AGG review/);
+  assert.match(clientServices, /Onboarding registration received/);
+  assert.match(clientServices, /Apex Admin access/);
   assert.match(combined, /Password Protected/);
   assert.match(combined, /ClientServicesCommandCenter/);
   assert.match(combined, /Command Center/);
@@ -574,7 +618,10 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /does not sell, resell, broker, or require tooling/);
   assert.match(combined, /apex@apexgovernancegroup\.com/);
   assert.doesNotMatch(combined, /contact@apexgovernancegroup\.com/);
-  assert.match(combined, /\/api\/checkout/);
+  assert.match(checkoutRoute, /export async function POST/);
+  assert.match(checkoutRoute, /checkoutPayloadFrom/);
+  assert.match(checkoutRoute, /registration_required/);
+  assert.match(checkoutRoute, /metadata\[onboarding_record_id\]/);
   assert.doesNotMatch(combined, /execution cadence/i);
   const servicesCss = await read("app/globals.css");
   assert.match(servicesCss, /service-decision-grid/);
@@ -696,6 +743,7 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const heroContentContrast = cssBlock(css, ".hero__content::before");
   const brandLockup = cssBlock(css, ".brand-lockup");
   const brandTagline = cssBlock(css, ".brand-text span");
+  const buttonAdmin = cssBlock(css, ".button--admin");
   const darkSection = cssBlock(css, ".section--dark");
   const darkSectionContour = cssBlock(css, ".section--dark::before");
   const heroMetrics = cssBlock(css, ".hero__metrics");
@@ -778,6 +826,12 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const packageInclusionsTop = cssBlock(css, ".package-inclusions__top");
   const packageInclusionsClose = cssBlock(css, ".package-inclusions__close");
   const packageInclusionsList = cssBlock(css, ".package-inclusions__card ul");
+  const onboardingPath = cssBlock(css, ".onboarding-path");
+  const onboardingSelectedPackage = cssBlock(css, ".onboarding-selected-package");
+  const onboardingFormGrid = cssBlock(css, ".onboarding-form__grid");
+  const onboardingFormTrap = cssBlock(css, ".onboarding-form__trap");
+  const onboardingAcknowledgement = cssBlock(css, ".onboarding-form__acknowledgement");
+  const onboardingFormActions = cssBlock(css, ".onboarding-form__actions");
   const methodologyGrid = cssBlock(css, ".methodology-grid");
   const methodologyCard = cssBlock(css, ".methodology-card");
   const configurationHero = cssBlock(css, ".configuration-hero");
@@ -793,6 +847,8 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const configurationRecordGrid = cssBlock(css, ".configuration-record-grid");
   const configurationRecordCard = cssBlock(css, ".configuration-record-card");
   const configurationRecordPre = cssBlock(css, ".configuration-record-card pre");
+  const onboardingRecordGrid = cssBlock(css, ".onboarding-record-grid");
+  const onboardingRecordCard = cssBlock(css, ".onboarding-record-card");
   const configurationRelationGrid = cssBlock(css, ".configuration-relation-grid");
   const configurationLayerGrid = cssBlock(css, ".configuration-layer-grid");
   const configurationProductTable = cssBlock(css, ".configuration-product-table div");
@@ -887,6 +943,8 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(brandLockup, /min-width:\s*0/);
   assert.match(brandTagline, /max-width:\s*420px/);
   assert.match(brandTagline, /line-height:\s*1\.15/);
+  assert.match(buttonAdmin, /border-color:\s*rgba\(121,\s*55,\s*53,\s*0\.36\)/);
+  assert.match(buttonAdmin, /color:\s*var\(--oxblood\)/);
   assert.match(darkSection, /isolation:\s*isolate/);
   assert.match(darkSection, /overflow:\s*hidden/);
   assert.match(darkSectionContour, /background-image:\s*var\(--maine-topographic-contours-smoke\)/);
@@ -914,6 +972,12 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(packageInclusionsTop, /justify-content:\s*space-between/);
   assert.match(packageInclusionsClose, /width:\s*32px/);
   assert.match(packageInclusionsList, /list-style:\s*none/);
+  assert.match(onboardingPath, /grid-template-columns:\s*minmax\(0,\s*0\.48fr\)\s*minmax\(0,\s*0\.52fr\)/);
+  assert.match(onboardingSelectedPackage, /grid-template-columns:\s*auto 1fr auto/);
+  assert.match(onboardingFormGrid, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(onboardingFormTrap, /left:\s*-10000px/);
+  assert.match(onboardingAcknowledgement, /align-items:\s*flex-start/);
+  assert.match(onboardingFormActions, /flex-wrap:\s*wrap/);
   assert.match(sideNav, /position:\s*sticky/);
   assert.match(sideNavLinks, /overflow-x:\s*auto/);
   assert.match(sideNavAnchor, /min-height:\s*42px/);
@@ -939,10 +1003,13 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(css, /background-image:\s*var\(--maine-topographic-contours\);\s*background-position:\s*right -138px top -110px;\s*background-repeat:\s*no-repeat;\s*background-size:\s*min\(520px,\s*112%\) auto;\s*opacity:\s*0\.14/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.command-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.configuration-position-grid,[\s\S]*?grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.onboarding-form__grid,[\s\S]*?grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.onboarding-record-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.configuration-layer-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.configuration-condition-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.command-cell,[\s\S]*?min-height:\s*auto/);
   assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.configuration-stage-card,[\s\S]*?min-height:\s*auto/);
+  assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.onboarding-selected-package\s*{[^}]*grid-template-columns:\s*1fr/);
   assert.match(commitmentCard, /grid-template-columns:\s*auto 1fr/);
   assert.match(kaigesGrid, /grid-template-columns:\s*repeat\(6,\s*minmax\(190px,\s*1fr\)\)/);
   assert.match(kaigesGrid, /overflow-x:\s*auto/);
@@ -998,6 +1065,8 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(configurationRecordGrid, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(configurationRecordCard, /min-height:\s*430px/);
   assert.match(configurationRecordPre, /white-space:\s*pre-wrap/);
+  assert.match(onboardingRecordGrid, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(onboardingRecordCard, /min-height:\s*360px/);
   assert.match(configurationRelationGrid, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(configurationLayerGrid, /grid-template-columns:\s*repeat\(6,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(configurationProductTable, /min-width:\s*880px/);
@@ -1062,9 +1131,12 @@ test("checkout keeps price authority on the server", async () => {
 
   assert.match(route, /process\.env\.STRIPE_SECRET_KEY/);
   assert.match(route, /sourceIsAllowed/);
-  assert.match(route, /getEngagementPackage\(await packageIdFrom\(request\)\)/);
+  assert.match(route, /checkoutPayloadFrom\(request\)/);
+  assert.match(route, /registration_required/);
+  assert.match(route, /getEngagementPackage\(payload\.packageId\)/);
   assert.match(route, /selectedPackage\.unitAmount/);
   assert.match(route, /https:\/\/api\.stripe\.com\/v1\/checkout\/sessions/);
+  assert.match(route, /metadata\[onboarding_record_id\]/);
   assert.doesNotMatch(route, /body\.amount|form\?\.get\("amount"\)/);
   assert.match(commerce, /displayPrice:\s*"Market & Scale Value"/);
   assert.doesNotMatch(commerce, /displayPrice:\s*"\$/);
@@ -1074,10 +1146,10 @@ test("checkout keeps price authority on the server", async () => {
   assert.match(commerce, /unitAmount:\s*650000/);
   assert.match(commerce, /unitAmount:\s*950000/);
   assert.match(commerce, /unitAmount:\s*1800000/);
-  assert.match(engage, /name="packageId" value=\{item\.id\}/);
+  assert.match(engage, /\/client-onboarding\?intent=product-purchase&packageId=/);
   assert.match(engage, /checkoutConfigured/);
-  assert.match(engage, /Start secure checkout/);
-  assert.match(engage, /Request intake activation/);
+  assert.match(engage, /Register before checkout/);
+  assert.doesNotMatch(engage, /Start secure checkout/);
   assert.match(engage, /PackageInclusions/);
 });
 

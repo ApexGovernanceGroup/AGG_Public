@@ -429,6 +429,7 @@ export const topNavItems: NavItem[] = [];
 export const sideNavItems: NavItem[] = [
   { href: "/", label: "Home", icon: Home },
   { href: "/services", label: "Services", icon: BriefcaseBusiness },
+  { href: "/client-onboarding", label: "Onboarding", icon: ClipboardCheck },
   { href: "/methodology", label: "Methodology", icon: Workflow },
   { href: "/solutions", label: "Solutions", icon: Compass },
   { href: "/doctrine", label: "Doctrine", icon: BookOpenCheck },
@@ -496,12 +497,12 @@ export type ClientAccessCard = {
 
 export const clientAccessCards: ClientAccessCard[] = [
   {
-    title: "Client Engagement",
-    label: "Engage",
+    title: "Client Onboarding",
+    label: "Register",
     summary:
-      "Structured intake, scope control, payment record, kickoff rhythm, and decision points for new work.",
-    href: "/engage",
-    action: "Start engagement",
+      "Required registration for clients who want to purchase a product, request long-term solution work, or activate a login path.",
+    href: "/client-onboarding",
+    action: "Register client",
     icon: ClipboardCheck,
   },
   {

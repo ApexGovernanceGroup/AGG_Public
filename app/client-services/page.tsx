@@ -17,6 +17,12 @@ import type {
   StoredKaigesConfigurationRecord,
 } from "../client-configurations/records";
 import {
+  readRecentClientOnboardingRecords,
+} from "../client-onboarding/records";
+import type {
+  StoredClientOnboardingRecord,
+} from "../client-onboarding/records";
+import {
   clientServiceLanes,
   clientServiceStack,
   contactEmail,
@@ -40,7 +46,7 @@ export const metadata: Metadata = {
 };
 
 type ClientServicesPageProps = {
-  searchParams?: Promise<{ access?: string }>;
+  searchParams?: Promise<{ access?: string; record?: string; role?: string }>;
 };
 
 export default async function ClientServicesPage({
@@ -71,8 +77,10 @@ export default async function ClientServicesPage({
         <ClientServicesWorkspace />
       ) : (
         <ClientServicesGate
-          accessDenied={params?.access === "denied"}
+          accessState={params?.access}
+          adminEntry={params?.role === "admin"}
           authConfigured={authConfigured}
+          onboardingRecordId={params?.record}
         />
       )}
     </main>
@@ -80,24 +88,43 @@ export default async function ClientServicesPage({
 }
 
 function ClientServicesGate({
-  accessDenied,
+  accessState,
+  adminEntry,
   authConfigured,
+  onboardingRecordId,
 }: {
-  accessDenied: boolean;
+  accessState?: string;
+  adminEntry: boolean;
   authConfigured: boolean;
+  onboardingRecordId?: string;
 }) {
+  const accessDenied = accessState === "denied";
+  const registrationReceived = accessState === "registered";
+
   return (
     <section className="section client-services-section">
       <div className="container protected-access-shell">
         <div className="protected-access-panel">
           <LockKeyhole size={28} aria-hidden="true" />
           <p className="eyebrow">Password Protected</p>
-          <h2>Client Services access</h2>
+          <h2>{adminEntry ? "Apex Admin access" : "Client Services access"}</h2>
           <p>
-            This route is reserved for client-facing service work, architecture
-            sections, and implementation records that should not render on the
-            public site.
+            This route is reserved for registered clients and AGG operators
+            working with client-facing service architecture, implementation
+            records, onboarding review, and delivery controls that should not
+            render on the public site.
           </p>
+          {registrationReceived && (
+            <div className="status-banner status-banner--compact" role="status">
+              <ShieldCheck size={18} aria-hidden="true" />
+              <span>
+                Onboarding registration received
+                {onboardingRecordId ? `: ${onboardingRecordId}` : ""}. AGG will
+                validate the record before activating checkout, client login,
+                portal access, or long-term solution work.
+              </span>
+            </div>
+          )}
           {accessDenied && (
             <div className="status-banner status-banner--compact" role="alert">
               <ShieldCheck size={18} aria-hidden="true" />
@@ -152,7 +179,10 @@ function ClientServicesGate({
 }
 
 async function ClientServicesWorkspace() {
-  const configurationRecords = await readRecentKaigesConfigurationRecords();
+  const [configurationRecords, onboardingRecords] = await Promise.all([
+    readRecentKaigesConfigurationRecords(),
+    readRecentClientOnboardingRecords(),
+  ]);
 
   return (
     <>
@@ -172,6 +202,8 @@ async function ClientServicesWorkspace() {
           </div>
 
           <ClientConfigurationCard />
+
+          <ClientOnboardingRecords records={onboardingRecords} />
 
           <ClientConfigurationRecords records={configurationRecords} />
 
@@ -227,6 +259,10 @@ async function ClientServicesWorkspace() {
               Start engagement
               <ArrowRight size={17} aria-hidden="true" />
             </Link>
+            <Link className="button button--quiet" href="/client-onboarding">
+              Register client
+              <ArrowRight size={17} aria-hidden="true" />
+            </Link>
             <Link className="button button--quiet" href="/client-portal">
               Open portal
               <ArrowRight size={17} aria-hidden="true" />
@@ -238,6 +274,78 @@ async function ClientServicesWorkspace() {
         </div>
       </section>
     </>
+  );
+}
+
+function ClientOnboardingRecords({
+  records,
+}: {
+  records: StoredClientOnboardingRecord[];
+}) {
+  return (
+    <section
+      aria-label="Client onboarding registration records"
+      className="client-onboarding-records"
+    >
+      <div className="client-configuration-records__heading">
+        <div>
+          <p className="eyebrow">Onboarding Queue</p>
+          <h2>Client registrations awaiting AGG review.</h2>
+          <p>
+            Public onboarding requests are listed here for client identity
+            validation, product-purchase review, long-term solution scoping, and
+            login activation decisions.
+          </p>
+        </div>
+        <ShieldCheck size={26} aria-hidden="true" />
+      </div>
+
+      {records.length ? (
+        <div className="onboarding-record-grid">
+          {records.map((record) => (
+            <article className="onboarding-record-card" key={record.recordId}>
+              <div className="configuration-record-card__top">
+                <div>
+                  <p className="eyebrow">{record.intent}</p>
+                  <h3>{record.organization}</h3>
+                </div>
+                <span>{record.timeline}</span>
+              </div>
+              <p className="configuration-record-card__id">{record.recordId}</p>
+              <p>{formatRecordDate(record.receivedAt)}</p>
+              <dl>
+                <div>
+                  <dt>Contact</dt>
+                  <dd>{record.contactName}</dd>
+                </div>
+                <div>
+                  <dt>Email</dt>
+                  <dd>{record.email}</dd>
+                </div>
+                <div>
+                  <dt>Access</dt>
+                  <dd>{record.accessNeed}</dd>
+                </div>
+                {record.packageId && (
+                  <div>
+                    <dt>Package</dt>
+                    <dd>{record.packageId}</dd>
+                  </div>
+                )}
+              </dl>
+              <details>
+                <summary>Requested outcome</summary>
+                <p>{record.summary}</p>
+              </details>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p className="configuration-records-empty">
+          No public client onboarding registrations have been captured yet.
+        </p>
+      )}
+    </section>
   );
 }
 

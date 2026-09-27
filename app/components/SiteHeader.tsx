@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CreditCard, GitBranch, LockKeyhole } from "lucide-react";
+import { CreditCard, GitBranch, LockKeyhole, ShieldCheck } from "lucide-react";
 import { BrandMark } from "./BrandMark";
 import { githubRepositoryUrl, topNavItems } from "../site-data";
 
@@ -24,6 +24,10 @@ export function SiteHeader() {
           <Link className="button button--small button--quiet" href="/client-services">
             <LockKeyhole size={16} aria-hidden="true" />
             Client login
+          </Link>
+          <Link className="button button--small button--admin" href="/client-services?role=admin">
+            <ShieldCheck size={16} aria-hidden="true" />
+            Apex Admin
           </Link>
           <Link className="button button--small" href="/engage">
             <CreditCard size={16} aria-hidden="true" />

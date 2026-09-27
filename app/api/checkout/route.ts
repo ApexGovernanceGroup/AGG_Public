@@ -58,24 +58,47 @@ function sourceIsAllowed(request: Request) {
   return allowed.has(sourceOrigin);
 }
 
-async function packageIdFrom(request: Request) {
+type CheckoutPayload = {
+  packageId: string | null;
+  onboardingRecordId: string | null;
+};
+
+function cleanOnboardingRecordId(value: unknown) {
+  return typeof value === "string" && /^ONBOARD-[A-Z0-9]+-[A-F0-9]{8}$/.test(value)
+    ? value
+    : null;
+}
+
+async function checkoutPayloadFrom(request: Request): Promise<CheckoutPayload> {
   const contentType = request.headers.get("content-type") ?? "";
   if (contentType.includes("application/json")) {
     const body = (await request.json().catch(() => null)) as {
       packageId?: unknown;
+      onboardingRecordId?: unknown;
     } | null;
-    return typeof body?.packageId === "string" ? body.packageId : null;
+    return {
+      packageId: typeof body?.packageId === "string" ? body.packageId : null,
+      onboardingRecordId: cleanOnboardingRecordId(body?.onboardingRecordId),
+    };
   }
 
   const form = await request.formData().catch(() => null);
-  const value = form?.get("packageId");
-  return typeof value === "string" ? value : null;
+  const packageId = form?.get("packageId");
+  return {
+    packageId: typeof packageId === "string" ? packageId : null,
+    onboardingRecordId: cleanOnboardingRecordId(form?.get("onboardingRecordId")),
+  };
 }
 
 export async function POST(request: Request) {
   if (!sourceIsAllowed(request)) return redirectTo(request, "error");
 
-  const selectedPackage = getEngagementPackage(await packageIdFrom(request));
+  const payload = await checkoutPayloadFrom(request);
+  if (!payload.onboardingRecordId) {
+    return redirectTo(request, "registration_required");
+  }
+
+  const selectedPackage = getEngagementPackage(payload.packageId);
   if (!selectedPackage) return redirectTo(request, "error");
 
   const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
@@ -98,6 +121,7 @@ export async function POST(request: Request) {
     "line_items[0][price_data][product_data][description]":
       selectedPackage.description,
     "metadata[package_id]": selectedPackage.id,
+    "metadata[onboarding_record_id]": payload.onboardingRecordId,
     "metadata[source]": "apex-governance-group-site",
   });
 
