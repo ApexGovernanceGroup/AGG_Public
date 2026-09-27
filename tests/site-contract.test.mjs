@@ -33,7 +33,9 @@ test("AGG public site contract is present", async () => {
     clientOnboarding,
     clientPortal,
     clientPortalDashboard,
+    clientPortalProfile,
     clientServices,
+    clientServicesGate,
     clientServicesCommandCenter,
     clientConfigurationCard,
     clientLedSelfDeterminationCards,
@@ -71,7 +73,9 @@ test("AGG public site contract is present", async () => {
       read("app/client-onboarding/page.tsx"),
       read("app/client-portal/page.tsx"),
       read("app/components/ClientPortalDashboard.tsx"),
+      read("app/client-portal/profile.ts"),
       read("app/client-services/page.tsx"),
+      read("app/client-services/ClientServicesGate.tsx"),
       read("app/components/ClientServicesCommandCenter.tsx"),
       read("app/components/ClientConfigurationCard.tsx"),
       read("app/components/ClientLedSelfDeterminationCards.tsx"),
@@ -110,7 +114,9 @@ test("AGG public site contract is present", async () => {
     clientOnboarding,
     clientPortal,
     clientPortalDashboard,
+    clientPortalProfile,
     clientServices,
+    clientServicesGate,
     clientServicesCommandCenter,
     clientConfigurationCard,
     clientLedSelfDeterminationCards,
@@ -502,12 +508,22 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /\/client-portal/);
   assert.match(combined, /Client Services/);
   assert.match(combined, /\/client-services/);
+  assert.match(combined, /ClientServicesGate/);
+  assert.match(clientServicesGate, /name="username"/);
+  assert.match(clientServicesGate, /name="password"/);
+  assert.match(clientServicesGate, /name="returnTo"/);
+  assert.match(clientServicesGate, /Open dashboard portal/);
+  assert.match(clientServicesGate, /Credential Protected/);
+  assert.match(clientServicesGate, /Client login or password was not accepted/);
+  assert.match(clientServicesGate, /Validated clients open a dashboard/);
   assert.match(clientServices, /readRecentClientOnboardingRecords/);
   assert.match(clientServices, /Onboarding Queue/);
   assert.match(clientServices, /Client registrations awaiting AGG review/);
-  assert.match(clientServices, /Onboarding registration received/);
-  assert.match(clientServices, /Apex Admin access/);
-  assert.match(combined, /Password Protected/);
+  assert.match(clientServicesGate, /Onboarding registration received/);
+  assert.match(clientServicesGate, /Apex Admin access/);
+  assert.match(clientServices, /params\?\.returnTo === "\/client-services\?role=admin"/);
+  assert.match(clientServices, /returnTo=\{adminEntry \? "\/client-services\?role=admin" : "\/client-portal"\}/);
+  assert.match(combined, /Credential Protected/);
   assert.match(combined, /ClientServicesCommandCenter/);
   assert.match(combined, /Command Center/);
   assert.match(combined, /Start Project/);
@@ -563,19 +579,49 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /owned in the Apex codebase/i);
   assert.match(combined, /CLIENT_SERVICES_COOKIE/);
   assert.match(combined, /clientServicesSessionToken/);
+  assert.match(combined, /isClientServicesCredential/);
   assert.match(combined, /isClientServicesConfigured/);
+  assert.match(combined, /DEVELOPMENT_USERNAME_SHA256/);
   assert.match(combined, /DEVELOPMENT_PASSWORD_SHA256/);
+  assert.match(combined, /CLIENT_SERVICES_USERNAME/);
+  assert.match(combined, /CLIENT_SERVICES_USERNAME_SHA256/);
   assert.match(combined, /return isProduction\(\) \? null : DEVELOPMENT_PASSWORD_SHA256/);
+  assert.match(clientServicesAuth, /return isProduction\(\) \? null : DEVELOPMENT_USERNAME_SHA256/);
+  assert.match(clientServicesAuth, /usernameHash/);
+  assert.match(clientServicesAuth, /passwordHash/);
+  assert.match(clientServicesAuth, /sessionSecret/);
   assert.match(combined, /httpOnly:\s*true/);
+  assert.match(clientServicesAuth, /path:\s*"\/"/);
   assert.match(clientServicesAccessRoute, /requestOrigin/);
   assert.match(clientServicesAccessRoute, /headers\.get\("host"\)/);
+  assert.match(clientServicesAccessRoute, /resolveReturnPath/);
+  assert.match(clientServicesAccessRoute, /searchParams\.set\("role", "admin"\)/);
+  assert.match(clientServicesAccessRoute, /\/client-portal/);
+  assert.match(clientServicesAccessRoute, /\/client-services\?role=admin/);
   assert.match(clientServicesLogoutRoute, /requestOrigin/);
   assert.match(clientServicesLogoutRoute, /headers\.get\("host"\)/);
   assert.match(combined, /disallow:\s*\["\/client-services",\s*"\/client-portal"\]/);
   assert.doesNotMatch(sitemap, /\/client-portal/);
-  assert.match(combined, /Client Portal Preview/);
-  assert.match(combined, /Preview data only/);
-  assert.match(combined, /Public, non-operational preview/i);
+  assert.match(clientPortal, /hasClientServicesAccess/);
+  assert.match(clientPortal, /getClientPortalProfile/);
+  assert.match(clientPortal, /Credentialed portal session active/);
+  assert.match(clientPortal, /Dashboard visibility for commissioned AGG client services/);
+  assert.doesNotMatch(combined, /Client Portal Preview/);
+  assert.doesNotMatch(combined, /Preview data only/);
+  assert.doesNotMatch(combined, /Public, non-operational preview/i);
+  assert.match(clientPortalDashboard, /Full Client Administration Data/);
+  assert.match(clientPortalDashboard, /Assigned Apex Employee/);
+  assert.match(clientPortalDashboard, /Primary Contact/);
+  assert.match(clientPortalDashboard, /Billing Contact/);
+  assert.match(clientPortalDashboard, /Technical Contact/);
+  assert.match(clientPortalDashboard, /Commissioned Services/);
+  assert.match(clientPortalDashboard, /Current service status/);
+  assert.match(clientPortalProfile, /CLIENT_PORTAL_APEX_EMPLOYEE_NAME/);
+  assert.match(clientPortalProfile, /CLIENT_PORTAL_PRIMARY_CONTACT_PHONE/);
+  assert.match(clientPortalProfile, /CLIENT_PORTAL_SERVICE_1_STATUS/);
+  assert.match(envExample, /CLIENT_SERVICES_USERNAME=/);
+  assert.match(envExample, /CLIENT_PORTAL_CLIENT_ORGANIZATION=/);
+  assert.match(envExample, /CLIENT_PORTAL_APEX_EMPLOYEE_PHONE=/);
   assert.match(combined, /Current Progress/);
   assert.match(combined, /Project Efforts, Programs, and Actions/);
   assert.match(combined, /Chats and Comments/);
@@ -890,6 +936,10 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const portalShell = cssBlock(css, ".portal-shell");
   const portalSummary = cssBlock(css, ".portal-summary");
   const portalStatGrid = cssBlock(css, ".portal-stat-grid");
+  const portalAdminGrid = cssBlock(css, ".portal-admin-grid");
+  const portalContactGrid = cssBlock(css, ".portal-contact-grid");
+  const portalAdminList = cssBlock(css, ".portal-admin-list");
+  const portalCommissionItem = cssBlock(css, ".portal-commission-item");
   const portalWorkLayout = cssBlock(css, ".portal-work-layout");
   const pageHeroTexture = cssBlock(css, ".page-hero::before");
   const pageHeroSymbol = cssBlock(css, ".page-hero::after");
@@ -1022,6 +1072,8 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.configuration-position-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.onboarding-form__grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.onboarding-record-grid,[\s\S]*?grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.portal-admin-grid,[\s\S]*?grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.portal-commission-item,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.configuration-layer-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.configuration-condition-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.command-cell,[\s\S]*?min-height:\s*auto/);
@@ -1102,6 +1154,10 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(portalShell, /grid-template-columns:\s*minmax\(238px,\s*0\.32fr\)\s*minmax\(0,\s*1fr\)/);
   assert.match(portalSummary, /grid-template-columns:\s*minmax\(0,\s*1fr\)\s*minmax\(210px,\s*0\.34fr\)/);
   assert.match(portalStatGrid, /grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(portalAdminGrid, /grid-template-columns:\s*minmax\(0,\s*1\.15fr\)\s*minmax\(280px,\s*0\.85fr\)/);
+  assert.match(portalContactGrid, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(portalAdminList, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(portalCommissionItem, /grid-template-columns:\s*minmax\(220px,\s*0\.48fr\)\s*minmax\(0,\s*1fr\)/);
   assert.match(portalWorkLayout, /grid-template-columns:\s*minmax\(0,\s*1fr\)\s*minmax\(280px,\s*0\.38fr\)/);
   assert.match(css, /background-image:\s*var\(--maine-topographic-contours\)/);
   assert.match(heroTexture, /repeating-linear-gradient/);
@@ -1198,6 +1254,7 @@ test("security and public-readiness controls are configured", async () => {
 
   assert.match(robots, /"\/client-services",\s*"\/client-portal"/);
   assert.doesNotMatch(sitemap, /client-portal/);
+  assert.match(clientServicesAuth, /return isProduction\(\) \? null : DEVELOPMENT_USERNAME_SHA256/);
   assert.match(clientServicesAuth, /return isProduction\(\) \? null : DEVELOPMENT_PASSWORD_SHA256/);
   assert.match(intakeRoute, /MAX_BODY_BYTES/);
   assert.match(intakeRoute, /contentTypeIsJson/);

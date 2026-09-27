@@ -111,7 +111,7 @@ export default function MethodologyPage() {
                 <ArrowRight size={17} aria-hidden="true" />
               </Link>
               <Link className="button button--quiet-on-dark" href="/client-portal">
-                Preview portal model
+                Open client login
                 <ArrowRight size={17} aria-hidden="true" />
               </Link>
             </div>

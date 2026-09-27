@@ -5257,6 +5257,136 @@ button.configuration-relation-card:disabled {
   font-weight: 900;
 }
 
+.portal-admin-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+}
+
+.portal-contact-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.portal-admin-card {
+  display: grid;
+  gap: 16px;
+}
+
+.portal-admin-card h2,
+.portal-commissioned-services h2 {
+  margin-bottom: 0;
+  font-size: clamp(1.32rem, 2vw, 1.78rem);
+}
+
+.portal-admin-list,
+.portal-contact-block dl,
+.portal-commission-item dl {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.portal-admin-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.portal-admin-list div,
+.portal-contact-block dl div,
+.portal-commission-item dl div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.portal-admin-list dt,
+.portal-contact-block dt,
+.portal-commission-item dt {
+  color: rgba(62, 67, 70, 0.64);
+  font-size: 0.74rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.portal-admin-list dd,
+.portal-contact-block dd,
+.portal-commission-item dd {
+  min-width: 0;
+  margin: 0;
+  color: var(--black);
+  font-weight: 850;
+  overflow-wrap: anywhere;
+}
+
+.portal-authorized-users {
+  display: grid;
+  gap: 8px;
+}
+
+.portal-authorized-users h3,
+.portal-contact-block h3,
+.portal-commission-item h3 {
+  margin: 0;
+  color: var(--black);
+  font-size: 1rem;
+}
+
+.portal-authorized-users ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.portal-authorized-users li {
+  border: 1px solid rgba(23, 44, 63, 0.14);
+  background: rgba(23, 44, 63, 0.06);
+  color: var(--navy);
+  padding: 7px 10px;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.portal-contact-block {
+  border: 1px solid rgba(12, 12, 12, 0.1);
+  background: rgba(255, 255, 255, 0.48);
+  padding: 16px;
+}
+
+.portal-commissioned-services {
+  display: grid;
+  gap: 18px;
+}
+
+.portal-commission-list {
+  display: grid;
+  gap: 12px;
+}
+
+.portal-commission-item {
+  display: grid;
+  align-items: start;
+  gap: 16px;
+  grid-template-columns: minmax(220px, 0.48fr) minmax(0, 1fr);
+  border: 1px solid rgba(23, 44, 63, 0.12);
+  background: rgba(255, 255, 255, 0.44);
+  padding: 16px;
+}
+
+.portal-commission-item span {
+  color: var(--bronze-dark);
+  font-size: 0.76rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.portal-commission-item dl {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .portal-work-layout {
   display: grid;
   align-items: start;
@@ -5716,6 +5846,11 @@ button.configuration-relation-card:disabled {
   .portal-shell,
   .portal-summary,
   .portal-stat-grid,
+  .portal-admin-grid,
+  .portal-contact-grid,
+  .portal-admin-list,
+  .portal-commission-item,
+  .portal-commission-item dl,
   .portal-work-layout,
   .portal-access-note,
   .site-footer__grid {

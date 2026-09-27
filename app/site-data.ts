@@ -507,11 +507,11 @@ export const clientAccessCards: ClientAccessCard[] = [
   },
   {
     title: "Client Portal",
-    label: "Portal Preview",
+    label: "Dashboard Login",
     summary:
-      "A public preview of project progress, program status, actions, decisions, and working communication patterns.",
+      "Credential-protected dashboard access for commissioned services, client administration data, assigned Apex contact details, actions, and communication.",
     href: "/client-portal",
-    action: "Preview portal model",
+    action: "Open client login",
     icon: Gauge,
   },
   {

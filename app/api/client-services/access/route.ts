@@ -3,8 +3,8 @@ import {
   CLIENT_SERVICES_COOKIE,
   clientServicesCookieOptions,
   clientServicesSessionToken,
+  isClientServicesCredential,
   isClientServicesConfigured,
-  isClientServicesPassword,
 } from "../../../client-services/auth";
 
 function requestOrigin(request: NextRequest) {
@@ -16,19 +16,32 @@ function requestOrigin(request: NextRequest) {
 export async function POST(request: NextRequest) {
   const configured = await isClientServicesConfigured();
   const form = await request.formData();
-  const passwordIsValid =
-    configured && (await isClientServicesPassword(form.get("password")));
-  const target = new URL("/client-services", requestOrigin(request));
+  const credentialsAreValid =
+    configured &&
+    (await isClientServicesCredential({
+      username: form.get("username"),
+      password: form.get("password"),
+    }));
+  const target = new URL(resolveReturnPath(form.get("returnTo")), requestOrigin(request));
 
-  if (!passwordIsValid) {
-    target.searchParams.set("access", configured ? "denied" : "unavailable");
-    return NextResponse.redirect(target, 303);
+  if (!credentialsAreValid) {
+    const deniedTarget = new URL("/client-services", requestOrigin(request));
+    deniedTarget.searchParams.set("access", configured ? "denied" : "unavailable");
+    const requestedReturn = resolveReturnPath(form.get("returnTo"));
+    if (requestedReturn === "/client-services?role=admin") {
+      deniedTarget.searchParams.set("role", "admin");
+    }
+    if (requestedReturn !== "/client-portal") {
+      deniedTarget.searchParams.set("returnTo", requestedReturn);
+    }
+    return NextResponse.redirect(deniedTarget, 303);
   }
 
   const sessionToken = await clientServicesSessionToken();
   if (!sessionToken) {
-    target.searchParams.set("access", "unavailable");
-    return NextResponse.redirect(target, 303);
+    const unavailableTarget = new URL("/client-services", requestOrigin(request));
+    unavailableTarget.searchParams.set("access", "unavailable");
+    return NextResponse.redirect(unavailableTarget, 303);
   }
 
   const response = NextResponse.redirect(target, 303);
@@ -38,4 +51,16 @@ export async function POST(request: NextRequest) {
     clientServicesCookieOptions(),
   );
   return response;
+}
+
+function resolveReturnPath(value: FormDataEntryValue | null): string {
+  if (typeof value !== "string") return "/client-portal";
+
+  if (value === "/client-services" || value === "/client-services?role=admin") {
+    return value;
+  }
+
+  if (value === "/client-portal") return value;
+
+  return "/client-portal";
 }

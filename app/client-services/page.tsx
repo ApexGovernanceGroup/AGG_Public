@@ -4,7 +4,6 @@ import Link from "next/link";
 import {
   ArrowRight,
   FileText,
-  LockKeyhole,
   LogOut,
   ShieldCheck,
 } from "lucide-react";
@@ -32,6 +31,7 @@ import {
   hasClientServicesAccess,
   isClientServicesConfigured,
 } from "./auth";
+import { ClientServicesGate } from "./ClientServicesGate";
 
 export const dynamic = "force-dynamic";
 
@@ -46,7 +46,12 @@ export const metadata: Metadata = {
 };
 
 type ClientServicesPageProps = {
-  searchParams?: Promise<{ access?: string; record?: string; role?: string }>;
+  searchParams?: Promise<{
+    access?: string;
+    record?: string;
+    role?: string;
+    returnTo?: string;
+  }>;
 };
 
 export default async function ClientServicesPage({
@@ -58,6 +63,8 @@ export default async function ClientServicesPage({
   const hasAccess = await hasClientServicesAccess(
     cookieStore.get(CLIENT_SERVICES_COOKIE)?.value,
   );
+  const adminEntry =
+    params?.role === "admin" || params?.returnTo === "/client-services?role=admin";
 
   return (
     <main>
@@ -78,103 +85,13 @@ export default async function ClientServicesPage({
       ) : (
         <ClientServicesGate
           accessState={params?.access}
-          adminEntry={params?.role === "admin"}
+          adminEntry={adminEntry}
           authConfigured={authConfigured}
           onboardingRecordId={params?.record}
+          returnTo={adminEntry ? "/client-services?role=admin" : "/client-portal"}
         />
       )}
     </main>
-  );
-}
-
-function ClientServicesGate({
-  accessState,
-  adminEntry,
-  authConfigured,
-  onboardingRecordId,
-}: {
-  accessState?: string;
-  adminEntry: boolean;
-  authConfigured: boolean;
-  onboardingRecordId?: string;
-}) {
-  const accessDenied = accessState === "denied";
-  const registrationReceived = accessState === "registered";
-
-  return (
-    <section className="section client-services-section">
-      <div className="container protected-access-shell">
-        <div className="protected-access-panel">
-          <LockKeyhole size={28} aria-hidden="true" />
-          <p className="eyebrow">Password Protected</p>
-          <h2>{adminEntry ? "Apex Admin access" : "Client Services access"}</h2>
-          <p>
-            This route is reserved for registered clients and AGG operators
-            working with client-facing service architecture, implementation
-            records, onboarding review, and delivery controls that should not
-            render on the public site.
-          </p>
-          {registrationReceived && (
-            <div className="status-banner status-banner--compact" role="status">
-              <ShieldCheck size={18} aria-hidden="true" />
-              <span>
-                Onboarding registration received
-                {onboardingRecordId ? `: ${onboardingRecordId}` : ""}. AGG will
-                validate the record before activating checkout, client login,
-                portal access, or long-term solution work.
-              </span>
-            </div>
-          )}
-          {accessDenied && (
-            <div className="status-banner status-banner--compact" role="alert">
-              <ShieldCheck size={18} aria-hidden="true" />
-              <span>Access password was not accepted.</span>
-            </div>
-          )}
-          {!authConfigured && (
-            <div className="status-banner status-banner--compact" role="status">
-              <ShieldCheck size={18} aria-hidden="true" />
-              <span>
-                Client Services access is staged until hosted credentials and
-                session secrets are configured.
-              </span>
-            </div>
-          )}
-          {authConfigured ? (
-            <form className="access-form" action="/api/client-services/access" method="post">
-              <label htmlFor="client-services-password">Access password</label>
-              <input
-                autoComplete="current-password"
-                id="client-services-password"
-                name="password"
-                placeholder="Enter access password"
-                required
-                type="password"
-              />
-              <button className="button button--primary" type="submit">
-                <LockKeyhole size={18} aria-hidden="true" />
-                Unlock Client Services
-              </button>
-            </form>
-          ) : (
-            <Link className="button button--primary" href="/contact">
-              <LockKeyhole size={18} aria-hidden="true" />
-              Request client access
-            </Link>
-          )}
-        </div>
-
-        <aside className="protected-access-note">
-          <FileText size={24} aria-hidden="true" />
-          <p className="eyebrow">Owned Code Boundary</p>
-          <h2>External artifacts become maintainable Apex routes here.</h2>
-          <p>
-            Client service sections should be versioned, reviewed, and extended
-            in GitHub so delivery logic stays traceable and reusable.
-          </p>
-        </aside>
-      </div>
-    </section>
   );
 }
 

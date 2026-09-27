@@ -10,6 +10,7 @@ import {
   ShieldCheck,
   UserRound,
 } from "lucide-react";
+import type { ClientPortalProfile, PortalContact } from "../client-portal/profile";
 
 type WorkStatus = "On Track" | "Watch" | "Blocked" | "Complete";
 type WorkType = "Project Effort" | "Program" | "Action";
@@ -172,7 +173,39 @@ function StatusIcon({ status }: { status: WorkStatus }) {
   return <ShieldCheck size={17} aria-hidden="true" />;
 }
 
-export function ClientPortalDashboard() {
+function ContactBlock({
+  heading,
+  contact,
+}: {
+  heading: string;
+  contact: PortalContact;
+}) {
+  return (
+    <div className="portal-contact-block">
+      <h3>{heading}</h3>
+      <dl>
+        <div>
+          <dt>Name</dt>
+          <dd>{contact.name}</dd>
+        </div>
+        <div>
+          <dt>Role</dt>
+          <dd>{contact.role}</dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd>{contact.email}</dd>
+        </div>
+        <div>
+          <dt>Phone</dt>
+          <dd>{contact.phone}</dd>
+        </div>
+      </dl>
+    </div>
+  );
+}
+
+export function ClientPortalDashboard({ profile }: { profile: ClientPortalProfile }) {
   const [activeId, setActiveId] = useState(portfolios[0].id);
   const [activeFilter, setActiveFilter] = useState<Filter>("All");
   const [comments, setComments] = useState<CommentEntry[]>(initialComments);
@@ -219,7 +252,7 @@ export function ClientPortalDashboard() {
     <div className="portal-shell" aria-label="Client portal dashboard">
       <aside className="portal-card portal-switcher">
         <p className="eyebrow">Client-Specific Dashboard</p>
-        <h2>Portfolio workspace</h2>
+        <h2>{profile.client.organization}</h2>
         <div className="portal-switcher__list">
           {portfolios.map((portfolio) => (
             <button
@@ -278,6 +311,127 @@ export function ClientPortalDashboard() {
             </button>
           ))}
         </div>
+
+        <div className="portal-admin-grid" aria-label="Client administration and assigned Apex contact">
+          <article className="portal-card portal-admin-card">
+            <p className="eyebrow">Full Client Administration Data</p>
+            <h2>Client account file</h2>
+            <dl className="portal-admin-list">
+              <div>
+                <dt>Organization</dt>
+                <dd>{profile.client.organization}</dd>
+              </div>
+              <div>
+                <dt>Client ID</dt>
+                <dd>{profile.client.clientId}</dd>
+              </div>
+              <div>
+                <dt>Account status</dt>
+                <dd>{profile.client.accountStatus}</dd>
+              </div>
+              <div>
+                <dt>Access tier</dt>
+                <dd>{profile.client.accessTier}</dd>
+              </div>
+              <div>
+                <dt>Onboarding record</dt>
+                <dd>{profile.client.onboardingRecordId}</dd>
+              </div>
+              <div>
+                <dt>Executive sponsor</dt>
+                <dd>{profile.client.executiveSponsor}</dd>
+              </div>
+              <div>
+                <dt>Reporting cadence</dt>
+                <dd>{profile.client.reportingCadence}</dd>
+              </div>
+              <div>
+                <dt>Data steward</dt>
+                <dd>{profile.client.dataSteward}</dd>
+              </div>
+            </dl>
+            <div className="portal-authorized-users">
+              <h3>Authorized users</h3>
+              <ul>
+                {profile.client.authorizedUsers.map((user) => (
+                  <li key={user}>{user}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+
+          <article className="portal-card portal-admin-card portal-admin-card--contact">
+            <p className="eyebrow">Assigned Apex Employee</p>
+            <h2>{profile.assignedApexEmployee.name}</h2>
+            <dl className="portal-admin-list">
+              <div>
+                <dt>Title</dt>
+                <dd>{profile.assignedApexEmployee.title}</dd>
+              </div>
+              <div>
+                <dt>Email</dt>
+                <dd>{profile.assignedApexEmployee.email}</dd>
+              </div>
+              <div>
+                <dt>Phone</dt>
+                <dd>{profile.assignedApexEmployee.phone}</dd>
+              </div>
+              <div>
+                <dt>Office</dt>
+                <dd>{profile.assignedApexEmployee.office}</dd>
+              </div>
+              <div>
+                <dt>Response window</dt>
+                <dd>{profile.assignedApexEmployee.responseWindow}</dd>
+              </div>
+              <div>
+                <dt>Escalation</dt>
+                <dd>{profile.assignedApexEmployee.escalationEmail}</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+
+        <div className="portal-contact-grid" aria-label="Client contact directory">
+          <ContactBlock heading="Primary Contact" contact={profile.client.primaryContact} />
+          <ContactBlock heading="Billing Contact" contact={profile.client.billingContact} />
+          <ContactBlock heading="Technical Contact" contact={profile.client.technicalContact} />
+        </div>
+
+        <section className="portal-card portal-commissioned-services" aria-label="Commissioned services current status">
+          <div className="portal-panel-heading">
+            <p className="eyebrow">Commissioned Services</p>
+            <h2>Current service status</h2>
+          </div>
+          <div className="portal-commission-list">
+            {profile.commissionedServices.map((service) => (
+              <article className="portal-commission-item" key={service.serviceId}>
+                <div>
+                  <span>{service.serviceId}</span>
+                  <h3>{service.name}</h3>
+                </div>
+                <dl>
+                  <div>
+                    <dt>Status</dt>
+                    <dd>{service.status}</dd>
+                  </div>
+                  <div>
+                    <dt>Phase</dt>
+                    <dd>{service.phase}</dd>
+                  </div>
+                  <div>
+                    <dt>Assigned owner</dt>
+                    <dd>{service.assignedOwner}</dd>
+                  </div>
+                  <div>
+                    <dt>Next milestone</dt>
+                    <dd>{service.nextMilestone}</dd>
+                  </div>
+                </dl>
+              </article>
+            ))}
+          </div>
+        </section>
 
         <div className="portal-work-layout">
           <section className="portal-work-panel">
