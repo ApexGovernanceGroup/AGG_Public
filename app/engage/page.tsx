@@ -66,15 +66,28 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
       <section className="section">
         <div className="container">
           <div className="section-heading">
-            <p className="eyebrow">Immediate Purchase</p>
+            <p className="eyebrow">Products For Sale</p>
             <h2>Apex Digital Storefront</h2>
             <p>
-              Each card is scoped for a registration-controlled checkout path.
-              Product pricing is based on scale, not depth of content.
-              Customization is captured during onboarding and intake so the
-              selected package can be shaped to the client&apos;s sector,
-              operating boundary, and required product.
+              The current digital storefront contains the six checkout-backed
+              AGG products identified below. Each product follows a
+              registration-controlled checkout path. Product pricing is based
+              on scale, not depth of content. Customization is captured during
+              onboarding and intake so the selected product can be shaped to
+              the client&apos;s sector, operating boundary, and required output.
             </p>
+          </div>
+          <div
+            aria-label="Digital storefront products for sale"
+            className="storefront-product-index"
+          >
+            {engagementPackages.map((item) => (
+              <article className="storefront-product-index__item" key={item.id}>
+                <span>{item.sku}</span>
+                <strong>{item.name}</strong>
+                <small>{item.category}</small>
+              </article>
+            ))}
           </div>
           <article className="pricing-principle" aria-label="Pricing principle">
             <div>
@@ -117,10 +130,16 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
               <article className="pricing-card" key={item.id}>
                 <div className="pricing-card__top">
                   <div>
-                    <p className="eyebrow">{item.category}</p>
+                    <p className="eyebrow">
+                      {item.sku} | {item.category}
+                    </p>
                     <h2>{item.name}</h2>
                   </div>
                   <strong>{item.displayPrice}</strong>
+                </div>
+                <div className="pricing-card__sale-status">
+                  <span className="sale-badge">For Sale</span>
+                  <span>{item.saleStatus}</span>
                 </div>
                 <dl className="pricing-card__meta">
                   <div>
@@ -163,8 +182,14 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
       <section className="section section--steel">
         <div className="container">
           <div className="section-heading">
-            <p className="eyebrow">Customizable Catalog</p>
-            <h2>Convert a purchase into the service, product, seminar, or sprint you need.</h2>
+            <p className="eyebrow">Scoping Families</p>
+            <h2>Convert a storefront product into the service, product, seminar, or sprint you need.</h2>
+            <p>
+              These collections describe what a purchased storefront product
+              can become during intake. They are scoping families, not separate
+              checkout-backed products until AGG converts the request into one
+              of the six products for sale above.
+            </p>
           </div>
           <div className="card-grid card-grid--three">
             {storefrontCollections.map((collection) => (

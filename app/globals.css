@@ -4516,6 +4516,69 @@ button.configuration-relation-card:disabled {
   content: "";
 }
 
+.storefront-product-index {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 0 18px;
+}
+
+.storefront-product-index__item {
+  display: grid;
+  min-height: 122px;
+  gap: 6px;
+  border: 1px solid rgba(23, 44, 63, 0.16);
+  border-left: 4px solid var(--bronze);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.54);
+  padding: 16px;
+}
+
+.storefront-product-index__item span {
+  color: var(--bronze-dark);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.78rem;
+  font-weight: 950;
+}
+
+.storefront-product-index__item strong {
+  color: var(--black);
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.storefront-product-index__item small {
+  align-self: end;
+  color: rgba(62, 67, 70, 0.72);
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.pricing-card__sale-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: -4px 0 14px;
+  color: rgba(62, 67, 70, 0.78);
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.sale-badge {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  border: 1px solid rgba(47, 93, 80, 0.36);
+  background: rgba(47, 93, 80, 0.1);
+  color: #2f5d50;
+  padding: 5px 9px;
+  font-size: 0.74rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
 .pricing-card__meta {
   display: grid;
   gap: 10px;
@@ -5810,6 +5873,7 @@ button.configuration-relation-card:disabled {
   .academy-program-grid,
   .academy-topic-panel,
   .academy-topic-list,
+  .storefront-product-index,
   .package-grid,
   .catalog-grid,
   .sprint-grid,

@@ -1,7 +1,9 @@
 export type EngagementPackage = {
   id: string;
+  sku: string;
   name: string;
   category: string;
+  saleStatus: string;
   displayPrice: string;
   unitAmount: number;
   timeline: string;
@@ -14,8 +16,10 @@ export type EngagementPackage = {
 export const engagementPackages: EngagementPackage[] = [
   {
     id: "diagnostic",
+    sku: "AGG-DS-001",
     name: "Executive Diagnostic Brief",
     category: "Diagnostic",
+    saleStatus: "For sale - registration-controlled checkout",
     displayPrice: "Market & Scale Value",
     unitAmount: 250000,
     timeline: "1-2 weeks",
@@ -31,8 +35,10 @@ export const engagementPackages: EngagementPackage[] = [
   },
   {
     id: "continuity-assessment",
+    sku: "AGG-DS-002",
     name: "Continuity Exposure Assessment",
     category: "Assessment",
+    saleStatus: "For sale - registration-controlled checkout",
     displayPrice: "Market & Scale Value",
     unitAmount: 350000,
     timeline: "2 weeks",
@@ -48,8 +54,10 @@ export const engagementPackages: EngagementPackage[] = [
   },
   {
     id: "product-kit",
+    sku: "AGG-DS-003",
     name: "Governed Product Kit",
     category: "Product",
+    saleStatus: "For sale - registration-controlled checkout",
     displayPrice: "Market & Scale Value",
     unitAmount: 450000,
     timeline: "2-3 weeks",
@@ -65,8 +73,10 @@ export const engagementPackages: EngagementPackage[] = [
   },
   {
     id: "academy-lab",
+    sku: "AGG-DS-004",
     name: "Apex Academy Private Lab",
     category: "Seminar",
+    saleStatus: "For sale - registration-controlled checkout",
     displayPrice: "Market & Scale Value",
     unitAmount: 650000,
     timeline: "Half-day to 1 day",
@@ -82,8 +92,10 @@ export const engagementPackages: EngagementPackage[] = [
   },
   {
     id: "sprint",
+    sku: "AGG-DS-005",
     name: "Governance Design Sprint",
     category: "Sprint",
+    saleStatus: "For sale - registration-controlled checkout",
     displayPrice: "Market & Scale Value",
     unitAmount: 950000,
     timeline: "3-4 weeks",
@@ -99,8 +111,10 @@ export const engagementPackages: EngagementPackage[] = [
   },
   {
     id: "retainer",
+    sku: "AGG-DS-006",
     name: "Executive Advisory Retainer",
     category: "Advisory",
+    saleStatus: "For sale - registration-controlled checkout",
     displayPrice: "Market & Scale Value",
     unitAmount: 1800000,
     timeline: "Monthly",
