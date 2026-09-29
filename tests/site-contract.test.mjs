@@ -746,6 +746,7 @@ test("brand assets and palette are wired", async () => {
     maineSmokeContours,
     alabamaContours,
     alabamaSmokeContours,
+    alabamaMapLabels,
     alabamaTopographicBackdrop,
   ] = await Promise.all([
     read("app/layout.tsx"),
@@ -754,6 +755,7 @@ test("brand assets and palette are wired", async () => {
     read("public/brand/maine-topographic-contours-smoke.svg"),
     read("public/brand/alabama-topographic-contours.svg"),
     read("public/brand/alabama-topographic-contours-smoke.svg"),
+    read("public/brand/alabama-map-labels.svg"),
     read("app/components/AlabamaTopographicBackdrop.tsx"),
   ]);
 
@@ -769,8 +771,12 @@ test("brand assets and palette are wired", async () => {
   assert.match(css, /--charcoal:\s*var\(--graphite\)/);
   assert.match(css, /--silver:\s*var\(--platinum\)/);
   assert.match(css, /--maroon:\s*var\(--oxblood\)/);
+  assert.match(css, /--alabama-map-labels:\s*url\("\/brand\/alabama-map-labels\.svg"\)/);
   assert.match(css, /--alabama-topographic-contours:\s*url\("\/brand\/alabama-topographic-contours\.svg"\)/);
   assert.match(css, /--alabama-topographic-contours-smoke:\s*url\("\/brand\/alabama-topographic-contours-smoke\.svg"\)/);
+  assert.match(css, /--alabama-contour-line-color:\s*#88623c/i);
+  assert.match(css, /--alabama-map-label-color:\s*#172c3f/i);
+  assert.match(css, /--alabama-water-label-color:\s*#2f5d50/i);
   assert.match(css, /--maine-topographic-contours:\s*var\(--alabama-topographic-contours\)/);
   assert.match(css, /--maine-topographic-contours-smoke:\s*var\(--alabama-topographic-contours-smoke\)/);
   assert.match(css, /--alabama-contour-x:\s*0px/);
@@ -783,26 +789,42 @@ test("brand assets and palette are wired", async () => {
   assert.match(maineSmokeContours, /Maine topographic contour accent, smoke gray/);
   assert.match(maineSmokeContours, /clipPath id="maine-outline-smoke"/);
   assert.match(maineSmokeContours, /stroke="#C3C2BD"/);
-  assert.match(alabamaContours, /Alabama topographic contour accent, oxblood/);
+  assert.match(alabamaContours, /Alabama topographic contour accent, independent bronze/);
   assert.match(alabamaContours, /clipPath id="alabama-outline"/);
-  assert.match(alabamaContours, /stroke="#793735"/);
+  assert.match(alabamaContours, /stroke="#88623C"/);
   assert.match(alabamaSmokeContours, /Alabama topographic contour accent, smoke gray/);
   assert.match(alabamaSmokeContours, /clipPath id="alabama-outline-smoke"/);
   assert.match(alabamaSmokeContours, /stroke="#C3C2BD"/);
+  assert.match(alabamaMapLabels, /Alabama cartographic city and water feature labels/);
+  assert.match(alabamaMapLabels, /city-label/);
+  assert.match(alabamaMapLabels, /water-label/);
+  assert.match(alabamaMapLabels, /fill: #172c3f/);
+  assert.match(alabamaMapLabels, /fill: #2f5d50/);
+  assert.match(alabamaMapLabels, /Huntsville/);
+  assert.match(alabamaMapLabels, /Birmingham/);
+  assert.match(alabamaMapLabels, /Montgomery/);
+  assert.match(alabamaMapLabels, /Mobile/);
+  assert.match(alabamaMapLabels, /Tennessee River/);
+  assert.match(alabamaMapLabels, /Coosa River/);
+  assert.match(alabamaMapLabels, /Alabama River/);
+  assert.match(alabamaMapLabels, /Mobile Bay/);
+  assert.match(alabamaMapLabels, /Gulf of Mexico/);
   assert.match(layout, /AlabamaTopographicBackdrop/);
   assert.match(alabamaTopographicBackdrop, /window\.addEventListener\("scroll", requestUpdate, \{ passive: true \}\)/);
   assert.match(alabamaTopographicBackdrop, /window\.removeEventListener\("scroll", requestUpdate\)/);
   const siteTopographyBackdrop = cssBlock(css, ".site-topography-backdrop");
   assert.match(siteTopographyBackdrop, /position:\s*fixed/);
   assert.match(siteTopographyBackdrop, /pointer-events:\s*none/);
+  assert.match(siteTopographyBackdrop, /background-image:[\s\S]*?var\(--alabama-map-labels\)/);
   assert.match(siteTopographyBackdrop, /background-image:[\s\S]*?var\(--alabama-topographic-contours\)/);
   assert.match(siteTopographyBackdrop, /calc\(50% \+ var\(--alabama-contour-x\)\)/);
   assert.match(siteTopographyBackdrop, /var\(--alabama-contour-y\)/);
+  assert.match(siteTopographyBackdrop, /opacity:\s*0\.16/);
   assert.match(siteTopographyBackdrop, /will-change:\s*background-position/);
   assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.site-topography-backdrop/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.doctrine-command,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.doctrine-sequence\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
-  assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.site-topography-backdrop\s*{[^}]*opacity:\s*0\.085/);
+  assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.site-topography-backdrop\s*{[^}]*opacity:\s*0\.115/);
   assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.doctrine-sequence\s*{[^}]*grid-template-columns:\s*1fr/);
 
   const symbolUrl = new URL(

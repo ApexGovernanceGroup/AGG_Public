@@ -25,8 +25,12 @@
     url("/brand/apex-governance-group-symbol-1024.webp") type("image/webp") 2x,
     url("/brand/apex-governance-group-symbol.png") type("image/png") 3x
   );
+  --alabama-map-labels: url("/brand/alabama-map-labels.svg");
   --alabama-topographic-contours: url("/brand/alabama-topographic-contours.svg");
   --alabama-topographic-contours-smoke: url("/brand/alabama-topographic-contours-smoke.svg");
+  --alabama-contour-line-color: #88623c;
+  --alabama-map-label-color: #172c3f;
+  --alabama-water-label-color: #2f5d50;
   --maine-topographic-contours: var(--alabama-topographic-contours);
   --maine-topographic-contours-smoke: var(--alabama-topographic-contours-smoke);
   --alabama-contour-x: 0px;
@@ -73,19 +77,22 @@ body {
   z-index: 0;
   pointer-events: none;
   background-image:
+    var(--alabama-map-labels),
     var(--alabama-topographic-contours),
     radial-gradient(circle at 24% 18%, rgba(136, 98, 60, 0.1), transparent 34%),
     linear-gradient(135deg, rgba(244, 241, 234, 0.86), rgba(244, 241, 234, 0.62));
   background-position:
     calc(50% + var(--alabama-contour-x)) calc(12vh + var(--alabama-contour-y)),
+    calc(50% + var(--alabama-contour-x)) calc(12vh + var(--alabama-contour-y)),
     center,
     center;
   background-repeat: no-repeat;
   background-size:
-    min(1040px, 92vw) auto,
+    min(1120px, 96vw) auto,
+    min(1120px, 96vw) auto,
     100% 100%,
     100% 100%;
-  opacity: 0.105;
+  opacity: 0.16;
   transform: translate3d(0, 0, 0);
   will-change: background-position;
 }
@@ -99,6 +106,7 @@ main,
 @media (prefers-reduced-motion: reduce) {
   .site-topography-backdrop {
     background-position:
+      center 12vh,
       center 12vh,
       center,
       center;
@@ -6154,10 +6162,11 @@ button.configuration-relation-card:disabled {
   .site-topography-backdrop {
     inset: -10vh -18vw;
     background-size:
+      680px auto,
       620px auto,
       100% 100%,
       100% 100%;
-    opacity: 0.085;
+    opacity: 0.115;
   }
 
   .container {

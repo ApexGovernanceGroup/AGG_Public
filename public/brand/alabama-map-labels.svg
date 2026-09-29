@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="960" viewBox="0 0 720 960" fill="none">
+  <title>Alabama cartographic city and water feature labels</title>
+  <desc>Low-contrast Alabama map labels for the Apex Governance Group site background.</desc>
+  <defs>
+    <clipPath id="alabama-label-boundary">
+      <path d="M230 42H522L533 778L495 780L482 820L441 819L421 856L376 846L337 878L292 850L246 864L224 824L178 813L184 764L154 714L172 656L151 594L177 541L171 474L204 420L201 344L229 292V42Z" />
+    </clipPath>
+    <style>
+      .state-boundary {
+        stroke: #172c3f;
+        stroke-linejoin: round;
+        stroke-width: 1.5;
+        opacity: 0.12;
+      }
+
+      .city-label {
+        fill: #172c3f;
+        font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        opacity: 0.68;
+        text-transform: uppercase;
+      }
+
+      .city-label--small {
+        font-size: 16px;
+        opacity: 0.62;
+      }
+
+      .water-label {
+        fill: #2f5d50;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 19px;
+        font-style: italic;
+        font-weight: 700;
+        letter-spacing: 0.035em;
+        opacity: 0.58;
+      }
+
+      .water-label--small {
+        font-size: 16px;
+        opacity: 0.52;
+      }
+
+      .map-point {
+        fill: #172c3f;
+        opacity: 0.34;
+      }
+    </style>
+  </defs>
+  <path
+    class="state-boundary"
+    d="M230 42H522L533 778L495 780L482 820L441 819L421 856L376 846L337 878L292 850L246 864L224 824L178 813L184 764L154 714L172 656L151 594L177 541L171 474L204 420L201 344L229 292V42Z"
+  />
+  <g clip-path="url(#alabama-label-boundary)">
+    <g aria-label="Alabama city labels">
+      <circle class="map-point" cx="365" cy="150" r="3.4" />
+      <text class="city-label" x="376" y="156">Huntsville</text>
+      <circle class="map-point" cx="285" cy="122" r="3" />
+      <text class="city-label city-label--small" x="202" y="115">Florence</text>
+      <circle class="map-point" cx="344" cy="183" r="3" />
+      <text class="city-label city-label--small" x="356" y="188">Decatur</text>
+      <circle class="map-point" cx="326" cy="360" r="3.4" />
+      <text class="city-label" x="254" y="350">Birmingham</text>
+      <circle class="map-point" cx="255" cy="432" r="3" />
+      <text class="city-label city-label--small" x="208" y="426">Tuscaloosa</text>
+      <circle class="map-point" cx="350" cy="592" r="3.4" />
+      <text class="city-label" x="304" y="584">Montgomery</text>
+      <circle class="map-point" cx="462" cy="610" r="3" />
+      <text class="city-label city-label--small" x="474" y="615">Auburn</text>
+      <circle class="map-point" cx="288" cy="552" r="2.8" />
+      <text class="city-label city-label--small" x="240" y="546">Selma</text>
+      <circle class="map-point" cx="462" cy="752" r="3" />
+      <text class="city-label city-label--small" x="474" y="758">Dothan</text>
+      <circle class="map-point" cx="316" cy="815" r="3.2" />
+      <text class="city-label" x="332" y="822">Mobile</text>
+    </g>
+    <g aria-label="Alabama river and lake labels">
+      <text class="water-label" x="258" y="92" transform="rotate(-5 258 92)">Tennessee River</text>
+      <text class="water-label water-label--small" x="430" y="170" transform="rotate(-8 430 170)">Lake Guntersville</text>
+      <text class="water-label water-label--small" x="402" y="218" transform="rotate(-4 402 218)">Wheeler Lake</text>
+      <text class="water-label" x="225" y="388" transform="rotate(64 225 388)">Black Warrior River</text>
+      <text class="water-label" x="445" y="374" transform="rotate(67 445 374)">Coosa River</text>
+      <text class="water-label" x="474" y="515" transform="rotate(63 474 515)">Tallapoosa River</text>
+      <text class="water-label water-label--small" x="432" y="552" transform="rotate(-8 432 552)">Lake Martin</text>
+      <text class="water-label" x="286" y="646" transform="rotate(24 286 646)">Alabama River</text>
+      <text class="water-label" x="210" y="640" transform="rotate(74 210 640)">Tombigbee River</text>
+      <text class="water-label" x="506" y="640" transform="rotate(75 506 640)">Chattahoochee River</text>
+    </g>
+  </g>
+  <g aria-label="Alabama coastal water labels">
+    <text class="water-label" x="320" y="866" transform="rotate(-4 320 866)">Mobile Bay</text>
+    <text class="water-label" x="280" y="918" transform="rotate(-3 280 918)">Gulf of Mexico</text>
+  </g>
+</svg>
