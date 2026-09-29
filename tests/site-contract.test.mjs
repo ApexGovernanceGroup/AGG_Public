@@ -237,6 +237,10 @@ test("AGG public site contract is present", async () => {
   assert.match(layout, /<AlabamaTopographicBackdrop \/>/);
   assert.match(alabamaTopographicBackdrop, /prefers-reduced-motion: reduce/);
   assert.match(alabamaTopographicBackdrop, /requestAnimationFrame/);
+  assert.match(alabamaTopographicBackdrop, /scrollProgress/);
+  assert.match(alabamaTopographicBackdrop, /root\.scrollHeight - window\.innerHeight/);
+  assert.match(alabamaTopographicBackdrop, /window\.innerWidth \* 0\.18/);
+  assert.match(alabamaTopographicBackdrop, /window\.innerHeight \* 0\.46/);
   assert.match(alabamaTopographicBackdrop, /--alabama-contour-y/);
   assert.match(alabamaTopographicBackdrop, /passive:\s*true/);
   assert.match(combined, /Apex Solutions/);
@@ -777,6 +781,8 @@ test("brand assets and palette are wired", async () => {
   assert.match(css, /--alabama-contour-line-color:\s*#88623c/i);
   assert.match(css, /--alabama-map-label-color:\s*#172c3f/i);
   assert.match(css, /--alabama-water-label-color:\s*#2f5d50/i);
+  assert.match(css, /--alabama-map-scale:\s*clamp\(1500px,\s*156vw,\s*2800px\)/);
+  assert.match(css, /--alabama-map-mobile-scale:\s*1180px/);
   assert.match(css, /--maine-topographic-contours:\s*var\(--alabama-topographic-contours\)/);
   assert.match(css, /--maine-topographic-contours-smoke:\s*var\(--alabama-topographic-contours-smoke\)/);
   assert.match(css, /--alabama-contour-x:\s*0px/);
@@ -814,17 +820,22 @@ test("brand assets and palette are wired", async () => {
   assert.match(alabamaTopographicBackdrop, /window\.removeEventListener\("scroll", requestUpdate\)/);
   const siteTopographyBackdrop = cssBlock(css, ".site-topography-backdrop");
   assert.match(siteTopographyBackdrop, /position:\s*fixed/);
+  assert.match(siteTopographyBackdrop, /inset:\s*-38vh -52vw/);
   assert.match(siteTopographyBackdrop, /pointer-events:\s*none/);
   assert.match(siteTopographyBackdrop, /background-image:[\s\S]*?var\(--alabama-map-labels\)/);
   assert.match(siteTopographyBackdrop, /background-image:[\s\S]*?var\(--alabama-topographic-contours\)/);
   assert.match(siteTopographyBackdrop, /calc\(50% \+ var\(--alabama-contour-x\)\)/);
+  assert.match(siteTopographyBackdrop, /calc\(50% \+ var\(--alabama-contour-y\)\)/);
   assert.match(siteTopographyBackdrop, /var\(--alabama-contour-y\)/);
-  assert.match(siteTopographyBackdrop, /opacity:\s*0\.16/);
+  assert.match(siteTopographyBackdrop, /var\(--alabama-map-scale\) auto/);
+  assert.match(siteTopographyBackdrop, /opacity:\s*0\.2/);
   assert.match(siteTopographyBackdrop, /will-change:\s*background-position/);
   assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.site-topography-backdrop/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.doctrine-command,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.doctrine-sequence\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
-  assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.site-topography-backdrop\s*{[^}]*opacity:\s*0\.115/);
+  assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.site-topography-backdrop\s*{[^}]*inset:\s*-32vh -58vw/);
+  assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.site-topography-backdrop\s*{[^}]*var\(--alabama-map-mobile-scale\) auto/);
+  assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.site-topography-backdrop\s*{[^}]*opacity:\s*0\.15/);
   assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.doctrine-sequence\s*{[^}]*grid-template-columns:\s*1fr/);
 
   const symbolUrl = new URL(

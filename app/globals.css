@@ -31,6 +31,8 @@
   --alabama-contour-line-color: #88623c;
   --alabama-map-label-color: #172c3f;
   --alabama-water-label-color: #2f5d50;
+  --alabama-map-scale: clamp(1500px, 156vw, 2800px);
+  --alabama-map-mobile-scale: 1180px;
   --maine-topographic-contours: var(--alabama-topographic-contours);
   --maine-topographic-contours-smoke: var(--alabama-topographic-contours-smoke);
   --alabama-contour-x: 0px;
@@ -73,7 +75,7 @@ body {
 
 .site-topography-backdrop {
   position: fixed;
-  inset: -14vh -10vw;
+  inset: -38vh -52vw;
   z-index: 0;
   pointer-events: none;
   background-image:
@@ -82,17 +84,17 @@ body {
     radial-gradient(circle at 24% 18%, rgba(136, 98, 60, 0.1), transparent 34%),
     linear-gradient(135deg, rgba(244, 241, 234, 0.86), rgba(244, 241, 234, 0.62));
   background-position:
-    calc(50% + var(--alabama-contour-x)) calc(12vh + var(--alabama-contour-y)),
-    calc(50% + var(--alabama-contour-x)) calc(12vh + var(--alabama-contour-y)),
+    calc(50% + var(--alabama-contour-x)) calc(50% + var(--alabama-contour-y)),
+    calc(50% + var(--alabama-contour-x)) calc(50% + var(--alabama-contour-y)),
     center,
     center;
   background-repeat: no-repeat;
   background-size:
-    min(1120px, 96vw) auto,
-    min(1120px, 96vw) auto,
+    var(--alabama-map-scale) auto,
+    var(--alabama-map-scale) auto,
     100% 100%,
     100% 100%;
-  opacity: 0.16;
+  opacity: 0.2;
   transform: translate3d(0, 0, 0);
   will-change: background-position;
 }
@@ -106,8 +108,8 @@ main,
 @media (prefers-reduced-motion: reduce) {
   .site-topography-backdrop {
     background-position:
-      center 12vh,
-      center 12vh,
+      center,
+      center,
       center,
       center;
     will-change: auto;
@@ -6160,13 +6162,13 @@ button.configuration-relation-card:disabled {
 
 @media (max-width: 680px) {
   .site-topography-backdrop {
-    inset: -10vh -18vw;
+    inset: -32vh -58vw;
     background-size:
-      680px auto,
-      620px auto,
+      var(--alabama-map-mobile-scale) auto,
+      var(--alabama-map-mobile-scale) auto,
       100% 100%,
       100% 100%;
-    opacity: 0.115;
+    opacity: 0.15;
   }
 
   .container {

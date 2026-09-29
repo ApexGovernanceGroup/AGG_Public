@@ -18,11 +18,19 @@ export function AlabamaTopographicBackdrop() {
       }
 
       const scrollY = window.scrollY;
+      const maxScroll = Math.max(root.scrollHeight - window.innerHeight, 1);
+      const scrollProgress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+      const horizontalTravel = Math.min(window.innerWidth * 0.18, 220);
+      const verticalTravel = Math.min(window.innerHeight * 0.46, 420);
+
       root.style.setProperty(
         "--alabama-contour-x",
-        `${Math.round(Math.sin(scrollY / 520) * 18)}px`,
+        `${Math.round((scrollProgress - 0.5) * horizontalTravel)}px`,
       );
-      root.style.setProperty("--alabama-contour-y", `${Math.round(scrollY * -0.12)}px`);
+      root.style.setProperty(
+        "--alabama-contour-y",
+        `${Math.round((0.5 - scrollProgress) * verticalTravel)}px`,
+      );
     };
 
     const requestUpdate = () => {
