@@ -3,10 +3,14 @@ import {
   ArrowRight,
   BadgeCheck,
   CreditCard,
+  Gauge,
   GitBranch,
   GraduationCap,
   Landmark,
+  Network,
   ShieldCheck,
+  Target,
+  Workflow,
 } from "lucide-react";
 import {
   academyProgramOutcomes,
@@ -24,6 +28,37 @@ import {
 } from "./site-data";
 import { ClientLedSelfDeterminationCards } from "./components/ClientLedSelfDeterminationCards";
 import { HeroSolutionLanes } from "./components/HeroSolutionLanes";
+
+const operatingSurfaceSignals = [
+  {
+    label: "Signal",
+    title: "Readable at executive speed.",
+    body:
+      "The public experience now privileges fast comprehension: clear hierarchy, plain decision paths, and fewer competing visual demands.",
+    icon: Gauge,
+  },
+  {
+    label: "Structure",
+    title: "One logic across every page.",
+    body:
+      "Services, academy, storefront, client access, doctrine, and investor material share the same operating language and visual grammar.",
+    icon: Network,
+  },
+  {
+    label: "Control",
+    title: "Depth without noise.",
+    body:
+      "Raised surfaces, measured shadows, contour texture, and restrained motion create dimensionality while preserving a stoic executive tone.",
+    icon: ShieldCheck,
+  },
+  {
+    label: "Action",
+    title: "Every path leads to a decision.",
+    body:
+      "Engagement, onboarding, investor briefing, repository review, and academy scoping remain visible as practical next moves.",
+    icon: Target,
+  },
+] as const;
 
 export default function Home() {
   return (
@@ -85,6 +120,34 @@ export default function Home() {
               </div>
             ))}
           </dl>
+        </div>
+      </section>
+
+      <section className="section section--surface" aria-labelledby="operating-surface-heading">
+        <div className="container surface-command">
+          <div className="surface-command__panel">
+            <p className="eyebrow">Executive Operating Surface</p>
+            <h2 id="operating-surface-heading">A cleaner front door for serious work.</h2>
+            <p>
+              The website is designed as an operational briefing surface: simple
+              enough to scan, authoritative enough to trust, and structured
+              enough to move a sponsor from curiosity to a first decision.
+            </p>
+            <Link className="text-link" href="/services">
+              Review the service architecture
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
+          <div className="surface-signal-grid" aria-label="Modernized site experience signals">
+            {operatingSurfaceSignals.map((signal) => (
+              <article className="surface-signal-card" key={signal.title}>
+                <signal.icon size={22} aria-hidden="true" />
+                <span>{signal.label}</span>
+                <h3>{signal.title}</h3>
+                <p>{signal.body}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -272,7 +335,7 @@ export default function Home() {
           <div className="stack-list">
             {engagementPackages.map((item) => (
               <div className="stack-list__item" key={item.id}>
-                <BadgeCheck size={19} aria-hidden="true" />
+                <Workflow size={19} aria-hidden="true" />
                 <div>
                   <span>{item.name}</span>
                   <p>{item.description}</p>

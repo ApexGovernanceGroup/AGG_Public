@@ -200,6 +200,13 @@ test("AGG public site contract is present", async () => {
   assert.match(home, /Apex Academy/);
   assert.match(home, /Services \| Apex Digital Store/);
   assert.match(home, /hero__secondary-actions/);
+  assert.match(home, /operatingSurfaceSignals/);
+  assert.match(home, /Executive Operating Surface/);
+  assert.match(home, /A cleaner front door for serious work/);
+  assert.match(home, /Readable at executive speed/);
+  assert.match(home, /Depth without noise/);
+  assert.match(home, /surface-command/);
+  assert.match(home, /surface-signal-card/);
   assert.match(home, /solutionPillarIntro\.headingLines\.map/);
   assert.match(home, /hero__pillar-intro/);
   assert.match(home, /HeroSolutionLanes lanes=\{solutionDeliveryBridge\.lanes\}/);
@@ -1058,6 +1065,20 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const css = await read("app/globals.css");
   const heroTexture = cssBlock(css, ".hero::before");
   const heroSymbol = cssBlock(css, ".hero::after");
+  const body = cssBlock(css, "body");
+  const selection = cssBlock(css, "::selection");
+  const surfaceSection = cssBlock(css, ".section--surface");
+  const surfaceCommand = cssBlock(css, ".surface-command");
+  const surfaceSharedPanel = cssBlock(css, ".surface-command__panel,\n.surface-signal-card");
+  const surfaceCommandPanelLight = cssBlock(
+    css,
+    ".surface-command__panel::before,\n.surface-signal-card::before",
+  );
+  const surfaceCommandPanelSweep = cssBlock(css, ".surface-command__panel::after");
+  const surfaceSignalGrid = cssBlock(css, ".surface-signal-grid");
+  const surfaceSignalCard = cssBlock(css, ".surface-signal-card");
+  const sharedPerspective = cssBlock(css, ".hero,\n.page-hero,\n.section--dark,\n.callout");
+  const pageHeroInnerRail = cssBlock(css, ".page-hero__inner::before");
   const heroContentContrast = cssBlock(css, ".hero__content::before");
   const brandLockup = cssBlock(css, ".brand-lockup");
   const brandTagline = cssBlock(css, ".brand-text span");
@@ -1239,6 +1260,30 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const pageHeroSymbol = cssBlock(css, ".page-hero::after");
   const servicesHeroTitle = cssBlock(css, ".page-hero .services-hero__title");
 
+  assert.match(css, /--shadow-raised:/);
+  assert.match(css, /--shadow-command:/);
+  assert.match(css, /--surface-light:/);
+  assert.match(css, /--surface-dark:/);
+  assert.match(body, /text-rendering:\s*optimizeLegibility/);
+  assert.match(body, /-webkit-font-smoothing:\s*antialiased/);
+  assert.match(selection, /background:\s*rgba\(136,\s*98,\s*60,\s*0\.24\)/);
+  assert.match(surfaceSection, /overflow:\s*hidden/);
+  assert.match(surfaceCommand, /grid-template-columns:\s*minmax\(0,\s*0\.92fr\)\s*minmax\(0,\s*1\.08fr\)/);
+  assert.match(surfaceCommand, /perspective:\s*1300px/);
+  assert.match(surfaceSharedPanel, /transform-style:\s*preserve-3d/);
+  assert.match(surfaceSharedPanel, /box-shadow:\s*var\(--shadow-raised\)/);
+  assert.match(surfaceCommandPanelLight, /var\(--maine-topographic-contours\)/);
+  assert.match(surfaceCommandPanelSweep, /linear-gradient\(90deg,\s*transparent,\s*rgba\(136,\s*98,\s*60,\s*0\.72\),\s*transparent\)/);
+  assert.match(surfaceSignalGrid, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(surfaceSignalCard, /transition:[\s\S]*?transform 180ms ease/);
+  assert.match(sharedPerspective, /perspective:\s*1400px/);
+  assert.match(pageHeroInnerRail, /linear-gradient\(180deg,\s*transparent,\s*rgba\(136,\s*98,\s*60,\s*0\.82\),\s*transparent\)/);
+  assert.match(css, /@media \(hover:\s*hover\)[\s\S]*?transform:\s*translate3d\(0,\s*-5px,\s*18px\)/);
+  assert.match(css, /@media \(prefers-reduced-motion:\s*no-preference\)[\s\S]*?animation:\s*executive-surface-sweep 9s ease-in-out infinite alternate/);
+  assert.match(css, /@keyframes executive-surface-sweep/);
+  assert.match(css, /@keyframes executive-field-drift/);
+  assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?animation:\s*none/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.surface-command,[\s\S]*?\.surface-signal-grid\s*{[^}]*grid-template-columns:\s*1fr/);
   assert.match(heroHeadline, /font-size:\s*clamp\(2\.05rem,\s*3\.8vw,\s*3\.2rem\)/);
   assert.match(heroContentContrast, /z-index:\s*-1/);
   assert.match(heroContentContrast, /radial-gradient\(ellipse at 28% 28%,\s*rgba\(5,\s*5,\s*5,\s*0\.96\)/);

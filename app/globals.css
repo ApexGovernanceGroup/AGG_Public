@@ -39,6 +39,10 @@
   --alabama-contour-y: 0px;
   --line: rgba(195, 194, 189, 0.24);
   --shadow: 0 22px 60px rgba(12, 12, 12, 0.22);
+  --shadow-raised: 0 30px 72px rgba(12, 12, 12, 0.2), 0 1px 0 rgba(255, 255, 255, 0.62) inset;
+  --shadow-command: 0 44px 110px rgba(12, 12, 12, 0.26), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+  --surface-light: linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(244, 241, 234, 0.7) 46%, rgba(195, 194, 189, 0.28));
+  --surface-dark: linear-gradient(135deg, rgba(12, 12, 12, 0.92), rgba(23, 44, 63, 0.84) 58%, rgba(12, 12, 12, 0.96));
   --radius: 8px;
   --header-height: 78px;
 }
@@ -71,6 +75,13 @@ body {
     sans-serif;
   font-size: 16px;
   line-height: 1.55;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(136, 98, 60, 0.24);
+  color: var(--black);
 }
 
 .site-topography-backdrop {
@@ -6609,9 +6620,442 @@ button.configuration-relation-card:disabled {
   padding-top: 22px;
 }
 
+.section--surface {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(244, 241, 234, 0.96), rgba(244, 241, 234, 0.88)),
+    var(--paper);
+}
+
+.section--surface::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(136, 98, 60, 0.12), transparent 24%, transparent 76%, rgba(23, 44, 63, 0.1)),
+    var(--maine-topographic-contours);
+  background-position:
+    center,
+    right -24vw top -22vw;
+  background-repeat: no-repeat;
+  background-size:
+    100% 100%,
+    min(980px, 118vw) auto;
+  opacity: 0.58;
+}
+
+.section--surface > * {
+  position: relative;
+  z-index: 1;
+}
+
+.surface-command {
+  display: grid;
+  align-items: stretch;
+  gap: 18px;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  perspective: 1300px;
+}
+
+.surface-command__panel,
+.surface-signal-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(23, 44, 63, 0.16);
+  border-radius: var(--radius);
+  background:
+    var(--surface-light),
+    rgba(244, 241, 234, 0.92);
+  box-shadow: var(--shadow-raised);
+  transform-style: preserve-3d;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.surface-command__panel {
+  display: grid;
+  align-content: center;
+  min-height: 420px;
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.surface-command__panel::before,
+.surface-signal-card::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.56), transparent 38%),
+    var(--maine-topographic-contours);
+  background-position:
+    left top,
+    right -150px top -132px;
+  background-repeat: no-repeat;
+  background-size:
+    100% 100%,
+    min(520px, 120%) auto;
+  opacity: 0.18;
+}
+
+.surface-command__panel::after {
+  position: absolute;
+  inset: auto 28px 28px;
+  z-index: 0;
+  height: 1px;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(136, 98, 60, 0.72), transparent);
+  box-shadow: 0 0 24px rgba(136, 98, 60, 0.28);
+}
+
+.surface-command__panel > *,
+.surface-signal-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.surface-command__panel h2 {
+  max-width: 720px;
+  margin-bottom: 14px;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+}
+
+.surface-command__panel p:not(.eyebrow) {
+  max-width: 650px;
+  color: rgba(62, 67, 70, 0.82);
+  font-size: clamp(1rem, 1.7vw, 1.16rem);
+}
+
+.surface-signal-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.surface-signal-card {
+  display: grid;
+  min-height: 198px;
+  align-content: start;
+  gap: 10px;
+  padding: 22px;
+}
+
+.surface-signal-card svg {
+  color: var(--bronze);
+}
+
+.surface-signal-card span {
+  color: var(--bronze-dark);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.surface-signal-card h3 {
+  margin: 0;
+  color: var(--black);
+  font-size: clamp(1.12rem, 2vw, 1.45rem);
+}
+
+.surface-signal-card p {
+  margin: 0;
+  color: rgba(62, 67, 70, 0.78);
+  font-size: 0.94rem;
+}
+
+.hero,
+.page-hero,
+.section--dark,
+.callout {
+  perspective: 1400px;
+}
+
+.site-header {
+  box-shadow:
+    0 18px 46px rgba(12, 12, 12, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.52) inset;
+}
+
+.site-side-nav {
+  box-shadow:
+    0 14px 32px rgba(12, 12, 12, 0.06),
+    0 1px 0 rgba(255, 255, 255, 0.48) inset;
+}
+
+.icon-link,
+.button,
+.site-side-nav a,
+.text-link {
+  will-change: transform;
+}
+
+.service-card,
+.feature-panel,
+.solution-card,
+.insight-card,
+.contact-panel,
+.pricing-card,
+.onboarding-selected-package,
+.client-access-card,
+.methodology-card,
+.methodology-rule,
+.configuration-hero,
+.configuration-position-card,
+.configuration-lock-panel,
+.configuration-method-panel,
+.configuration-relation-card,
+.configuration-layer-card,
+.configuration-condition-card,
+.configuration-measure-card,
+.configuration-stage-card,
+.configuration-rule-card,
+.configuration-ruling-card,
+.configuration-ruling-cost,
+.client-configuration-records,
+.client-onboarding-records,
+.configuration-record-card,
+.onboarding-record-card,
+.command-center,
+.command-record,
+.command-cell,
+.command-audit-panel,
+.command-event-log,
+.protected-access-panel,
+.protected-access-note,
+.client-service-card,
+.client-service-stack__item,
+.portal-card,
+.portal-stat,
+.portal-work-card,
+.proof-card,
+.commitment-card,
+.kaiges-card,
+.investor-signal,
+.valuation-metric-card,
+.valuation-basis-card,
+.capital-structure-card,
+.research-lane-card,
+.investment-path-card,
+.forecast-window-card,
+.evidence-source-card,
+.storefront-product-index__item,
+.purchase-library-card,
+.delivery-option-card,
+.contract-option-card,
+.package-card,
+.catalog-card,
+.sprint-card,
+.catalog-stat,
+.integration-card,
+.founder-spotlight__profile,
+.principle,
+.pricing-principle,
+.callout {
+  transform-style: preserve-3d;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.service-card,
+.feature-panel,
+.solution-card,
+.insight-card,
+.contact-panel,
+.pricing-card,
+.onboarding-selected-package,
+.client-access-card,
+.methodology-card,
+.methodology-rule,
+.protected-access-panel,
+.protected-access-note,
+.client-service-card,
+.portal-card,
+.portal-work-card,
+.proof-card,
+.commitment-card,
+.investor-signal,
+.valuation-metric-card,
+.valuation-basis-card,
+.capital-structure-card,
+.research-lane-card,
+.investment-path-card,
+.forecast-window-card,
+.evidence-source-card,
+.purchase-library-card,
+.delivery-option-card,
+.contract-option-card,
+.package-card,
+.catalog-card,
+.sprint-card,
+.catalog-stat,
+.integration-card,
+.founder-spotlight__profile,
+.pricing-principle,
+.callout {
+  box-shadow: var(--shadow-raised);
+}
+
+.page-hero__inner::before {
+  position: absolute;
+  top: 74px;
+  bottom: 74px;
+  left: -28px;
+  width: 3px;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(180deg, transparent, rgba(136, 98, 60, 0.82), transparent);
+  box-shadow: 0 0 28px rgba(136, 98, 60, 0.28);
+}
+
+.hero__solution-lane-number,
+.track-code,
+.sale-badge,
+.site-side-nav__index {
+  box-shadow:
+    0 10px 24px rgba(12, 12, 12, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.42) inset;
+}
+
+@media (hover: hover) {
+  .surface-signal-card:hover,
+  .service-card:hover,
+  .feature-panel:hover,
+  .solution-card:hover,
+  .insight-card:hover,
+  .contact-panel:hover,
+  .pricing-card:hover,
+  .client-access-card:hover,
+  .methodology-card:hover,
+  .client-service-card:hover,
+  .portal-work-card:hover,
+  .proof-card:hover,
+  .commitment-card:hover,
+  .investor-signal:hover,
+  .valuation-metric-card:hover,
+  .valuation-basis-card:hover,
+  .capital-structure-card:hover,
+  .research-lane-card:hover,
+  .investment-path-card:hover,
+  .forecast-window-card:hover,
+  .evidence-source-card:hover,
+  .purchase-library-card:hover,
+  .delivery-option-card:hover,
+  .contract-option-card:hover,
+  .package-card:hover,
+  .catalog-card:hover,
+  .sprint-card:hover,
+  .catalog-stat:hover,
+  .integration-card:hover {
+    border-color: rgba(136, 98, 60, 0.44);
+    box-shadow:
+      0 34px 86px rgba(12, 12, 12, 0.18),
+      0 0 0 4px rgba(136, 98, 60, 0.07),
+      0 1px 0 rgba(255, 255, 255, 0.66) inset;
+    transform: translate3d(0, -5px, 18px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .surface-command__panel::after {
+    animation: executive-surface-sweep 9s ease-in-out infinite alternate;
+  }
+
+  .page-hero::before,
+  .hero::before {
+    animation: executive-field-drift 26s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes executive-surface-sweep {
+  from {
+    transform: translateX(-8%);
+    opacity: 0.55;
+  }
+
+  to {
+    transform: translateX(8%);
+    opacity: 0.95;
+  }
+}
+
+@keyframes executive-field-drift {
+  from {
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      center;
+  }
+
+  to {
+    background-position:
+      18px 10px,
+      -16px 18px,
+      0 0,
+      0 0,
+      center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surface-command__panel::after,
+  .page-hero::before,
+  .hero::before {
+    animation: none;
+  }
+
+  .service-card,
+  .feature-panel,
+  .solution-card,
+  .insight-card,
+  .contact-panel,
+  .pricing-card,
+  .surface-signal-card,
+  .button,
+  .icon-link,
+  .site-side-nav a {
+    transition: none;
+  }
+}
+
 .not-found {
   min-height: 70svh;
   padding: 72px 0;
+}
+
+@media (max-width: 980px) {
+  .surface-command,
+  .surface-signal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .surface-command__panel {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .surface-command__panel,
+  .surface-signal-card {
+    padding: 18px;
+  }
+
+  .page-hero__inner::before {
+    display: none;
+  }
 }
 
 @media (max-width: 1200px) {
