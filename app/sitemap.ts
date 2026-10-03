@@ -10,6 +10,7 @@ const routes = [
   "/academy",
   "/insights",
   "/investor-opportunities",
+  "/agg-investor-quick-sheet",
   "/about",
   "/contact",
   "/engage",

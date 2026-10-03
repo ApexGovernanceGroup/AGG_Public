@@ -28,7 +28,7 @@ const investorBriefingHref = `mailto:${contactEmail}?subject=${encodeURIComponen
   "Apex Governance Group Investor Opportunities Briefing",
 )}`;
 
-const investorQuickSheetHref = "/agg-investor-quick-sheet.html";
+const investorQuickSheetHref = "/agg-investor-quick-sheet";
 
 const marketSignals = [
   {

@@ -19,6 +19,9 @@
         --bronze-dark: #694927;
         --oxblood: #793735;
         --radius: 8px;
+        --shadow-lift: 0 18px 42px rgba(12, 12, 12, 0.16);
+        --shadow-deep: 0 28px 70px rgba(12, 12, 12, 0.24);
+        --surface-line: rgba(136, 98, 60, 0.2);
       }
 
       * {
@@ -28,7 +31,7 @@
       body {
         margin: 0;
         background:
-          linear-gradient(rgba(244, 241, 234, 0.93), rgba(244, 241, 234, 0.93)),
+          linear-gradient(135deg, rgba(244, 241, 234, 0.95), rgba(229, 224, 214, 0.88)),
           url("/brand/alabama-topographic-contours.svg") center top / 1100px auto fixed,
           var(--paper);
         color: var(--onyx);
@@ -43,6 +46,7 @@
         width: min(1120px, calc(100% - 32px));
         margin: 0 auto;
         padding: 32px 0 44px;
+        perspective: 1400px;
       }
 
       .hero {
@@ -50,10 +54,25 @@
         overflow: hidden;
         border-radius: var(--radius);
         background:
+          linear-gradient(135deg, rgba(136, 98, 60, 0.2), transparent 32%),
+          url("/brand/alabama-topographic-contours-smoke.svg") right -160px top -120px / 740px auto no-repeat,
           linear-gradient(90deg, rgba(12, 12, 12, 0.94), rgba(23, 44, 63, 0.9)),
           var(--onyx);
         color: var(--paper);
         padding: clamp(28px, 5vw, 54px);
+        box-shadow: var(--shadow-deep);
+        transform-style: preserve-3d;
+      }
+
+      .hero::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background:
+          linear-gradient(105deg, transparent 0%, rgba(244, 241, 234, 0.1) 42%, transparent 58%),
+          repeating-linear-gradient(90deg, rgba(244, 241, 234, 0.055) 0 1px, transparent 1px 74px);
+        opacity: 0.54;
+        animation: surface-scan 18s linear infinite;
       }
 
       .hero::after {
@@ -64,12 +83,16 @@
         aspect-ratio: 1;
         content: "";
         background: url("/brand/apex-governance-group-symbol-320.webp") center / contain no-repeat;
-        opacity: 0.18;
+        filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.4));
+        opacity: 0.2;
+        transform: translateZ(34px);
+        animation: seal-drift 9s ease-in-out infinite alternate;
       }
 
       .brand-row,
       .section-head,
       .metric-grid,
+      .capital-terms-grid,
       .allocation-grid,
       .two-col,
       .risk-grid,
@@ -155,6 +178,17 @@
         font-weight: 900;
         text-decoration: none;
         text-transform: uppercase;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          background 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
       }
 
       .button.secondary {
@@ -182,10 +216,28 @@
       }
 
       .section {
+        position: relative;
+        isolation: isolate;
         margin-top: 24px;
         padding: clamp(24px, 4vw, 38px);
         border-radius: var(--radius);
-        background: rgba(244, 241, 234, 0.86);
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(244, 241, 234, 0.88)),
+          rgba(244, 241, 234, 0.86);
+        box-shadow: 0 16px 44px rgba(12, 12, 12, 0.08);
+      }
+
+      .section::before {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        content: "";
+        border-radius: inherit;
+        background:
+          linear-gradient(90deg, rgba(136, 98, 60, 0.15), transparent 34%),
+          repeating-linear-gradient(0deg, rgba(12, 12, 12, 0.025) 0 1px, transparent 1px 52px);
+        opacity: 0.62;
       }
 
       .section-head {
@@ -204,6 +256,21 @@
       .card {
         min-height: 172px;
         padding: 18px;
+        box-shadow: var(--shadow-lift);
+        transform: translateZ(0);
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .card:hover,
+      .panel:hover,
+      .allocation-card:hover,
+      .timeline-step:hover {
+        border-color: rgba(136, 98, 60, 0.42);
+        box-shadow: var(--shadow-deep);
+        transform: translateY(-4px);
       }
 
       .card strong {
@@ -240,11 +307,24 @@
 
       .panel {
         padding: 20px;
+        box-shadow: var(--shadow-lift);
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .panel strong {
+        color: var(--navy);
       }
 
       .panel h3 {
         margin-bottom: 12px;
         color: var(--navy);
+      }
+
+      .panel p + p {
+        margin-top: 12px;
       }
 
       ul {
@@ -261,12 +341,32 @@
       .allocation-grid {
         display: grid;
         gap: 12px;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
       .allocation-card {
-        min-height: 182px;
+        position: relative;
+        overflow: hidden;
+        min-height: 286px;
         padding: 18px;
+        border-top: 5px solid rgba(136, 98, 60, 0.65);
+        box-shadow: var(--shadow-lift);
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .allocation-card::after {
+        position: absolute;
+        right: -64px;
+        bottom: -74px;
+        width: 190px;
+        height: 190px;
+        content: "";
+        background: url("/brand/apex-governance-group-symbol-160.webp") center / contain no-repeat;
+        opacity: 0.05;
+        transform: rotate(-12deg);
       }
 
       .allocation-card strong {
@@ -282,6 +382,36 @@
         color: rgba(62, 67, 70, 0.86);
       }
 
+      .allocation-card em {
+        display: block;
+        margin-top: 14px;
+        border-top: 1px solid var(--surface-line);
+        padding-top: 12px;
+        color: rgba(23, 44, 63, 0.82);
+        font-size: 0.86rem;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 1.48;
+      }
+
+      .capital-terms-grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
+      }
+
+      .divestiture-panel {
+        border-left: 5px solid var(--navy);
+      }
+
+      .divestiture-panel strong {
+        color: var(--navy);
+      }
+
+      .divestiture-section .section-head h2 {
+        max-width: 980px;
+      }
+
       .timeline {
         display: grid;
         gap: 12px;
@@ -291,6 +421,11 @@
       .timeline-step {
         min-height: 214px;
         padding: 18px;
+        box-shadow: var(--shadow-lift);
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          box-shadow 180ms ease;
       }
 
       .timeline-step strong {
@@ -329,6 +464,28 @@
         border-left: 5px solid var(--oxblood);
       }
 
+      .meta-qaqc {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-top: 16px;
+      }
+
+      .meta-qaqc span {
+        display: block;
+        border: 1px solid rgba(12, 12, 12, 0.1);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.58);
+        color: var(--navy);
+        font-family: "Courier New", monospace;
+        font-size: 0.74rem;
+        font-weight: 900;
+        letter-spacing: 0.05em;
+        padding: 10px 12px;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
       .footer-row {
         display: flex;
         align-items: center;
@@ -344,9 +501,11 @@
       @media (max-width: 880px) {
         .metric-grid,
         .allocation-grid,
+        .capital-terms-grid,
         .timeline,
         .two-col,
-        .risk-grid {
+        .risk-grid,
+        .meta-qaqc {
           grid-template-columns: 1fr;
         }
 
@@ -357,6 +516,35 @@
         .footer-row {
           align-items: flex-start;
           flex-direction: column;
+        }
+      }
+
+      @keyframes surface-scan {
+        from {
+          transform: translateX(-16%);
+        }
+        to {
+          transform: translateX(16%);
+        }
+      }
+
+      @keyframes seal-drift {
+        from {
+          transform: translate3d(0, 0, 34px) rotate(-1deg);
+        }
+        to {
+          transform: translate3d(-8px, 8px, 42px) rotate(1deg);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
         }
       }
 
@@ -412,7 +600,7 @@
           <strong>Investor communications boundary:</strong> This quick sheet is not a securities
           offering, certified valuation, promise of dividends, guarantee of gains, or legal, tax,
           accounting, or investment advice. All investment rights, refund terms, non-refundable
-          portions, governance participation, distributions, buy-back terms, and risk allocation
+          portions, governance participation, distributions, divestiture terms, buy-back terms, and risk allocation
           must be documented in definitive agreements accepted by AGG ownership and reviewed by
           qualified counsel before any transaction is binding.
         </p>
@@ -493,7 +681,7 @@
           <p>
             Upon execution and receipt, AGG's proposed capital policy consolidates 100% of all
             accepted investment capital raised into a collective operational account and applies it
-            against the internal growth model below. Twenty-five percent (25%) of all accepted
+            against the 30-30-20-14-5-1 growth model below. Twenty-five percent (25%) of all accepted
             investment capital raised is proposed as non-refundable commitment capital, subject to
             final written terms.
           </p>
@@ -503,41 +691,37 @@
             <strong>30%</strong>
             <span>Product inventory and licensing</span>
             <p>Modernization, transformation, innovation, and interoperability of current product inventory and licensing.</p>
+            <em>Examples: license-ready product sheets, template packs, IP schedules, packaging logic, and delivery playbooks.</em>
           </article>
           <article class="allocation-card">
             <strong>30%</strong>
             <span>Research and emerging technology</span>
             <p>Research, development, expansion, and application of emerging technologies and new products.</p>
+            <em>Examples: governed AI labs, automation-register prototypes, metaknowledge pilots, and data-governance accelerators.</em>
           </article>
           <article class="allocation-card">
             <strong>20%</strong>
             <span>Market and partnerships</span>
             <p>Marketing, strategic partnerships, strategic communications, buyer education, and market entry support.</p>
+            <em>Examples: investor deck refinement, partner outreach, buyer education, campaign briefs, and market-entry packages.</em>
           </article>
           <article class="allocation-card">
-            <strong>10%</strong>
-            <span>Talent and reserve</span>
-            <p>Talent cultivation and management, plus a strategic investor protection reserve.</p>
+            <strong>14%</strong>
+            <span>Talent, reserve, buy-back, and market perspective</span>
+            <p>Talent cultivation and management, strategic investor protection reserve, investor buy-back planning, and market perspective investment.</p>
+            <em>Examples: advisor bench, contractor capacity, reserve controls, buy-back modeling, market intelligence refresh, and competitive review.</em>
           </article>
           <article class="allocation-card">
             <strong>5%</strong>
             <span>Operating architecture</span>
             <p>Organizational architecture, infrastructure, governance, sustainment requirements, improvements, and innovations.</p>
-          </article>
-          <article class="allocation-card">
-            <strong>2%</strong>
-            <span>Investor buy-back reserve</span>
-            <p>Capital planning lane for potential investor buy-back mechanics if authorized by definitive agreements.</p>
-          </article>
-          <article class="allocation-card">
-            <strong>2%</strong>
-            <span>Market perspective investment</span>
-            <p>Market intelligence, competitive perspective, forecasting refresh, and investor-ready opportunity analysis.</p>
+            <em>Examples: operating cadence, repository controls, documentation architecture, dashboards, and sustainment routines.</em>
           </article>
           <article class="allocation-card">
             <strong>1%</strong>
             <span>Administrative fees</span>
             <p>Administrative processing, documentation, coordination, and operating-account management support.</p>
+            <em>Examples: account administration, records control, compliance coordination, processing, and briefing support.</em>
           </article>
         </div>
       </section>
@@ -570,7 +754,7 @@
             <strong>4</strong>
             <span>Deploy</span>
             <h3>Capital application</h3>
-            <p>Accepted capital enters the collective operational account and is applied against the 30-30-20-10-5-2-2-1 growth model.</p>
+            <p>Accepted capital enters the collective operational account and is applied against the 30-30-20-14-5-1 growth model.</p>
           </article>
           <article class="timeline-step">
             <strong>5</strong>
@@ -599,6 +783,50 @@
         </div>
       </section>
 
+      <section class="section divestiture-section">
+        <div class="section-head">
+          <p class="eyebrow">Divestiture of Funds</p>
+          <h2>Any divestiture path must protect AGG liquidity, operating continuity, and the security of other investors.</h2>
+          <p>
+            Divestiture, refund, exit, transfer, or repurchase rights are not automatic and must be governed by
+            executed investment documents. The language below establishes AGG's proposed position for investor
+            discussion and counsel review.
+          </p>
+        </div>
+        <div class="capital-terms-grid">
+          <article class="panel divestiture-panel">
+            <h3>Structured distribution position</h3>
+            <p>
+              If, for any reason, a divestiture determination is concluded under the governing investment
+              documents, AGG reserves the right to satisfy the divestiture through structured distributions
+              to the investor over a period not to exceed 72 months.
+            </p>
+          </article>
+          <article class="panel">
+            <h3>Calculation, constraints, and liquidity protection</h3>
+            <p>
+              Unless the executed agreement provides a different treatment, the distribution calculation may
+              include <strong>five percent (5%) interest</strong> applied to the investor's original capital
+              amount after excluding the <strong>twenty-five percent (25%) non-refundable</strong> commitment-capital
+              portion and any applicable taxes, fees, transaction costs, administrative costs, offsets, or
+              agreement-authorized deductions.
+            </p>
+            <p>
+              Alternative arrangements may be available; however, those opportunities will be dictated by market
+              conditions, AGG liquidity, operating obligations, and agreement terms. AGG will not subordinate,
+              impair, or supplant the security, rights, liquidity, or investment position of other investors to
+              satisfy a divestiture request.
+            </p>
+          </article>
+        </div>
+        <div class="meta-qaqc" aria-label="Investor quick sheet design quality control markers">
+          <span>Structure</span>
+          <span>Liquidity</span>
+          <span>Governance</span>
+          <span>Risk Control</span>
+        </div>
+      </section>
+
       <section class="section">
         <div class="section-head">
           <p class="eyebrow">Expectations, Potential Gains, and Risk</p>
@@ -620,6 +848,7 @@
               <li>Investment capital may be illiquid and may be partially or fully lost.</li>
               <li>Twenty-five percent (25%) of all accepted investment capital raised is proposed as non-refundable commitment capital.</li>
               <li>Returns, dividends, buy-back, or liquidity are not guaranteed.</li>
+              <li>Any divestiture may be structured over time and reduced by authorized taxes, fees, costs, offsets, or deductions.</li>
               <li>Growth depends on execution, market acceptance, product maturity, founder capacity, legal structure, and operating discipline.</li>
             </ul>
           </article>

@@ -56,6 +56,7 @@ test("AGG public site contract is present", async () => {
     engage,
     investorOpportunities,
     investorQuickSheet,
+    investorQuickSheetRoute,
     sitemap,
     robots,
     data,
@@ -98,6 +99,7 @@ test("AGG public site contract is present", async () => {
       read("app/engage/page.tsx"),
       read("app/investor-opportunities/page.tsx"),
       read("public/agg-investor-quick-sheet.html"),
+      read("app/agg-investor-quick-sheet/page.tsx"),
       read("app/sitemap.ts"),
       read("app/robots.ts"),
       read("app/site-data.ts"),
@@ -140,6 +142,7 @@ test("AGG public site contract is present", async () => {
     engage,
     investorOpportunities,
     investorQuickSheet,
+    investorQuickSheetRoute,
     sitemap,
     robots,
     data,
@@ -364,9 +367,11 @@ test("AGG public site contract is present", async () => {
   assert.match(investorOpportunities, /export const metadata: Metadata/);
   assert.match(investorOpportunities, /Investor Opportunities/);
   assert.match(investorOpportunities, /Request investor briefing/);
-  assert.match(investorOpportunities, /investorQuickSheetHref = "\/agg-investor-quick-sheet\.html"/);
+  assert.match(investorOpportunities, /investorQuickSheetHref = "\/agg-investor-quick-sheet"/);
   assert.match(investorOpportunities, /AGG Quick Sheet \.html/);
   assert.match(investorOpportunities, /Branded one-page investor reference/);
+  assert.match(investorQuickSheetRoute, /redirect\("\/agg-investor-quick-sheet\.html"\)/);
+  assert.match(sitemap, /"\/agg-investor-quick-sheet"/);
   assert.match(investorQuickSheet, /AGG Investor Quick Sheet \| Apex Governance Group/);
   assert.match(investorQuickSheet, /Apex Governance Group/);
   assert.match(investorQuickSheet, /Investor Quick Sheet \| Preliminary private-discussion reference/);
@@ -380,16 +385,27 @@ test("AGG public site contract is present", async () => {
   assert.match(investorQuickSheet, /Capital Application Model/);
   assert.match(investorQuickSheet, /100% of all\s+accepted investment capital raised/);
   assert.match(investorQuickSheet, /Twenty-five percent \(25%\) of all accepted\s+investment capital raised is proposed as non-refundable commitment capital/);
-  assert.match(investorQuickSheet, /30-30-20-10-5-2-2-1 growth model/);
+  assert.match(investorQuickSheet, /30-30-20-14-5-1 growth model/);
   assert.match(investorQuickSheet, /Modernization, transformation, innovation, and interoperability/);
   assert.match(investorQuickSheet, /Research, development, expansion, and application of emerging technologies/);
   assert.match(investorQuickSheet, /Marketing, strategic partnerships, strategic communications/);
   assert.match(investorQuickSheet, /Talent cultivation and management/);
-  assert.match(investorQuickSheet, /Investor buy-back reserve/);
-  assert.match(investorQuickSheet, /Market perspective investment/);
+  assert.match(investorQuickSheet, /Talent, reserve, buy-back, and market perspective/);
+  assert.match(investorQuickSheet, /investor buy-back planning, and market perspective investment/);
   assert.match(investorQuickSheet, /Administrative fees/);
+  assert.match(investorQuickSheet, /Examples: license-ready product sheets/);
+  assert.match(investorQuickSheet, /Examples: governed AI labs/);
+  assert.match(investorQuickSheet, /Examples: investor deck refinement/);
+  assert.match(investorQuickSheet, /Examples: advisor bench/);
+  assert.match(investorQuickSheet, /Examples: operating cadence/);
+  assert.match(investorQuickSheet, /Examples: account administration/);
   assert.match(investorQuickSheet, /Investment Lifecycle/);
   assert.match(investorQuickSheet, /What the process looks like/);
+  assert.match(investorQuickSheet, /Divestiture of Funds/);
+  assert.match(investorQuickSheet, /period not to exceed 72 months/);
+  assert.match(investorQuickSheet, /five percent \(5%\) interest/);
+  assert.match(investorQuickSheet, /twenty-five percent \(25%\) non-refundable/);
+  assert.match(investorQuickSheet, /AGG will not subordinate,\s+impair, or supplant/);
   assert.match(investorQuickSheet, /Potential investor\/client gains/);
   assert.match(investorQuickSheet, /Investor\/client risk/);
   assert.match(investorQuickSheet, /AGG gains/);
@@ -397,8 +413,16 @@ test("AGG public site contract is present", async () => {
   assert.match(investorQuickSheet, /not a securities\s+offering/i);
   assert.match(investorQuickSheet, /not a certified appraisal or guaranteed enterprise value/);
   assert.match(investorQuickSheet, /apex@apexgovernancegroup\.com/);
-  assert.equal((investorQuickSheet.match(/class="allocation-card"/g) ?? []).length, 8);
+  assert.equal((investorQuickSheet.match(/class="allocation-card"/g) ?? []).length, 6);
+  assert.equal((investorQuickSheet.match(/<em>Examples:/g) ?? []).length, 6);
   assert.equal((investorQuickSheet.match(/class="timeline-step"/g) ?? []).length, 8);
+  assert.match(investorQuickSheet, /--shadow-lift/);
+  assert.match(investorQuickSheet, /\.hero::before/);
+  assert.match(investorQuickSheet, /@keyframes surface-scan/);
+  assert.match(investorQuickSheet, /\.allocation-card::after/);
+  assert.match(investorQuickSheet, /\.capital-terms-grid/);
+  assert.match(investorQuickSheet, /\.meta-qaqc/);
+  assert.match(investorQuickSheet, /prefers-reduced-motion/);
   assert.match(investorOpportunities, /This page is not a securities offering/);
   assert.match(investorOpportunities, /not an\s+offer to sell securities/i);
   assert.match(investorOpportunities, /promise of dividends/);
