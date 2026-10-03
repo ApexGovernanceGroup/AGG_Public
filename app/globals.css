@@ -1585,6 +1585,39 @@ button.hero__solution-lane.is-active {
   line-height: 1.65;
 }
 
+.investor-availability {
+  display: grid;
+  align-items: center;
+  gap: 20px;
+  grid-template-columns: minmax(0, 0.92fr) minmax(260px, 0.78fr) auto;
+  margin-top: 18px;
+  border: 1px solid rgba(136, 98, 60, 0.24);
+  border-left: 5px solid var(--bronze);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.58);
+  padding: 24px;
+}
+
+.investor-availability h2 {
+  margin-bottom: 10px;
+  color: var(--black);
+  font-size: clamp(1.38rem, 2.4vw, 2.08rem);
+}
+
+.investor-availability p:not(.eyebrow) {
+  margin-bottom: 0;
+  color: rgba(62, 67, 70, 0.84);
+  line-height: 1.62;
+}
+
+.investor-availability .mini-list {
+  margin: 0;
+}
+
+.investor-availability .button {
+  white-space: nowrap;
+}
+
 .investor-signal-grid {
   display: grid;
   gap: 16px;
@@ -6344,6 +6377,7 @@ button.configuration-relation-card:disabled {
   .academy-program-grid,
   .academy-topic-panel,
   .academy-topic-list,
+  .investor-availability,
   .investor-signal-grid,
   .investment-path-grid,
   .forecast-window-grid,
@@ -6407,6 +6441,10 @@ button.configuration-relation-card:disabled {
 
   .pricing-card {
     min-height: auto;
+  }
+
+  .investor-availability .button {
+    width: fit-content;
   }
 
   .doctrine-sequence {

@@ -45,6 +45,12 @@ const marketSignals = [
   },
 ] as const;
 
+const investorEngagementTopics = [
+  "Investment goals, requirements, horizon, and preferred participation model",
+  "Path to a mutually beneficial strategic partnership with AGG ownership",
+  "Investor expectations, communication cadence, diligence sequence, and decision points",
+] as const;
+
 const investmentPathways = [
   {
     title: "Traditional Company Ownership Stake | Dividend Paying",
@@ -311,6 +317,27 @@ export default function InvestorOpportunitiesPage() {
                 professional counsel.
               </p>
             </div>
+          </div>
+          <div className="investor-availability" aria-label="Current investment availability">
+            <div>
+              <p className="eyebrow">Current Investment Availability</p>
+              <h2>AGG is available for private investor engagement.</h2>
+              <p>
+                Apex Governance Group currently has investment opportunities available.
+                Schedule an engagement to discuss your investment goals and requirements,
+                the path to a mutually beneficial strategic partnership, and investor
+                expectations for the relationship moving forward.
+              </p>
+            </div>
+            <ul className="mini-list">
+              {investorEngagementTopics.map((topic) => (
+                <li key={topic}>{topic}</li>
+              ))}
+            </ul>
+            <a className="button button--primary" href={investorBriefingHref}>
+              <BadgeDollarSign size={18} aria-hidden="true" />
+              Schedule investor engagement
+            </a>
           </div>
           <div className="investor-signal-grid" aria-label="Investor opportunity summary">
             {marketSignals.map((signal) => (

@@ -364,6 +364,13 @@ test("AGG public site contract is present", async () => {
   assert.match(investorOpportunities, /This page is not a securities offering/);
   assert.match(investorOpportunities, /not an\s+offer to sell securities/i);
   assert.match(investorOpportunities, /promise of dividends/);
+  assert.match(investorOpportunities, /Current Investment Availability/);
+  assert.match(investorOpportunities, /Apex Governance Group currently has investment opportunities available/);
+  assert.match(investorOpportunities, /Schedule an engagement to discuss your investment goals and requirements/);
+  assert.match(investorOpportunities, /mutually beneficial strategic partnership/);
+  assert.match(investorOpportunities, /investor\s+expectations for the relationship moving forward/);
+  assert.match(investorOpportunities, /Schedule investor engagement/);
+  assert.equal((investorOpportunities.match(/investorEngagementTopics\.map/g) ?? []).length, 1);
   assert.match(investorOpportunities, /Traditional Company Ownership Stake \| Dividend Paying/);
   assert.match(investorOpportunities, /Staked Individual IP Ownership Percentage \| Dividend Paying/);
   assert.match(investorOpportunities, /Short Term - 3 Year/);
@@ -1017,6 +1024,7 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const contractOptionGrid = cssBlock(css, ".contract-option-grid");
   const contractOptionCard = cssBlock(css, ".contract-option-card");
   const investorAlert = cssBlock(css, ".investor-alert");
+  const investorAvailability = cssBlock(css, ".investor-availability");
   const investorSignalGrid = cssBlock(css, ".investor-signal-grid");
   const investmentPathGrid = cssBlock(css, ".investment-path-grid");
   const investmentPathCard = cssBlock(css, ".investment-path-card");
@@ -1196,6 +1204,8 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(contractOptionCard, /border-left:\s*5px solid var\(--bronze\)/);
   assert.match(investorAlert, /grid-template-columns:\s*auto 1fr/);
   assert.match(investorAlert, /border-left:\s*5px solid var\(--oxblood\)/);
+  assert.match(investorAvailability, /grid-template-columns:\s*minmax\(0,\s*0\.92fr\)\s*minmax\(260px,\s*0\.78fr\)\s*auto/);
+  assert.match(investorAvailability, /border-left:\s*5px solid var\(--bronze\)/);
   assert.match(investorSignalGrid, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(investmentPathGrid, /grid-template-columns:\s*repeat\(5,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(investmentPathCard, /min-height:\s*430px/);
@@ -1211,6 +1221,7 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.purchase-library-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.delivery-library-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.contract-option-grid,[\s\S]*?grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.investor-availability,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.investor-signal-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.investment-path-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.forecast-window-grid,[\s\S]*?grid-template-columns:\s*1fr/);
