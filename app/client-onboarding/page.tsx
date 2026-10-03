@@ -132,7 +132,7 @@ export default async function ClientOnboardingPage({
             </article>
           )}
 
-          <form className="onboarding-form" action="/api/client-onboarding" method="post">
+          <form className="onboarding-form" action="/api/client-onboarding" method="post" noValidate>
             <input
               autoComplete="off"
               className="onboarding-form__trap"
@@ -225,6 +225,7 @@ export default async function ClientOnboardingPage({
             <label>
               Requested outcome
               <textarea
+                className="resize-none"
                 maxLength={1400}
                 name="summary"
                 placeholder="Describe what you want to buy, solve, stand up, assess, improve, or govern."

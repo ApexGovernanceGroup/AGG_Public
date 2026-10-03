@@ -11,6 +11,7 @@
     "build": "vinext build",
     "build:next": "next build",
     "start": "vinext start",
+    "simulate:revenue": "node scripts/agg-revenue-simulation.mjs",
     "test": "npm run build:next && node --test tests/site-contract.test.mjs",
     "lint": "eslint app tests --ignore-pattern dist --ignore-pattern .next --ignore-pattern .tmp"
   },

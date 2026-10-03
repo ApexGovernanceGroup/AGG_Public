@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CreditCard, GitBranch, Landmark, LockKeyhole, ShieldCheck } from "lucide-react";
+import { BookOpenCheck, CreditCard, GitBranch, LockKeyhole } from "lucide-react";
 import { BrandMark } from "./BrandMark";
 import { githubRepositoryUrl, topNavItems } from "../site-data";
 
@@ -29,13 +29,9 @@ export function SiteHeader() {
             <CreditCard size={16} aria-hidden="true" />
             Direct Engagement
           </Link>
-          <Link className="button button--small button--investor" href="/investor-opportunities">
-            <Landmark size={16} aria-hidden="true" />
-            Investor Opportunities
-          </Link>
-          <Link className="button button--small button--admin" href="/client-services?role=admin">
-            <ShieldCheck size={16} aria-hidden="true" />
-            Apex Admin
+          <Link className="button button--small button--proof" href="/proof-library">
+            <BookOpenCheck size={16} aria-hidden="true" />
+            Proof Library
           </Link>
         </div>
       </div>

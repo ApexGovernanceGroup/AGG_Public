@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { Building2, ExternalLink, GitBranch, Mail } from "lucide-react";
+import {
+  Building2,
+  ExternalLink,
+  GitBranch,
+  Landmark,
+  Mail,
+  ShieldCheck,
+} from "lucide-react";
 import { BrandMark } from "./BrandMark";
 import {
   brandStandard,
@@ -44,6 +51,14 @@ export function SiteFooter() {
               <ExternalLink size={16} aria-hidden="true" />
               {founderProfile.name} on LinkedIn
             </a>
+            <Link href="/investor-opportunities">
+              <Landmark size={16} aria-hidden="true" />
+              Investor opportunities
+            </Link>
+            <Link href="/client-services?role=admin">
+              <ShieldCheck size={16} aria-hidden="true" />
+              Staff access
+            </Link>
             <span className="footer-note">
               <Building2 size={16} aria-hidden="true" />
               M365 boundary confirmed during intake

@@ -21,14 +21,18 @@ or non-public implementation artifacts.
 - Client-Led Self-Determination architecture with 18 operationalized
   selectable terms: three choices per fixed KAIGES|D position.
 - Masthead utility access for existing-client login.
+- Buyer-first proof and conversion path: proof library, problem-to-product
+  routing, public planning anchors, and first-14-days engagement expectations.
 - Password-protected Client Services route for owned enterprise architecture,
   diagnostics, repository control, and governed delivery lanes.
 - Protected client configuration card with cycling term selection,
   per-position locks, local persistence, S/D engagement shape, and
   scope lock-in.
-- Split navigation: brand, GitHub, Client login, and Engage remain in the
-  masthead; Home, Services, Methodology, Solutions, Apex Academy, About,
-  Contact, and Insights travel in the floating navigation rail.
+- Split navigation: brand, GitHub, Client login, Engage, and Proof Library
+  remain in the masthead; Home, Services, Methodology, Solutions, Apex Academy,
+  About, Contact, and Insights travel in the floating navigation rail.
+  Investor opportunities and staff access remain available through
+  secondary/footer surfaces rather than primary buyer CTAs.
 - Public client portal preview for progress, status, project efforts, programs,
   actions, and working comments. The preview is noindexed and excluded from the
   sitemap; live client access remains an onboarding-controlled capability.
@@ -124,6 +128,11 @@ Production fails closed unless hosted secret storage provides
 `CLIENT_SERVICES_SESSION_SECRET`. Development retains a local-only fallback so
 the interface can be tested without committing live credentials.
 
+The client-services access route enforces same-origin submission, a bounded
+login request body, no-store redirects, and a small per-client in-memory rate
+limit. Staff/admin entry remains available by route, but it is intentionally not
+promoted as a primary public masthead action.
+
 Inside the protected workspace, the Client-Led Self-Determination configuration
 card turns the 04 Sep 2026 ruling into an owned interface. It supports the fixed
 client-facing mark, six-position elicitation, Sustainment/Delivery
@@ -146,10 +155,15 @@ npm ci --ignore-scripts --no-audit --no-fund
 npm run dev
 npm run dev:next
 npm run lint
+npm run simulate:revenue
 npm test
 ```
 
 `npm test` runs a portable Next production build and source contract checks.
+`npm run simulate:revenue` runs the deterministic AGG executive revenue
+wargame: 10,000 iterations per campaign across the site conversion variables
+used in the current buyer-first release. It is a planning model, not observed
+customer analytics.
 `npm run build` runs the Sites deployment build; on Windows ARM64 this can be
 blocked by Cloudflare `workerd`, so use the Sites remote build path or GitHub CI
 for the deployment build.

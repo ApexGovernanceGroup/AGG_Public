@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import {
+  buyerFirstMoves,
   enterpriseServicePackages,
+  firstFourteenDays,
   kaiged,
   kaigedCategories,
   productCatalogGroups,
+  proofLibraryItems,
+  revenueHardeningSignals,
   seminarSprints,
   serviceLines,
   storefrontCollections,
@@ -106,6 +110,54 @@ export default function ServicesPage() {
 
       <section className="section">
         <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow">Choose Your First Move</p>
+            <h2>Start with the problem the buyer recognizes.</h2>
+            <p>
+              AGG routes the first purchase from the operating pain, not from
+              internal vocabulary. Pick the situation that looks most like your
+              current friction, then enter the lowest-risk product lane.
+            </p>
+          </div>
+          <div className="buyer-router-grid">
+            {buyerFirstMoves.map((move) => (
+              <article className="buyer-router-card" key={move.problem}>
+                <div className="buyer-router-card__top">
+                  <move.icon size={22} aria-hidden="true" />
+                  <span>{move.timeline}</span>
+                </div>
+                <p className="eyebrow">{move.buyer}</p>
+                <h3>{move.problem}</h3>
+                <p>{move.signal}</p>
+                <dl>
+                  <div>
+                    <dt>First product</dt>
+                    <dd>{move.recommendedMove}</dd>
+                  </div>
+                  <div>
+                    <dt>Proof</dt>
+                    <dd>{move.proof}</dd>
+                  </div>
+                  <div>
+                    <dt>Risk reduced</dt>
+                    <dd>{move.riskReduced}</dd>
+                  </div>
+                </dl>
+                <Link
+                  className="text-link"
+                  href={`/engage#storefront-${move.recommendedPackageId}`}
+                >
+                  Review this first move
+                  <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--steel">
+        <div className="container">
           <div className="section-heading section-heading--compact">
             <p className="eyebrow">Executive Service Decision Path</p>
             <h2>Buy the first move, then scale only what proves useful.</h2>
@@ -129,6 +181,31 @@ export default function ServicesPage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container split">
+          <div>
+            <p className="eyebrow">First 14 Days</p>
+            <h2>What happens after a serious buyer raises their hand.</h2>
+            <p>
+              A good first move should reduce uncertainty immediately. AGG uses
+              the first two weeks to validate fit, protect the client, and
+              produce the first inspectable decision or product shape.
+            </p>
+          </div>
+          <ol className="first-move-timeline" aria-label="First fourteen days with AGG">
+            {firstFourteenDays.map((item) => (
+              <li key={item.day}>
+                <span>{item.day}</span>
+                <div>
+                  <strong>{item.title}</strong>
+                  <p>{item.detail}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -182,6 +259,43 @@ export default function ServicesPage() {
                 <strong className="card-outcome">{collection.value}</strong>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow">Proof Library</p>
+            <h2>Proof before scale. Samples before commitment.</h2>
+            <p>
+              These public-safe sample categories show the kind of artifacts a
+              buyer receives before AGG asks for larger scope, longer retainers,
+              or broader implementation authority.
+            </p>
+          </div>
+          <div className="proof-library-grid">
+            {proofLibraryItems.slice(0, 3).map((item) => (
+              <article className="proof-library-card" key={item.title}>
+                <item.icon size={24} aria-hidden="true" />
+                <p className="eyebrow">{item.plainName}</p>
+                <h3>{item.title}</h3>
+                <p className="proof-library-card__question">{item.buyerQuestion}</p>
+                <strong>What it proves</strong>
+                <p>{item.proves}</p>
+                <ul className="mini-list">
+                  {item.sampleContents.map((sample) => (
+                    <li key={sample}>{sample}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <div className="action-row action-row--center">
+            <Link className="button button--primary" href="/proof-library">
+              <ArrowRight size={18} aria-hidden="true" />
+              Open proof library
+            </Link>
           </div>
         </div>
       </section>
@@ -376,7 +490,7 @@ export default function ServicesPage() {
             <h2>Every service ends in an artifact, a record, and a proof standard.</h2>
           </div>
           <div className="stack-list">
-            {trustBuildingSignals.map((signal) => (
+            {[...trustBuildingSignals, ...revenueHardeningSignals].map((signal) => (
               <div className="stack-list__item" key={signal.title}>
                 <ArrowRight size={18} aria-hidden="true" />
                 <div>

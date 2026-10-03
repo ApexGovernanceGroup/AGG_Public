@@ -110,7 +110,7 @@ async function ClientServicesWorkspace() {
               <p className="eyebrow">Enterprise Architecture V4</p>
               <h2>Client service code now lives in the Apex site.</h2>
             </div>
-            <form action="/api/client-services/logout" method="post">
+            <form action="/api/client-services/logout" method="post" noValidate>
               <button className="button button--quiet" type="submit">
                 <LogOut size={17} aria-hidden="true" />
                 Lock section

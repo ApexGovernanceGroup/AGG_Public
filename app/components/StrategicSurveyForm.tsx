@@ -66,7 +66,7 @@ export function StrategicSurveyForm({
   }
 
   return (
-    <form className="onboarding-form survey-form" onSubmit={handleSubmit}>
+    <form className="onboarding-form survey-form" onSubmit={handleSubmit} noValidate>
       <input
         autoComplete="off"
         className="onboarding-form__trap"
@@ -131,6 +131,7 @@ export function StrategicSurveyForm({
             <label>
               {question.prompt}
               <textarea
+                className="resize-none"
                 maxLength={1800}
                 name={question.id}
                 placeholder="Answer in plain language. Include the pressure, cause, impact, owner, timing, and what useful support would look like."

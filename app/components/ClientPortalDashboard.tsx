@@ -491,9 +491,10 @@ export function ClientPortalDashboard({ profile }: { profile: ClientPortalProfil
                 </article>
               ))}
             </div>
-            <form className="comment-form" onSubmit={handleSubmit}>
+            <form className="comment-form" onSubmit={handleSubmit} noValidate>
               <label htmlFor="portal-comment">Add a comment</label>
               <textarea
+                className="resize-none"
                 id="portal-comment"
                 onChange={(event) => setDraft(event.target.value)}
                 placeholder="Post a status question, decision note, or coordination item."

@@ -385,7 +385,7 @@ export function ClientServicesCommandCenter() {
             <Play size={18} aria-hidden="true" />
             Start Project
           </button>
-          <form onSubmit={runAudit}>
+          <form onSubmit={runAudit} noValidate>
             <button className="button button--quiet" type="submit">
               <ClipboardCheck size={18} aria-hidden="true" />
               Run Audit
@@ -428,7 +428,7 @@ export function ClientServicesCommandCenter() {
         </div>
       </div>
 
-      <form className="command-grid" onSubmit={runAudit}>
+      <form className="command-grid" onSubmit={runAudit} noValidate>
         {commandCells.map((cell) => (
           <article
             className="command-cell"
@@ -452,6 +452,7 @@ export function ClientServicesCommandCenter() {
             </div>
             <label htmlFor={`command-${cell.id}`}>Local input</label>
             <textarea
+              className="resize-none"
               id={`command-${cell.id}`}
               onBlur={() => addRecordEvent(`Local input captured for ${cell.title}.`)}
               onChange={(event) => updateCellInput(cell.id, event.target.value)}

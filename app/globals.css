@@ -60,6 +60,8 @@ html {
   background: var(--paper);
   color: var(--black);
   scroll-behavior: smooth;
+  scrollbar-color: rgba(136, 98, 60, 0.5) rgba(12, 12, 12, 0.08);
+  scrollbar-width: thin;
 }
 
 body {
@@ -77,6 +79,10 @@ body {
   line-height: 1.55;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+.resize-none {
+  resize: none;
 }
 
 ::selection {
@@ -286,6 +292,7 @@ button {
   align-items: center;
   gap: 8px;
   overflow-x: auto;
+  scrollbar-color: transparent transparent;
   scrollbar-width: none;
 }
 
@@ -350,6 +357,7 @@ button {
   justify-content: flex-end;
   min-width: fit-content;
   overflow-x: auto;
+  scrollbar-color: transparent transparent;
   scrollbar-width: none;
 }
 
@@ -431,6 +439,17 @@ button {
 .button--investor:hover {
   border-color: var(--bronze);
   background: rgba(136, 98, 60, 0.16);
+}
+
+.button--proof {
+  border-color: rgba(23, 44, 63, 0.28);
+  background: rgba(23, 44, 63, 0.08);
+  color: var(--navy);
+}
+
+.button--proof:hover {
+  border-color: var(--navy);
+  background: rgba(23, 44, 63, 0.13);
 }
 
 .button--survey-human {
@@ -629,6 +648,11 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.action-row--center {
+  justify-content: center;
+  margin-top: 24px;
 }
 
 .hero__secondary-actions {
@@ -4944,6 +4968,161 @@ button.configuration-relation-card:disabled {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.buyer-router-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.buyer-router-card,
+.proof-library-card,
+.proof-purchase-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(23, 44, 63, 0.16);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(244, 241, 234, 0.9)),
+    rgba(244, 241, 234, 0.92);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.64) inset,
+    0 22px 48px rgba(12, 12, 12, 0.12);
+}
+
+.buyer-router-card::before,
+.proof-library-card::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background-image: var(--maine-topographic-contours);
+  background-position: right -148px top -116px;
+  background-repeat: no-repeat;
+  background-size: min(560px, 118%) auto;
+  opacity: 0.1;
+}
+
+.buyer-router-card > *,
+.proof-library-card > *,
+.proof-purchase-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.buyer-router-card {
+  display: grid;
+  min-height: 520px;
+  gap: 14px;
+  align-content: start;
+  padding: 22px;
+}
+
+.buyer-router-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.buyer-router-card__top svg,
+.proof-library-card svg,
+.proof-purchase-card svg {
+  color: var(--bronze);
+}
+
+.buyer-router-card__top span {
+  border: 1px solid rgba(136, 98, 60, 0.34);
+  color: var(--bronze-dark);
+  padding: 5px 8px;
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.buyer-router-card h3 {
+  margin: 0;
+  color: var(--black);
+  font-size: clamp(1.2rem, 1.7vw, 1.48rem);
+  line-height: 1.15;
+}
+
+.buyer-router-card p,
+.proof-library-card p,
+.proof-purchase-card p {
+  color: rgba(62, 67, 70, 0.8);
+}
+
+.buyer-router-card dl {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.buyer-router-card dl div {
+  border-top: 1px solid rgba(23, 44, 63, 0.12);
+  padding-top: 10px;
+}
+
+.buyer-router-card dt {
+  color: var(--bronze-dark);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.buyer-router-card dd {
+  margin: 4px 0 0;
+  color: var(--navy);
+  font-weight: 800;
+  line-height: 1.42;
+}
+
+.buyer-router-card .text-link {
+  align-self: end;
+  margin-top: auto;
+}
+
+.first-move-timeline {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.first-move-timeline li {
+  display: grid;
+  grid-template-columns: minmax(96px, 0.2fr) minmax(0, 1fr);
+  gap: 14px;
+  border: 1px solid rgba(23, 44, 63, 0.14);
+  border-left: 5px solid var(--bronze);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.62);
+  padding: 16px;
+}
+
+.first-move-timeline span {
+  color: var(--bronze-dark);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.74rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.first-move-timeline strong {
+  color: var(--black);
+  font-size: 1.02rem;
+}
+
+.first-move-timeline p {
+  margin: 6px 0 0;
+  color: rgba(62, 67, 70, 0.78);
+}
+
 .service-decision-card,
 .service-quality-card,
 .service-accordion {
@@ -5479,6 +5658,74 @@ button.configuration-relation-card:disabled {
   text-transform: uppercase;
 }
 
+.buyer-route-strip {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 18px;
+}
+
+.buyer-route-strip a {
+  display: grid;
+  min-height: 74px;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(23, 44, 63, 0.16);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--navy);
+  font-size: 0.9rem;
+  font-weight: 850;
+  line-height: 1.25;
+  padding: 12px;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.buyer-route-strip a:hover {
+  border-color: var(--bronze);
+  background: var(--paper);
+  transform: translateY(-1px);
+}
+
+.buyer-route-strip svg {
+  color: var(--bronze);
+}
+
+.pricing-card__anchor {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 14px;
+  border: 1px solid rgba(136, 98, 60, 0.22);
+  border-left: 5px solid var(--bronze);
+  background: rgba(136, 98, 60, 0.08);
+  padding: 12px 14px;
+}
+
+.pricing-card__anchor strong {
+  color: var(--bronze-dark);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.pricing-card__anchor p {
+  margin: 0;
+  color: var(--navy);
+  font-weight: 850;
+}
+
+.pricing-card__anchor small {
+  color: rgba(62, 67, 70, 0.76);
+  font-size: 0.82rem;
+  font-weight: 760;
+  line-height: 1.42;
+}
+
 .purchase-library-shell {
   margin-top: 36px;
   border-top: 1px solid rgba(23, 44, 63, 0.14);
@@ -5570,6 +5817,145 @@ button.configuration-relation-card:disabled {
   gap: 10px;
   align-items: center;
   justify-content: space-between;
+}
+
+.proof-library-grid,
+.proof-purchase-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.proof-library-grid--wide {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.proof-library-card {
+  display: grid;
+  min-height: 430px;
+  gap: 12px;
+  align-content: start;
+  padding: 20px;
+}
+
+.proof-library-card h2,
+.proof-library-card h3 {
+  margin: 0;
+  color: var(--black);
+  font-size: clamp(1.18rem, 1.7vw, 1.45rem);
+  line-height: 1.16;
+}
+
+.proof-library-card__question {
+  border-left: 4px solid var(--bronze);
+  color: var(--navy) !important;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.02rem;
+  font-weight: 760;
+  line-height: 1.46;
+  padding-left: 12px;
+}
+
+.proof-library-card strong {
+  color: var(--bronze-dark);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.proof-library-card small {
+  margin-top: auto;
+  border-top: 1px solid rgba(23, 44, 63, 0.12);
+  color: var(--navy);
+  font-size: 0.82rem;
+  font-weight: 850;
+  line-height: 1.42;
+  padding-top: 12px;
+}
+
+.proof-purchase-panel {
+  margin-top: 38px;
+  border-top: 1px solid rgba(23, 44, 63, 0.14);
+  padding-top: 32px;
+}
+
+.proof-purchase-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.proof-purchase-card {
+  display: grid;
+  min-height: 250px;
+  gap: 12px;
+  align-content: start;
+  padding: 18px;
+}
+
+.proof-purchase-card h3 {
+  margin: 0;
+  color: var(--black);
+  font-size: 1.04rem;
+  line-height: 1.18;
+}
+
+.proof-purchase-card span {
+  margin-top: auto;
+  color: var(--bronze-dark);
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.buyer-route-table {
+  display: grid;
+  overflow: hidden;
+  border: 1px solid rgba(23, 44, 63, 0.16);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.buyer-route-table__row {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.4fr) minmax(180px, 0.8fr) minmax(100px, 0.4fr) minmax(140px, 0.5fr);
+  gap: 14px;
+  align-items: center;
+  border-bottom: 1px solid rgba(23, 44, 63, 0.12);
+  padding: 15px 16px;
+}
+
+.buyer-route-table__row:last-child {
+  border-bottom: 0;
+}
+
+.buyer-route-table__row div {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.buyer-route-table__row svg {
+  color: var(--bronze);
+}
+
+.buyer-route-table__row strong {
+  color: var(--black);
+  line-height: 1.25;
+}
+
+.buyer-route-table__row span {
+  color: rgba(62, 67, 70, 0.82);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.buyer-route-table__row a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--navy);
+  font-weight: 900;
 }
 
 .delivery-library-grid {
@@ -7104,6 +7490,9 @@ button.configuration-relation-card:disabled {
 .forecast-window-card,
 .evidence-source-card,
 .storefront-product-index__item,
+.buyer-router-card,
+.proof-library-card,
+.proof-purchase-card,
 .purchase-library-card,
 .delivery-option-card,
 .contract-option-card,
@@ -7206,6 +7595,9 @@ button.configuration-relation-card:disabled {
   .investment-path-card:hover,
   .forecast-window-card:hover,
   .evidence-source-card:hover,
+  .buyer-router-card:hover,
+  .proof-library-card:hover,
+  .proof-purchase-card:hover,
   .purchase-library-card:hover,
   .delivery-option-card:hover,
   .contract-option-card:hover,
@@ -7384,6 +7776,11 @@ button.configuration-relation-card:disabled {
   .onboarding-form__grid,
   .catalog-stat-grid,
   .service-decision-grid,
+  .buyer-router-grid,
+  .buyer-route-strip,
+  .proof-library-grid,
+  .proof-library-grid--wide,
+  .proof-purchase-grid,
   .service-inventory,
   .service-quality-grid,
   .academy-program-grid,
@@ -7516,6 +7913,11 @@ button.configuration-relation-card:disabled {
 
   .kaiges-toolbar__actions {
     justify-content: flex-start;
+  }
+
+  .buyer-route-table__row,
+  .first-move-timeline li {
+    grid-template-columns: 1fr;
   }
 }
 

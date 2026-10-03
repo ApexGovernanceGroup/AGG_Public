@@ -710,7 +710,7 @@ export function ClientLedSelfDeterminationCards() {
             </p>
           </div>
           <textarea
-            className="kaiges-generated-review"
+            className="kaiges-generated-review resize-none"
             readOnly
             aria-label="Generated review of selected configuration"
             value={generatedReview}

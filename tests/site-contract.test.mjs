@@ -54,6 +54,7 @@ test("AGG public site contract is present", async () => {
     about,
     contact,
     engage,
+    proofLibrary,
     investorOpportunities,
     investorQuickSheet,
     investorQuickSheetRoute,
@@ -101,6 +102,7 @@ test("AGG public site contract is present", async () => {
       read("app/about/page.tsx"),
       read("app/contact/page.tsx"),
       read("app/engage/page.tsx"),
+      read("app/proof-library/page.tsx"),
       read("app/investor-opportunities/page.tsx"),
       read("public/agg-investor-quick-sheet.html"),
       read("app/agg-investor-quick-sheet/page.tsx"),
@@ -148,6 +150,7 @@ test("AGG public site contract is present", async () => {
     about,
     contact,
     engage,
+    proofLibrary,
     investorOpportunities,
     investorQuickSheet,
     investorQuickSheetRoute,
@@ -287,6 +290,7 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Sustain Decision Advantage/);
   assert.match(sitemap, /"\/client-onboarding"/);
   assert.match(sitemap, /"\/doctrine"/);
+  assert.match(sitemap, /"\/proof-library"/);
   assert.match(sitemap, /"\/investor-opportunities"/);
   assert.match(sitemap, /"\/inside-perspective-human-cost-executive-management"/);
   assert.match(sitemap, /"\/paralysis-from-analysis-needs-vs-systems"/);
@@ -357,6 +361,22 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /service-work-grid/);
   assert.match(combined, /service-work-card/);
   assert.match(combined, /Executive Service Decision Path/);
+  assert.match(combined, /Choose Your First Move/);
+  assert.match(combined, /Start with the problem the buyer recognizes/);
+  assert.match(combined, /I need a fast executive decision/);
+  assert.match(combined, /I need a policy, SOP, memo, checklist, or governing document/);
+  assert.match(combined, /First 14 Days/);
+  assert.match(combined, /AGG validates fit, access path, and commercial boundary/);
+  assert.match(combined, /Proof Library/);
+  assert.match(combined, /Proof before scale\. Samples before commitment/);
+  assert.match(data, /export const buyerFirstMoves/);
+  assert.match(data, /export const proofLibraryItems/);
+  assert.match(data, /export const firstFourteenDays/);
+  assert.match(data, /export const revenueHardeningSignals/);
+  assert.match(proofLibrary, /See the artifact shape before the engagement grows/);
+  assert.match(proofLibrary, /buyerFirstMoves\.map/);
+  assert.match(proofLibrary, /proofLibraryItems\.map/);
+  assert.match(proofLibrary, /revenueHardeningSignals\.map/);
   assert.match(services, /className="services-hero__title"/);
   assert.match(services, /Services, products, sprints, and seminars for governed advantage\./);
   assert.match(combined, /Buy the first move, then scale only what proves useful/);
@@ -389,16 +409,17 @@ test("AGG public site contract is present", async () => {
   assert.match(siteHeader, /topNavItems\.map/);
   assert.match(siteHeader, /Client login/);
   assert.match(siteHeader, /Direct Engagement/);
-  assert.match(siteHeader, /Investor Opportunities/);
-  assert.match(siteHeader, /Apex Admin/);
-  assert.match(siteHeader, /\/investor-opportunities/);
-  assert.match(siteHeader, /\/client-services\?role=admin/);
+  assert.match(siteHeader, /Proof Library/);
+  assert.match(siteHeader, /\/proof-library/);
+  assert.doesNotMatch(siteHeader, /Investor Opportunities/);
+  assert.doesNotMatch(siteHeader, /Apex Admin/);
+  assert.doesNotMatch(siteHeader, /\/investor-opportunities/);
+  assert.doesNotMatch(siteHeader, /\/client-services\?role=admin/);
   assert.match(siteHeader, /LockKeyhole/);
-  assert.match(siteHeader, /Landmark/);
-  assert.match(siteHeader, /ShieldCheck/);
+  assert.match(siteHeader, /BookOpenCheck/);
   assert.match(
     siteHeader,
-    /href="\/client-services"[\s\S]*Client login[\s\S]*href="\/engage"[\s\S]*Direct Engagement[\s\S]*href="\/investor-opportunities"[\s\S]*Investor Opportunities[\s\S]*href="\/client-services\?role=admin"[\s\S]*Apex Admin/,
+    /href="\/client-services"[\s\S]*Client login[\s\S]*href="\/engage"[\s\S]*Direct Engagement[\s\S]*href="\/proof-library"[\s\S]*Proof Library/,
   );
   assert.doesNotMatch(siteHeader, /navItems\.map/);
   assert.match(sideNavigation, /sideNavItems\.map/);
@@ -940,7 +961,8 @@ test("AGG public site contract is present", async () => {
   assert.match(home, /Scale, scope, and pricing/);
   assert.match(combined, /Pricing Principle/);
   assert.match(combined, /Pricing is based on scale, not content depth/);
-  assert.match(combined, /Product\s+pricing is\s+based\s+on scale, not depth of content/i);
+  assert.match(combined, /Product\s+pricing is based\s+on a public planning anchor/i);
+  assert.match(combined, /scales by delivery footprint/i);
   assert.match(combined, /Scale basis/);
   assert.match(combined, /One sponsor group, one operating problem, one decision brief/);
   assert.match(combined, /Audience or cohort size/);
@@ -1704,8 +1726,15 @@ test("checkout keeps price authority on the server", async () => {
   assert.match(route, /https:\/\/api\.stripe\.com\/v1\/checkout\/sessions/);
   assert.match(route, /metadata\[onboarding_record_id\]/);
   assert.doesNotMatch(route, /body\.amount|form\?\.get\("amount"\)/);
-  assert.match(commerce, /displayPrice:\s*"Market & Scale Value"/);
-  assert.doesNotMatch(commerce, /displayPrice:\s*"\$/);
+  assert.match(commerce, /displayPrice:\s*"Starting anchor: \$2,500"/);
+  assert.match(commerce, /displayPrice:\s*"Starting anchor: \$18,000 monthly"/);
+  assert.match(commerce, /planningAnchor:/);
+  assert.match(commerce, /commercialNote:/);
+  assert.match(engage, /item\.planningAnchor/);
+  assert.match(engage, /item\.commercialNote/);
+  assert.match(engage, /buyerFirstMoves\.map/);
+  assert.match(engage, /proofLibraryItems\.slice/);
+  assert.match(engage, /firstFourteenDays\.map/);
   assert.match(commerce, /unitAmount:\s*250000/);
   assert.match(commerce, /unitAmount:\s*350000/);
   assert.match(commerce, /unitAmount:\s*450000/);
@@ -1730,13 +1759,22 @@ test("checkout keeps price authority on the server", async () => {
 });
 
 test("security and public-readiness controls are configured", async () => {
-  const [nextConfig, worker, robots, sitemap, clientServicesAuth, intakeRoute] =
+  const [
+    nextConfig,
+    worker,
+    robots,
+    sitemap,
+    clientServicesAuth,
+    clientServicesAccessRoute,
+    intakeRoute,
+  ] =
     await Promise.all([
       read("next.config.ts"),
       read("worker/index.ts"),
       read("app/robots.ts"),
       read("app/sitemap.ts"),
       read("app/client-services/auth.ts"),
+      read("app/api/client-services/access/route.ts"),
       read("app/api/client-configurations/route.ts"),
     ]);
 
@@ -1759,6 +1797,12 @@ test("security and public-readiness controls are configured", async () => {
   assert.doesNotMatch(sitemap, /client-portal/);
   assert.match(clientServicesAuth, /return isProduction\(\) \? null : DEVELOPMENT_USERNAME_SHA256/);
   assert.match(clientServicesAuth, /return isProduction\(\) \? null : DEVELOPMENT_PASSWORD_SHA256/);
+  assert.match(clientServicesAccessRoute, /MAX_LOGIN_BODY_BYTES/);
+  assert.match(clientServicesAccessRoute, /RATE_LIMIT_MAX_REQUESTS/);
+  assert.match(clientServicesAccessRoute, /sourceIsAllowed/);
+  assert.match(clientServicesAccessRoute, /declaredBodyExceedsLimit/);
+  assert.match(clientServicesAccessRoute, /rateLimitAllows/);
+  assert.match(clientServicesAccessRoute, /Cache-Control", "no-store"/);
   assert.match(intakeRoute, /MAX_BODY_BYTES/);
   assert.match(intakeRoute, /contentTypeIsJson/);
   assert.match(intakeRoute, /declaredBodyExceedsLimit/);
@@ -1769,7 +1813,7 @@ test("security and public-readiness controls are configured", async () => {
 });
 
 test("starter artifacts are removed and GitHub operations are present", async () => {
-  const [page, layout, packageJson, workflow, issueTemplate, readme] =
+  const [page, layout, packageJson, workflow, issueTemplate, readme, designContext, revenueSimulation] =
     await Promise.all([
       read("app/page.tsx"),
       read("app/layout.tsx"),
@@ -1777,6 +1821,8 @@ test("starter artifacts are removed and GitHub operations are present", async ()
       read(".github/workflows/ci.yml"),
       read(".github/ISSUE_TEMPLATE/engagement-intake.md"),
       read("README.md"),
+      read("DESIGN.md"),
+      read("scripts/agg-revenue-simulation.mjs"),
     ]);
 
   assert.doesNotMatch(page, /SkeletonPreview|codex-preview/);
@@ -1787,4 +1833,9 @@ test("starter artifacts are removed and GitHub operations are present", async ()
   assert.match(issueTemplate, /## Decision Required/);
   assert.match(readme, /Stripe Activation/);
   assert.match(readme, /GitHub Integration/);
+  assert.match(readme, /npm run simulate:revenue/);
+  assert.match(packageJson, /"simulate:revenue": "node scripts\/agg-revenue-simulation\.mjs"/);
+  assert.match(designContext, /executive operating room/);
+  assert.match(revenueSimulation, /ITERATIONS_PER_CAMPAIGN = 10_000/);
+  assert.match(revenueSimulation, /buyer-first services/);
 });

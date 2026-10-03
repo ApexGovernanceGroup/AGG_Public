@@ -18,6 +18,7 @@ export function ClientServicesGate({
 }: ClientServicesGateProps) {
   const accessDenied = accessState === "denied";
   const registrationReceived = accessState === "registered";
+  const rateLimited = accessState === "rate-limited";
 
   return (
     <section className="section client-services-section">
@@ -48,6 +49,15 @@ export function ClientServicesGate({
               <span>Client login or password was not accepted.</span>
             </div>
           )}
+          {rateLimited && (
+            <div className="status-banner status-banner--compact" role="alert">
+              <ShieldCheck size={18} aria-hidden="true" />
+              <span>
+                Login attempts are temporarily limited. Wait a few minutes
+                before trying again or request credential assistance.
+              </span>
+            </div>
+          )}
           {!authConfigured && (
             <div className="status-banner status-banner--compact" role="status">
               <ShieldCheck size={18} aria-hidden="true" />
@@ -57,12 +67,13 @@ export function ClientServicesGate({
               </span>
             </div>
           )}
-          <form className="access-form" action="/api/client-services/access" method="post">
+          <form className="access-form" action="/api/client-services/access" method="post" noValidate>
             <input name="returnTo" type="hidden" value={returnTo} />
             <label htmlFor="client-services-username">Client login</label>
             <input
               autoComplete="username"
               id="client-services-username"
+              maxLength={120}
               name="username"
               placeholder="Enter client login"
               required
@@ -72,6 +83,7 @@ export function ClientServicesGate({
             <input
               autoComplete="current-password"
               id="client-services-password"
+              maxLength={180}
               name="password"
               placeholder="Enter password"
               required

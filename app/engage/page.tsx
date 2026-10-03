@@ -11,14 +11,17 @@ import {
 import { PackageInclusions } from "../components/PackageInclusions";
 import {
   brandStandard,
+  buyerFirstMoves,
   clientAccessCards,
   contactEmail,
   customizationLevers,
   educationDeliveryOptions,
+  firstFourteenDays,
   engagementPackages,
   longTermEngagementOptions,
   packageInclusions,
   pricingPrinciple,
+  proofLibraryItems,
   purchaseLibraryItems,
   storefrontCollections,
   trustBuildingSignals,
@@ -78,10 +81,19 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
               The current digital storefront contains the six checkout-backed
               AGG products identified below. Each product follows a
               registration-controlled checkout path. Product pricing is based
-              on scale, not depth of content. Customization is captured during
-              onboarding and intake so the selected product can be shaped to
-              the client&apos;s sector, operating boundary, and required output.
+              on a public planning anchor and then scales by delivery footprint.
+              Customization is captured during onboarding and intake so the
+              selected product can be shaped to the client&apos;s sector, operating
+              boundary, and required output.
             </p>
+          </div>
+          <div className="buyer-route-strip" aria-label="Buyer problem to product map">
+            {buyerFirstMoves.map((move) => (
+              <a href={`#storefront-${move.recommendedPackageId}`} key={move.problem}>
+                <move.icon size={18} aria-hidden="true" />
+                <span>{move.problem}</span>
+              </a>
+            ))}
           </div>
           <div
             aria-label="Digital storefront products for sale"
@@ -146,6 +158,11 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
                 <div className="pricing-card__sale-status">
                   <span className="sale-badge">For Sale</span>
                   <span>{item.saleStatus}</span>
+                </div>
+                <div className="pricing-card__anchor">
+                  <strong>Planning anchor</strong>
+                  <p>{item.planningAnchor}</p>
+                  <small>{item.commercialNote}</small>
                 </div>
                 <dl className="pricing-card__meta">
                   <div>
@@ -250,6 +267,33 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
                   </article>
                 );
               })}
+            </div>
+          </div>
+          <div className="proof-purchase-panel">
+            <div className="section-heading section-heading--compact">
+              <p className="eyebrow">Proof Before Purchase Expansion</p>
+              <h2>Know what kind of artifact you are buying before the scope grows.</h2>
+              <p>
+                The proof library is public-safe and sample-oriented. It helps
+                buyers understand the shape of the product without exposing
+                client data, private records, or proprietary client context.
+              </p>
+            </div>
+            <div className="proof-purchase-grid">
+              {proofLibraryItems.slice(0, 4).map((item) => (
+                <article className="proof-purchase-card" key={item.title}>
+                  <item.icon size={22} aria-hidden="true" />
+                  <h3>{item.plainName}</h3>
+                  <p>{item.proves}</p>
+                  <span>{item.bestFirstMove}</span>
+                </article>
+              ))}
+            </div>
+            <div className="action-row action-row--center">
+              <Link className="button button--quiet" href="/proof-library">
+                Review proof library
+                <ArrowRight size={17} aria-hidden="true" />
+              </Link>
             </div>
           </div>
         </div>
@@ -362,6 +406,31 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
             assessment and closes with proof measured against the client&apos;s
             own numbers.
           </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container split">
+          <div>
+            <p className="eyebrow">First 14 Days</p>
+            <h2>What the buyer can expect after registration.</h2>
+            <p>
+              The first two weeks are designed to protect both sides: validate
+              fit, bound the work, identify the right product, and produce a
+              first inspectable decision or artifact path.
+            </p>
+          </div>
+          <ol className="first-move-timeline" aria-label="First fourteen days after purchase registration">
+            {firstFourteenDays.map((item) => (
+              <li key={item.day}>
+                <span>{item.day}</span>
+                <div>
+                  <strong>{item.title}</strong>
+                  <p>{item.detail}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 

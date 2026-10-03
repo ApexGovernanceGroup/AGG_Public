@@ -2351,6 +2351,253 @@ export const pricingPrinciple = {
   ],
 };
 
+export type BuyerFirstMove = {
+  problem: string;
+  buyer: string;
+  signal: string;
+  recommendedPackageId: string;
+  recommendedMove: string;
+  proof: string;
+  timeline: string;
+  riskReduced: string;
+  icon: LucideIcon;
+};
+
+export const buyerFirstMoves: BuyerFirstMove[] = [
+  {
+    problem: "I need a fast executive decision.",
+    buyer: "CEO, COO, chief of staff, program sponsor",
+    signal:
+      "The issue is visible, the facts are scattered, and leadership needs a defensible first move before spend expands.",
+    recommendedPackageId: "diagnostic",
+    recommendedMove: "Executive Diagnostic Brief",
+    proof: "Decision-friction map, evidence baseline, options, and 90-day action path.",
+    timeline: "1-2 weeks",
+    riskReduced: "Prevents a large engagement from starting before the problem is bounded.",
+    icon: Target,
+  },
+  {
+    problem: "I need a policy, SOP, memo, checklist, or governing document.",
+    buyer: "General counsel, PMO, division lead, governance owner",
+    signal:
+      "The organization knows what should happen, but no controlled artifact makes the work repeatable.",
+    recommendedPackageId: "product-kit",
+    recommendedMove: "Governed Product Kit",
+    proof: "Tailored product set, authority logic, implementation checklist, and handoff notes.",
+    timeline: "2-3 weeks",
+    riskReduced: "Turns informal direction into a usable record with ownership and review rules.",
+    icon: ClipboardCheck,
+  },
+  {
+    problem: "I need to protect institutional knowledge.",
+    buyer: "CKO, CIO, CDO, continuity lead, executive office",
+    signal:
+      "Turnover, fragile handoffs, undocumented expertise, or weak retrieval could break performance.",
+    recommendedPackageId: "continuity-assessment",
+    recommendedMove: "Continuity Exposure Assessment",
+    proof: "Exposure map, critical knowledge inventory, owner model, and remediation backlog.",
+    timeline: "2 weeks",
+    riskReduced:
+      "Makes knowledge-loss risk visible before a departure, reorganization, or crisis exposes it.",
+    icon: BookOpenCheck,
+  },
+  {
+    problem: "I need data, AI, automation, or measurement to create action.",
+    buyer: "CIO, CDO, transformation office, performance lead",
+    signal:
+      "Dashboards, AI tools, or analytics exist, but the measures do not reliably drive decisions.",
+    recommendedPackageId: "sprint",
+    recommendedMove: "Governance Design Sprint",
+    proof: "Decision rights, measure dictionary, control points, operating model, and implementation backlog.",
+    timeline: "3-4 weeks",
+    riskReduced:
+      "Connects data and automation to accountable decisions instead of more reporting noise.",
+    icon: Gauge,
+  },
+  {
+    problem: "I need a private workforce lab or executive seminar.",
+    buyer: "Founder, CHRO, L&D, PMO, academy sponsor",
+    signal:
+      "The team needs to learn, practice, and prove a modern governance capability together.",
+    recommendedPackageId: "academy-lab",
+    recommendedMove: "Apex Academy Private Lab",
+    proof: "Private cohort plan, applied exercises, job aids, and skill-evidence record.",
+    timeline: "Half-day to 1 day",
+    riskReduced: "Converts concepts into shared workforce behavior with evidence the client can retain.",
+    icon: GraduationCap,
+  },
+  {
+    problem: "I need sustained executive support.",
+    buyer: "CEO, COO, portfolio sponsor, transformation lead",
+    signal:
+      "The work is not a single product; it needs rhythm, review, escalation, and decision control over time.",
+    recommendedPackageId: "retainer",
+    recommendedMove: "Executive Advisory Retainer",
+    proof: "Standing decision briefs, portfolio rhythm, action register, and measured improvement reviews.",
+    timeline: "Monthly",
+    riskReduced: "Keeps momentum and accountability alive after the first product or sprint lands.",
+    icon: Workflow,
+  },
+];
+
+export type ProofLibraryItem = {
+  title: string;
+  plainName: string;
+  buyerQuestion: string;
+  proves: string;
+  sampleContents: string[];
+  bestFirstMove: string;
+  icon: LucideIcon;
+};
+
+export const proofLibraryItems: ProofLibraryItem[] = [
+  {
+    title: "Executive Diagnostic Brief",
+    plainName: "A clear first decision",
+    buyerQuestion:
+      "What is actually wrong, what matters first, and what should leadership do next?",
+    proves:
+      "AGG can separate fact, assumption, risk, and recommendation quickly enough for an executive sponsor to act.",
+    sampleContents: [
+      "Problem statement and decision required",
+      "Evidence baseline with unknowns and assumptions",
+      "RCOA with 30/60/90-day action path",
+    ],
+    bestFirstMove: "Executive Diagnostic Brief",
+    icon: Target,
+  },
+  {
+    title: "Decision Friction Map",
+    plainName: "Where the work slows down",
+    buyerQuestion:
+      "Where are ownership, authority, evidence, and process breaking the decision path?",
+    proves:
+      "AGG can make hidden friction visible and translate it into controlled operating changes.",
+    sampleContents: [
+      "Decision owner and authority gaps",
+      "Evidence delay and source-of-truth failures",
+      "Escalation rules and improvement opportunities",
+    ],
+    bestFirstMove: "Executive Diagnostic Brief or Governance Design Sprint",
+    icon: Compass,
+  },
+  {
+    title: "Governance Charter Kit",
+    plainName: "A usable governing document set",
+    buyerQuestion:
+      "What document set would make this program, division, forum, or workflow legitimate and repeatable?",
+    proves:
+      "AGG can convert executive intent into records people can use without creating unnecessary bureaucracy.",
+    sampleContents: [
+      "Purpose, scope, authority, and decision rights",
+      "Roles, review rhythm, exception handling, and evidence standard",
+      "Implementation checklist and handoff notes",
+    ],
+    bestFirstMove: "Governed Product Kit",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Continuity Exposure Register",
+    plainName: "Knowledge-loss risk list",
+    buyerQuestion: "What breaks if a key person, process, record, or repository disappears?",
+    proves:
+      "AGG can identify institutional knowledge risk before it becomes operational loss.",
+    sampleContents: [
+      "Critical knowledge owner inventory",
+      "Risk-ranked exposure and retrieval gaps",
+      "Remediation backlog with accountable owners",
+    ],
+    bestFirstMove: "Continuity Exposure Assessment",
+    icon: BookOpenCheck,
+  },
+  {
+    title: "Measure Dictionary and Action Rules",
+    plainName: "Numbers that trigger action",
+    buyerQuestion:
+      "Which measures matter, what threshold changes the decision, and who acts when performance moves?",
+    proves:
+      "AGG can connect analytics and measurement to action instead of static reporting.",
+    sampleContents: [
+      "MOP/MOE/KPI/KRI definitions",
+      "Baseline, target, threshold, and review cadence",
+      "Action rules tied to accountable owners",
+    ],
+    bestFirstMove: "Governance Design Sprint",
+    icon: Gauge,
+  },
+  {
+    title: "Private Lab Packet",
+    plainName: "Training that leaves evidence",
+    buyerQuestion:
+      "What should the workforce learn, practice, prove, and carry back into daily work?",
+    proves:
+      "AGG can turn governance, AI, automation, repository, and decision-support concepts into teachable capability.",
+    sampleContents: [
+      "Cohort objective and applied scenario",
+      "Role-based exercises and job aids",
+      "Participation record and follow-on adoption path",
+    ],
+    bestFirstMove: "Apex Academy Private Lab",
+    icon: GraduationCap,
+  },
+];
+
+export const firstFourteenDays = [
+  {
+    day: "Day 0",
+    title: "Register and state the desired outcome.",
+    detail:
+      "Client submits organization, role, product or solution intent, timeline, access need, and the operating result they want.",
+  },
+  {
+    day: "Days 1-2",
+    title: "AGG validates fit, access path, and commercial boundary.",
+    detail:
+      "AGG confirms the right first product, data-safety posture, responsible contact, and whether checkout, briefing, or long-term scoping should open next.",
+  },
+  {
+    day: "Days 3-5",
+    title: "Evidence and stakeholder intake begins.",
+    detail:
+      "AGG requests only the records, interviews, systems context, and constraints needed to bound the first move.",
+  },
+  {
+    day: "Days 7-10",
+    title: "Draft decision product or product kit is shaped.",
+    detail:
+      "The client sees the problem frame, operating logic, artifact structure, and acceptance standard before the work grows.",
+  },
+  {
+    day: "Days 10-14",
+    title: "Executive review locks the action path.",
+    detail:
+      "AGG closes the first cycle with a decision, proof record, handoff, or follow-on recommendation the sponsor can inspect.",
+  },
+] as const;
+
+export const revenueHardeningSignals = [
+  {
+    title: "Buyer-first routing",
+    body:
+      "A serious visitor can start from the operating problem, not AGG internal vocabulary, then move directly to the right first product.",
+  },
+  {
+    title: "Proof before scale",
+    body:
+      "Sample artifact categories show what a buyer receives before a larger engagement, retainer, or implementation lane opens.",
+  },
+  {
+    title: "Controlled commerce",
+    body:
+      "Products use public planning anchors and registration-controlled checkout so pricing can scale without hiding the first commercial step.",
+  },
+  {
+    title: "Reduced public attack surface",
+    body:
+      "Customer-facing navigation prioritizes engagement and login while staff/admin access is de-emphasized and rate-limited.",
+  },
+] as const;
+
 export const trustBuildingSignals = [
   {
     title: "Framework-aware, certification-neutral",
