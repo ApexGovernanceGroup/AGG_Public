@@ -51,6 +51,191 @@ const investorEngagementTopics = [
   "Investor expectations, communication cadence, diligence sequence, and decision points",
 ] as const;
 
+const valuationMetrics = [
+  {
+    value: "$1.6M-$3.2M",
+    label: "preliminary planning valuation",
+    note: "A modest investor-discussion range before audited financials, a certified valuation, or definitive offering documents.",
+  },
+  {
+    value: "$2.4M",
+    label: "working midpoint",
+    note: "A planning anchor for diligence discussion, not a promise of enterprise value, liquidity, or future return.",
+  },
+  {
+    value: "25%",
+    label: "strategic share pool",
+    note: "Up to one quarter of company ownership may be discussed for qualified, agreement-controlled private investment.",
+  },
+  {
+    value: "$400K-$800K",
+    label: "25% block reference",
+    note: "Illustrative existing-equity value of the 25% pool before negotiated discounts, premiums, rights, and transaction structure.",
+  },
+] as const;
+
+const valuationBasis = [
+  {
+    title: "Current IP and product library",
+    basis:
+      "AGG has a growing base of proprietary doctrine, KAIGED|S configuration logic, academy tracks, service catalog architecture, storefront products, governance kits, repository models, policy templates, assessment tools, and delivery methods.",
+    method:
+      "Weighted as replacement-cost and IP-option value because the assets can support services, licensing, education, custom builds, and long-horizon productization.",
+    icon: FileText,
+  },
+  {
+    title: "Commercial readiness",
+    basis:
+      "The public site, investor page, client onboarding flow, digital storefront, registration-controlled checkout posture, client portal concept, and service/product taxonomy create a usable commercial operating surface.",
+    method:
+      "Weighted as market-readiness value because AGG has moved beyond idea-only posture into packaged offers, visible client pathways, and measurable delivery architecture.",
+    icon: BriefcaseBusiness,
+  },
+  {
+    title: "Market adjacency",
+    basis:
+      "AGG sits across knowledge management, data governance, AI governance, enterprise governance, risk reduction, strategic planning, academy training, and operational measurement.",
+    method:
+      "Weighted as opportunity value because several adjacent markets show durable growth, but AGG revenue conversion still requires customer proof, pricing discipline, and repeatable delivery.",
+    icon: LineChart,
+  },
+  {
+    title: "Risk-adjusted discount",
+    basis:
+      "AGG remains early stage. A final value requires financial statements, customer traction, IP schedules, cap table, operating agreement review, liabilities, revenue quality, and counsel-approved investment terms.",
+    method:
+      "Weighted as a risk reduction factor under an ISO 31000-style lens: identify, analyze, evaluate, treat, monitor, and communicate the investment risk before terms bind.",
+    icon: ShieldCheck,
+  },
+] as const;
+
+const valuationMethodRows = [
+  {
+    factor: "Replacement-cost floor",
+    weight: "35%",
+    rationale:
+      "Reflects the cost, time, expertise, and coordination required to recreate the current AGG IP library, site architecture, service/product catalog, academy content, and governance methods.",
+  },
+  {
+    factor: "Market opportunity",
+    weight: "30%",
+    rationale:
+      "Reflects demand adjacency to KM, data governance, AI governance, eGRC, strategic planning, automation governance, and implementation measurement.",
+  },
+  {
+    factor: "Commercial readiness",
+    weight: "20%",
+    rationale:
+      "Reflects the degree to which AGG assets are already packaged into public pages, client pathways, storefront products, delivery language, and investor-facing architecture.",
+  },
+  {
+    factor: "Risk adjustment",
+    weight: "15%",
+    rationale:
+      "Discounts for early-stage revenue proof, founder dependence, unsigned investment terms, unregistered IP protections, liquidity limits, and required counsel review.",
+  },
+] as const;
+
+const capitalStructureNotes = [
+  {
+    title: "Existing-equity reference",
+    detail:
+      "If the 25% pool is treated as a block of current company value, the preliminary reference range is $400K-$800K before negotiated rights, discounts, premiums, and diligence outcomes.",
+  },
+  {
+    title: "New-money post-money reference",
+    detail:
+      "If the 25% pool is issued as new capital for a 25% post-money ownership position, the same planning range implies approximately $533K-$1.07M in strategic capital, subject to final structuring.",
+  },
+  {
+    title: "Final terms control",
+    detail:
+      "Share class, voting rights, investor council rights, information rights, transfer limits, dividends, buyout rights, and dilution treatment must be written, reviewed, and accepted before any investment binds.",
+  },
+] as const;
+
+const customInvestmentLanes = [
+  {
+    title: "Company-Level Ownership",
+    projection:
+      "Exposure to the full AGG operating thesis: products, services, academy, consulting, licensing, retained advisory, and future technology readiness.",
+    lineOfEffect:
+      "Build enterprise value through repeatable offers, client trust, protected IP, leadership access, and recurring strategic relationships.",
+    lineOfAction:
+      "Fund commercialization, legal/IP protection, sales enablement, product packaging, operating systems, and investor reporting discipline.",
+    futures:
+      "Preparedness focus: governance-as-infrastructure, AI-enabled delivery operations, investor-ready controls, and product-line scalability.",
+    icon: Building2,
+  },
+  {
+    title: "Concept or Product Stake",
+    projection:
+      "Focused participation in a defined concept, framework, product family, academy module, playbook, software layer, or implementation toolkit.",
+    lineOfEffect:
+      "Convert a discrete idea into a marketable asset with ownership logic, revenue attribution, use rights, update cadence, and measurable demand tests.",
+    lineOfAction:
+      "Build the concept charter, IP schedule, prototype, buyer profile, pricing logic, pilot plan, and launch evidence package.",
+    futures:
+      "Preparedness focus: reusable product architecture, licensing options, AI-assisted customization, and partner-channel readiness.",
+    icon: Layers3,
+  },
+  {
+    title: "Institutional Knowledge and MetaKnowledge",
+    projection:
+      "Knowledge management, institutional preservation, and metaknowledge are likely to grow as AI adoption exposes source quality, lineage, and continuity gaps.",
+    lineOfEffect:
+      "Make organizational knowledge traceable, transferable, authoritative, confidence-rated, and useful for leadership decisions.",
+    lineOfAction:
+      "Fund taxonomies, repository models, continuity products, expert-capture methods, knowledge lineage, and retrieval evaluation packages.",
+    futures:
+      "Preparedness focus: AI-ready institutional memory, source-of-truth controls, expert-departure protection, and decision reconstruction.",
+    icon: FileText,
+  },
+  {
+    title: "Data Governance and Analytics Architecture",
+    projection:
+      "Data governance and analytics demand should continue rising as enterprises need trusted data, quality rules, lineage, dashboards, and decision-grade measurement.",
+    lineOfEffect:
+      "Move clients from scattered reporting into governed analytics, clear stewardship, trusted definitions, and action-linked measures.",
+    lineOfAction:
+      "Fund data governance kits, analytics question maps, dashboard templates, lineage profiles, and measurement architecture products.",
+    futures:
+      "Preparedness focus: governed data products, AI-ready datasets, risk-aware dashboards, and evidence-backed performance control.",
+    icon: BarChart3,
+  },
+  {
+    title: "AI, Automation, and Emerging Technology Governance",
+    projection:
+      "AI governance and automation controls are likely to remain high-growth as enterprises move from experimentation to regulated, monitored, auditable adoption.",
+    lineOfEffect:
+      "Give leaders control over model use, human review, automation boundaries, authority delegation, risk records, and accountable adoption.",
+    lineOfAction:
+      "Fund AI governance playbooks, automation registers, agent-use policies, assurance cases, control libraries, and readiness assessments.",
+    futures:
+      "Preparedness focus: agentic workflow governance, model-risk evidence, human-in-the-loop protocols, and autonomous process assurance.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Strategic Planning, Risk, and Operational Proof",
+    projection:
+      "Enterprise governance, GRC, strategy execution, risk reduction, and performance management are converging into measurable operating systems.",
+    lineOfEffect:
+      "Translate strategy into governed work, visible risk treatment, owner accountability, decision cadence, and proof of improvement.",
+    lineOfAction:
+      "Fund planning kits, risk registers, operating dashboards, scorecards, MOP/MOE/KPI libraries, implementation sprints, and improvement loops.",
+    futures:
+      "Preparedness focus: living strategy systems, governance control towers, continuous assessment, and evidence-linked transformation.",
+    icon: TrendingUp,
+  },
+] as const;
+
+const investorSteeringRights = [
+  "Investor Council or observer-style strategic forum defined by written agreement",
+  "Direct executive leadership communication cadence appropriate to the investment class",
+  "Input into research priorities, product-market tests, futures readiness, and roadmap sequencing",
+  "Visibility into milestone logic, use-of-funds narratives, risk registers, and investor reporting",
+] as const;
+
 const investmentPathways = [
   {
     title: "Traditional Company Ownership Stake | Dividend Paying",
@@ -226,6 +411,26 @@ const forecastRows = [
 
 const evidenceSources = [
   {
+    label: "Brand valuation requirements",
+    source: "ISO 10668:2010",
+    href: "https://committee.iso.org/cms/live/live/en/sites/isoorg/contents/news/2020/03/Ref2486/metadataStore/standard-reference-1@/46032.html?browse=ics",
+  },
+  {
+    label: "Innovation IP management guidance",
+    source: "ISO 56005:2020",
+    href: "https://www.iso.org/standard/72761.html",
+  },
+  {
+    label: "Risk management guidance",
+    source: "ISO 31000:2018",
+    href: "https://www.iso.org/standard/65694.html",
+  },
+  {
+    label: "General solicitation guidance",
+    source: "U.S. SEC",
+    href: "https://www.sec.gov/resources-small-businesses/capital-raising-building-blocks/general-solicitation",
+  },
+  {
     label: "Knowledge Management Software Market forecast",
     source: "360iResearch",
     href: "https://www.360iresearch.com/library/intelligence/knowledge-management-software",
@@ -311,10 +516,11 @@ export default function InvestorOpportunitiesPage() {
               <p>
                 This page is an invitation to request a private investor briefing. It is not an
                 offer to sell securities, a solicitation to buy securities, a promise of dividends,
-                or legal, tax, accounting, or investment advice. Any investment, ownership,
-                dividend, IP participation, distribution, or return right must be documented in a
-                written agreement accepted by AGG ownership and reviewed through appropriate
-                professional counsel.
+                a certified valuation, or legal, tax, accounting, or investment advice. Any
+                valuation range, 25% share availability, investor council participation,
+                investment, ownership, dividend, IP participation, distribution, voting,
+                governance, or return right must be documented in a written agreement accepted
+                by AGG ownership and reviewed through appropriate professional counsel.
               </p>
             </div>
           </div>
@@ -347,6 +553,140 @@ export default function InvestorOpportunitiesPage() {
                 <p>{signal.note}</p>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--steel">
+        <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow">Preliminary ISO-Aligned Valuation</p>
+            <h2>A modest valuation frame for investor discussion.</h2>
+            <p>
+              AGG&apos;s preliminary valuation is built as a planning model, not a certified
+              appraisal. The method uses ISO 10668-style transparency for valuation objective,
+              basis, method, sources, and assumptions; ISO 56005-style attention to IP
+              management; and ISO 31000-style risk adjustment before any term sheet is considered.
+            </p>
+          </div>
+          <div className="valuation-metric-grid" aria-label="Preliminary valuation summary">
+            {valuationMetrics.map((metric) => (
+              <article className="valuation-metric-card" key={metric.label}>
+                <strong>{metric.value}</strong>
+                <span>{metric.label}</span>
+                <p>{metric.note}</p>
+              </article>
+            ))}
+          </div>
+          <div className="valuation-basis-grid" aria-label="Valuation basis">
+            {valuationBasis.map((item) => (
+              <article className="valuation-basis-card" key={item.title}>
+                <item.icon size={24} aria-hidden="true" />
+                <h3>{item.title}</h3>
+                <p>{item.basis}</p>
+                <p>{item.method}</p>
+              </article>
+            ))}
+          </div>
+          <div className="valuation-method">
+            <div className="valuation-method__narrative">
+              <p className="eyebrow">Valuation Logic</p>
+              <h3>Why the range is deliberately conservative.</h3>
+              <p>
+                AGG has visible IP, structured commercial offers, a product library, a client
+                engagement surface, and a market thesis. The valuation remains modest because
+                investor diligence still needs audited or reviewed financials, signed customer
+                evidence, IP schedules, operating agreement review, cap table confirmation,
+                liabilities, revenue attribution, and final securities counsel.
+              </p>
+            </div>
+            <div className="valuation-method__panel">
+              {valuationMethodRows.map((row) => (
+                <article key={row.factor}>
+                  <span>{row.weight}</span>
+                  <div>
+                    <h4>{row.factor}</h4>
+                    <p>{row.rationale}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+          <div className="capital-structure-grid" aria-label="25 percent share pool structure">
+            {capitalStructureNotes.map((note) => (
+              <article className="capital-structure-card" key={note.title}>
+                <h3>{note.title}</h3>
+                <p>{note.detail}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow">Custom Investable Opportunities</p>
+            <h2>Invest in the company, a concept, a product, or the futures work inside AGG.</h2>
+            <p>
+              Investors may pursue company-level exposure or a customized opportunity tied to a
+              defined concept, product, IP family, research projection, line of effect, line of
+              action, or futures emerging-technology preparedness lane.
+            </p>
+          </div>
+          <div className="research-lane-grid" aria-label="Custom investor research and futures lanes">
+            {customInvestmentLanes.map((lane) => (
+              <article className="research-lane-card" key={lane.title}>
+                <lane.icon size={25} aria-hidden="true" />
+                <h3>{lane.title}</h3>
+                <dl>
+                  <div>
+                    <dt>Research projection</dt>
+                    <dd>{lane.projection}</dd>
+                  </div>
+                  <div>
+                    <dt>Line of effect</dt>
+                    <dd>{lane.lineOfEffect}</dd>
+                  </div>
+                  <div>
+                    <dt>Line of action</dt>
+                    <dd>{lane.lineOfAction}</dd>
+                  </div>
+                  <div>
+                    <dt>Futures preparedness</dt>
+                    <dd>{lane.futures}</dd>
+                  </div>
+                </dl>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--dark">
+        <div className="container investor-steering">
+          <div>
+            <p className="eyebrow">Investor Voice</p>
+            <h2>Every accepted investment is designed to include a strategic voice.</h2>
+            <p>
+              AGG investment is not intended to be passive capital only. Accepted investors can
+              help shape the direction of the organization, the product portfolio, and the future
+              technology thesis through a written participation structure that preserves AGG
+              ownership authority while giving investors meaningful access and influence.
+            </p>
+          </div>
+          <div className="investor-steering__panel">
+            <ul className="check-list">
+              {investorSteeringRights.map((right) => (
+                <li key={right}>{right}</li>
+              ))}
+            </ul>
+            <p>
+              Participation rights are advisory unless the executed agreement grants formal
+              voting, board, observer, consent, or information rights. The goal is clear:
+              investors can add their fingerprints to AGG&apos;s organizational direction without
+              creating unmanaged operating control.
+            </p>
           </div>
         </div>
       </section>
@@ -489,10 +829,11 @@ export default function InvestorOpportunitiesPage() {
       <section className="section section--steel">
         <div className="container">
           <div className="section-heading">
-            <p className="eyebrow">Evidence Basis</p>
-            <h2>Public sources used to ground the forecast frame.</h2>
+            <p className="eyebrow">Evidence and Standards Basis</p>
+            <h2>Public sources used to ground the valuation and forecast frame.</h2>
             <p>
-              These sources do not prove AGG revenue. They show market pressure in adjacent
+              These sources do not prove AGG revenue or certify AGG&apos;s valuation. They provide
+              standards context, investor-communication caution, and market pressure in adjacent
               categories that AGG can translate into products, services, education, licensing,
               and implementation support.
             </p>
