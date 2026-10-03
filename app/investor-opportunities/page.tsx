@@ -296,119 +296,119 @@ const forecastRows = [
   {
     domain: "Knowledge Management",
     basis:
-      "KM software forecasts point to durable double-digit growth as knowledge sharing, discovery, decision support, virtual agents, and cloud KM become normal enterprise infrastructure.",
+      "Conservative 2026 market proxy: ~$38.6B. Source basis: ResearchAndMarkets/Technavio forecasts +$32.06B of 2025-2030 market expansion at 14.3% CAGR; AGG planning case uses a 10% CAGR haircut.",
     year3:
-      "Repository cleanup, AI-search readiness, taxonomy, ownership, and decision-support use cases become immediate budget items.",
+      "Conservative 2029 estimate: ~$51.4B, about +33% from the 2026 proxy. Near-term demand favors repository cleanup, taxonomy, AI-search readiness, ownership, and decision-support use cases.",
     year6:
-      "KM shifts from documentation storage into operational knowledge flow, decision support, and workforce continuity.",
+      "Conservative 2032 estimate: ~$68.4B, about +77% from the 2026 proxy. KM shifts from documentation storage into operational knowledge flow, decision support, and workforce continuity.",
     year10:
-      "Institutional memory becomes a managed enterprise asset with product, education, and governance revenue potential.",
+      "Conservative 2036 estimate: ~$100.1B, about +159% from the 2026 proxy. Institutional memory becomes a managed enterprise asset with product, education, and governance revenue potential.",
     year15:
-      "Competitive advantage depends on preserving expert knowledge across people, automated systems, partners, and leadership transitions.",
+      "Conservative 2041+ planning estimate: ~$161.2B, about +318% from the 2026 proxy. Advantage depends on preserving expert knowledge across people, automated systems, partners, and leadership transitions.",
   },
   {
     domain: "Institutional Knowledge Preservation",
     basis:
-      "Demographic turnover, distributed work, transformation fatigue, and AI training needs increase demand for controlled knowledge capture and transfer.",
+      "Conservative 2026 market proxy: ~$59.5B using enterprise content management as the preservation-adjacent category. Source basis: MarketsandMarkets estimates ECM at $59.53B in 2026 with 10.0% CAGR through 2031; AGG planning case uses 7%.",
     year3:
-      "Leaders fund capture of critical know-how, SOPs, role knowledge, lessons learned, and continuity records.",
+      "Conservative 2029 estimate: ~$72.9B, about +23% from the 2026 proxy. Leaders fund capture of critical know-how, SOPs, role knowledge, lessons learned, and continuity records.",
     year6:
-      "Preservation becomes a standard part of onboarding, succession, risk, compliance, and modernization programs.",
+      "Conservative 2032 estimate: ~$89.3B, about +50% from the 2026 proxy. Preservation becomes a standard part of onboarding, succession, risk, compliance, and modernization programs.",
     year10:
-      "Knowledge preservation merges with workforce development, AI governance, records management, and enterprise resilience.",
+      "Conservative 2036 estimate: ~$117.1B, about +97% from the 2026 proxy. Knowledge preservation merges with workforce development, AI governance, records management, and enterprise resilience.",
     year15:
-      "Institutions treat knowledge loss as an operational risk that requires measurable controls and periodic assurance.",
+      "Conservative 2041+ planning estimate: ~$164.2B, about +176% from the 2026 proxy. Institutions treat knowledge loss as an operational risk that requires measurable controls and periodic assurance.",
   },
   {
     domain: "MetaKnowledge",
     basis:
-      "Metaknowledge means knowledge about knowledge: source, owner, lineage, confidence, uncertainty, authority, decision use, and expiration.",
+      "Conservative 2026 market proxy: ~$12.5B using metadata management tools as the metaknowledge-adjacent category. Source basis: 360iResearch estimates $12.47B in 2026 and $27.74B by 2032 at 14.17% CAGR; AGG planning case uses 10%.",
     year3:
-      "AI use exposes weak source control, making lineage, confidence, and authoritative-record tagging more valuable.",
+      "Conservative 2029 estimate: ~$16.6B, about +33% from the 2026 proxy. AI use exposes weak source control, making lineage, confidence, and authoritative-record tagging more valuable.",
     year6:
-      "Metaknowledge becomes a premium layer for trusted AI retrieval, audit-ready analysis, and decision reconstruction.",
+      "Conservative 2032 estimate: ~$22.1B, about +77% from the 2026 proxy. Metaknowledge becomes a premium layer for trusted AI retrieval, audit-ready analysis, and decision reconstruction.",
     year10:
-      "Organizations differentiate by proving not just what they know, but how they know it and when it should change.",
+      "Conservative 2036 estimate: ~$32.3B, about +159% from the 2026 proxy. Organizations differentiate by proving not just what they know, but how they know it and when it should change.",
     year15:
-      "Metaknowledge becomes the control plane for institutional memory, model use, evidence quality, and automated decisions.",
+      "Conservative 2041+ planning estimate: ~$52.1B, about +318% from the 2026 proxy. Metaknowledge becomes the control plane for institutional memory, model use, evidence quality, and automated decisions.",
   },
   {
     domain: "Data Governance",
     basis:
-      "Public market estimates show the data governance market expanding rapidly through 2030 as privacy, quality, lineage, and AI readiness requirements intensify.",
+      "Conservative 2026 market proxy: ~$5.8B, derived from Grand View Research's $12.66B 2030 forecast and 21.7% reported CAGR. AGG planning case uses 14% CAGR.",
     year3:
-      "Clients need definitions, ownership, stewardship, quality rules, lineage, access, and compliance-linked data controls.",
+      "Conservative 2029 estimate: ~$8.5B, about +48% from the 2026 proxy. Clients need definitions, ownership, stewardship, quality rules, lineage, access, and compliance-linked data controls.",
     year6:
-      "Data governance becomes a default prerequisite for AI, automation, analytics, and regulated decision support.",
+      "Conservative 2032 estimate: ~$12.6B, about +119% from the 2026 proxy. Data governance becomes a default prerequisite for AI, automation, analytics, and regulated decision support.",
     year10:
-      "Governed data products, stewardship models, and traceable analytics become core enterprise operating infrastructure.",
+      "Conservative 2036 estimate: ~$21.4B, about +271% from the 2026 proxy. Governed data products, stewardship models, and traceable analytics become core enterprise operating infrastructure.",
     year15:
-      "Mature organizations compete on trusted data ecosystems rather than isolated dashboards or one-off analytics.",
+      "Conservative 2041+ planning estimate: ~$41.1B, about +614% from the 2026 proxy. Mature organizations compete on trusted data ecosystems rather than isolated dashboards or one-off analytics.",
   },
   {
     domain: "AI | Automation Governance",
     basis:
-      "AI governance and intelligent process automation forecasts show high growth as enterprises move from experimentation to controlled adoption.",
+      "Conservative 2026 market proxy: ~$20.4B, combining AI governance and intelligent process automation proxies. Source basis: MarketsandMarkets reports AI governance growth to $5.78B by 2029; Grand View Research estimates IPA at $18.5B in 2026. AGG planning case uses 16%.",
     year3:
-      "AI policies, model-use controls, human review, prompt standards, automation inventories, and audit trails become urgent.",
+      "Conservative 2029 estimate: ~$31.8B, about +56% from the 2026 proxy. AI policies, model-use controls, human review, prompt standards, automation inventories, and audit trails become urgent.",
     year6:
-      "AI governance integrates with risk, data governance, cyber, legal, procurement, workforce training, and operating reviews.",
+      "Conservative 2032 estimate: ~$49.7B, about +144% from the 2026 proxy. AI governance integrates with risk, data governance, cyber, legal, procurement, workforce training, and operating reviews.",
     year10:
-      "Governed automation portfolios become recurring enterprise programs with continuous assessment and improvement.",
+      "Conservative 2036 estimate: ~$89.9B, about +341% from the 2026 proxy. Governed automation portfolios become recurring enterprise programs with continuous assessment and improvement.",
     year15:
-      "Organizations require governance over autonomous workflows, non-human actors, delegated decisions, and machine-generated evidence.",
+      "Conservative 2041+ planning estimate: ~$188.8B, about +827% from the 2026 proxy. Organizations require governance over autonomous workflows, non-human actors, delegated decisions, and machine-generated evidence.",
   },
   {
     domain: "Long Range Strategic Planning",
     basis:
-      "Strategic planning software and planning-adjacent markets are expanding as organizations need horizon scanning, scenario logic, portfolio alignment, and execution tracking.",
+      "Conservative 2026 market proxy: ~$3.6B. Source basis: ResearchAndMarkets strategy management software forecast estimates $3.59B in 2026 and $5.97B by 2030 at 13.6% CAGR; AGG planning case uses 8%.",
     year3:
-      "Leaders need faster planning cycles, objective-to-task traceability, decision criteria, and measurable execution paths.",
+      "Conservative 2029 estimate: ~$4.5B, about +26% from the 2026 proxy. Leaders need faster planning cycles, objective-to-task traceability, decision criteria, and measurable execution paths.",
     year6:
-      "Planning shifts from annual documents to living strategic operating systems tied to data, risk, and measures.",
+      "Conservative 2032 estimate: ~$5.7B, about +59% from the 2026 proxy. Planning shifts from annual documents to living strategic operating systems tied to data, risk, and measures.",
     year10:
-      "Foresight, investment logic, governance, portfolio control, and enterprise measurement converge into one discipline.",
+      "Conservative 2036 estimate: ~$7.8B, about +116% from the 2026 proxy. Foresight, investment logic, governance, portfolio control, and enterprise measurement converge into one discipline.",
     year15:
-      "Strategic planning becomes persistent decision architecture rather than episodic senior-leader offsites.",
+      "Conservative 2041+ planning estimate: ~$11.4B, about +217% from the 2026 proxy. Strategic planning becomes persistent decision architecture rather than episodic senior-leader offsites.",
   },
   {
     domain: "Enterprise Governance",
     basis:
-      "GRC and security-GRC forecasts show durable growth as regulatory pressure, cyber exposure, third-party risk, and AI oversight expand.",
+      "Conservative 2026 market proxy: ~$82.9B. Source basis: Grand View Research estimates enterprise GRC at $82.93B in 2026 and $203.65B by 2033 at 13.7% CAGR; AGG planning case uses 10%.",
     year3:
-      "Enterprises rationalize policies, decision rights, authorities, risks, controls, and exception processes.",
+      "Conservative 2029 estimate: ~$110.4B, about +33% from the 2026 proxy. Enterprises rationalize policies, decision rights, authorities, risks, controls, and exception processes.",
     year6:
-      "Governance becomes more integrated, automated, evidence-linked, and embedded in daily workflows.",
+      "Conservative 2032 estimate: ~$146.9B, about +77% from the 2026 proxy. Governance becomes more integrated, automated, evidence-linked, and embedded in daily workflows.",
     year10:
-      "Governance architecture becomes a marketable operating system for complex organizations.",
+      "Conservative 2036 estimate: ~$215.1B, about +159% from the 2026 proxy. Governance architecture becomes a marketable operating system for complex organizations.",
     year15:
-      "Institutional trust depends on visible control of authority, risk, data, automation, and performance.",
+      "Conservative 2041+ planning estimate: ~$346.4B, about +318% from the 2026 proxy. Institutional trust depends on visible control of authority, risk, data, automation, and performance.",
   },
   {
     domain: "Risk Mitigation & Reduction",
     basis:
-      "Risk-management and GRC markets continue to grow as enterprises face operational, regulatory, cyber, AI, workforce, and supplier risk.",
+      "Conservative 2026 market proxy: ~$6.9B, derived from MarketsandMarkets' ERM forecast from $6.00B in 2025 to $11.97B by 2030 at 14.8% CAGR. AGG planning case uses 9%.",
     year3:
-      "Clients fund risk registers, issue controls, action trackers, assurance cases, and corrective-action visibility.",
+      "Conservative 2029 estimate: ~$8.9B, about +30% from the 2026 proxy. Clients fund risk registers, issue controls, action trackers, assurance cases, and corrective-action visibility.",
     year6:
-      "Risk programs shift from compliance reporting into operating intelligence and preventive controls.",
+      "Conservative 2032 estimate: ~$11.6B, about +68% from the 2026 proxy. Risk programs shift from compliance reporting into operating intelligence and preventive controls.",
     year10:
-      "Risk reduction links directly to strategy, data, AI, knowledge continuity, and performance management.",
+      "Conservative 2036 estimate: ~$16.3B, about +137% from the 2026 proxy. Risk reduction links directly to strategy, data, AI, knowledge continuity, and performance management.",
     year15:
-      "The premium shifts to organizations that can prove risk treatment reduced exposure, burden, and decision delay.",
+      "Conservative 2041+ planning estimate: ~$25.1B, about +264% from the 2026 proxy. The premium shifts to organizations that can prove risk treatment reduced exposure, burden, and decision delay.",
   },
   {
     domain: "Enterprise Measurement, Assessment, Implementation, & Operationalization",
     basis:
-      "Performance-management, business-process-management, and intelligent automation markets support demand for measurable execution, dashboards, process control, and proof of improvement.",
+      "Conservative 2026 market proxy: ~$25.1B, combining business process management and enterprise performance management proxies. Source basis: Grand View Research estimates BPM at $17.5B in 2026 and EPM at $7.6B in 2026. AGG planning case uses 8%.",
     year3:
-      "Organizations need baseline assessments, MOP/MOE/KPI dictionaries, dashboards, and implementation scorecards.",
+      "Conservative 2029 estimate: ~$31.6B, about +26% from the 2026 proxy. Organizations need baseline assessments, MOP/MOE/KPI dictionaries, dashboards, and implementation scorecards.",
     year6:
-      "Measurement becomes part of the delivery fabric: every initiative requires proof, cadence, thresholds, and owners.",
+      "Conservative 2032 estimate: ~$39.8B, about +59% from the 2026 proxy. Measurement becomes part of the delivery fabric: every initiative requires proof, cadence, thresholds, and owners.",
     year10:
-      "Operationalization becomes a repeatable product family: assess, architect, govern, implement, measure, improve.",
+      "Conservative 2036 estimate: ~$54.2B, about +116% from the 2026 proxy. Operationalization becomes a repeatable product family: assess, architect, govern, implement, measure, improve.",
     year15:
-      "Enterprises reward providers that can prove implementation changed performance rather than merely delivered artifacts.",
+      "Conservative 2041+ planning estimate: ~$79.6B, about +217% from the 2026 proxy. Enterprises reward providers that can prove implementation changed performance rather than merely delivered artifacts.",
   },
 ] as const;
 
@@ -444,18 +444,28 @@ const evidenceSources = [
   },
   {
     label: "Knowledge Management Software Market forecast",
+    source: "ResearchAndMarkets / Technavio",
+    href: "https://www.researchandmarkets.com/reports/5390468/knowledge-management-software-market-2026-2030",
+  },
+  {
+    label: "Enterprise Content Management Market forecast",
+    source: "MarketsandMarkets",
+    href: "https://www.marketsandmarkets.com/Market-Reports/enterprise-content-management-market-226977096.html",
+  },
+  {
+    label: "Metadata Management Tools forecast",
     source: "360iResearch",
-    href: "https://www.360iresearch.com/library/intelligence/knowledge-management-software",
+    href: "https://www.360iresearch.com/library/intelligence/metadata-management-tools",
   },
   {
     label: "Data Governance Market forecast",
     source: "Grand View Research",
-    href: "https://www.grandviewresearch.com/industry-analysis/data-governance-market-report",
+    href: "https://www.grandviewresearch.com/press-release/global-data-governance-market",
   },
   {
     label: "AI Governance Market forecast",
-    source: "MarketsandMarkets",
-    href: "https://www.marketsandmarkets.com/PressReleases/ai-governance.asp",
+    source: "MarketsandMarkets via GlobeNewswire",
+    href: "https://www.globenewswire.com/news-release/2026/08/25/3350690/0/en/ai-governance-market-surges-to-5-78-billion-at-a-cagr-45-3-by-2029-report-by-marketsandmarkets.html",
   },
   {
     label: "Intelligent Process Automation Market forecast",
@@ -463,14 +473,19 @@ const evidenceSources = [
     href: "https://www.grandviewresearch.com/industry-analysis/intelligent-process-automation-market",
   },
   {
-    label: "Security GRC Software forecast",
-    source: "IDC via MarketResearch.com",
-    href: "https://www.marketresearch.com/IDC-v2477/Forecast-Worldwide-Security-Governance-Risk-46333536/",
+    label: "Strategy Management Software forecast",
+    source: "ResearchAndMarkets",
+    href: "https://www.researchandmarkets.com/reports/5951804/strategy-management-software-market-report",
   },
   {
-    label: "Governance, Risk Management, and Compliance forecast",
-    source: "The Business Research Company",
-    href: "https://www.thebusinessresearchcompany.com/report/governance-risk-management-and-compliance-market-global-report",
+    label: "Enterprise GRC Market forecast",
+    source: "Grand View Research",
+    href: "https://www.grandviewresearch.com/industry-analysis/enterprise-governance-risk-compliance-egrc-market",
+  },
+  {
+    label: "Enterprise Risk Management forecast",
+    source: "MarketsandMarkets",
+    href: "https://www.marketsandmarkets.com/Market-Reports/enterprise-risk-management-market-113046879.html",
   },
   {
     label: "Business Process Management forecast",
@@ -478,9 +493,9 @@ const evidenceSources = [
     href: "https://www.grandviewresearch.com/industry-analysis/business-process-management-bpm-market",
   },
   {
-    label: "Strategic Planning Software forecast",
-    source: "Verified Market Research",
-    href: "https://www.verifiedmarketresearch.com/product/strategic-planning-software-market/",
+    label: "Enterprise Performance Management forecast",
+    source: "Grand View Research",
+    href: "https://www.grandviewresearch.com/industry-analysis/enterprise-performance-management-market-report",
   },
 ] as const;
 
@@ -830,8 +845,11 @@ export default function InvestorOpportunitiesPage() {
             <h2>Where growth pressure may create AGG opportunity.</h2>
             <p>
               Forecasts below are plain-language working assumptions for investor discussion,
-              not guaranteed revenue projections. They are intended to help investors see how
-              AGG&apos;s service, product, academy, and IP portfolio can map against durable demand.
+              not guaranteed revenue projections. Each market basis uses a conservative public
+              market proxy, a haircut to reported CAGR where appropriate, and rounded category
+              estimates. The 15-year view is a planning extrapolation, not a published forecast.
+              The purpose is to show how AGG&apos;s service, product, academy, and IP portfolio can map
+              against durable demand.
             </p>
           </div>
           <div className="forecast-table-shell">

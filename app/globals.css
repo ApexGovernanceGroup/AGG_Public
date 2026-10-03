@@ -2034,13 +2034,13 @@ button.hero__solution-lane.is-active {
 
 .forecast-table th,
 .forecast-table td {
-  vertical-align: top;
+  vertical-align: middle;
   border-bottom: 1px solid rgba(12, 12, 12, 0.1);
   padding: 16px;
   color: rgba(62, 67, 70, 0.82);
   font-size: 0.9rem;
   line-height: 1.48;
-  text-align: left;
+  text-align: center;
 }
 
 .forecast-table thead th {
@@ -2062,8 +2062,11 @@ button.hero__solution-lane.is-active {
 .forecast-table__cell {
   display: flex;
   min-height: 212px;
+  align-items: center;
   flex-direction: column;
   gap: 16px;
+  justify-content: center;
+  text-align: center;
 }
 
 .forecast-table__cell p {
@@ -2072,7 +2075,7 @@ button.hero__solution-lane.is-active {
 
 .forecast-table__cell strong {
   display: block;
-  margin-top: auto;
+  margin-top: 0;
   border-top: 1px solid rgba(136, 98, 60, 0.22);
   padding-top: 12px;
   color: var(--navy);
