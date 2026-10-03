@@ -462,9 +462,11 @@ test("AGG public site contract is present", async () => {
   assert.match(investorOpportunities, /AI, Automation, and Emerging Technology Governance/);
   assert.match(investorOpportunities, /Strategic Planning, Risk, and Operational Proof/);
   assert.match(investorOpportunities, /Research projection/);
-  assert.match(investorOpportunities, /Line of effect/);
+  assert.match(investorOpportunities, /Line of effort/);
+  assert.doesNotMatch(investorOpportunities, /Line of effect/);
   assert.match(investorOpportunities, /Line of action/);
   assert.match(investorOpportunities, /Futures preparedness/);
+  assert.match(investorOpportunities, /Engineered Advantage:/);
   assert.match(investorOpportunities, /Investor Voice/);
   assert.match(investorOpportunities, /Every accepted investment is designed to include a strategic voice/);
   assert.match(investorOpportunities, /Investor Council or observer-style strategic forum/);
@@ -475,7 +477,8 @@ test("AGG public site contract is present", async () => {
   assert.equal((investorOpportunities.match(/capitalStructureNotes\.map/g) ?? []).length, 1);
   assert.equal((investorOpportunities.match(/customInvestmentLanes\.map/g) ?? []).length, 1);
   assert.equal((investorOpportunities.match(/investorSteeringRights\.map/g) ?? []).length, 1);
-  assert.equal((investorOpportunities.match(/lineOfEffect:/g) ?? []).length, 6);
+  assert.equal((investorOpportunities.match(/lineOfEffort:/g) ?? []).length, 6);
+  assert.equal((investorOpportunities.match(/engineeredAdvantage:/g) ?? []).length, 6);
   assert.match(investorOpportunities, /Traditional Company Ownership Stake \| Dividend Paying/);
   assert.match(investorOpportunities, /Staked Individual IP Ownership Percentage \| Dividend Paying/);
   assert.match(investorOpportunities, /Short Term - 3 Year/);
@@ -1404,7 +1407,14 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(capitalStructureGrid, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(capitalStructureCard, /border-left:\s*5px solid rgba\(136,\s*98,\s*60,\s*0\.62\)/);
   assert.match(researchLaneGrid, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
-  assert.match(css, /\.research-lane-card\s*{[^}]*min-height:\s*560px/);
+  assert.match(css, /\.research-lane-card\s*{[^}]*min-height:\s*720px/);
+  assert.match(css, /\.research-lane-card__heading\s*{[^}]*display:\s*flex/);
+  assert.match(css, /\.research-lane-card__heading\s*{[^}]*text-align:\s*left/);
+  assert.match(css, /\.research-lane-card__heading h3\s*{[^}]*text-align:\s*left/);
+  assert.match(css, /\.research-lane-card dt\s*{[^}]*text-align:\s*left/);
+  assert.match(css, /\.research-lane-card dd\s*{[^}]*text-indent:\s*2\.1rem/);
+  assert.match(css, /\.research-lane-card__advantage h4\s*{[^}]*text-align:\s*left/);
+  assert.match(css, /\.research-lane-card__advantage ul\s*{[^}]*padding-left:\s*1\.2rem/);
   assert.match(investorSteering, /grid-template-columns:\s*minmax\(0,\s*0\.88fr\)\s*minmax\(320px,\s*0\.72fr\)/);
   assert.match(css, /\.investor-steering__panel\s*{[^}]*background:\s*rgba\(255,\s*255,\s*255,\s*0\.06\)/);
   assert.match(investmentPathGrid, /grid-template-columns:\s*repeat\(5,\s*minmax\(0,\s*1fr\)\)/);

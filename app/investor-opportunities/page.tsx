@@ -162,72 +162,102 @@ const customInvestmentLanes = [
     title: "Company-Level Ownership",
     projection:
       "Exposure to the full AGG operating thesis: products, services, academy, consulting, licensing, retained advisory, and future technology readiness.",
-    lineOfEffect:
+    lineOfEffort:
       "Build enterprise value through repeatable offers, client trust, protected IP, leadership access, and recurring strategic relationships.",
     lineOfAction:
       "Fund commercialization, legal/IP protection, sales enablement, product packaging, operating systems, and investor reporting discipline.",
     futures:
       "Preparedness focus: governance-as-infrastructure, AI-enabled delivery operations, investor-ready controls, and product-line scalability.",
+    engineeredAdvantage: [
+      "Investor capital connects to the complete AGG commercial engine, not an isolated product bet.",
+      "Clients gain a more disciplined operating partner with stronger delivery controls and reporting logic.",
+      "AGG gains commercialization depth, investor accountability, and scalable product-line governance.",
+    ],
     icon: Building2,
   },
   {
     title: "Concept or Product Stake",
     projection:
       "Focused participation in a defined concept, framework, product family, academy module, playbook, software layer, or implementation toolkit.",
-    lineOfEffect:
+    lineOfEffort:
       "Convert a discrete idea into a marketable asset with ownership logic, revenue attribution, use rights, update cadence, and measurable demand tests.",
     lineOfAction:
       "Build the concept charter, IP schedule, prototype, buyer profile, pricing logic, pilot plan, and launch evidence package.",
     futures:
       "Preparedness focus: reusable product architecture, licensing options, AI-assisted customization, and partner-channel readiness.",
+    engineeredAdvantage: [
+      "Investors can align capital to a named asset with clearer attribution, evidence, and decision gates.",
+      "Clients receive practical tools that can be piloted, refined, licensed, and updated over time.",
+      "AGG gains repeatable product evidence, pricing discipline, and defensible IP packaging.",
+    ],
     icon: Layers3,
   },
   {
     title: "Institutional Knowledge and MetaKnowledge",
     projection:
       "Knowledge management, institutional preservation, and metaknowledge are likely to grow as AI adoption exposes source quality, lineage, and continuity gaps.",
-    lineOfEffect:
+    lineOfEffort:
       "Make organizational knowledge traceable, transferable, authoritative, confidence-rated, and useful for leadership decisions.",
     lineOfAction:
       "Fund taxonomies, repository models, continuity products, expert-capture methods, knowledge lineage, and retrieval evaluation packages.",
     futures:
       "Preparedness focus: AI-ready institutional memory, source-of-truth controls, expert-departure protection, and decision reconstruction.",
+    engineeredAdvantage: [
+      "Clients reduce knowledge loss, decision delay, and uncertainty around authoritative source material.",
+      "Investors participate in a durable need created by workforce transition and AI trust requirements.",
+      "AGG gains stronger doctrine-to-product pathways for repositories, capture methods, and lineage tools.",
+    ],
     icon: FileText,
   },
   {
     title: "Data Governance and Analytics Architecture",
     projection:
       "Data governance and analytics demand should continue rising as enterprises need trusted data, quality rules, lineage, dashboards, and decision-grade measurement.",
-    lineOfEffect:
+    lineOfEffort:
       "Move clients from scattered reporting into governed analytics, clear stewardship, trusted definitions, and action-linked measures.",
     lineOfAction:
       "Fund data governance kits, analytics question maps, dashboard templates, lineage profiles, and measurement architecture products.",
     futures:
       "Preparedness focus: governed data products, AI-ready datasets, risk-aware dashboards, and evidence-backed performance control.",
+    engineeredAdvantage: [
+      "Clients gain cleaner definitions, trusted measures, and stronger accountability for decisions made from data.",
+      "Investors gain exposure to data-control needs that expand as AI and automation adoption mature.",
+      "AGG gains reusable governance kits, dashboard patterns, and measurable delivery assets.",
+    ],
     icon: BarChart3,
   },
   {
     title: "AI, Automation, and Emerging Technology Governance",
     projection:
       "AI governance and automation controls are likely to remain high-growth as enterprises move from experimentation to regulated, monitored, auditable adoption.",
-    lineOfEffect:
+    lineOfEffort:
       "Give leaders control over model use, human review, automation boundaries, authority delegation, risk records, and accountable adoption.",
     lineOfAction:
       "Fund AI governance playbooks, automation registers, agent-use policies, assurance cases, control libraries, and readiness assessments.",
     futures:
       "Preparedness focus: agentic workflow governance, model-risk evidence, human-in-the-loop protocols, and autonomous process assurance.",
+    engineeredAdvantage: [
+      "Clients gain practical controls for model use, automation boundaries, and accountable human review.",
+      "Investors gain a position in governance demand created by accelerated AI adoption and regulatory scrutiny.",
+      "AGG gains reusable control libraries, assurance cases, and emerging-technology readiness products.",
+    ],
     icon: ShieldCheck,
   },
   {
     title: "Strategic Planning, Risk, and Operational Proof",
     projection:
       "Enterprise governance, GRC, strategy execution, risk reduction, and performance management are converging into measurable operating systems.",
-    lineOfEffect:
+    lineOfEffort:
       "Translate strategy into governed work, visible risk treatment, owner accountability, decision cadence, and proof of improvement.",
     lineOfAction:
       "Fund planning kits, risk registers, operating dashboards, scorecards, MOP/MOE/KPI libraries, implementation sprints, and improvement loops.",
     futures:
       "Preparedness focus: living strategy systems, governance control towers, continuous assessment, and evidence-linked transformation.",
+    engineeredAdvantage: [
+      "Clients gain a clearer line from executive intent to governed work, risk treatment, and measurable improvement.",
+      "Investors participate in a market need for proof-based transformation rather than artifact delivery alone.",
+      "AGG gains stronger operating-system products, scorecard logic, and implementation evidence.",
+    ],
     icon: TrendingUp,
   },
 ] as const;
@@ -682,23 +712,26 @@ export default function InvestorOpportunitiesPage() {
             <h2>Invest in the company, a concept, a product, or the futures work inside AGG.</h2>
             <p>
               Investors may pursue company-level exposure or a customized opportunity tied to a
-              defined concept, product, IP family, research projection, line of effect, line of
+              defined concept, product, IP family, research projection, line of effort, line of
               action, or futures emerging-technology preparedness lane.
             </p>
           </div>
           <div className="research-lane-grid" aria-label="Custom investor research and futures lanes">
             {customInvestmentLanes.map((lane) => (
               <article className="research-lane-card" key={lane.title}>
-                <lane.icon size={25} aria-hidden="true" />
-                <h3>{lane.title}</h3>
+                <div className="research-lane-card__heading">
+                  <lane.icon size={25} aria-hidden="true" />
+                  <span aria-hidden="true">|</span>
+                  <h3>{lane.title}</h3>
+                </div>
                 <dl>
                   <div>
                     <dt>Research projection</dt>
                     <dd>{lane.projection}</dd>
                   </div>
                   <div>
-                    <dt>Line of effect</dt>
-                    <dd>{lane.lineOfEffect}</dd>
+                    <dt>Line of effort</dt>
+                    <dd>{lane.lineOfEffort}</dd>
                   </div>
                   <div>
                     <dt>Line of action</dt>
@@ -709,6 +742,14 @@ export default function InvestorOpportunitiesPage() {
                     <dd>{lane.futures}</dd>
                   </div>
                 </dl>
+                <div className="research-lane-card__advantage">
+                  <h4>Engineered Advantage:</h4>
+                  <ul>
+                    {lane.engineeredAdvantage.map((advantage) => (
+                      <li key={advantage}>{advantage}</li>
+                    ))}
+                  </ul>
+                </div>
               </article>
             ))}
           </div>

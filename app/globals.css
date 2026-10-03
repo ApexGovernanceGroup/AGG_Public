@@ -1901,12 +1901,41 @@ button.hero__solution-lane.is-active {
 }
 
 .research-lane-card {
-  min-height: 560px;
+  min-height: 720px;
+  text-align: left;
+}
+
+.research-lane-card__heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.research-lane-card__heading svg {
+  flex: 0 0 auto;
+  margin: 0;
+  filter: drop-shadow(0 10px 16px rgba(12, 12, 12, 0.16));
+}
+
+.research-lane-card__heading span {
+  color: rgba(136, 98, 60, 0.72);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.9rem;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.research-lane-card__heading h3 {
+  flex: 1 1 auto;
+  margin: 0;
+  text-align: left;
 }
 
 .research-lane-card dl {
   display: grid;
-  gap: 14px;
+  gap: 16px;
   margin: 18px 0 0;
 }
 
@@ -1917,11 +1946,49 @@ button.hero__solution-lane.is-active {
   font-size: 0.72rem;
   font-weight: 950;
   letter-spacing: 0.06em;
+  text-align: left;
   text-transform: uppercase;
 }
 
 .research-lane-card dd {
   margin: 0;
+  text-align: left;
+  text-indent: 2.1rem;
+}
+
+.research-lane-card__advantage {
+  margin-top: 18px;
+  border-top: 1px solid rgba(136, 98, 60, 0.22);
+  padding-top: 16px;
+}
+
+.research-lane-card__advantage h4 {
+  margin: 0;
+  color: var(--black);
+  font-size: 0.86rem;
+  font-weight: 950;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.research-lane-card__advantage ul {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding-left: 1.2rem;
+}
+
+.research-lane-card__advantage li {
+  color: rgba(62, 67, 70, 0.82);
+  line-height: 1.52;
+  padding-left: 0.08rem;
+  text-align: left;
+}
+
+.research-lane-card__advantage li::marker {
+  color: var(--bronze);
 }
 
 .valuation-metric-card::before,
