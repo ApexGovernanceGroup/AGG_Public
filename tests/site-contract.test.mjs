@@ -54,6 +54,7 @@ test("AGG public site contract is present", async () => {
     about,
     contact,
     engage,
+    investorOpportunities,
     sitemap,
     robots,
     data,
@@ -94,6 +95,7 @@ test("AGG public site contract is present", async () => {
       read("app/about/page.tsx"),
       read("app/contact/page.tsx"),
       read("app/engage/page.tsx"),
+      read("app/investor-opportunities/page.tsx"),
       read("app/sitemap.ts"),
       read("app/robots.ts"),
       read("app/site-data.ts"),
@@ -134,6 +136,7 @@ test("AGG public site contract is present", async () => {
     about,
     contact,
     engage,
+    investorOpportunities,
     sitemap,
     robots,
     data,
@@ -234,6 +237,7 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Sustain Decision Advantage/);
   assert.match(sitemap, /"\/client-onboarding"/);
   assert.match(sitemap, /"\/doctrine"/);
+  assert.match(sitemap, /"\/investor-opportunities"/);
   assert.match(layout, /<AlabamaTopographicBackdrop \/>/);
   assert.match(alabamaTopographicBackdrop, /prefers-reduced-motion: reduce/);
   assert.match(alabamaTopographicBackdrop, /requestAnimationFrame/);
@@ -332,10 +336,18 @@ test("AGG public site contract is present", async () => {
   assert.match(siteHeader, /topNavItems\.length > 0/);
   assert.match(siteHeader, /topNavItems\.map/);
   assert.match(siteHeader, /Client login/);
+  assert.match(siteHeader, /Direct Engagement/);
+  assert.match(siteHeader, /Investor Opportunities/);
   assert.match(siteHeader, /Apex Admin/);
+  assert.match(siteHeader, /\/investor-opportunities/);
   assert.match(siteHeader, /\/client-services\?role=admin/);
   assert.match(siteHeader, /LockKeyhole/);
+  assert.match(siteHeader, /Landmark/);
   assert.match(siteHeader, /ShieldCheck/);
+  assert.match(
+    siteHeader,
+    /href="\/client-services"[\s\S]*Client login[\s\S]*href="\/engage"[\s\S]*Direct Engagement[\s\S]*href="\/investor-opportunities"[\s\S]*Investor Opportunities[\s\S]*href="\/client-services\?role=admin"[\s\S]*Apex Admin/,
+  );
   assert.doesNotMatch(siteHeader, /navItems\.map/);
   assert.match(sideNavigation, /sideNavItems\.map/);
   assert.match(data, /export const topNavItems: NavItem\[\] = \[\];/);
@@ -346,6 +358,40 @@ test("AGG public site contract is present", async () => {
     data,
     /sideNavItems: NavItem\[\] = \[[\s\S]*href: "\/about", label: "About", icon: Landmark[\s\S]*href: "\/contact", label: "Contact", icon: Mail[\s\S]*href: "\/insights", label: "Insights", icon: Newspaper/,
   );
+  assert.match(investorOpportunities, /export const metadata: Metadata/);
+  assert.match(investorOpportunities, /Investor Opportunities/);
+  assert.match(investorOpportunities, /Request investor briefing/);
+  assert.match(investorOpportunities, /This page is not a securities offering/);
+  assert.match(investorOpportunities, /not an\s+offer to sell securities/i);
+  assert.match(investorOpportunities, /promise of dividends/);
+  assert.match(investorOpportunities, /Traditional Company Ownership Stake \| Dividend Paying/);
+  assert.match(investorOpportunities, /Staked Individual IP Ownership Percentage \| Dividend Paying/);
+  assert.match(investorOpportunities, /Short Term - 3 Year/);
+  assert.match(investorOpportunities, /Mid Term - 6 Year/);
+  assert.match(investorOpportunities, /Long Term - 10 Year\+/);
+  assert.match(investorOpportunities, /Knowledge Management/);
+  assert.match(investorOpportunities, /Institutional Knowledge Preservation/);
+  assert.match(investorOpportunities, /MetaKnowledge/);
+  assert.match(investorOpportunities, /Data Governance/);
+  assert.match(investorOpportunities, /AI \| Automation Governance/);
+  assert.match(investorOpportunities, /Long Range Strategic Planning/);
+  assert.match(investorOpportunities, /Enterprise Governance/);
+  assert.match(investorOpportunities, /Risk Mitigation & Reduction/);
+  assert.match(investorOpportunities, /Enterprise Measurement, Assessment, Implementation, & Operationalization/);
+  assert.match(investorOpportunities, /3 Year \| 2029/);
+  assert.match(investorOpportunities, /6 Year \| 2032/);
+  assert.match(investorOpportunities, /10 Year \| 2036/);
+  assert.match(investorOpportunities, /15 Year \| 2041\+/);
+  assert.match(investorOpportunities, /360iResearch/);
+  assert.match(investorOpportunities, /Grand View Research/);
+  assert.match(investorOpportunities, /MarketsandMarkets/);
+  assert.match(investorOpportunities, /IDC via MarketResearch\.com/);
+  assert.match(investorOpportunities, /The Business Research Company/);
+  assert.match(investorOpportunities, /Verified Market Research/);
+  assert.match(investorOpportunities, /Investor briefing deck and founder call/);
+  assert.match(investorOpportunities, /Confidential information review under NDA/);
+  assert.equal((investorOpportunities.match(/domain: "/g) ?? []).length, 9);
+  assert.ok((investorOpportunities.match(/title: "/g) ?? []).length >= 5);
   assert.match(combined, /Apex Academy/);
   assert.match(combined, /Professional Development/);
   assert.match(combined, /Labor Force Certification/);
@@ -885,7 +931,9 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const heroContentContrast = cssBlock(css, ".hero__content::before");
   const brandLockup = cssBlock(css, ".brand-lockup");
   const brandTagline = cssBlock(css, ".brand-text span");
+  const siteHeaderActions = cssBlock(css, ".site-header__actions");
   const buttonAdmin = cssBlock(css, ".button--admin");
+  const buttonInvestor = cssBlock(css, ".button--investor");
   const darkSection = cssBlock(css, ".section--dark");
   const darkSectionContour = cssBlock(css, ".section--dark::before");
   const heroMetrics = cssBlock(css, ".hero__metrics");
@@ -968,6 +1016,16 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const deliveryOptionCard = cssBlock(css, ".delivery-option-card");
   const contractOptionGrid = cssBlock(css, ".contract-option-grid");
   const contractOptionCard = cssBlock(css, ".contract-option-card");
+  const investorAlert = cssBlock(css, ".investor-alert");
+  const investorSignalGrid = cssBlock(css, ".investor-signal-grid");
+  const investmentPathGrid = cssBlock(css, ".investment-path-grid");
+  const investmentPathCard = cssBlock(css, ".investment-path-card");
+  const forecastWindowGrid = cssBlock(css, ".forecast-window-grid");
+  const forecastWindowCard = cssBlock(css, ".forecast-window-card");
+  const forecastTableShell = cssBlock(css, ".forecast-table-shell");
+  const forecastTable = cssBlock(css, ".forecast-table");
+  const evidenceSourceGrid = cssBlock(css, ".evidence-source-grid");
+  const evidenceSourceCard = cssBlock(css, ".evidence-source-card");
   const integrationGrid = cssBlock(css, ".integration-grid");
   const integrationCard = cssBlock(css, ".integration-card");
   const founderSpotlight = cssBlock(css, ".founder-spotlight");
@@ -1100,8 +1158,12 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(brandLockup, /min-width:\s*0/);
   assert.match(brandTagline, /max-width:\s*420px/);
   assert.match(brandTagline, /line-height:\s*1\.15/);
+  assert.match(siteHeaderActions, /overflow-x:\s*auto/);
+  assert.match(siteHeaderActions, /scrollbar-width:\s*none/);
   assert.match(buttonAdmin, /border-color:\s*rgba\(121,\s*55,\s*53,\s*0\.36\)/);
   assert.match(buttonAdmin, /color:\s*var\(--oxblood\)/);
+  assert.match(buttonInvestor, /border-color:\s*rgba\(136,\s*98,\s*60,\s*0\.42\)/);
+  assert.match(buttonInvestor, /color:\s*var\(--bronze-dark\)/);
   assert.match(darkSection, /isolation:\s*isolate/);
   assert.match(darkSection, /overflow:\s*hidden/);
   assert.match(darkSectionContour, /background-image:\s*var\(--maine-topographic-contours-smoke\)/);
@@ -1132,10 +1194,27 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(contractOptionGrid, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(contractOptionCard, /min-height:\s*360px/);
   assert.match(contractOptionCard, /border-left:\s*5px solid var\(--bronze\)/);
+  assert.match(investorAlert, /grid-template-columns:\s*auto 1fr/);
+  assert.match(investorAlert, /border-left:\s*5px solid var\(--oxblood\)/);
+  assert.match(investorSignalGrid, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(investmentPathGrid, /grid-template-columns:\s*repeat\(5,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(investmentPathCard, /min-height:\s*430px/);
+  assert.match(investmentPathCard, /border-top:\s*5px solid rgba\(136,\s*98,\s*60,\s*0\.7\)/);
+  assert.match(forecastWindowGrid, /grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(forecastWindowCard, /min-height:\s*260px/);
+  assert.match(forecastWindowCard, /background:\s*rgba\(255,\s*255,\s*255,\s*0\.06\)/);
+  assert.match(forecastTableShell, /overflow-x:\s*auto/);
+  assert.match(forecastTable, /min-width:\s*1180px/);
+  assert.match(evidenceSourceGrid, /grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(evidenceSourceCard, /min-height:\s*170px/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.storefront-product-index,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.purchase-library-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.delivery-library-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.contract-option-grid,[\s\S]*?grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.investor-signal-grid,[\s\S]*?grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.investment-path-grid,[\s\S]*?grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.forecast-window-grid,[\s\S]*?grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.evidence-source-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(integrationGrid, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(integrationCard, /background:\s*rgba\(255,\s*255,\s*255,\s*0\.06\)/);
   assert.match(integrationCard, /min-height:\s*284px/);
