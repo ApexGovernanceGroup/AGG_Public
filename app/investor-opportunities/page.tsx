@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -409,6 +410,15 @@ const forecastRows = [
   },
 ] as const;
 
+const marketBasisInvestmentLabel = "Current Market Capital Valuation:";
+
+const forecastHorizonInvestmentLabels = {
+  year3: "Expected Growth over 3 years",
+  year6: "Expected Growth over 6 years",
+  year10: "Expected Growth over 10 years",
+  year15: "Expected Growth over 15 years",
+} as const;
+
 const evidenceSources = [
   {
     label: "Brand valuation requirements",
@@ -480,6 +490,21 @@ const diligenceItems = [
   "Revenue definition, cost treatment, distribution logic, and reporting cadence",
   "Offering documents, counsel review, and written consent before any binding investment",
 ] as const;
+
+function ForecastInvestmentCell({
+  children,
+  investmentLabel,
+}: {
+  children: ReactNode;
+  investmentLabel: string;
+}) {
+  return (
+    <div className="forecast-table__cell">
+      <p>{children}</p>
+      <strong>{investmentLabel}</strong>
+    </div>
+  );
+}
 
 export default function InvestorOpportunitiesPage() {
   return (
@@ -813,11 +838,39 @@ export default function InvestorOpportunitiesPage() {
                 {forecastRows.map((row) => (
                   <tr key={row.domain}>
                     <th scope="row">{row.domain}</th>
-                    <td>{row.basis}</td>
-                    <td>{row.year3}</td>
-                    <td>{row.year6}</td>
-                    <td>{row.year10}</td>
-                    <td>{row.year15}</td>
+                    <td>
+                      <ForecastInvestmentCell investmentLabel={marketBasisInvestmentLabel}>
+                        {row.basis}
+                      </ForecastInvestmentCell>
+                    </td>
+                    <td>
+                      <ForecastInvestmentCell
+                        investmentLabel={forecastHorizonInvestmentLabels.year3}
+                      >
+                        {row.year3}
+                      </ForecastInvestmentCell>
+                    </td>
+                    <td>
+                      <ForecastInvestmentCell
+                        investmentLabel={forecastHorizonInvestmentLabels.year6}
+                      >
+                        {row.year6}
+                      </ForecastInvestmentCell>
+                    </td>
+                    <td>
+                      <ForecastInvestmentCell
+                        investmentLabel={forecastHorizonInvestmentLabels.year10}
+                      >
+                        {row.year10}
+                      </ForecastInvestmentCell>
+                    </td>
+                    <td>
+                      <ForecastInvestmentCell
+                        investmentLabel={forecastHorizonInvestmentLabels.year15}
+                      >
+                        {row.year15}
+                      </ForecastInvestmentCell>
+                    </td>
                   </tr>
                 ))}
               </tbody>

@@ -2022,6 +2022,31 @@ button.hero__solution-lane.is-active {
   font-weight: 950;
 }
 
+.forecast-table__cell {
+  display: flex;
+  min-height: 212px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.forecast-table__cell p {
+  margin: 0;
+}
+
+.forecast-table__cell strong {
+  display: block;
+  margin-top: auto;
+  border-top: 1px solid rgba(136, 98, 60, 0.22);
+  padding-top: 12px;
+  color: var(--navy);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.74rem;
+  font-weight: 950;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  text-align: center;
+}
+
 .forecast-table tr:last-child th,
 .forecast-table tr:last-child td {
   border-bottom: 0;

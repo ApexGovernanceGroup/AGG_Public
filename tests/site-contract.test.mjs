@@ -425,6 +425,13 @@ test("AGG public site contract is present", async () => {
   assert.match(investorOpportunities, /6 Year \| 2032/);
   assert.match(investorOpportunities, /10 Year \| 2036/);
   assert.match(investorOpportunities, /15 Year \| 2041\+/);
+  assert.match(investorOpportunities, /marketBasisInvestmentLabel = "Current Market Capital Valuation:"/);
+  assert.match(investorOpportunities, /year3: "Expected Growth over 3 years"/);
+  assert.match(investorOpportunities, /year6: "Expected Growth over 6 years"/);
+  assert.match(investorOpportunities, /year10: "Expected Growth over 10 years"/);
+  assert.match(investorOpportunities, /year15: "Expected Growth over 15 years"/);
+  assert.match(investorOpportunities, /function ForecastInvestmentCell/);
+  assert.equal((investorOpportunities.match(/<ForecastInvestmentCell/g) ?? []).length, 5);
   assert.match(investorOpportunities, /Evidence and Standards Basis/);
   assert.match(investorOpportunities, /ISO 10668:2010/);
   assert.match(investorOpportunities, /ISO 56005:2020/);
@@ -1083,6 +1090,8 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const forecastWindowCard = cssBlock(css, ".forecast-window-card");
   const forecastTableShell = cssBlock(css, ".forecast-table-shell");
   const forecastTable = cssBlock(css, ".forecast-table");
+  const forecastTableCell = cssBlock(css, ".forecast-table__cell");
+  const forecastTableCellStrong = cssBlock(css, ".forecast-table__cell strong");
   const evidenceSourceGrid = cssBlock(css, ".evidence-source-grid");
   const evidenceSourceCard = cssBlock(css, ".evidence-source-card");
   const integrationGrid = cssBlock(css, ".integration-grid");
@@ -1279,6 +1288,12 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(forecastWindowCard, /background:\s*rgba\(255,\s*255,\s*255,\s*0\.06\)/);
   assert.match(forecastTableShell, /overflow-x:\s*auto/);
   assert.match(forecastTable, /min-width:\s*1180px/);
+  assert.match(forecastTableCell, /display:\s*flex/);
+  assert.match(forecastTableCell, /min-height:\s*212px/);
+  assert.match(forecastTableCell, /flex-direction:\s*column/);
+  assert.match(forecastTableCellStrong, /margin-top:\s*auto/);
+  assert.match(forecastTableCellStrong, /font-weight:\s*950/);
+  assert.match(forecastTableCellStrong, /text-align:\s*center/);
   assert.match(evidenceSourceGrid, /grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(evidenceSourceCard, /min-height:\s*170px/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.storefront-product-index,[\s\S]*?grid-template-columns:\s*1fr/);
