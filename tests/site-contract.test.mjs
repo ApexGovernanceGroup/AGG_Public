@@ -212,8 +212,14 @@ test("AGG public site contract is present", async () => {
   assert.match(home, /Apex Academy/);
   assert.match(home, /Services \| Apex Digital Store/);
   assert.match(home, /hero__secondary-actions/);
-  assert.match(home, /mastheadSurveyActions/);
-  assert.match(home, /hero__survey-actions/);
+  assert.match(home, /solutionSurveyActions/);
+  assert.match(home, /hero__solution-survey-actions/);
+  assert.doesNotMatch(home, /mastheadSurveyActions/);
+  assert.doesNotMatch(home, /hero__survey-actions/);
+  assert.match(
+    home,
+    /hero__pillar-copy[\s\S]*hero__solution-survey-actions[\s\S]*hero__pillar-heading/,
+  );
   assert.match(home, /insidePerspectiveSurvey\.slug/);
   assert.match(home, /paralysisFromAnalysisSurvey\.slug/);
   assert.match(surveyData, /Inside Perspective: The Human Cost of Executive Management\./);
@@ -1136,8 +1142,8 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const heroLede = cssBlock(css, ".hero__lede");
   const heroSecondaryActions = cssBlock(css, ".hero__secondary-actions");
   const heroSecondaryActionButtons = cssBlock(css, ".hero__secondary-actions .button");
-  const heroSurveyActions = cssBlock(css, ".hero__survey-actions");
-  const heroSurveyActionButtons = cssBlock(css, ".hero__survey-actions .button");
+  const heroSolutionSurveyActions = cssBlock(css, ".hero__solution-survey-actions");
+  const heroSolutionSurveyActionButtons = cssBlock(css, ".hero__solution-survey-actions .button");
   const heroPillarIntro = cssBlock(css, ".hero__pillar-intro");
   const heroPillarCopy = cssBlock(css, ".hero__pillar-copy");
   const heroPillarHeading = cssBlock(css, ".hero__pillar-heading");
@@ -1350,10 +1356,11 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(buttonSurveyHuman, /color:\s*var\(--paper\)/);
   assert.match(buttonSurveySystems, /rgba\(244,\s*241,\s*234,\s*0\.96\)/);
   assert.match(buttonSurveySystems, /color:\s*var\(--navy\)/);
-  assert.match(heroSurveyActions, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
-  assert.match(heroSurveyActions, /max-width:\s*760px/);
-  assert.match(heroSurveyActionButtons, /justify-content:\s*flex-start/);
-  assert.match(heroSurveyActionButtons, /min-height:\s*62px/);
+  assert.match(heroSolutionSurveyActions, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(heroSolutionSurveyActions, /max-width:\s*760px/);
+  assert.match(heroSolutionSurveyActions, /margin:\s*0 auto 18px/);
+  assert.match(heroSolutionSurveyActionButtons, /justify-content:\s*flex-start/);
+  assert.match(heroSolutionSurveyActionButtons, /min-height:\s*62px/);
   assert.match(heroPillarIntro, /text-align:\s*center/);
   assert.match(heroPillarIntro, /margin:\s*clamp\(128px,\s*15svh,\s*164px\)\s*auto\s*0/);
   assert.match(heroPillarCopy, /max-width:\s*760px/);
@@ -1426,7 +1433,7 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
     /\.survey-question-card\s*{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*58px minmax\(0,\s*1fr\)/,
   );
   assert.match(surveyQuestionNumber, /place-items:\s*center/);
-  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.hero__survey-actions,[\s\S]*?\.survey-brief,[\s\S]*?\.survey-form__contact\s*{[^}]*grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.hero__solution-survey-actions,[\s\S]*?\.survey-brief,[\s\S]*?\.survey-form__contact\s*{[^}]*grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.survey-question-card\s*{[^}]*grid-template-columns:\s*1fr/);
   assert.match(pricingCardTop, /align-items:\s*start/);
   assert.match(pricingCardTopValue, /max-width:\s*12rem/);
