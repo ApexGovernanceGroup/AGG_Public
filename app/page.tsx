@@ -28,6 +28,10 @@ import {
 } from "./site-data";
 import { ClientLedSelfDeterminationCards } from "./components/ClientLedSelfDeterminationCards";
 import { HeroSolutionLanes } from "./components/HeroSolutionLanes";
+import {
+  insidePerspectiveSurvey,
+  paralysisFromAnalysisSurvey,
+} from "./surveys/survey-data";
 
 const operatingSurfaceSignals = [
   {
@@ -57,6 +61,21 @@ const operatingSurfaceSignals = [
     body:
       "Engagement, onboarding, investor briefing, repository review, and academy scoping remain visible as practical next moves.",
     icon: Target,
+  },
+] as const;
+
+const mastheadSurveyActions = [
+  {
+    href: `/${insidePerspectiveSurvey.slug}`,
+    label: insidePerspectiveSurvey.buttonLabel,
+    icon: Landmark,
+    className: "button button--survey-human",
+  },
+  {
+    href: `/${paralysisFromAnalysisSurvey.slug}`,
+    label: paralysisFromAnalysisSurvey.buttonLabel,
+    icon: Workflow,
+    className: "button button--survey-systems",
   },
 ] as const;
 
@@ -99,6 +118,14 @@ export default function Home() {
               <CreditCard size={18} aria-hidden="true" />
               <span>Services | Apex Digital Store</span>
             </Link>
+          </div>
+          <div className="hero__survey-actions" aria-label="Executive survey actions">
+            {mastheadSurveyActions.map((action) => (
+              <Link className={action.className} href={action.href} key={action.href}>
+                <action.icon size={18} aria-hidden="true" />
+                <span>{action.label}</span>
+              </Link>
+            ))}
           </div>
           <div className="hero__pillar-intro" aria-label="Apex solution composition">
             <p className="hero__pillar-copy">{solutionPillarIntro.statement}</p>

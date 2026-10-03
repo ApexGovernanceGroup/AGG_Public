@@ -11,6 +11,8 @@ const routes = [
   "/insights",
   "/investor-opportunities",
   "/agg-investor-quick-sheet",
+  "/inside-perspective-human-cost-executive-management",
+  "/paralysis-from-analysis-needs-vs-systems",
   "/about",
   "/contact",
   "/engage",

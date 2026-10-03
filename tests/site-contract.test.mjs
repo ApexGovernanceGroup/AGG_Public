@@ -57,6 +57,10 @@ test("AGG public site contract is present", async () => {
     investorOpportunities,
     investorQuickSheet,
     investorQuickSheetRoute,
+    surveyData,
+    strategicSurveyForm,
+    insidePerspectiveSurvey,
+    paralysisSurvey,
     sitemap,
     robots,
     data,
@@ -100,6 +104,10 @@ test("AGG public site contract is present", async () => {
       read("app/investor-opportunities/page.tsx"),
       read("public/agg-investor-quick-sheet.html"),
       read("app/agg-investor-quick-sheet/page.tsx"),
+      read("app/surveys/survey-data.ts"),
+      read("app/components/StrategicSurveyForm.tsx"),
+      read("app/inside-perspective-human-cost-executive-management/page.tsx"),
+      read("app/paralysis-from-analysis-needs-vs-systems/page.tsx"),
       read("app/sitemap.ts"),
       read("app/robots.ts"),
       read("app/site-data.ts"),
@@ -143,6 +151,10 @@ test("AGG public site contract is present", async () => {
     investorOpportunities,
     investorQuickSheet,
     investorQuickSheetRoute,
+    surveyData,
+    strategicSurveyForm,
+    insidePerspectiveSurvey,
+    paralysisSurvey,
     sitemap,
     robots,
     data,
@@ -200,6 +212,25 @@ test("AGG public site contract is present", async () => {
   assert.match(home, /Apex Academy/);
   assert.match(home, /Services \| Apex Digital Store/);
   assert.match(home, /hero__secondary-actions/);
+  assert.match(home, /mastheadSurveyActions/);
+  assert.match(home, /hero__survey-actions/);
+  assert.match(home, /insidePerspectiveSurvey\.slug/);
+  assert.match(home, /paralysisFromAnalysisSurvey\.slug/);
+  assert.match(surveyData, /Inside Perspective: The Human Cost of Executive Management\./);
+  assert.match(surveyData, /Paralysis from Analysis: A True Needs vs\. Systems Approach/);
+  assert.match(surveyData, /Visionaries, founders, CEOs, CFOs, COOs, and C-suite personnel/);
+  assert.match(surveyData, /customizes, innovates, and engineers solutions directly from client need/);
+  assert.equal((surveyData.match(/\n        prompt:/g) ?? []).length, 16);
+  assert.equal((surveyData.match(/\n        actionUse:/g) ?? []).length, 16);
+  assert.match(strategicSurveyForm, /"use client"/);
+  assert.match(strategicSurveyForm, /new FormData\(form\)/);
+  assert.match(strategicSurveyForm, /mailto:\$\{contactEmail\}/);
+  assert.match(strategicSurveyForm, /window\.location\.href = href/);
+  assert.match(strategicSurveyForm, /should not include passwords, protected client data/);
+  assert.match(insidePerspectiveSurvey, /insidePerspectiveSurvey/);
+  assert.match(insidePerspectiveSurvey, /StrategicSurveyForm contactEmail=\{contactEmail\} survey=\{survey\}/);
+  assert.match(paralysisSurvey, /paralysisFromAnalysisSurvey/);
+  assert.match(paralysisSurvey, /StrategicSurveyForm contactEmail=\{contactEmail\} survey=\{survey\}/);
   assert.match(home, /operatingSurfaceSignals/);
   assert.match(home, /Executive Operating Surface/);
   assert.match(home, /A cleaner front door for serious work/);
@@ -251,6 +282,8 @@ test("AGG public site contract is present", async () => {
   assert.match(sitemap, /"\/client-onboarding"/);
   assert.match(sitemap, /"\/doctrine"/);
   assert.match(sitemap, /"\/investor-opportunities"/);
+  assert.match(sitemap, /"\/inside-perspective-human-cost-executive-management"/);
+  assert.match(sitemap, /"\/paralysis-from-analysis-needs-vs-systems"/);
   assert.match(layout, /<AlabamaTopographicBackdrop \/>/);
   assert.match(alabamaTopographicBackdrop, /prefers-reduced-motion: reduce/);
   assert.match(alabamaTopographicBackdrop, /requestAnimationFrame/);
@@ -1088,6 +1121,8 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const siteHeaderActions = cssBlock(css, ".site-header__actions");
   const buttonAdmin = cssBlock(css, ".button--admin");
   const buttonInvestor = cssBlock(css, ".button--investor");
+  const buttonSurveyHuman = cssBlock(css, ".button--survey-human");
+  const buttonSurveySystems = cssBlock(css, ".button--survey-systems");
   const darkSection = cssBlock(css, ".section--dark");
   const darkSectionContour = cssBlock(css, ".section--dark::before");
   const heroMetrics = cssBlock(css, ".hero__metrics");
@@ -1101,6 +1136,8 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const heroLede = cssBlock(css, ".hero__lede");
   const heroSecondaryActions = cssBlock(css, ".hero__secondary-actions");
   const heroSecondaryActionButtons = cssBlock(css, ".hero__secondary-actions .button");
+  const heroSurveyActions = cssBlock(css, ".hero__survey-actions");
+  const heroSurveyActionButtons = cssBlock(css, ".hero__survey-actions .button");
   const heroPillarIntro = cssBlock(css, ".hero__pillar-intro");
   const heroPillarCopy = cssBlock(css, ".hero__pillar-copy");
   const heroPillarHeading = cssBlock(css, ".hero__pillar-heading");
@@ -1262,6 +1299,11 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const pageHeroTexture = cssBlock(css, ".page-hero::before");
   const pageHeroSymbol = cssBlock(css, ".page-hero::after");
   const servicesHeroTitle = cssBlock(css, ".page-hero .services-hero__title");
+  const surveyBrief = cssBlock(css, ".survey-brief");
+  const surveyForm = cssBlock(css, ".survey-form");
+  const surveyFormContact = cssBlock(css, ".survey-form__contact");
+  const surveyQuestionList = cssBlock(css, ".survey-question-list");
+  const surveyQuestionNumber = cssBlock(css, ".survey-question-card__number");
 
   assert.match(css, /--shadow-raised:/);
   assert.match(css, /--shadow-command:/);
@@ -1304,6 +1346,14 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(heroSecondaryActions, /margin:\s*12px 0 0/);
   assert.match(heroSecondaryActionButtons, /min-height:\s*42px/);
   assert.match(heroSecondaryActionButtons, /font-size:\s*0\.86rem/);
+  assert.match(buttonSurveyHuman, /rgba\(121,\s*55,\s*53,\s*0\.96\)/);
+  assert.match(buttonSurveyHuman, /color:\s*var\(--paper\)/);
+  assert.match(buttonSurveySystems, /rgba\(244,\s*241,\s*234,\s*0\.96\)/);
+  assert.match(buttonSurveySystems, /color:\s*var\(--navy\)/);
+  assert.match(heroSurveyActions, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(heroSurveyActions, /max-width:\s*760px/);
+  assert.match(heroSurveyActionButtons, /justify-content:\s*flex-start/);
+  assert.match(heroSurveyActionButtons, /min-height:\s*62px/);
   assert.match(heroPillarIntro, /text-align:\s*center/);
   assert.match(heroPillarIntro, /margin:\s*clamp\(128px,\s*15svh,\s*164px\)\s*auto\s*0/);
   assert.match(heroPillarCopy, /max-width:\s*760px/);
@@ -1367,6 +1417,17 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(heroMetricCard, /isolation:\s*isolate/);
   assert.match(heroMetricContour, /background-image:\s*var\(--maine-topographic-contours-smoke\)/);
   assert.match(heroMetricContour, /opacity:\s*0\.18/);
+  assert.match(surveyBrief, /grid-template-columns:\s*minmax\(0,\s*1fr\)\s*minmax\(300px,\s*0\.58fr\)/);
+  assert.match(surveyForm, /box-shadow:\s*var\(--shadow-raised\)/);
+  assert.match(surveyFormContact, /grid-template-columns:\s*repeat\(5,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(surveyQuestionList, /list-style:\s*none/);
+  assert.match(
+    css,
+    /\.survey-question-card\s*{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*58px minmax\(0,\s*1fr\)/,
+  );
+  assert.match(surveyQuestionNumber, /place-items:\s*center/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.hero__survey-actions,[\s\S]*?\.survey-brief,[\s\S]*?\.survey-form__contact\s*{[^}]*grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.survey-question-card\s*{[^}]*grid-template-columns:\s*1fr/);
   assert.match(pricingCardTop, /align-items:\s*start/);
   assert.match(pricingCardTopValue, /max-width:\s*12rem/);
   assert.match(pricingCardTopValue, /font-size:\s*0\.92rem/);
