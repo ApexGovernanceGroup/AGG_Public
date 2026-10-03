@@ -55,6 +55,7 @@ test("AGG public site contract is present", async () => {
     contact,
     engage,
     investorOpportunities,
+    investorQuickSheet,
     sitemap,
     robots,
     data,
@@ -96,6 +97,7 @@ test("AGG public site contract is present", async () => {
       read("app/contact/page.tsx"),
       read("app/engage/page.tsx"),
       read("app/investor-opportunities/page.tsx"),
+      read("public/agg-investor-quick-sheet.html"),
       read("app/sitemap.ts"),
       read("app/robots.ts"),
       read("app/site-data.ts"),
@@ -137,6 +139,7 @@ test("AGG public site contract is present", async () => {
     contact,
     engage,
     investorOpportunities,
+    investorQuickSheet,
     sitemap,
     robots,
     data,
@@ -361,6 +364,41 @@ test("AGG public site contract is present", async () => {
   assert.match(investorOpportunities, /export const metadata: Metadata/);
   assert.match(investorOpportunities, /Investor Opportunities/);
   assert.match(investorOpportunities, /Request investor briefing/);
+  assert.match(investorOpportunities, /investorQuickSheetHref = "\/agg-investor-quick-sheet\.html"/);
+  assert.match(investorOpportunities, /AGG Quick Sheet \.html/);
+  assert.match(investorOpportunities, /Branded one-page investor reference/);
+  assert.match(investorQuickSheet, /AGG Investor Quick Sheet \| Apex Governance Group/);
+  assert.match(investorQuickSheet, /Apex Governance Group/);
+  assert.match(investorQuickSheet, /Investor Quick Sheet \| Preliminary private-discussion reference/);
+  assert.match(investorQuickSheet, /Current Business Valuation/);
+  assert.match(investorQuickSheet, /\$1\.6M-\$3\.2M/);
+  assert.match(investorQuickSheet, /\$2\.4M/);
+  assert.match(investorQuickSheet, /Strategic share pool/);
+  assert.match(investorQuickSheet, /25% block reference/);
+  assert.match(investorQuickSheet, /Growth Expectations/);
+  assert.match(investorQuickSheet, /Practical application of investment capital/);
+  assert.match(investorQuickSheet, /Capital Application Model/);
+  assert.match(investorQuickSheet, /100% of all\s+accepted investment capital raised/);
+  assert.match(investorQuickSheet, /Twenty-five percent \(25%\) of all accepted\s+investment capital raised is proposed as non-refundable commitment capital/);
+  assert.match(investorQuickSheet, /30-30-20-10-5-2-2-1 growth model/);
+  assert.match(investorQuickSheet, /Modernization, transformation, innovation, and interoperability/);
+  assert.match(investorQuickSheet, /Research, development, expansion, and application of emerging technologies/);
+  assert.match(investorQuickSheet, /Marketing, strategic partnerships, strategic communications/);
+  assert.match(investorQuickSheet, /Talent cultivation and management/);
+  assert.match(investorQuickSheet, /Investor buy-back reserve/);
+  assert.match(investorQuickSheet, /Market perspective investment/);
+  assert.match(investorQuickSheet, /Administrative fees/);
+  assert.match(investorQuickSheet, /Investment Lifecycle/);
+  assert.match(investorQuickSheet, /What the process looks like/);
+  assert.match(investorQuickSheet, /Potential investor\/client gains/);
+  assert.match(investorQuickSheet, /Investor\/client risk/);
+  assert.match(investorQuickSheet, /AGG gains/);
+  assert.match(investorQuickSheet, /AGG risk/);
+  assert.match(investorQuickSheet, /not a securities\s+offering/i);
+  assert.match(investorQuickSheet, /not a certified appraisal or guaranteed enterprise value/);
+  assert.match(investorQuickSheet, /apex@apexgovernancegroup\.com/);
+  assert.equal((investorQuickSheet.match(/class="allocation-card"/g) ?? []).length, 8);
+  assert.equal((investorQuickSheet.match(/class="timeline-step"/g) ?? []).length, 8);
   assert.match(investorOpportunities, /This page is not a securities offering/);
   assert.match(investorOpportunities, /not an\s+offer to sell securities/i);
   assert.match(investorOpportunities, /promise of dividends/);
@@ -1072,6 +1110,8 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const contractOptionGrid = cssBlock(css, ".contract-option-grid");
   const contractOptionCard = cssBlock(css, ".contract-option-card");
   const investorAlert = cssBlock(css, ".investor-alert");
+  const investorQuickSheetLink = cssBlock(css, ".investor-quick-sheet-link");
+  const investorQuickSheetAnchor = cssBlock(css, ".investor-quick-sheet-link a");
   const investorAvailability = cssBlock(css, ".investor-availability");
   const investorSignalGrid = cssBlock(css, ".investor-signal-grid");
   const valuationMetricGrid = cssBlock(css, ".valuation-metric-grid");
@@ -1264,6 +1304,10 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(contractOptionCard, /border-left:\s*5px solid var\(--bronze\)/);
   assert.match(investorAlert, /grid-template-columns:\s*auto 1fr/);
   assert.match(investorAlert, /border-left:\s*5px solid var\(--oxblood\)/);
+  assert.match(investorQuickSheetLink, /display:\s*flex/);
+  assert.match(investorQuickSheetLink, /max-width:\s*780px/);
+  assert.match(investorQuickSheetAnchor, /border-radius:\s*999px/);
+  assert.match(investorQuickSheetAnchor, /text-transform:\s*uppercase/);
   assert.match(investorAvailability, /grid-template-columns:\s*minmax\(0,\s*0\.92fr\)\s*minmax\(260px,\s*0\.78fr\)\s*auto/);
   assert.match(investorAvailability, /border-left:\s*5px solid var\(--bronze\)/);
   assert.match(investorSignalGrid, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
@@ -1301,6 +1345,7 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.delivery-library-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.contract-option-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.investor-availability,[\s\S]*?grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.investor-quick-sheet-link\s*{[^}]*flex-direction:\s*column/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.investor-signal-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.valuation-metric-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.valuation-method,[\s\S]*?grid-template-columns:\s*1fr/);

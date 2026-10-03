@@ -28,6 +28,8 @@ const investorBriefingHref = `mailto:${contactEmail}?subject=${encodeURIComponen
   "Apex Governance Group Investor Opportunities Briefing",
 )}`;
 
+const investorQuickSheetHref = "/agg-investor-quick-sheet.html";
+
 const marketSignals = [
   {
     value: "3 / 6 / 10 / 15",
@@ -527,6 +529,16 @@ export default function InvestorOpportunitiesPage() {
               <ArrowRight size={17} aria-hidden="true" />
               Review commercial engine
             </Link>
+          </div>
+          <div className="investor-quick-sheet-link" aria-label="AGG investor quick sheet">
+            <a href={investorQuickSheetHref}>
+              <FileText size={17} aria-hidden="true" />
+              AGG Quick Sheet .html
+            </a>
+            <span>
+              Branded one-page investor reference for valuation, lifecycle,
+              capital application, potential gains, and risk boundaries.
+            </span>
           </div>
         </div>
       </section>

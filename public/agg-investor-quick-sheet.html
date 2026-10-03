@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AGG Investor Quick Sheet | Apex Governance Group</title>
+    <meta
+      name="description"
+      content="Apex Governance Group investor quick sheet covering preliminary valuation, growth expectations, investment lifecycle, capital application model, potential gains, and risk boundaries."
+    />
+    <style>
+      :root {
+        --onyx: #0c0c0c;
+        --graphite: #3e4346;
+        --platinum: #c3c2bd;
+        --paper: #f4f1ea;
+        --navy: #172c3f;
+        --bronze: #88623c;
+        --bronze-dark: #694927;
+        --oxblood: #793735;
+        --radius: 8px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          linear-gradient(rgba(244, 241, 234, 0.93), rgba(244, 241, 234, 0.93)),
+          url("/brand/alabama-topographic-contours.svg") center top / 1100px auto fixed,
+          var(--paper);
+        color: var(--onyx);
+        font-family: Arial, "Segoe UI", sans-serif;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .sheet {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 32px 0 44px;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius);
+        background:
+          linear-gradient(90deg, rgba(12, 12, 12, 0.94), rgba(23, 44, 63, 0.9)),
+          var(--onyx);
+        color: var(--paper);
+        padding: clamp(28px, 5vw, 54px);
+      }
+
+      .hero::after {
+        position: absolute;
+        right: clamp(18px, 5vw, 54px);
+        top: 28px;
+        width: clamp(120px, 18vw, 210px);
+        aspect-ratio: 1;
+        content: "";
+        background: url("/brand/apex-governance-group-symbol-320.webp") center / contain no-repeat;
+        opacity: 0.18;
+      }
+
+      .brand-row,
+      .section-head,
+      .metric-grid,
+      .allocation-grid,
+      .two-col,
+      .risk-grid,
+      .timeline,
+      .footer-row {
+        position: relative;
+        z-index: 1;
+      }
+
+      .brand-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 34px;
+      }
+
+      .brand-row img {
+        width: 58px;
+        height: 58px;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--bronze);
+        font-family: "Courier New", monospace;
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        line-height: 1.04;
+      }
+
+      h1 {
+        max-width: 820px;
+        font-size: clamp(2.45rem, 6vw, 5.4rem);
+      }
+
+      h2 {
+        font-size: clamp(1.8rem, 3vw, 2.9rem);
+      }
+
+      h3 {
+        font-size: 1.18rem;
+      }
+
+      p {
+        margin: 0;
+        line-height: 1.58;
+      }
+
+      .hero p:not(.eyebrow) {
+        max-width: 760px;
+        margin-top: 18px;
+        color: rgba(244, 241, 234, 0.82);
+        font-size: 1.05rem;
+      }
+
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        border: 1px solid rgba(244, 241, 234, 0.22);
+        border-radius: 999px;
+        padding: 12px 18px;
+        background: var(--bronze);
+        color: white;
+        font-size: 0.88rem;
+        font-weight: 900;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .button.secondary {
+        background: transparent;
+      }
+
+      .notice,
+      .card,
+      .panel,
+      .allocation-card,
+      .timeline-step {
+        border: 1px solid rgba(12, 12, 12, 0.12);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .notice {
+        margin-top: 18px;
+        border-left: 5px solid var(--oxblood);
+        padding: 18px;
+      }
+
+      .notice strong {
+        color: var(--oxblood);
+      }
+
+      .section {
+        margin-top: 24px;
+        padding: clamp(24px, 4vw, 38px);
+        border-radius: var(--radius);
+        background: rgba(244, 241, 234, 0.86);
+      }
+
+      .section-head {
+        display: grid;
+        gap: 10px;
+        max-width: 920px;
+        margin-bottom: 20px;
+      }
+
+      .metric-grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .card {
+        min-height: 172px;
+        padding: 18px;
+      }
+
+      .card strong {
+        display: block;
+        color: var(--navy);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.75rem, 3vw, 2.65rem);
+        line-height: 1;
+      }
+
+      .card span,
+      .allocation-card span,
+      .timeline-step span {
+        display: block;
+        margin-top: 10px;
+        color: var(--bronze-dark);
+        font-family: "Courier New", monospace;
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .card p {
+        margin-top: 12px;
+        color: rgba(62, 67, 70, 0.86);
+      }
+
+      .two-col {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      }
+
+      .panel {
+        padding: 20px;
+      }
+
+      .panel h3 {
+        margin-bottom: 12px;
+        color: var(--navy);
+      }
+
+      ul {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      li {
+        line-height: 1.5;
+      }
+
+      .allocation-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .allocation-card {
+        min-height: 182px;
+        padding: 18px;
+      }
+
+      .allocation-card strong {
+        display: block;
+        color: var(--navy);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 2.35rem;
+        line-height: 1;
+      }
+
+      .allocation-card p {
+        margin-top: 12px;
+        color: rgba(62, 67, 70, 0.86);
+      }
+
+      .timeline {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .timeline-step {
+        min-height: 214px;
+        padding: 18px;
+      }
+
+      .timeline-step strong {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: var(--navy);
+        color: white;
+        font-family: "Courier New", monospace;
+      }
+
+      .timeline-step h3 {
+        margin-top: 14px;
+        color: var(--navy);
+      }
+
+      .timeline-step p {
+        margin-top: 10px;
+        color: rgba(62, 67, 70, 0.86);
+      }
+
+      .risk-grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .risk-grid .panel:first-child {
+        border-left: 5px solid var(--bronze);
+      }
+
+      .risk-grid .panel:last-child {
+        border-left: 5px solid var(--oxblood);
+      }
+
+      .footer-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 24px;
+        border-top: 1px solid rgba(12, 12, 12, 0.16);
+        padding-top: 20px;
+        color: rgba(62, 67, 70, 0.82);
+        font-size: 0.88rem;
+      }
+
+      @media (max-width: 880px) {
+        .metric-grid,
+        .allocation-grid,
+        .timeline,
+        .two-col,
+        .risk-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero::after {
+          opacity: 0.1;
+        }
+
+        .footer-row {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .button-row {
+          display: none;
+        }
+
+        .sheet {
+          width: 100%;
+          padding: 0;
+        }
+
+        .hero,
+        .section {
+          break-inside: avoid;
+          border-radius: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="sheet">
+      <section class="hero">
+        <div class="brand-row">
+          <img src="/brand/apex-governance-group-symbol-160.webp" alt="Apex Governance Group seal" />
+          <div>
+            <p class="eyebrow">Apex Governance Group</p>
+            <p>Investor Quick Sheet | Preliminary private-discussion reference</p>
+          </div>
+        </div>
+        <p class="eyebrow">AGG Quick Sheet</p>
+        <h1>Investment capital for governed growth, product maturity, and future-market preparedness.</h1>
+        <p>
+          This quick sheet summarizes AGG's current valuation frame, investment lifecycle,
+          growth expectations, capital application model, investor participation expectations,
+          potential gains, and risk boundaries for private briefing discussion.
+        </p>
+        <div class="button-row">
+          <a class="button" href="mailto:apex@apexgovernancegroup.com?subject=Apex%20Governance%20Group%20Investor%20Briefing">
+            Request investor briefing
+          </a>
+          <a class="button secondary" href="/investor-opportunities">Return to investor page</a>
+        </div>
+      </section>
+
+      <div class="notice">
+        <p>
+          <strong>Investor communications boundary:</strong> This quick sheet is not a securities
+          offering, certified valuation, promise of dividends, guarantee of gains, or legal, tax,
+          accounting, or investment advice. All investment rights, refund terms, non-refundable
+          portions, governance participation, distributions, buy-back terms, and risk allocation
+          must be documented in definitive agreements accepted by AGG ownership and reviewed by
+          qualified counsel before any transaction is binding.
+        </p>
+      </div>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">Current Business Valuation</p>
+          <h2>Preliminary planning valuation for private investor discussion.</h2>
+          <p>
+            AGG's current valuation frame remains modest by design because the company is early
+            stage and still requires formal diligence, customer evidence, operating agreement
+            review, IP schedules, financial review, and counsel-approved transaction documents.
+          </p>
+        </div>
+        <div class="metric-grid">
+          <article class="card">
+            <strong>$1.6M-$3.2M</strong>
+            <span>Preliminary valuation range</span>
+            <p>Planning range for discussion; not a certified appraisal or guaranteed enterprise value.</p>
+          </article>
+          <article class="card">
+            <strong>$2.4M</strong>
+            <span>Working midpoint</span>
+            <p>Reference midpoint used to explain capital scenarios and the 25% strategic share pool.</p>
+          </article>
+          <article class="card">
+            <strong>25%</strong>
+            <span>Strategic share pool</span>
+            <p>Up to one quarter of company ownership may be discussed for qualified private investment.</p>
+          </article>
+          <article class="card">
+            <strong>$400K-$800K</strong>
+            <span>25% block reference</span>
+            <p>Illustrative current-value reference before final discounts, premiums, rights, and terms.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">Growth Expectations</p>
+          <h2>AGG growth is expected to come from product maturity, applied research, licensing, services, and strategic relationships.</h2>
+          <p>
+            AGG's growth thesis is not one product or one consulting lane. The company is building a
+            portfolio of governed products, education, advisory services, client implementation
+            methods, institutional knowledge tools, AI and automation governance methods, and
+            future-market preparedness capabilities.
+          </p>
+        </div>
+        <div class="two-col">
+          <article class="panel">
+            <h3>Practical application of investment capital</h3>
+            <ul>
+              <li>Modernize current products into licensed, repeatable, client-ready assets.</li>
+              <li>Expand research and development around emerging technologies and future product lines.</li>
+              <li>Build market visibility through strategic communications, partnerships, and buyer education.</li>
+              <li>Protect execution capacity through talent cultivation, investor reporting, and governance discipline.</li>
+              <li>Strengthen internal architecture, infrastructure, sustainment, and operating controls.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>Expected growth evidence path</h3>
+            <ul>
+              <li>0-90 days: capital intake, operating account consolidation, allocation baseline, investor reporting cadence.</li>
+              <li>3-12 months: product inventory modernization, priority licensing packages, market communications, pilot targets.</li>
+              <li>12-24 months: academy/product maturation, recurring service channels, partner pipeline, repeatable delivery evidence.</li>
+              <li>24+ months: scaled licensing, strategic partnership expansion, buy-back evaluation, reinvestment or roll-forward decision.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">Capital Application Model</p>
+          <h2>100% of accepted investment capital is consolidated into one collective operational account.</h2>
+          <p>
+            Upon execution and receipt, AGG's proposed capital policy consolidates 100% of all
+            accepted investment capital raised into a collective operational account and applies it
+            against the internal growth model below. Twenty-five percent (25%) of all accepted
+            investment capital raised is proposed as non-refundable commitment capital, subject to
+            final written terms.
+          </p>
+        </div>
+        <div class="allocation-grid">
+          <article class="allocation-card">
+            <strong>30%</strong>
+            <span>Product inventory and licensing</span>
+            <p>Modernization, transformation, innovation, and interoperability of current product inventory and licensing.</p>
+          </article>
+          <article class="allocation-card">
+            <strong>30%</strong>
+            <span>Research and emerging technology</span>
+            <p>Research, development, expansion, and application of emerging technologies and new products.</p>
+          </article>
+          <article class="allocation-card">
+            <strong>20%</strong>
+            <span>Market and partnerships</span>
+            <p>Marketing, strategic partnerships, strategic communications, buyer education, and market entry support.</p>
+          </article>
+          <article class="allocation-card">
+            <strong>10%</strong>
+            <span>Talent and reserve</span>
+            <p>Talent cultivation and management, plus a strategic investor protection reserve.</p>
+          </article>
+          <article class="allocation-card">
+            <strong>5%</strong>
+            <span>Operating architecture</span>
+            <p>Organizational architecture, infrastructure, governance, sustainment requirements, improvements, and innovations.</p>
+          </article>
+          <article class="allocation-card">
+            <strong>2%</strong>
+            <span>Investor buy-back reserve</span>
+            <p>Capital planning lane for potential investor buy-back mechanics if authorized by definitive agreements.</p>
+          </article>
+          <article class="allocation-card">
+            <strong>2%</strong>
+            <span>Market perspective investment</span>
+            <p>Market intelligence, competitive perspective, forecasting refresh, and investor-ready opportunity analysis.</p>
+          </article>
+          <article class="allocation-card">
+            <strong>1%</strong>
+            <span>Administrative fees</span>
+            <p>Administrative processing, documentation, coordination, and operating-account management support.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">Investment Lifecycle</p>
+          <h2>What the process looks like.</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-step">
+            <strong>1</strong>
+            <span>Engage</span>
+            <h3>Investor fit and goals</h3>
+            <p>Investor schedules a briefing, identifies goals, risk tolerance, desired participation model, and capital horizon.</p>
+          </article>
+          <article class="timeline-step">
+            <strong>2</strong>
+            <span>Diligence</span>
+            <h3>NDA and review</h3>
+            <p>AGG provides appropriate private materials, IP schedules, use-of-funds logic, and operating assumptions under controlled review.</p>
+          </article>
+          <article class="timeline-step">
+            <strong>3</strong>
+            <span>Terms</span>
+            <h3>Written agreement</h3>
+            <p>Ownership, capital amount, refund treatment, non-refundable portion, information rights, advisory voice, and exit logic are documented.</p>
+          </article>
+          <article class="timeline-step">
+            <strong>4</strong>
+            <span>Deploy</span>
+            <h3>Capital application</h3>
+            <p>Accepted capital enters the collective operational account and is applied against the 30-30-20-10-5-2-2-1 growth model.</p>
+          </article>
+          <article class="timeline-step">
+            <strong>5</strong>
+            <span>Operate</span>
+            <h3>Growth execution</h3>
+            <p>AGG executes product, research, market, talent, infrastructure, and reserve actions with defined reporting cadence.</p>
+          </article>
+          <article class="timeline-step">
+            <strong>6</strong>
+            <span>Report</span>
+            <h3>Investor visibility</h3>
+            <p>Investors receive agreed updates on milestones, risks, allocation status, product progress, and strategic decision points.</p>
+          </article>
+          <article class="timeline-step">
+            <strong>7</strong>
+            <span>Review</span>
+            <h3>Lifecycle decision</h3>
+            <p>AGG and investor review whether to hold, reinvest, adjust rights, pursue buy-back, or negotiate a new participation path.</p>
+          </article>
+          <article class="timeline-step">
+            <strong>8</strong>
+            <span>Exit</span>
+            <h3>Defined off-ramp</h3>
+            <p>Any exit, buy-back, transfer, or distribution depends on executed documents, company performance, liquidity, and legal compliance.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">Expectations, Potential Gains, and Risk</p>
+          <h2>Investment expectations must be explicit before capital moves.</h2>
+        </div>
+        <div class="risk-grid">
+          <article class="panel">
+            <h3>Potential investor/client gains</h3>
+            <ul>
+              <li>Potential ownership participation in AGG's company-level growth or a defined IP/product lane.</li>
+              <li>Strategic voice through investor council, observer-style forum, or agreed advisory participation.</li>
+              <li>Visibility into growth model execution, product maturity, and future-market preparedness decisions.</li>
+              <li>Potential distributions, buy-back, appreciation, or negotiated economic rights if company performance and agreements support them.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>Investor/client risk</h3>
+            <ul>
+              <li>Investment capital may be illiquid and may be partially or fully lost.</li>
+              <li>Twenty-five percent (25%) of all accepted investment capital raised is proposed as non-refundable commitment capital.</li>
+              <li>Returns, dividends, buy-back, or liquidity are not guaranteed.</li>
+              <li>Growth depends on execution, market acceptance, product maturity, founder capacity, legal structure, and operating discipline.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>AGG gains</h3>
+            <ul>
+              <li>Capital to modernize products, expand R&amp;D, strengthen market presence, cultivate talent, and reinforce operations.</li>
+              <li>Investor perspective, network access, market intelligence, and strategic partnership potential.</li>
+              <li>Improved ability to move from founder-led buildout to repeatable commercial execution.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>AGG risk</h3>
+            <ul>
+              <li>Ownership dilution, reporting burden, investor-relations complexity, and increased governance obligations.</li>
+              <li>Execution risk if capital is raised faster than operating systems can absorb responsibly.</li>
+              <li>Reputation and legal risk if investor expectations, refund terms, or economic rights are not tightly documented.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <footer class="footer-row">
+        <p>Prepared for private investor briefing discussion | Apex Governance Group</p>
+        <p>Contact: <a href="mailto:apex@apexgovernancegroup.com">apex@apexgovernancegroup.com</a></p>
+      </footer>
+    </main>
+  </body>
+</html>
