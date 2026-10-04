@@ -924,8 +924,12 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /149 proposed product patterns/);
   assert.match(combined, /Seminars and Sprints/);
   assert.match(combined, /Customization Levers/);
-  assert.match(combined, /Client Purchase Library/);
-  assert.match(combined, /plain-speak product names first/);
+  assert.match(combined, /Apex Publications Library/);
+  assert.match(home, /Review the publication path before you buy the work/);
+  assert.match(home, /href="\/engage#apex-publications-library"/);
+  assert.match(home, /purchaseLibraryItems\.slice\(0, 3\)\.map/);
+  assert.match(engage, /id="apex-publications-library"/);
+  assert.match(combined, /plain-speak product names\s+first/);
   assert.match(combined, /Download after purchase/);
   assert.match(combined, /Request download access/);
   assert.match(combined, /client-portal activation/);

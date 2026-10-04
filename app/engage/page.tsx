@@ -202,16 +202,17 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
           <div
             aria-labelledby="purchase-library-heading"
             className="purchase-library-shell"
+            id="apex-publications-library"
           >
             <div className="section-heading section-heading--compact">
-              <p className="eyebrow">Client Purchase Library</p>
+              <p className="eyebrow">Apex Publications Library</p>
               <h2 id="purchase-library-heading">Review the offer in plain language. Download the product after purchase.</h2>
               <p>
-                The library uses plain-speak product names first, then ties
-                each item back to its formal storefront SKU for purchase,
-                records, and delivery control. Downloads are made available
-                through the client portal after purchase, intake validation,
-                and credential activation.
+                The Apex Publications Library uses plain-speak product names
+                first, then ties each item back to its formal storefront SKU for
+                purchase, records, and delivery control. Downloads are made
+                available through the client portal after purchase, intake
+                validation, and credential activation.
               </p>
             </div>
             <div className="purchase-library-grid">

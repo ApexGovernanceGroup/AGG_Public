@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   ArrowRight,
   BadgeCheck,
+  BookOpenCheck,
   CreditCard,
   Gauge,
   GitBranch,
@@ -20,6 +21,7 @@ import {
   githubRepositoryUrl,
   kaiged,
   pillarDefinitions,
+  purchaseLibraryItems,
   serviceLines,
   site,
   solutionDeliveryBridge,
@@ -267,6 +269,48 @@ export default function Home() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--surface" aria-labelledby="apex-publications-library-heading">
+        <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow">Apex Publications Library</p>
+            <h2 id="apex-publications-library-heading">
+              Review the publication path before you buy the work.
+            </h2>
+            <p>
+              AGG publications translate complex operating needs into
+              downloadable briefs, templates, assessments, checklists, and
+              governing document packages. Each publication route connects to a
+              storefront listing, registration path, and controlled delivery
+              record.
+            </p>
+          </div>
+          <div className="card-grid card-grid--three" aria-label="Apex publication routes">
+            {purchaseLibraryItems.slice(0, 3).map((item) => (
+              <article className="service-card" key={item.packageId}>
+                <BookOpenCheck size={22} aria-hidden="true" />
+                <p className="eyebrow">Publication route</p>
+                <h3>{item.plainName}</h3>
+                <p>{item.reviewSummary}</p>
+                <Link className="text-link" href={`/engage#storefront-${item.packageId}`}>
+                  Review storefront listing
+                  <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+              </article>
+            ))}
+          </div>
+          <div className="action-row action-row--center">
+            <Link className="button button--primary" href="/engage#apex-publications-library">
+              <BookOpenCheck size={18} aria-hidden="true" />
+              Open Apex Publications Library
+            </Link>
+            <Link className="button button--quiet" href="/engage">
+              <CreditCard size={18} aria-hidden="true" />
+              View full storefront
+            </Link>
           </div>
         </div>
       </section>
