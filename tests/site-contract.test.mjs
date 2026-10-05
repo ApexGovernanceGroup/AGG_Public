@@ -167,6 +167,9 @@ test("AGG public site contract is present", async () => {
     commerce,
     envExample,
   ].join("\n");
+
+  await access(new URL("../public/favicon.ico", import.meta.url));
+
   const sideNavData = data.slice(
     data.indexOf("export const sideNavItems"),
     data.indexOf("export const navItems"),
@@ -298,6 +301,7 @@ test("AGG public site contract is present", async () => {
   assert.match(sitemap, /"\/inside-perspective-human-cost-executive-management"/);
   assert.match(sitemap, /"\/paralysis-from-analysis-needs-vs-systems"/);
   assert.match(layout, /<CinematicDepthScene \/>[\s\S]*<AlabamaTopographicBackdrop \/>/);
+  assert.match(layout, /icons:\s*\{[\s\S]*icon:\s*"\/brand\/apex-governance-group-symbol\.png"/);
   assert.match(layout, /<AlabamaTopographicBackdrop \/>/);
   assert.match(cinematicDepthScene, /from "three"/);
   assert.match(cinematicDepthScene, /import\("three"\)/);
