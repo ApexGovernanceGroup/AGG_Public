@@ -20,6 +20,7 @@ Codex has full artistic, branding, visual-system, interaction, layout, hierarchy
 - Texture: Alabama/Maine topographic contour language is used as a quiet operating-map layer, never as decoration that competes with content.
 - Shape: restrained rectangular cards with small radius; no decorative blobs or one-note gradients.
 - Motion: subtle elevation, hover lift, scroll-responsive map movement, and reduced-motion respect.
+- Cinematic depth: a full-bleed WebGL operating-map layer may provide lighting, shadow, shimmer, particle depth, and slow parallax when it stays behind the content, preserves readability, and never alters the AGG symbol or masthead text.
 
 ## Interaction Principles
 

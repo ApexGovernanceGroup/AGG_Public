@@ -41,6 +41,7 @@ test("AGG public site contract is present", async () => {
     clientLedSelfDeterminationCards,
     heroSolutionLanes,
     alabamaTopographicBackdrop,
+    cinematicDepthScene,
     packageInclusionsComponent,
     clientServicesAuth,
     clientServicesAccessRoute,
@@ -89,6 +90,7 @@ test("AGG public site contract is present", async () => {
       read("app/components/ClientLedSelfDeterminationCards.tsx"),
       read("app/components/HeroSolutionLanes.tsx"),
       read("app/components/AlabamaTopographicBackdrop.tsx"),
+      read("app/components/CinematicDepthScene.tsx"),
       read("app/components/PackageInclusions.tsx"),
       read("app/client-services/auth.ts"),
       read("app/api/client-services/access/route.ts"),
@@ -137,6 +139,7 @@ test("AGG public site contract is present", async () => {
     clientConfigurationCard,
     clientLedSelfDeterminationCards,
     alabamaTopographicBackdrop,
+    cinematicDepthScene,
     packageInclusionsComponent,
     clientServicesAuth,
     clientServicesAccessRoute,
@@ -294,7 +297,18 @@ test("AGG public site contract is present", async () => {
   assert.match(sitemap, /"\/investor-opportunities"/);
   assert.match(sitemap, /"\/inside-perspective-human-cost-executive-management"/);
   assert.match(sitemap, /"\/paralysis-from-analysis-needs-vs-systems"/);
+  assert.match(layout, /<CinematicDepthScene \/>[\s\S]*<AlabamaTopographicBackdrop \/>/);
   assert.match(layout, /<AlabamaTopographicBackdrop \/>/);
+  assert.match(cinematicDepthScene, /from "three"/);
+  assert.match(cinematicDepthScene, /import\("three"\)/);
+  assert.match(cinematicDepthScene, /WebGLRenderer/);
+  assert.match(cinematicDepthScene, /PerspectiveCamera/);
+  assert.match(cinematicDepthScene, /PointLight/);
+  assert.match(cinematicDepthScene, /requestAnimationFrame/);
+  assert.match(cinematicDepthScene, /prefers-reduced-motion: reduce/);
+  assert.match(cinematicDepthScene, /data-cinematic-depth="webgl-operating-map"/);
+  assert.match(cinematicDepthScene, /renderer\.dispose\(\)/);
+  assert.match(cinematicDepthScene, /disposeObject/);
   assert.match(alabamaTopographicBackdrop, /prefers-reduced-motion: reduce/);
   assert.match(alabamaTopographicBackdrop, /requestAnimationFrame/);
   assert.match(alabamaTopographicBackdrop, /scrollProgress/);
@@ -1003,6 +1017,7 @@ test("brand assets and palette are wired", async () => {
     alabamaSmokeContours,
     alabamaMapLabels,
     alabamaTopographicBackdrop,
+    cinematicDepthScene,
   ] = await Promise.all([
     read("app/layout.tsx"),
     read("app/globals.css"),
@@ -1012,6 +1027,7 @@ test("brand assets and palette are wired", async () => {
     read("public/brand/alabama-topographic-contours-smoke.svg"),
     read("public/brand/alabama-map-labels.svg"),
     read("app/components/AlabamaTopographicBackdrop.tsx"),
+    read("app/components/CinematicDepthScene.tsx"),
   ]);
 
   assert.match(layout, /apex-governance-group-symbol\.png/);
@@ -1066,7 +1082,13 @@ test("brand assets and palette are wired", async () => {
   assert.match(alabamaMapLabels, /Alabama River/);
   assert.match(alabamaMapLabels, /Mobile Bay/);
   assert.match(alabamaMapLabels, /Gulf of Mexico/);
+  assert.match(layout, /CinematicDepthScene/);
   assert.match(layout, /AlabamaTopographicBackdrop/);
+  assert.match(cinematicDepthScene, /GRID_LINES/);
+  assert.match(cinematicDepthScene, /PARTICLE_COUNT/);
+  assert.match(cinematicDepthScene, /seededRandom/);
+  assert.match(cinematicDepthScene, /pointermove/);
+  assert.match(cinematicDepthScene, /scrollY/);
   assert.match(alabamaTopographicBackdrop, /window\.addEventListener\("scroll", requestUpdate, \{ passive: true \}\)/);
   assert.match(alabamaTopographicBackdrop, /window\.removeEventListener\("scroll", requestUpdate\)/);
   const siteTopographyBackdrop = cssBlock(css, ".site-topography-backdrop");
@@ -1081,6 +1103,13 @@ test("brand assets and palette are wired", async () => {
   assert.match(siteTopographyBackdrop, /var\(--alabama-map-scale\) auto/);
   assert.match(siteTopographyBackdrop, /opacity:\s*0\.2/);
   assert.match(siteTopographyBackdrop, /will-change:\s*background-position/);
+  const cinematicDepthStage = cssBlock(css, ".cinematic-depth-stage");
+  assert.match(cinematicDepthStage, /position:\s*fixed/);
+  assert.match(cinematicDepthStage, /pointer-events:\s*none/);
+  assert.match(cinematicDepthStage, /mix-blend-mode:\s*multiply/);
+  assert.match(cinematicDepthStage, /mask-image:\s*linear-gradient/);
+  assert.match(cssBlock(css, ".cinematic-depth-stage canvas"), /display:\s*block/);
+  assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.cinematic-depth-stage/);
   assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.site-topography-backdrop/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.doctrine-command,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.doctrine-sequence\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
