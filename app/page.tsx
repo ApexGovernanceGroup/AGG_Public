@@ -29,6 +29,7 @@ import {
   strategicDoctrine,
 } from "./site-data";
 import { ClientLedSelfDeterminationCards } from "./components/ClientLedSelfDeterminationCards";
+import { EngagementPackageDeepDive } from "./components/EngagementPackageDeepDive";
 import { HeroSolutionLanes } from "./components/HeroSolutionLanes";
 import {
   insidePerspectiveSurvey,
@@ -530,6 +531,7 @@ export default function Home() {
                   <p>{item.description}</p>
                 </div>
                 <strong>{item.displayPrice}</strong>
+                <EngagementPackageDeepDive packageItem={item} variant="compact" />
               </div>
             ))}
             <Link className="button button--primary" href="/engage">

@@ -44,6 +44,7 @@ test("AGG public site contract is present", async () => {
     cinematicDepthScene,
     publicTelemetry,
     packageInclusionsComponent,
+    engagementPackageDeepDiveComponent,
     clientServicesAuth,
     clientServicesAccessRoute,
     clientServicesLogoutRoute,
@@ -95,6 +96,7 @@ test("AGG public site contract is present", async () => {
       read("app/components/CinematicDepthScene.tsx"),
       read("app/components/PublicTelemetry.tsx"),
       read("app/components/PackageInclusions.tsx"),
+      read("app/components/EngagementPackageDeepDive.tsx"),
       read("app/client-services/auth.ts"),
       read("app/api/client-services/access/route.ts"),
       read("app/api/client-services/logout/route.ts"),
@@ -147,6 +149,7 @@ test("AGG public site contract is present", async () => {
     cinematicDepthScene,
     publicTelemetry,
     packageInclusionsComponent,
+    engagementPackageDeepDiveComponent,
     clientServicesAuth,
     clientServicesAccessRoute,
     clientServicesLogoutRoute,
@@ -732,9 +735,31 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /organizational change management campaign plan/i);
   assert.match(combined, /12 months or six direct engagements/i);
   assert.match(engage, /<PackageInclusions inclusions=\{packageInclusions\} \/>/);
+  assert.match(engage, /<EngagementPackageDeepDive packageItem=\{item\} \/>/);
+  assert.match(home, /<EngagementPackageDeepDive packageItem=\{item\} variant="compact" \/>/);
   assert.match(packageInclusionsComponent, /"use client"/);
   assert.match(packageInclusionsComponent, /aria-expanded=\{isOpen\}/);
   assert.match(packageInclusionsComponent, /role="region"/);
+  assert.match(engagementPackageDeepDiveComponent, /"use client"/);
+  assert.match(engagementPackageDeepDiveComponent, /aria-expanded=\{isOpen\}/);
+  assert.match(engagementPackageDeepDiveComponent, /role="region"/);
+  assert.match(engagementPackageDeepDiveComponent, /Example services offered within this category/);
+  assert.match(engagementPackageDeepDiveComponent, /Apex Required Inputs/);
+  assert.match(engagementPackageDeepDiveComponent, /Apex Generated Final Outputs/);
+  assert.match(engagementPackageDeepDiveComponent, /Generalized Timeline/);
+  assert.match(engagementPackageDeepDiveComponent, /Apex-Client Engagement Expectations/);
+  assert.match(engagementPackageDeepDiveComponent, /Finalization \| Satisfaction Criteria/);
+  assert.match(engagementPackageDeepDiveComponent, /Final Client Delivery Package/);
+  assert.match(engagementPackageDeepDiveComponent, /Scope deep dive/);
+  assert.match(commerce, /export type EngagementPackageDeepDive/);
+  assert.equal((commerce.match(/deepDive:\s*\{/g) ?? []).length, 6);
+  assert.equal((commerce.match(/exampleServices:\s*\[/g) ?? []).length, 6);
+  assert.equal((commerce.match(/apexRequiredInputs:\s*\[/g) ?? []).length, 6);
+  assert.equal((commerce.match(/apexGeneratedFinalOutputs:\s*\[/g) ?? []).length, 6);
+  assert.equal((commerce.match(/generalizedTimeline:\s*\[/g) ?? []).length, 6);
+  assert.equal((commerce.match(/engagementExpectations:\s*\[/g) ?? []).length, 6);
+  assert.equal((commerce.match(/satisfactionCriteria:\s*\[/g) ?? []).length, 6);
+  assert.equal((commerce.match(/finalClientDeliveryPackage:\s*\[/g) ?? []).length, 6);
   assert.match(combined, /End-State Products/);
   assert.match(combined, /Client Priorities/);
   assert.match(combined, /formatAttributeLine/);
@@ -1358,6 +1383,18 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const packageInclusionsTop = cssBlock(css, ".package-inclusions__top");
   const packageInclusionsClose = cssBlock(css, ".package-inclusions__close");
   const packageInclusionsList = cssBlock(css, ".package-inclusions__card ul");
+  const packageDeepDiveStack = cssBlock(css, ".stack-list__item .package-deep-dive");
+  const packageDeepDiveTrigger = cssBlock(css, ".package-deep-dive__trigger");
+  const packageDeepDiveCompactTrigger = cssBlock(
+    css,
+    ".package-deep-dive--compact .package-deep-dive__trigger",
+  );
+  const packageDeepDiveCard = cssBlock(css, ".package-deep-dive__card");
+  const packageDeepDiveTop = cssBlock(css, ".package-deep-dive .package-deep-dive__top");
+  const packageDeepDiveGrid = cssBlock(css, ".package-deep-dive .package-deep-dive__grid");
+  const packageDeepDiveSection = cssBlock(css, ".package-deep-dive .package-deep-dive__section");
+  const packageDeepDiveClose = cssBlock(css, ".package-deep-dive__close");
+  const packageDeepDiveFooter = cssBlock(css, ".package-deep-dive__footer");
   const onboardingPath = cssBlock(css, ".onboarding-path");
   const onboardingSelectedPackage = cssBlock(css, ".onboarding-selected-package");
   const onboardingFormGrid = cssBlock(css, ".onboarding-form__grid");
@@ -1653,6 +1690,17 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(packageInclusionsTop, /justify-content:\s*space-between/);
   assert.match(packageInclusionsClose, /width:\s*32px/);
   assert.match(packageInclusionsList, /list-style:\s*none/);
+  assert.match(packageDeepDiveStack, /grid-column:\s*1 \/ -1/);
+  assert.match(packageDeepDiveTrigger, /justify-content:\s*center/);
+  assert.match(packageDeepDiveCompactTrigger, /justify-self:\s*end/);
+  assert.match(packageDeepDiveCard, /animation:\s*package-deep-dive-pop 0\.18s ease-out/);
+  assert.match(packageDeepDiveTop, /justify-content:\s*space-between/);
+  assert.match(packageDeepDiveGrid, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(packageDeepDiveSection, /border-left:\s*3px solid var\(--bronze\)/);
+  assert.match(packageDeepDiveClose, /border-radius:\s*999px/);
+  assert.match(packageDeepDiveFooter, /border-top:\s*1px solid rgba\(23,\s*44,\s*63,\s*0\.12\)/);
+  assert.match(css, /@keyframes package-deep-dive-pop/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.package-deep-dive \.package-deep-dive__grid\s*{[^}]*grid-template-columns:\s*1fr/);
   assert.match(onboardingPath, /grid-template-columns:\s*minmax\(0,\s*0\.48fr\)\s*minmax\(0,\s*0\.52fr\)/);
   assert.match(onboardingSelectedPackage, /grid-template-columns:\s*auto 1fr auto/);
   assert.match(onboardingFormGrid, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
@@ -1855,6 +1903,7 @@ test("checkout keeps price authority on the server", async () => {
   assert.match(engage, /Register before checkout/);
   assert.doesNotMatch(engage, /Start secure checkout/);
   assert.match(engage, /PackageInclusions/);
+  assert.match(engage, /EngagementPackageDeepDive/);
 });
 
 test("security and public-readiness controls are configured", async () => {

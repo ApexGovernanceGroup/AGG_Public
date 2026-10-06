@@ -9,6 +9,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { PackageInclusions } from "../components/PackageInclusions";
+import { EngagementPackageDeepDive } from "../components/EngagementPackageDeepDive";
 import {
   brandStandard,
   buyerFirstMoves,
@@ -186,6 +187,7 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
                 </ul>
                 <div className="pricing-card__actions">
                   <PackageInclusions inclusions={packageInclusions} />
+                  <EngagementPackageDeepDive packageItem={item} />
                   <Link
                     className="button button--primary button--full"
                     href={`/client-onboarding?intent=product-purchase&packageId=${encodeURIComponent(
