@@ -36,9 +36,17 @@ or non-public implementation artifacts.
 - Public client portal preview for progress, status, project efforts, programs,
   actions, and working comments. The preview is noindexed and excluded from the
   sitemap; live client access remains an onboarding-controlled capability.
+- Trust architecture section on the homepage that distinguishes live proof,
+  first-party telemetry, integration-ready CRM/Dataverse/Hex pathways, and
+  gated client data controls.
+- Privacy-preserving public event telemetry at `/api/public-events` for
+  page-view and decision-path click signals. Events are bounded, same-origin,
+  rate limited, and logged server-side without cookies or client identity
+  profiling.
 - Maine topographic contour accents: oxblood on white/cream/pearl cards and
   smoke gray on black-scale cards.
-- SEO metadata, robots, sitemap, and social preview image wiring.
+- SEO metadata, robots, sitemap, favicon, Apple touch icon, and social preview
+  image wiring.
 
 ## Brand System
 
@@ -178,7 +186,7 @@ Create a local `.env.local` or set hosted runtime variables:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://www.apexgov.ai
-NEXT_PUBLIC_CONTACT_EMAIL=contact@apexgovernancegroup.com
+NEXT_PUBLIC_CONTACT_EMAIL=apex@apexgovernancegroup.com
 NEXT_PUBLIC_CALENDAR_URL=https://your-scheduling-link
 NEXT_PUBLIC_FOUNDER_LINKEDIN_URL=https://www.linkedin.com/in/benjamin-bragdon
 NEXT_PUBLIC_GITHUB_REPOSITORY_URL=https://github.com/ApexGovernanceGroup/AGG_Public
@@ -193,6 +201,24 @@ STRIPE_CANCEL_URL=https://your-production-url/engage?checkout=canceled
 ```
 
 Do not commit live Stripe secrets.
+
+## Measurement and Analytics Readiness
+
+The site records a small public telemetry stream through `/api/public-events`.
+The endpoint accepts only same-origin JSON events for `page_view`,
+`navigation_click`, and `cta_click`; enforces a small request body, simple
+rate limiting, no-store responses, and bounded string fields; and emits
+structured server logs for future analysis.
+
+This is intentionally not a CRM, Dataverse, or Hex data warehouse. It creates a
+governed signal trail that can later be routed into Hex, Dataverse, SharePoint,
+or a CRM only after AGG confirms the target environment, schema, identity
+model, retention policy, and access controls.
+
+The repository is not currently bound to a Vercel project through
+`.vercel/project.json`. Vercel Web Analytics or Speed Insights can be enabled
+later if hosting or observability moves to Vercel; until then, OpenAI Sites /
+Cloudflare Worker logs remain the production telemetry source.
 
 ## GitHub Integration
 

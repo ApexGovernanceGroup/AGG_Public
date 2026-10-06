@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { AlabamaTopographicBackdrop } from "./components/AlabamaTopographicBackdrop";
 import { CinematicDepthScene } from "./components/CinematicDepthScene";
+import { PublicTelemetry } from "./components/PublicTelemetry";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { SideNavigation } from "./components/SideNavigation";
@@ -40,8 +41,8 @@ export async function generateMetadata(): Promise<Metadata> {
     description: siteDescription,
     icons: {
       icon: "/brand/apex-governance-group-symbol.png",
-      shortcut: "/brand/apex-governance-group-symbol.png",
-      apple: "/brand/apex-governance-group-symbol.png",
+      shortcut: "/favicon.ico",
+      apple: "/apple-touch-icon.png",
     },
     openGraph: {
       title: "Apex Governance Group",
@@ -82,6 +83,7 @@ export default function RootLayout({
         <SideNavigation />
         {children}
         <SiteFooter />
+        <PublicTelemetry />
       </body>
     </html>
   );

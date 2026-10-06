@@ -7459,9 +7459,207 @@ button.configuration-relation-card:disabled {
   font-size: 0.94rem;
 }
 
+.section--trust {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(195, 194, 189, 0.12);
+  border-bottom: 1px solid rgba(195, 194, 189, 0.12);
+  background:
+    linear-gradient(135deg, rgba(12, 12, 12, 0.96), rgba(23, 44, 63, 0.94)),
+    var(--black);
+  color: var(--paper);
+}
+
+.section--trust::before,
+.section--trust::after {
+  position: absolute;
+  pointer-events: none;
+  content: "";
+}
+
+.section--trust::before {
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(136, 98, 60, 0.26), transparent 30%, transparent 72%, rgba(121, 55, 53, 0.18)),
+    var(--maine-topographic-contours-smoke);
+  background-position:
+    center,
+    left -18vw top -26vw;
+  background-repeat: no-repeat;
+  background-size:
+    100% 100%,
+    min(1120px, 136vw) auto;
+  opacity: 0.72;
+}
+
+.section--trust::after {
+  right: 8vw;
+  bottom: -180px;
+  width: min(620px, 72vw);
+  aspect-ratio: 1;
+  border: 1px solid rgba(136, 98, 60, 0.2);
+  border-radius: 50%;
+  box-shadow:
+    0 0 86px rgba(136, 98, 60, 0.18),
+    inset 0 0 64px rgba(244, 241, 234, 0.04);
+}
+
+.trust-architecture {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-items: stretch;
+  gap: 20px;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  perspective: 1400px;
+}
+
+.trust-architecture__brief,
+.trust-signal-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(244, 241, 234, 0.14);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(244, 241, 234, 0.08), rgba(12, 12, 12, 0.22)),
+    rgba(12, 12, 12, 0.46);
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(244, 241, 234, 0.1);
+  backdrop-filter: blur(18px);
+  transform-style: preserve-3d;
+}
+
+.trust-architecture__brief {
+  display: grid;
+  align-content: center;
+  min-height: 520px;
+  padding: clamp(24px, 4vw, 46px);
+}
+
+.trust-architecture__brief::before,
+.trust-signal-card::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 36%),
+    repeating-linear-gradient(90deg, rgba(244, 241, 234, 0.04) 0 1px, transparent 1px 42px);
+  opacity: 0.74;
+}
+
+.trust-architecture__brief > *,
+.trust-signal-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.trust-architecture__brief h2 {
+  max-width: 760px;
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 4vw, 3.45rem);
+  letter-spacing: 0;
+}
+
+.trust-architecture__brief p:not(.eyebrow) {
+  max-width: 720px;
+  color: rgba(244, 241, 234, 0.74);
+  font-size: clamp(1rem, 1.5vw, 1.14rem);
+}
+
+.confidence-metric-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 26px 0 0;
+}
+
+.confidence-metric {
+  min-height: 116px;
+  padding: 16px;
+  border: 1px solid rgba(244, 241, 234, 0.12);
+  background: rgba(244, 241, 234, 0.06);
+  box-shadow: inset 0 1px 0 rgba(244, 241, 234, 0.08);
+}
+
+.confidence-metric strong {
+  display: block;
+  color: var(--bronze-light);
+  font-size: clamp(1.55rem, 2.8vw, 2.35rem);
+  line-height: 1;
+}
+
+.confidence-metric span {
+  display: block;
+  margin-top: 10px;
+  color: rgba(244, 241, 234, 0.68);
+  font-size: 0.78rem;
+}
+
+.trust-signal-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.trust-signal-card {
+  display: grid;
+  min-height: 252px;
+  align-content: start;
+  gap: 14px;
+  padding: clamp(20px, 2.2vw, 26px);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.trust-signal-card:hover,
+.trust-signal-card:focus-within {
+  border-color: rgba(136, 98, 60, 0.52);
+  box-shadow:
+    0 30px 78px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(244, 241, 234, 0.12);
+  transform: translateY(-3px) rotateX(0.65deg);
+}
+
+.trust-signal-card__top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trust-signal-card__top svg {
+  color: var(--bronze-light);
+}
+
+.trust-signal-card__top span {
+  color: var(--bronze-light);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.trust-signal-card h3 {
+  margin: 8px 0 0;
+  color: var(--paper);
+  font-size: clamp(1.12rem, 2vw, 1.45rem);
+}
+
+.trust-signal-card p {
+  margin: 0;
+  color: rgba(244, 241, 234, 0.72);
+  font-size: 0.94rem;
+}
+
 .hero,
 .page-hero,
 .section--dark,
+.section--trust,
 .callout {
   perspective: 1400px;
 }
@@ -7546,6 +7744,7 @@ button.configuration-relation-card:disabled {
 .sprint-card,
 .catalog-stat,
 .integration-card,
+.trust-signal-card,
 .founder-spotlight__profile,
 .principle,
 .pricing-principle,
@@ -7620,6 +7819,7 @@ button.configuration-relation-card:disabled {
 
 @media (hover: hover) {
   .surface-signal-card:hover,
+  .trust-signal-card:hover,
   .service-card:hover,
   .feature-panel:hover,
   .solution-card:hover,
@@ -7665,6 +7865,10 @@ button.configuration-relation-card:disabled {
     animation: executive-surface-sweep 9s ease-in-out infinite alternate;
   }
 
+  .section--trust::after {
+    animation: executive-trust-orbit 14s ease-in-out infinite alternate;
+  }
+
   .page-hero::before,
   .hero::before {
     animation: executive-field-drift 26s ease-in-out infinite alternate;
@@ -7703,8 +7907,21 @@ button.configuration-relation-card:disabled {
   }
 }
 
+@keyframes executive-trust-orbit {
+  from {
+    transform: translate3d(-14px, 8px, 0) scale(0.98);
+    opacity: 0.62;
+  }
+
+  to {
+    transform: translate3d(18px, -12px, 0) scale(1.02);
+    opacity: 0.92;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .surface-command__panel::after,
+  .section--trust::after,
   .page-hero::before,
   .hero::before {
     animation: none;
@@ -7717,6 +7934,7 @@ button.configuration-relation-card:disabled {
   .contact-panel,
   .pricing-card,
   .surface-signal-card,
+  .trust-signal-card,
   .button,
   .icon-link,
   .site-side-nav a {
@@ -7731,19 +7949,32 @@ button.configuration-relation-card:disabled {
 
 @media (max-width: 980px) {
   .surface-command,
-  .surface-signal-grid {
+  .surface-signal-grid,
+  .trust-architecture,
+  .trust-signal-grid {
     grid-template-columns: 1fr;
   }
 
-  .surface-command__panel {
+  .surface-command__panel,
+  .trust-architecture__brief {
     min-height: auto;
+  }
+
+  .confidence-metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 680px) {
   .surface-command__panel,
-  .surface-signal-card {
+  .surface-signal-card,
+  .trust-architecture__brief,
+  .trust-signal-card {
     padding: 18px;
+  }
+
+  .confidence-metric-grid {
+    grid-template-columns: 1fr;
   }
 
   .page-hero__inner::before {

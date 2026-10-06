@@ -66,6 +66,56 @@ const operatingSurfaceSignals = [
   },
 ] as const;
 
+const trustArchitectureSignals = [
+  {
+    label: "Evidence",
+    title: "QA / readiness scorecard",
+    body:
+      "Each serious engagement is framed around baseline, owner, evidence, control, release-readiness, and exit-proof questions before scale is recommended.",
+    icon: BadgeCheck,
+  },
+  {
+    label: "Telemetry",
+    title: "First-party conversion signal",
+    body:
+      "Public page views and decision-path clicks now emit bounded, non-cookie telemetry to the server log stream so AGG can replace planning assumptions with observed demand.",
+    icon: Gauge,
+  },
+  {
+    label: "Governance",
+    title: "Client data boundary",
+    body:
+      "CRM, Dataverse, SharePoint, Hex, and dashboard flows remain integration-ready but are not represented as live client systems until the environment, schema, identity, and retention model are confirmed.",
+    icon: ShieldCheck,
+  },
+  {
+    label: "Readiness",
+    title: "Proof before dependency",
+    body:
+      "The site now makes clear that AGG starts with bounded decisions, proof artifacts, and controlled handoff before asking a client to expand scope.",
+    icon: Network,
+  },
+] as const;
+
+const confidenceMetrics = [
+  {
+    value: "0",
+    label: "third-party resale margin required",
+  },
+  {
+    value: "6",
+    label: "checkout-backed first-move offers",
+  },
+  {
+    value: "8",
+    label: "operating lanes visible before click",
+  },
+  {
+    value: "729",
+    label: "KAIGES|D client configuration paths",
+  },
+] as const;
+
 const solutionSurveyActions = [
   {
     href: `/${insidePerspectiveSurvey.slug}`,
@@ -98,11 +148,21 @@ export default function Home() {
           <p className="hero__statement">{brandStandard.tier2.descriptor}</p>
           <p className="hero__lede">{brandStandard.tier2.lead}</p>
           <div className="hero__actions" aria-label="Primary actions">
-            <Link className="button button--primary" href="/engage">
+            <Link
+              className="button button--primary"
+              data-agg-event="cta"
+              data-agg-label="hero executive diagnostic"
+              href="/engage"
+            >
               <CreditCard size={18} aria-hidden="true" />
               <span>Request the executive diagnostic</span>
             </Link>
-            <Link className="button button--quiet" href="/methodology">
+            <Link
+              className="button button--quiet"
+              data-agg-event="cta"
+              data-agg-label="hero methodology"
+              href="/methodology"
+            >
               <ArrowRight size={18} aria-hidden="true" />
               <span>See how an engagement runs</span>
             </Link>
@@ -175,6 +235,61 @@ export default function Home() {
               <article className="surface-signal-card" key={signal.title}>
                 <signal.icon size={22} aria-hidden="true" />
                 <span>{signal.label}</span>
+                <h3>{signal.title}</h3>
+                <p>{signal.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--trust" aria-labelledby="trust-architecture-heading">
+        <div className="container trust-architecture">
+          <div className="trust-architecture__brief">
+            <p className="eyebrow">Trust Architecture</p>
+            <h2 id="trust-architecture-heading">Measured, governed, and ready to connect.</h2>
+            <p>
+              Consumer confidence comes from visible proof, not broad claims.
+              AGG now separates what is live, what is instrumented, what is
+              integration-ready, and what remains gated until client authority,
+              identity, and records controls are established.
+            </p>
+            <div className="confidence-metric-grid" aria-label="Public confidence metrics">
+              {confidenceMetrics.map((metric) => (
+                <div className="confidence-metric" key={metric.label}>
+                  <strong>{metric.value}</strong>
+                  <span>{metric.label}</span>
+                </div>
+              ))}
+            </div>
+            <div className="action-row">
+              <Link
+                className="button button--primary"
+                data-agg-event="cta"
+                data-agg-label="trust proof library"
+                href="/proof-library"
+              >
+                <BookOpenCheck size={18} aria-hidden="true" />
+                Open proof library
+              </Link>
+              <Link
+                className="button button--quiet"
+                data-agg-event="cta"
+                data-agg-label="trust client onboarding"
+                href="/client-onboarding"
+              >
+                <ArrowRight size={18} aria-hidden="true" />
+                Start controlled onboarding
+              </Link>
+            </div>
+          </div>
+          <div className="trust-signal-grid" aria-label="Trust and readiness signals">
+            {trustArchitectureSignals.map((signal) => (
+              <article className="trust-signal-card" key={signal.title}>
+                <div className="trust-signal-card__top">
+                  <signal.icon size={22} aria-hidden="true" />
+                  <span>{signal.label}</span>
+                </div>
                 <h3>{signal.title}</h3>
                 <p>{signal.body}</p>
               </article>

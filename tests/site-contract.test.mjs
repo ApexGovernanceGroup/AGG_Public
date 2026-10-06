@@ -42,10 +42,12 @@ test("AGG public site contract is present", async () => {
     heroSolutionLanes,
     alabamaTopographicBackdrop,
     cinematicDepthScene,
+    publicTelemetry,
     packageInclusionsComponent,
     clientServicesAuth,
     clientServicesAccessRoute,
     clientServicesLogoutRoute,
+    publicEventsRoute,
     checkoutRoute,
     clientOnboardingRoute,
     clientOnboardingRecords,
@@ -91,10 +93,12 @@ test("AGG public site contract is present", async () => {
       read("app/components/HeroSolutionLanes.tsx"),
       read("app/components/AlabamaTopographicBackdrop.tsx"),
       read("app/components/CinematicDepthScene.tsx"),
+      read("app/components/PublicTelemetry.tsx"),
       read("app/components/PackageInclusions.tsx"),
       read("app/client-services/auth.ts"),
       read("app/api/client-services/access/route.ts"),
       read("app/api/client-services/logout/route.ts"),
+      read("app/api/public-events/route.ts"),
       read("app/api/checkout/route.ts"),
       read("app/api/client-onboarding/route.ts"),
       read("app/client-onboarding/records.ts"),
@@ -138,12 +142,15 @@ test("AGG public site contract is present", async () => {
     clientServicesCommandCenter,
     clientConfigurationCard,
     clientLedSelfDeterminationCards,
+    heroSolutionLanes,
     alabamaTopographicBackdrop,
     cinematicDepthScene,
+    publicTelemetry,
     packageInclusionsComponent,
     clientServicesAuth,
     clientServicesAccessRoute,
     clientServicesLogoutRoute,
+    publicEventsRoute,
     checkoutRoute,
     clientOnboardingRoute,
     clientOnboardingRecords,
@@ -169,6 +176,7 @@ test("AGG public site contract is present", async () => {
   ].join("\n");
 
   await access(new URL("../public/favicon.ico", import.meta.url));
+  await access(new URL("../public/apple-touch-icon.png", import.meta.url));
 
   const sideNavData = data.slice(
     data.indexOf("export const sideNavItems"),
@@ -253,6 +261,21 @@ test("AGG public site contract is present", async () => {
   assert.match(home, /Depth without noise/);
   assert.match(home, /surface-command/);
   assert.match(home, /surface-signal-card/);
+  assert.match(home, /trustArchitectureSignals/);
+  assert.match(home, /confidenceMetrics/);
+  assert.match(home, /Trust Architecture/);
+  assert.match(home, /Measured, governed, and ready to connect\./);
+  assert.match(home, /value:\s*"0"[\s\S]*label:\s*"third-party resale margin required"/);
+  assert.match(home, /value:\s*"6"[\s\S]*label:\s*"checkout-backed first-move offers"/);
+  assert.match(home, /value:\s*"8"[\s\S]*label:\s*"operating lanes visible before click"/);
+  assert.match(home, /value:\s*"729"[\s\S]*label:\s*"KAIGES\|D client configuration paths"/);
+  assert.match(home, /QA \/ readiness scorecard/);
+  assert.match(home, /First-party conversion signal/);
+  assert.match(home, /Client data boundary/);
+  assert.match(home, /Proof before dependency/);
+  assert.match(home, /CRM, Dataverse, SharePoint, Hex, and dashboard flows remain integration-ready/);
+  assert.match(home, /data-agg-label="trust proof library"/);
+  assert.match(home, /data-agg-label="trust client onboarding"/);
   assert.match(home, /solutionPillarIntro\.headingLines\.map/);
   assert.match(home, /hero__pillar-intro/);
   assert.match(home, /HeroSolutionLanes lanes=\{solutionDeliveryBridge\.lanes\}/);
@@ -302,7 +325,25 @@ test("AGG public site contract is present", async () => {
   assert.match(sitemap, /"\/paralysis-from-analysis-needs-vs-systems"/);
   assert.match(layout, /<CinematicDepthScene \/>[\s\S]*<AlabamaTopographicBackdrop \/>/);
   assert.match(layout, /icons:\s*\{[\s\S]*icon:\s*"\/brand\/apex-governance-group-symbol\.png"/);
+  assert.match(layout, /shortcut:\s*"\/favicon\.ico"/);
+  assert.match(layout, /apple:\s*"\/apple-touch-icon\.png"/);
   assert.match(layout, /<AlabamaTopographicBackdrop \/>/);
+  assert.match(layout, /import \{ PublicTelemetry \} from "\.\/components\/PublicTelemetry"/);
+  assert.match(layout, /<PublicTelemetry \/>/);
+  assert.match(publicTelemetry, /"use client"/);
+  assert.match(publicTelemetry, /const ENDPOINT = "\/api\/public-events"/);
+  assert.match(publicTelemetry, /navigator\.doNotTrack !== "1"/);
+  assert.match(publicTelemetry, /navigator\.sendBeacon/);
+  assert.match(publicTelemetry, /keepalive:\s*true/);
+  assert.match(publicTelemetry, /anchor\.dataset\.aggEvent/);
+  assert.match(publicTelemetry, /cta_click/);
+  assert.match(publicEventsRoute, /RATE_LIMIT_MAX_REQUESTS = 40/);
+  assert.match(publicEventsRoute, /MAX_BODY_BYTES = 4_000/);
+  assert.match(publicEventsRoute, /VALID_EVENTS = new Set/);
+  assert.match(publicEventsRoute, /sourceIsAllowed/);
+  assert.match(publicEventsRoute, /"Cache-Control":\s*"no-store"/);
+  assert.match(publicEventsRoute, /public_conversion_event/);
+  assert.match(publicEventsRoute, /status: 204/);
   assert.match(cinematicDepthScene, /from "three"/);
   assert.match(cinematicDepthScene, /import\("three"\)/);
   assert.match(cinematicDepthScene, /WebGLRenderer/);
@@ -1178,7 +1219,15 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const surfaceCommandPanelSweep = cssBlock(css, ".surface-command__panel::after");
   const surfaceSignalGrid = cssBlock(css, ".surface-signal-grid");
   const surfaceSignalCard = cssBlock(css, ".surface-signal-card");
-  const sharedPerspective = cssBlock(css, ".hero,\n.page-hero,\n.section--dark,\n.callout");
+  const trustSection = cssBlock(css, ".section--trust");
+  const trustArchitecture = cssBlock(css, ".trust-architecture");
+  const trustSharedSurface = cssBlock(css, ".trust-architecture__brief,\n.trust-signal-card");
+  const trustArchitectureBrief = cssBlock(css, ".trust-architecture__brief");
+  const confidenceMetricGrid = cssBlock(css, ".confidence-metric-grid");
+  const confidenceMetric = cssBlock(css, ".confidence-metric");
+  const trustSignalGrid = cssBlock(css, ".trust-signal-grid");
+  const trustSignalCard = cssBlock(css, ".trust-signal-card");
+  const sharedPerspective = cssBlock(css, ".hero,\n.page-hero,\n.section--dark,\n.section--trust,\n.callout");
   const pageHeroInnerRail = cssBlock(css, ".page-hero__inner::before");
   const heroContentContrast = cssBlock(css, ".hero__content::before");
   const brandLockup = cssBlock(css, ".brand-lockup");
@@ -1386,14 +1435,27 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(surfaceCommandPanelSweep, /linear-gradient\(90deg,\s*transparent,\s*rgba\(136,\s*98,\s*60,\s*0\.72\),\s*transparent\)/);
   assert.match(surfaceSignalGrid, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(surfaceSignalCard, /transition:[\s\S]*?transform 180ms ease/);
+  assert.match(trustSection, /overflow:\s*hidden/);
+  assert.match(trustSection, /linear-gradient\(135deg,\s*rgba\(12,\s*12,\s*12,\s*0\.96\),\s*rgba\(23,\s*44,\s*63,\s*0\.94\)\)/);
+  assert.match(trustArchitecture, /grid-template-columns:\s*minmax\(0,\s*0\.95fr\)\s*minmax\(0,\s*1\.05fr\)/);
+  assert.match(trustArchitecture, /perspective:\s*1400px/);
+  assert.match(trustSharedSurface, /transform-style:\s*preserve-3d/);
+  assert.match(trustSharedSurface, /backdrop-filter:\s*blur\(18px\)/);
+  assert.match(trustArchitectureBrief, /min-height:\s*520px/);
+  assert.match(confidenceMetricGrid, /grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(confidenceMetric, /box-shadow:\s*inset 0 1px 0 rgba\(244,\s*241,\s*234,\s*0\.08\)/);
+  assert.match(trustSignalGrid, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(trustSignalCard, /transform-style:\s*preserve-3d/);
+  assert.match(css, /\n\.trust-signal-card \{[\s\S]*?transition:[\s\S]*?transform 180ms ease/);
   assert.match(sharedPerspective, /perspective:\s*1400px/);
   assert.match(pageHeroInnerRail, /linear-gradient\(180deg,\s*transparent,\s*rgba\(136,\s*98,\s*60,\s*0\.82\),\s*transparent\)/);
   assert.match(css, /@media \(hover:\s*hover\)[\s\S]*?transform:\s*translate3d\(0,\s*-5px,\s*18px\)/);
   assert.match(css, /@media \(prefers-reduced-motion:\s*no-preference\)[\s\S]*?animation:\s*executive-surface-sweep 9s ease-in-out infinite alternate/);
   assert.match(css, /@keyframes executive-surface-sweep/);
   assert.match(css, /@keyframes executive-field-drift/);
+  assert.match(css, /@keyframes executive-trust-orbit/);
   assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?animation:\s*none/);
-  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.surface-command,[\s\S]*?\.surface-signal-grid\s*{[^}]*grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.surface-command,[\s\S]*?\.trust-signal-grid\s*{[^}]*grid-template-columns:\s*1fr/);
   assert.match(heroHeadline, /font-size:\s*clamp\(2\.05rem,\s*3\.8vw,\s*3\.2rem\)/);
   assert.match(heroContentContrast, /z-index:\s*-1/);
   assert.match(heroContentContrast, /radial-gradient\(ellipse at 28% 28%,\s*rgba\(5,\s*5,\s*5,\s*0\.96\)/);
@@ -1870,6 +1932,10 @@ test("starter artifacts are removed and GitHub operations are present", async ()
   assert.match(issueTemplate, /## Decision Required/);
   assert.match(readme, /Stripe Activation/);
   assert.match(readme, /GitHub Integration/);
+  assert.match(readme, /Trust architecture/);
+  assert.match(readme, /Measurement and Analytics Readiness/);
+  assert.match(readme, /\/api\/public-events/);
+  assert.match(readme, /NEXT_PUBLIC_CONTACT_EMAIL=apex@apexgovernancegroup\.com/);
   assert.match(readme, /npm run simulate:revenue/);
   assert.match(packageJson, /"simulate:revenue": "node scripts\/agg-revenue-simulation\.mjs"/);
   assert.match(designContext, /executive operating room/);
