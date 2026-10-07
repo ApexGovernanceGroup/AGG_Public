@@ -24,11 +24,11 @@ import {
   academyProgramOutcomes,
   academyTopicDomains,
   brandStandard,
+  downloadProducts,
   engagementPackages,
   githubRepositoryUrl,
   kaiged,
   pillarDefinitions,
-  purchaseLibraryItems,
   serviceLines,
   site,
   solutionDeliveryBridge,
@@ -560,14 +560,14 @@ export default function Home() {
             </p>
           </div>
           <div className="card-grid card-grid--three" aria-label="Apex publication routes">
-            {purchaseLibraryItems.slice(0, 3).map((item) => (
-              <article className="service-card" key={item.packageId}>
+            {downloadProducts.slice(0, 3).map((item) => (
+              <article className="service-card" key={item.id}>
                 <BookOpenCheck size={22} aria-hidden="true" />
-                <p className="eyebrow">Publication route</p>
-                <h3>{item.plainName}</h3>
-                <p>{item.reviewSummary}</p>
-                <Link className="text-link" href={`/engage#storefront-${item.packageId}`}>
-                  Review storefront listing
+                <p className="eyebrow">{item.sku} | {item.tier}</p>
+                <h3>{item.name}</h3>
+                <p>{item.description}</p>
+                <Link className="text-link" href={`/engage#download-product-${item.id}`}>
+                  Review download product
                   <ArrowRight size={16} aria-hidden="true" />
                 </Link>
               </article>

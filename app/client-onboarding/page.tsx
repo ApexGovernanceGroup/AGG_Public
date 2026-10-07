@@ -4,10 +4,11 @@ import {
   ArrowRight,
   ClipboardCheck,
   CreditCard,
+  Download,
   LockKeyhole,
   ShieldCheck,
 } from "lucide-react";
-import { engagementPackages, contactEmail } from "../site-data";
+import { downloadProducts, engagementPackages, contactEmail } from "../site-data";
 
 export const metadata: Metadata = {
   title: "Client Onboarding",
@@ -37,12 +38,14 @@ const allowedDefaultIntents = new Set([
   "custom-solution",
   "admin-directed",
   "taxonomy-starter",
+  "digital-download",
 ]);
 
 type ClientOnboardingPageProps = {
   searchParams?: Promise<{
     intent?: string;
     packageId?: string;
+    productId?: string;
     registration?: string;
   }>;
 };
@@ -53,6 +56,9 @@ export default async function ClientOnboardingPage({
   const params = await searchParams;
   const selectedPackage = engagementPackages.find(
     (item) => item.id === params?.packageId,
+  );
+  const selectedProduct = downloadProducts.find(
+    (item) => item.id === params?.productId,
   );
   const defaultIntent =
     params?.intent && allowedDefaultIntents.has(params.intent)
@@ -144,6 +150,18 @@ export default async function ClientOnboardingPage({
             </article>
           )}
 
+          {selectedProduct && (
+            <article className="onboarding-selected-package">
+              <Download size={22} aria-hidden="true" />
+              <div>
+                <p className="eyebrow">Selected Download Product</p>
+                <h3>{selectedProduct.name}</h3>
+                <p>{selectedProduct.description}</p>
+              </div>
+              <strong>{selectedProduct.displayPrice}</strong>
+            </article>
+          )}
+
           <form className="onboarding-form" action="/api/client-onboarding" method="post" noValidate>
             <input
               autoComplete="off"
@@ -153,6 +171,7 @@ export default async function ClientOnboardingPage({
               type="text"
             />
             <input name="packageId" type="hidden" value={selectedPackage?.id ?? ""} />
+            <input name="productId" type="hidden" value={selectedProduct?.id ?? ""} />
 
             <div className="onboarding-form__grid">
               <label>
@@ -213,6 +232,7 @@ export default async function ClientOnboardingPage({
                   <option value="custom-solution">Custom solution</option>
                   <option value="admin-directed">AGG-directed admin onboarding</option>
                   <option value="taxonomy-starter">Taxonomy starter exchange</option>
+                  <option value="digital-download">Digital download purchase</option>
                 </select>
               </label>
               <label>

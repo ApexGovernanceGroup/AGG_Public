@@ -5826,6 +5826,114 @@ button.configuration-relation-card:disabled {
   text-transform: uppercase;
 }
 
+.download-product-shelf {
+  margin: 34px 0;
+  border: 1px solid rgba(23, 44, 63, 0.14);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(135deg, rgba(23, 44, 63, 0.08), transparent 44%),
+    rgba(255, 255, 255, 0.58);
+  box-shadow: var(--shadow-raised);
+  padding: clamp(20px, 3vw, 32px);
+}
+
+.download-product-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.download-product-card {
+  display: grid;
+  min-height: 560px;
+  gap: 14px;
+  align-content: start;
+  border: 1px solid rgba(23, 44, 63, 0.16);
+  border-left: 5px solid var(--bronze);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(244, 241, 234, 0.72)),
+    var(--maine-topographic-contours-smoke) center / 520px repeat;
+  box-shadow:
+    0 22px 52px rgba(12, 12, 12, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.74);
+  padding: 20px;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.download-product-card__top {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.download-product-card__top svg {
+  color: var(--bronze);
+}
+
+.download-product-card__top h3 {
+  margin: 3px 0 0;
+  color: var(--black);
+  font-size: clamp(1.12rem, 1.8vw, 1.38rem);
+  line-height: 1.18;
+}
+
+.download-product-card__top strong {
+  justify-self: end;
+  color: var(--bronze-dark);
+  font-size: 0.92rem;
+  font-weight: 950;
+  text-align: right;
+}
+
+.download-product-card__meta {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.download-product-card__meta div {
+  display: grid;
+  gap: 4px;
+  border-bottom: 1px solid rgba(23, 44, 63, 0.1);
+  padding-bottom: 9px;
+}
+
+.download-product-card__meta dt {
+  color: var(--bronze-dark);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.download-product-card__meta dd {
+  margin: 0;
+  color: rgba(62, 67, 70, 0.82);
+  font-size: 0.92rem;
+  line-height: 1.44;
+}
+
+.download-product-card__note {
+  margin-top: auto;
+  border-top: 1px solid rgba(23, 44, 63, 0.12);
+  color: var(--navy);
+  padding-top: 12px;
+  font-weight: 900;
+}
+
+.download-product-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .pricing-card__sale-status {
   display: flex;
   flex-wrap: wrap;
@@ -8938,6 +9046,7 @@ button.configuration-relation-card:disabled {
 .forecast-window-card,
 .evidence-source-card,
 .storefront-product-index__item,
+.download-product-card,
 .buyer-router-card,
 .proof-library-card,
 .proof-purchase-card,
@@ -8987,6 +9096,7 @@ button.configuration-relation-card:disabled {
 .investment-path-card,
 .forecast-window-card,
 .evidence-source-card,
+.download-product-card,
 .purchase-library-card,
 .delivery-option-card,
 .contract-option-card,
@@ -9045,6 +9155,7 @@ button.configuration-relation-card:disabled {
   .investment-path-card:hover,
   .forecast-window-card:hover,
   .evidence-source-card:hover,
+  .download-product-card:hover,
   .buyer-router-card:hover,
   .proof-library-card:hover,
   .proof-purchase-card:hover,
@@ -9280,6 +9391,7 @@ button.configuration-relation-card:disabled {
   .forecast-window-grid,
   .evidence-source-grid,
   .storefront-product-index,
+  .download-product-grid,
   .purchase-library-grid,
   .delivery-library-grid,
   .contract-option-grid,

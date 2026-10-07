@@ -17,6 +17,7 @@ import {
   clientAccessCards,
   contactEmail,
   customizationLevers,
+  downloadProducts,
   educationDeliveryOptions,
   firstFourteenDays,
   engagementPackages,
@@ -80,12 +81,12 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
             <p className="eyebrow">Products For Sale</p>
             <h2>Apex Digital Storefront</h2>
             <p>
-              The current digital storefront contains the six checkout-backed
-              AGG products identified below. Each product follows a
-              registration-controlled checkout path. Product pricing is based
-              on a public planning anchor and then scales by delivery footprint.
-              Customization is captured during onboarding and intake so the
-              selected product can be shaped to the client&apos;s sector, operating
+              The current digital storefront contains six checkout-backed AGG
+              engagement products and a staged shelf of downloadable product
+              SKUs. Each path begins with registration-controlled intake so AGG
+              can validate buyer identity, payment path, download rights, and
+              any required customization before delivery. Launch anchors are
+              public; final scope still scales by delivery footprint, operating
               boundary, and required output.
             </p>
           </div>
@@ -108,6 +109,94 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
                 <small>{item.category}</small>
               </article>
             ))}
+          </div>
+          <div
+            aria-label="Digital download products for purchase"
+            className="download-product-shelf"
+            id="digital-download-products"
+          >
+            <div className="section-heading section-heading--compact">
+              <p className="eyebrow">Downloadable Products</p>
+              <h2>Low-friction products staged for purchase and controlled download.</h2>
+              <p>
+                These products are built for buyers who need a practical template,
+                workbook, checklist, or playbook before a larger sprint or
+                advisory engagement. Preview sheets are public-safe; full
+                downloads are delivered after registration, purchase validation,
+                and client access activation.
+              </p>
+            </div>
+            <div className="download-product-grid">
+              {downloadProducts.map((product) => (
+                <article
+                  className="download-product-card"
+                  id={`download-product-${product.id}`}
+                  key={product.id}
+                >
+                  <div className="download-product-card__top">
+                    <Download size={22} aria-hidden="true" />
+                    <div>
+                      <p className="eyebrow">
+                        {product.sku} | {product.category}
+                      </p>
+                      <h3>{product.name}</h3>
+                    </div>
+                    <strong>{product.displayPrice}</strong>
+                  </div>
+                  <p>{product.description}</p>
+                  <dl className="download-product-card__meta">
+                    <div>
+                      <dt>Tier</dt>
+                      <dd>{product.tier}</dd>
+                    </div>
+                    <div>
+                      <dt>Format</dt>
+                      <dd>{product.format}</dd>
+                    </div>
+                    <div>
+                      <dt>Best for</dt>
+                      <dd>{product.bestFor}</dd>
+                    </div>
+                  </dl>
+                  <strong className="card-outcome">Included files</strong>
+                  <ul className="mini-list">
+                    {product.includedFiles.map((file) => (
+                      <li key={file}>{file}</li>
+                    ))}
+                  </ul>
+                  <strong className="card-outcome">Common uses</strong>
+                  <ul className="mini-list">
+                    {product.useCases.map((useCase) => (
+                      <li key={useCase}>{useCase}</li>
+                    ))}
+                  </ul>
+                  <p className="download-product-card__note">
+                    Upgrade path: {product.upgradePath}
+                  </p>
+                  <div className="download-product-card__actions">
+                    <a className="text-link" href={product.previewUrl}>
+                      Preview product sheet
+                      <ArrowRight size={16} aria-hidden="true" />
+                    </a>
+                    <Link
+                      className="button button--primary"
+                      href={`/client-onboarding?intent=digital-download&productId=${encodeURIComponent(
+                        product.id,
+                      )}`}
+                    >
+                      <ClipboardCheck size={18} aria-hidden="true" />
+                      Register to purchase
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div className="action-row action-row--center">
+              <a className="button button--quiet" href="/agg-digital-product-catalog.html">
+                <Download size={17} aria-hidden="true" />
+                Open digital product catalog
+              </a>
+            </div>
           </div>
           <article className="pricing-principle" aria-label="Pricing principle">
             <div>

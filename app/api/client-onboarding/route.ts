@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
-import { getEngagementPackage } from "../../commerce";
+import { getDownloadProduct, getEngagementPackage } from "../../commerce";
 import {
   appendClientOnboardingRecord,
 } from "../../client-onboarding/records";
@@ -24,6 +24,7 @@ const VALID_INTENTS = new Set([
   "custom-solution",
   "admin-directed",
   "taxonomy-starter",
+  "digital-download",
 ]);
 const VALID_RESOURCE_SLUGS = new Set(["taxonomy-starter"]);
 const VALID_RETURN_PATHS = new Set(["/taxonomy-starter"]);
@@ -166,6 +167,12 @@ function cleanPackageId(value: FormDataEntryValue | null) {
   return getEngagementPackage(packageId) ? packageId : null;
 }
 
+function cleanProductId(value: FormDataEntryValue | null) {
+  const productId = cleanOptionalText(value, 100);
+  if (!productId) return null;
+  return getDownloadProduct(productId) ? productId : null;
+}
+
 function cleanResourceSlug(value: FormDataEntryValue | null) {
   const resourceSlug = cleanOptionalText(value, 80);
   return resourceSlug && VALID_RESOURCE_SLUGS.has(resourceSlug) ? resourceSlug : null;
@@ -204,6 +211,7 @@ export async function POST(request: Request) {
   const role = cleanOptionalText(form.get("role"));
   const intent = cleanIntent(form.get("intent"));
   const packageId = cleanPackageId(form.get("packageId"));
+  const productId = cleanProductId(form.get("productId"));
   const resourceSlug = cleanResourceSlug(form.get("resourceSlug"));
   const timeline = cleanText(form.get("timeline"), 80);
   const accessNeed = cleanText(form.get("accessNeed"), 120);
@@ -236,6 +244,7 @@ export async function POST(request: Request) {
     role,
     intent,
     packageId,
+    productId,
     resourceSlug,
     timeline,
     accessNeed,

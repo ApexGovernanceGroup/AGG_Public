@@ -25,7 +25,7 @@ import {
   Users,
   Workflow,
 } from "lucide-react";
-export { engagementPackages } from "./commerce";
+export { downloadProducts, engagementPackages } from "./commerce";
 
 export const brandStandard = {
   palette: {

@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AGG Digital Product Catalog</title>
+    <style>
+      :root {
+        --onyx: #0c0c0c;
+        --graphite: #3e4346;
+        --platinum: #c3c2bd;
+        --navy: #172c3f;
+        --bronze: #88623c;
+        --oxblood: #793735;
+        --paper: #f4f1ea;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--onyx);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        line-height: 1.55;
+      }
+
+      main {
+        width: min(1180px, calc(100% - 32px));
+        margin: 32px auto;
+        border: 1px solid rgba(12, 12, 12, 0.14);
+        background: #fff;
+        box-shadow: 0 28px 90px rgba(12, 12, 12, 0.16);
+      }
+
+      header {
+        padding: 44px;
+        background:
+          linear-gradient(135deg, rgba(136, 98, 60, 0.2), transparent 42%),
+          var(--onyx);
+        color: #fff;
+      }
+
+      section {
+        padding: 34px 44px;
+        border-top: 1px solid rgba(12, 12, 12, 0.1);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 860px;
+        font-size: clamp(2rem, 4vw, 4.2rem);
+        line-height: 0.98;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        color: var(--navy);
+        font-size: clamp(1.4rem, 2.2vw, 2rem);
+        letter-spacing: 0;
+      }
+
+      h3 {
+        font-size: 1.1rem;
+        letter-spacing: 0;
+      }
+
+      .eyebrow {
+        color: var(--bronze);
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      header .eyebrow {
+        color: var(--platinum);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        scroll-margin-top: 24px;
+        border: 1px solid rgba(23, 44, 63, 0.14);
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(244, 241, 234, 0.78));
+        box-shadow: 0 16px 40px rgba(12, 12, 12, 0.1);
+        padding: 24px;
+      }
+
+      .card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .price {
+        white-space: nowrap;
+        color: var(--bronze);
+        font-weight: 950;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 14px 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .chips li {
+        border: 1px solid rgba(23, 44, 63, 0.18);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.8);
+        color: var(--navy);
+        padding: 7px 10px;
+        font-size: 0.78rem;
+        font-weight: 850;
+      }
+
+      .boundary {
+        border-left: 5px solid var(--oxblood);
+        background: rgba(121, 55, 53, 0.08);
+      }
+
+      .sku {
+        color: var(--graphite);
+        font-size: 0.82rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      a {
+        color: var(--navy);
+        font-weight: 900;
+      }
+
+      footer {
+        padding: 28px 44px 42px;
+        background: rgba(23, 44, 63, 0.08);
+        color: var(--graphite);
+      }
+
+      @media (max-width: 820px) {
+        main {
+          width: min(100% - 20px, 1180px);
+          margin: 10px auto;
+        }
+
+        header,
+        section,
+        footer {
+          padding: 26px 20px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .card-top {
+          display: block;
+        }
+
+        .price {
+          white-space: normal;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">Apex Governance Group</p>
+        <h1>Digital Product Catalog</h1>
+        <p>
+          Public-safe catalog for downloadable AGG starter kits, workbooks, templates,
+          checklists, and playbooks staged for registration-controlled purchase.
+        </p>
+      </header>
+
+      <section class="boundary">
+        <p class="eyebrow">Purchase and Download Boundary</p>
+        <h2>Preview sheets are public. Full products require validated purchase access.</h2>
+        <p>
+          The listings below describe paid digital products. Full product bundles are
+          delivered after registration, payment-path validation, and client access
+          activation. Do not submit protected records, proprietary files, credentials,
+          payment card data, or controlled information through public forms.
+        </p>
+      </section>
+
+      <section>
+        <p class="eyebrow">Download Shelf</p>
+        <h2>Staged products for download and purchase.</h2>
+        <div class="grid">
+          <article class="card" id="taxonomy-naming-lifecycle-starter">
+            <div class="card-top">
+              <div>
+                <p class="sku">AGG-DL-001 | Starter</p>
+                <h3>Taxonomy, File Naming, and Lifecycle Starter Kit</h3>
+              </div>
+              <p class="price">Launch anchor: $149</p>
+            </div>
+            <p>Level 1-2 taxonomy, file naming, lifecycle states, and ownership questions.</p>
+            <ul class="chips">
+              <li>Taxonomy starter</li>
+              <li>Naming worksheet</li>
+              <li>Lifecycle checklist</li>
+              <li>Repository questions</li>
+            </ul>
+            <p><strong>Upgrade path:</strong> Knowledge-to-Decision Repository Sprint.</p>
+          </article>
+
+          <article class="card" id="executive-decision-brief-template-pack">
+            <div class="card-top">
+              <div>
+                <p class="sku">AGG-DL-002 | Kit</p>
+                <h3>Executive Decision Brief Template Pack</h3>
+              </div>
+              <p class="price">Launch anchor: $249</p>
+            </div>
+            <p>Problem framing, facts, assumptions, options, recommendation, and 30/60/90 action logic.</p>
+            <ul class="chips">
+              <li>Decision brief shell</li>
+              <li>Evidence register</li>
+              <li>RCOA worksheet</li>
+              <li>Action tracker</li>
+            </ul>
+            <p><strong>Upgrade path:</strong> Executive Diagnostic Brief.</p>
+          </article>
+
+          <article class="card" id="governance-charter-decision-rights-kit">
+            <div class="card-top">
+              <div>
+                <p class="sku">AGG-DL-003 | Kit</p>
+                <h3>Governance Charter and Decision Rights Kit</h3>
+              </div>
+              <p class="price">Launch anchor: $349</p>
+            </div>
+            <p>Purpose, scope, authority, decision rights, roles, cadence, and exception handling.</p>
+            <ul class="chips">
+              <li>Charter template</li>
+              <li>Decision matrix</li>
+              <li>RACI</li>
+              <li>Review cadence</li>
+            </ul>
+            <p><strong>Upgrade path:</strong> Governed Product Kit.</p>
+          </article>
+
+          <article class="card" id="continuity-exposure-register-workbook">
+            <div class="card-top">
+              <div>
+                <p class="sku">AGG-DL-004 | Workbook</p>
+                <h3>Continuity Exposure Register Workbook</h3>
+              </div>
+              <p class="price">Launch anchor: $249</p>
+            </div>
+            <p>Critical knowledge, owners, handoff failure points, exposure triggers, and mitigations.</p>
+            <ul class="chips">
+              <li>Exposure register</li>
+              <li>Owner inventory</li>
+              <li>Risk rubric</li>
+              <li>Backlog</li>
+            </ul>
+            <p><strong>Upgrade path:</strong> Continuity Exposure Assessment.</p>
+          </article>
+
+          <article class="card" id="measure-dictionary-scorecard-starter">
+            <div class="card-top">
+              <div>
+                <p class="sku">AGG-DL-005 | Workbook</p>
+                <h3>Measure Dictionary and Scorecard Starter</h3>
+              </div>
+              <p class="price">Launch anchor: $299</p>
+            </div>
+            <p>MOPs, MOEs, KPIs, KRIs, thresholds, baselines, ownership, and action rules.</p>
+            <ul class="chips">
+              <li>Measure dictionary</li>
+              <li>Threshold worksheet</li>
+              <li>Action rules</li>
+              <li>Scorecard sketch</li>
+            </ul>
+            <p><strong>Upgrade path:</strong> Governance Design Sprint.</p>
+          </article>
+
+          <article class="card" id="ai-governance-use-case-review-pack">
+            <div class="card-top">
+              <div>
+                <p class="sku">AGG-DL-006 | Playbook</p>
+                <h3>AI Governance Use-Case Review Pack</h3>
+              </div>
+              <p class="price">Launch anchor: $399</p>
+            </div>
+            <p>AI use-case intake, risk review, approval boundaries, evidence rules, and human review.</p>
+            <ul class="chips">
+              <li>Use-case card</li>
+              <li>Approval checklist</li>
+              <li>Evidence rules</li>
+              <li>Risk register</li>
+            </ul>
+            <p><strong>Upgrade path:</strong> Apex Academy Private Lab.</p>
+          </article>
+
+          <article class="card" id="project-governance-checklist-bundle">
+            <div class="card-top">
+              <div>
+                <p class="sku">AGG-DL-007 | Starter</p>
+                <h3>Project Governance Checklist Bundle</h3>
+              </div>
+              <p class="price">Launch anchor: $99</p>
+            </div>
+            <p>Plain-speak project intake, owner assignment, cadence, risks, decisions, closeout, and handoff.</p>
+            <ul class="chips">
+              <li>Project intake</li>
+              <li>Risk review</li>
+              <li>Weekly rhythm</li>
+              <li>Closeout checklist</li>
+            </ul>
+            <p><strong>Upgrade path:</strong> Governed Product Kit.</p>
+          </article>
+
+          <article class="card" id="change-handoff-sustainment-playbook">
+            <div class="card-top">
+              <div>
+                <p class="sku">AGG-DL-008 | Playbook</p>
+                <h3>Change, Handoff, and Sustainment Playbook</h3>
+              </div>
+              <p class="price">Launch anchor: $399</p>
+            </div>
+            <p>Role impacts, adoption barriers, handoff owners, sustainment rhythm, and proof review.</p>
+            <ul class="chips">
+              <li>Change map</li>
+              <li>Adoption checklist</li>
+              <li>Handoff plan</li>
+              <li>Proof review</li>
+            </ul>
+            <p><strong>Upgrade path:</strong> Executive Advisory Retainer.</p>
+          </article>
+        </div>
+      </section>
+
+      <footer>
+        <p>
+          Purchase access begins at the Apex Digital Storefront:
+          <a href="/engage#digital-download-products">review digital downloads</a>.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

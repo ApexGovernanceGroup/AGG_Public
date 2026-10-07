@@ -249,6 +249,12 @@ function ClientOnboardingRecords({
                     <dd>{record.packageId}</dd>
                   </div>
                 )}
+                {record.productId && (
+                  <div>
+                    <dt>Download product</dt>
+                    <dd>{record.productId}</dd>
+                  </div>
+                )}
                 {record.resourceSlug && (
                   <div>
                     <dt>Resource</dt>

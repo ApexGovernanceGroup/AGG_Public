@@ -74,6 +74,7 @@ test("AGG public site contract is present", async () => {
     publicProofPack,
     capabilityPacket,
     taxonomyStarterDownload,
+    digitalProductCatalog,
     investorQuickSheetRoute,
     surveyData,
     strategicSurveyForm,
@@ -139,6 +140,7 @@ test("AGG public site contract is present", async () => {
       read("public/agg-public-proof-pack.html"),
       read("public/agg-capability-packet.html"),
       read("public/agg-taxonomy-file-lifecycle-starter.html"),
+      read("public/agg-digital-product-catalog.html"),
       read("app/agg-investor-quick-sheet/page.tsx"),
       read("app/surveys/survey-data.ts"),
       read("app/components/StrategicSurveyForm.tsx"),
@@ -205,6 +207,7 @@ test("AGG public site contract is present", async () => {
     publicProofPack,
     capabilityPacket,
     taxonomyStarterDownload,
+    digitalProductCatalog,
     investorQuickSheetRoute,
     surveyData,
     strategicSurveyForm,
@@ -239,6 +242,10 @@ test("AGG public site contract is present", async () => {
   const purchaseLibraryItemsData = data.slice(
     data.indexOf("export const purchaseLibraryItems"),
     data.indexOf("export type EducationDeliveryOption"),
+  );
+  const downloadProductsData = commerce.slice(
+    commerce.indexOf("export const downloadProducts"),
+    commerce.indexOf("export function getEngagementPackage"),
   );
   const educationDeliveryOptionsData = data.slice(
     data.indexOf("export const educationDeliveryOptions"),
@@ -1166,7 +1173,9 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Apex Publications Library/);
   assert.match(home, /Review the publication path before you buy the work/);
   assert.match(home, /href="\/engage#apex-publications-library"/);
-  assert.match(home, /purchaseLibraryItems\.slice\(0, 3\)\.map/);
+  assert.match(home, /downloadProducts\.slice\(0, 3\)\.map/);
+  assert.match(home, /Review download product/);
+  assert.match(home, /download-product-\$\{item\.id\}/);
   assert.match(engage, /id="apex-publications-library"/);
   assert.match(combined, /plain-speak product names\s+first/);
   assert.match(combined, /Download after purchase/);
@@ -1184,6 +1193,38 @@ test("AGG public site contract is present", async () => {
   assert.match(engage, /id=\{`storefront-\$\{item\.id\}`\}/);
   assert.equal((purchaseLibraryItemsData.match(/packageId:\s*"/g) ?? []).length, 6);
   assert.equal((purchaseLibraryItemsData.match(/downloadSummary:\s*"/g) ?? []).length, 6);
+  assert.match(commerce, /export type DownloadProduct/);
+  assert.match(commerce, /export const downloadProducts/);
+  assert.match(commerce, /getDownloadProduct/);
+  assert.match(data, /export \{ downloadProducts, engagementPackages \} from "\.\/commerce";/);
+  assert.equal((downloadProductsData.match(/sku:\s*"AGG-DL-/g) ?? []).length, 8);
+  assert.equal((downloadProductsData.match(/unitAmount:\s*\d+/g) ?? []).length, 8);
+  assert.match(engage, /downloadProducts\.map/);
+  assert.match(engage, /id="digital-download-products"/);
+  assert.match(engage, /Register to purchase/);
+  assert.match(engage, /agg-digital-product-catalog\.html/);
+  assert.match(engage, /intent=digital-download&productId=/);
+  assert.match(clientOnboarding, /Selected Download Product/);
+  assert.match(clientOnboarding, /name="productId"/);
+  assert.match(clientOnboarding, /value="digital-download"/);
+  assert.match(clientOnboardingRoute, /cleanProductId/);
+  assert.match(clientOnboardingRoute, /getDownloadProduct/);
+  assert.match(clientOnboardingRecords, /productId\?: string \| null/);
+  assert.match(clientServices, /Download product/);
+  assert.match(digitalProductCatalog, /Digital Product Catalog/);
+  assert.match(digitalProductCatalog, /AGG-DL-001/);
+  assert.match(digitalProductCatalog, /AGG-DL-008/);
+  assert.match(digitalProductCatalog, /Taxonomy, File Naming, and Lifecycle Starter Kit/);
+  assert.match(digitalProductCatalog, /Executive Decision Brief Template Pack/);
+  assert.match(digitalProductCatalog, /Governance Charter and Decision Rights Kit/);
+  assert.match(digitalProductCatalog, /Continuity Exposure Register Workbook/);
+  assert.match(digitalProductCatalog, /Measure Dictionary and Scorecard Starter/);
+  assert.match(digitalProductCatalog, /AI Governance Use-Case Review Pack/);
+  assert.match(digitalProductCatalog, /Project Governance Checklist Bundle/);
+  assert.match(digitalProductCatalog, /Change, Handoff, and Sustainment Playbook/);
+  assert.match(combined, /Low-friction products staged for purchase and controlled download/);
+  assert.match(combined, /Taxonomy, File Naming, and Lifecycle Starter Kit/);
+  assert.match(combined, /AI Governance Use-Case Review Pack/);
   assert.match(combined, /Education, Credentialing, and Long-Term Support/);
   assert.match(combined, /in-person, remote-distance learning, and hybrid\s+professional education/);
   assert.match(combined, /certification support, credentialing\s+evidence, advisory retainers, and 6-12 month solution contracts/);
@@ -1204,8 +1245,8 @@ test("AGG public site contract is present", async () => {
   assert.match(home, /Scale, scope, and pricing/);
   assert.match(combined, /Pricing Principle/);
   assert.match(combined, /Pricing is based on scale, not content depth/);
-  assert.match(combined, /Product\s+pricing is based\s+on a public planning anchor/i);
-  assert.match(combined, /scales by delivery footprint/i);
+  assert.match(combined, /Products use public planning anchors/i);
+  assert.match(combined, /Price changes when the delivery footprint changes/i);
   assert.match(combined, /Scale basis/);
   assert.match(combined, /One sponsor group, one operating problem, one decision brief/);
   assert.match(combined, /Audience or cohort size/);
@@ -1509,6 +1550,12 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const pricingCardActionsForm = cssBlock(css, ".pricing-card__actions form");
   const storefrontProductIndex = cssBlock(css, ".storefront-product-index");
   const storefrontProductIndexItem = cssBlock(css, ".storefront-product-index__item");
+  const downloadProductShelf = cssBlock(css, ".download-product-shelf");
+  const downloadProductGrid = cssBlock(css, ".download-product-grid");
+  const downloadProductCard = cssBlock(css, ".download-product-card");
+  const downloadProductCardTop = cssBlock(css, ".download-product-card__top");
+  const downloadProductCardMeta = cssBlock(css, ".download-product-card__meta");
+  const downloadProductCardActions = cssBlock(css, ".download-product-card__actions");
   const pricingCardSaleStatus = cssBlock(css, ".pricing-card__sale-status");
   const saleBadge = cssBlock(css, ".sale-badge");
   const purchaseLibraryGrid = cssBlock(css, ".purchase-library-grid");
@@ -1812,6 +1859,15 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(storefrontProductIndex, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(storefrontProductIndexItem, /min-height:\s*122px/);
   assert.match(storefrontProductIndexItem, /border-left:\s*4px solid var\(--bronze\)/);
+  assert.match(downloadProductShelf, /box-shadow:\s*var\(--shadow-raised\)/);
+  assert.match(downloadProductGrid, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(downloadProductCard, /min-height:\s*560px/);
+  assert.match(downloadProductCard, /border-left:\s*5px solid var\(--bronze\)/);
+  assert.match(downloadProductCard, /box-shadow:/);
+  assert.match(downloadProductCard, /transition:[\s\S]*?transform 160ms ease/);
+  assert.match(downloadProductCardTop, /grid-template-columns:\s*auto minmax\(0,\s*1fr\) auto/);
+  assert.match(downloadProductCardMeta, /display:\s*grid/);
+  assert.match(downloadProductCardActions, /justify-content:\s*space-between/);
   assert.match(pricingCardSaleStatus, /display:\s*flex/);
   assert.match(pricingCardSaleStatus, /flex-wrap:\s*wrap/);
   assert.match(saleBadge, /text-transform:\s*uppercase/);
@@ -1875,6 +1931,7 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(evidenceSourceGrid, /grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(evidenceSourceCard, /min-height:\s*170px/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.storefront-product-index,[\s\S]*?grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.download-product-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.purchase-library-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.delivery-library-grid,[\s\S]*?grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.contract-option-grid,[\s\S]*?grid-template-columns:\s*1fr/);
@@ -2096,9 +2153,13 @@ test("checkout keeps price authority on the server", async () => {
   assert.match(route, /checkoutPayloadFrom\(request\)/);
   assert.match(route, /registration_required/);
   assert.match(route, /getEngagementPackage\(payload\.packageId\)/);
-  assert.match(route, /selectedPackage\.unitAmount/);
+  assert.match(route, /getDownloadProduct\(payload\.productId\)/);
+  assert.match(route, /selectedItem\.unitAmount/);
+  assert.match(route, /selectedItemType/);
   assert.match(route, /https:\/\/api\.stripe\.com\/v1\/checkout\/sessions/);
   assert.match(route, /metadata\[onboarding_record_id\]/);
+  assert.match(route, /metadata\[download_product_id\]/);
+  assert.match(route, /metadata\[item_type\]/);
   assert.doesNotMatch(route, /body\.amount|form\?\.get\("amount"\)/);
   assert.match(commerce, /displayPrice:\s*"Starting anchor: \$2,500"/);
   assert.match(commerce, /displayPrice:\s*"Starting anchor: \$18,000 monthly"/);
@@ -2115,18 +2176,24 @@ test("checkout keeps price authority on the server", async () => {
   assert.match(commerce, /unitAmount:\s*650000/);
   assert.match(commerce, /unitAmount:\s*950000/);
   assert.match(commerce, /unitAmount:\s*1800000/);
+  assert.match(commerce, /unitAmount:\s*9900/);
+  assert.match(commerce, /unitAmount:\s*39900/);
   assert.match(engage, /\/client-onboarding\?intent=product-purchase&packageId=/);
+  assert.match(engage, /\/client-onboarding\?intent=digital-download&productId=/);
   assert.match(engage, /checkoutConfigured/);
   assert.match(engage, /Products For Sale/);
   assert.match(engage, /Digital storefront products for sale/);
-  assert.match(engage, /six checkout-backed\s+AGG products/i);
+  assert.match(engage, /six checkout-backed AGG\s+engagement products/i);
   assert.match(engage, /Scoping Families/);
   assert.match(engage, /not separate\s+checkout-backed products/i);
   assert.match(engage, /item\.sku/);
   assert.match(engage, /sale-badge/);
   assert.match(commerce, /sku:\s*"AGG-DS-001"/);
   assert.match(commerce, /sku:\s*"AGG-DS-006"/);
+  assert.match(commerce, /sku:\s*"AGG-DL-001"/);
+  assert.match(commerce, /sku:\s*"AGG-DL-008"/);
   assert.equal((commerce.match(/saleStatus:\s*"For sale - registration-controlled checkout"/g) ?? []).length, 6);
+  assert.equal((commerce.match(/saleStatus:\s*"Staged for sale - registration-controlled download"/g) ?? []).length, 8);
   assert.match(engage, /Register before checkout/);
   assert.doesNotMatch(engage, /Start secure checkout/);
   assert.match(engage, /PackageInclusions/);

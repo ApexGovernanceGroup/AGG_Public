@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getEngagementPackage } from "../../commerce";
+import { getDownloadProduct, getEngagementPackage } from "../../commerce";
 
 export const dynamic = "force-dynamic";
 
@@ -60,6 +60,7 @@ function sourceIsAllowed(request: Request) {
 
 type CheckoutPayload = {
   packageId: string | null;
+  productId: string | null;
   onboardingRecordId: string | null;
 };
 
@@ -74,18 +75,22 @@ async function checkoutPayloadFrom(request: Request): Promise<CheckoutPayload> {
   if (contentType.includes("application/json")) {
     const body = (await request.json().catch(() => null)) as {
       packageId?: unknown;
+      productId?: unknown;
       onboardingRecordId?: unknown;
     } | null;
     return {
       packageId: typeof body?.packageId === "string" ? body.packageId : null,
+      productId: typeof body?.productId === "string" ? body.productId : null,
       onboardingRecordId: cleanOnboardingRecordId(body?.onboardingRecordId),
     };
   }
 
   const form = await request.formData().catch(() => null);
   const packageId = form?.get("packageId");
+  const productId = form?.get("productId");
   return {
     packageId: typeof packageId === "string" ? packageId : null,
+    productId: typeof productId === "string" ? productId : null,
     onboardingRecordId: cleanOnboardingRecordId(form?.get("onboardingRecordId")),
   };
 }
@@ -99,7 +104,10 @@ export async function POST(request: Request) {
   }
 
   const selectedPackage = getEngagementPackage(payload.packageId);
-  if (!selectedPackage) return redirectTo(request, "error");
+  const selectedProduct = selectedPackage ? null : getDownloadProduct(payload.productId);
+  const selectedItem = selectedPackage ?? selectedProduct;
+  if (!selectedItem) return redirectTo(request, "error");
+  const selectedItemType = selectedProduct ? "download_product" : "engagement_package";
 
   const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
   if (!stripeSecretKey) return redirectTo(request, "setup");
@@ -111,17 +119,19 @@ export async function POST(request: Request) {
       process.env.STRIPE_SUCCESS_URL ?? `${origin}/engage?checkout=success`,
     cancel_url:
       process.env.STRIPE_CANCEL_URL ?? `${origin}/engage?checkout=canceled`,
-    client_reference_id: selectedPackage.id,
+    client_reference_id: selectedItem.id,
     "line_items[0][quantity]": "1",
     "line_items[0][price_data][currency]": "usd",
     "line_items[0][price_data][unit_amount]": String(
-      selectedPackage.unitAmount,
+      selectedItem.unitAmount,
     ),
-    "line_items[0][price_data][product_data][name]": selectedPackage.name,
+    "line_items[0][price_data][product_data][name]": selectedItem.name,
     "line_items[0][price_data][product_data][description]":
-      selectedPackage.description,
-    "metadata[package_id]": selectedPackage.id,
+      selectedItem.description,
+    "metadata[package_id]": payload.packageId ?? "",
+    "metadata[download_product_id]": payload.productId ?? "",
     "metadata[onboarding_record_id]": payload.onboardingRecordId,
+    "metadata[item_type]": selectedItemType,
     "metadata[source]": "apex-governance-group-site",
   });
 
