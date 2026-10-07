@@ -64,6 +64,40 @@ html {
   scrollbar-width: thin;
 }
 
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(12, 12, 12, 0.08);
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 2px solid rgba(244, 241, 234, 0.72);
+  border-radius: 999px;
+  background: rgba(136, 98, 60, 0.52);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(136, 98, 60, 0.74);
+}
+
+@media (forced-colors: active) {
+  html {
+    scrollbar-color: auto;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: Canvas;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border-color: Canvas;
+    background: CanvasText;
+  }
+}
+
 body {
   position: relative;
   margin: 0;
@@ -337,12 +371,28 @@ button {
   align-items: center;
   gap: 8px;
   overflow-x: auto;
-  scrollbar-color: transparent transparent;
-  scrollbar-width: none;
+  padding-bottom: 4px;
+  scrollbar-color: rgba(136, 98, 60, 0.54) rgba(12, 12, 12, 0.06);
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
 }
 
 .site-side-nav__links::-webkit-scrollbar {
-  display: none;
+  height: 7px;
+}
+
+.site-side-nav__links::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(12, 12, 12, 0.06);
+}
+
+.site-side-nav__links::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(136, 98, 60, 0.52);
+}
+
+.site-side-nav__links::-webkit-scrollbar-thumb:hover {
+  background: rgba(136, 98, 60, 0.72);
 }
 
 .site-side-nav a {
@@ -402,12 +452,28 @@ button {
   justify-content: flex-end;
   min-width: fit-content;
   overflow-x: auto;
-  scrollbar-color: transparent transparent;
-  scrollbar-width: none;
+  padding-bottom: 4px;
+  scrollbar-color: rgba(136, 98, 60, 0.54) rgba(12, 12, 12, 0.06);
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
 }
 
 .site-header__actions::-webkit-scrollbar {
-  display: none;
+  height: 7px;
+}
+
+.site-header__actions::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(12, 12, 12, 0.06);
+}
+
+.site-header__actions::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(136, 98, 60, 0.52);
+}
+
+.site-header__actions::-webkit-scrollbar-thumb:hover {
+  background: rgba(136, 98, 60, 0.72);
 }
 
 .icon-link,
@@ -3889,6 +3955,57 @@ button.configuration-relation-card:disabled {
   box-shadow: 0 0 0 3px rgba(136, 98, 60, 0.16);
 }
 
+.access-form__password-row {
+  display: grid;
+  align-items: stretch;
+  gap: 10px;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.access-form__password-row input {
+  min-width: 0;
+}
+
+.access-form__password-toggle {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(23, 44, 63, 0.18);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--navy);
+  cursor: pointer;
+  padding: 0 14px;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.access-form__password-toggle:hover,
+.access-form__password-toggle:focus-visible {
+  border-color: rgba(136, 98, 60, 0.62);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 14px 28px rgba(12, 12, 12, 0.12);
+  color: var(--bronze-dark);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.access-form__password-toggle[aria-pressed="true"] {
+  border-color: rgba(136, 98, 60, 0.72);
+  background: rgba(136, 98, 60, 0.14);
+  color: var(--bronze-dark);
+}
+
 .client-services-heading {
   display: flex;
   align-items: flex-end;
@@ -7147,13 +7264,100 @@ button.configuration-relation-card:disabled {
   color: var(--paper);
 }
 
+.conversion-assurance {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 16px;
+}
+
+.conversion-assurance__item {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  min-height: 220px;
+  align-content: start;
+  gap: 10px;
+  border: 1px solid rgba(23, 44, 63, 0.16);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(244, 241, 234, 0.74)),
+    var(--maine-topographic-contours-smoke) center / 420px repeat;
+  box-shadow:
+    0 18px 44px rgba(12, 12, 12, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  color: var(--charcoal);
+  padding: 18px;
+  transform-style: preserve-3d;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.conversion-assurance__item::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, rgba(136, 98, 60, 0.14), transparent 46%);
+  content: "";
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.conversion-assurance__item > * {
+  position: relative;
+  z-index: 1;
+}
+
+.conversion-assurance__item svg {
+  color: var(--bronze);
+}
+
+.conversion-assurance__item span {
+  color: var(--bronze-dark);
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.conversion-assurance__item h3 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.conversion-assurance__item p {
+  margin: 0;
+  color: rgba(62, 67, 70, 0.78);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+@media (hover: hover) {
+  .conversion-assurance__item:hover {
+    border-color: rgba(136, 98, 60, 0.44);
+    box-shadow:
+      0 24px 54px rgba(12, 12, 12, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.78);
+    transform: translate3d(0, -3px, 12px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .buyer-guidance__option {
     transition: none;
   }
 
+  .conversion-assurance__item {
+    transition: none;
+  }
+
   .buyer-guidance__option:hover,
-  .buyer-guidance__option:focus-visible {
+  .buyer-guidance__option:focus-visible,
+  .conversion-assurance__item:hover {
     transform: none;
   }
 }
@@ -7162,6 +7366,10 @@ button.configuration-relation-card:disabled {
   .buyer-guidance__header,
   .buyer-guidance__matrix {
     grid-template-columns: 1fr;
+  }
+
+  .conversion-assurance {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .buyer-guidance__result {
@@ -7176,7 +7384,8 @@ button.configuration-relation-card:disabled {
   }
 
   .buyer-guidance__options,
-  .buyer-guidance__detail-grid {
+  .buyer-guidance__detail-grid,
+  .conversion-assurance {
     grid-template-columns: 1fr;
   }
 

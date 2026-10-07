@@ -743,6 +743,12 @@ test("AGG public site contract is present", async () => {
   assert.match(home, /<BuyerGuidanceSelector[\s\S]*packages=\{engagementPackages\}/);
   assert.match(engage, /<BuyerGuidanceSelector[\s\S]*packages=\{engagementPackages\}/);
   assert.match(home, /section--guidance/);
+  assert.match(home, /conversionAssuranceSignals/);
+  assert.match(home, /Premium conversion assurance/);
+  assert.match(combined, /Selector to registered first move/);
+  assert.match(combined, /Public-safe before private workspace/);
+  assert.match(combined, /Inputs and outputs visible before intake/);
+  assert.match(combined, /A human briefing path remains open/);
   assert.match(packageInclusionsComponent, /"use client"/);
   assert.match(packageInclusionsComponent, /aria-expanded=\{isOpen\}/);
   assert.match(packageInclusionsComponent, /role="region"/);
@@ -878,6 +884,12 @@ test("AGG public site contract is present", async () => {
   assert.match(clientServicesGate, /name="returnTo"/);
   assert.match(clientServicesGate, /Open dashboard portal/);
   assert.match(clientServicesGate, /Credential Protected/);
+  assert.match(clientServicesGate, /"use client"/);
+  assert.match(clientServicesGate, /useState/);
+  assert.match(clientServicesGate, /type=\{passwordVisible \? "text" : "password"\}/);
+  assert.match(clientServicesGate, /aria-controls="client-services-password"/);
+  assert.match(clientServicesGate, /aria-label=\{passwordVisible \? "Hide password" : "Show password"\}/);
+  assert.match(clientServicesGate, /aria-pressed=\{passwordVisible\}/);
   assert.match(clientServicesGate, /Client login or password was not accepted/);
   assert.match(clientServicesGate, /Validated clients open a dashboard/);
   assert.match(clientServices, /readRecentClientOnboardingRecords/);
@@ -1252,6 +1264,9 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const heroSymbol = cssBlock(css, ".hero::after");
   const body = cssBlock(css, "body");
   const selection = cssBlock(css, "::selection");
+  const globalScrollbar = cssBlock(css, "*::-webkit-scrollbar");
+  const globalScrollbarTrack = cssBlock(css, "*::-webkit-scrollbar-track");
+  const globalScrollbarThumb = cssBlock(css, "*::-webkit-scrollbar-thumb");
   const surfaceSection = cssBlock(css, ".section--surface");
   const surfaceCommand = cssBlock(css, ".surface-command");
   const surfaceSharedPanel = cssBlock(css, ".surface-command__panel,\n.surface-signal-card");
@@ -1277,12 +1292,17 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const buyerGuidanceOptionPressed = cssBlock(css, '.buyer-guidance__option[aria-pressed="true"]');
   const buyerGuidanceResult = cssBlock(css, ".buyer-guidance__result");
   const buyerGuidanceDetailGrid = cssBlock(css, ".buyer-guidance__detail-grid");
+  const conversionAssurance = cssBlock(css, ".conversion-assurance");
+  const conversionAssuranceItem = cssBlock(css, ".conversion-assurance__item");
+  const conversionAssuranceItemHover = cssBlock(css, ".conversion-assurance__item:hover");
   const sharedPerspective = cssBlock(css, ".hero,\n.page-hero,\n.section--dark,\n.section--trust,\n.callout");
   const pageHeroInnerRail = cssBlock(css, ".page-hero__inner::before");
   const heroContentContrast = cssBlock(css, ".hero__content::before");
   const brandLockup = cssBlock(css, ".brand-lockup");
   const brandTagline = cssBlock(css, ".brand-text span");
   const siteHeaderActions = cssBlock(css, ".site-header__actions");
+  const siteHeaderActionsScrollbar = cssBlock(css, ".site-header__actions::-webkit-scrollbar");
+  const siteHeaderActionsScrollbarThumb = cssBlock(css, ".site-header__actions::-webkit-scrollbar-thumb");
   const buttonAdmin = cssBlock(css, ".button--admin");
   const buttonInvestor = cssBlock(css, ".button--investor");
   const buttonSurveyHuman = cssBlock(css, ".button--survey-human");
@@ -1328,6 +1348,8 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const heroMetricCard = cssBlock(css, ".hero__metrics div");
   const sideNav = cssBlock(css, ".site-side-nav");
   const sideNavLinks = cssBlock(css, ".site-side-nav__links");
+  const sideNavLinksScrollbar = cssBlock(css, ".site-side-nav__links::-webkit-scrollbar");
+  const sideNavLinksScrollbarThumb = cssBlock(css, ".site-side-nav__links::-webkit-scrollbar-thumb");
   const sideNavAnchor = cssBlock(css, ".site-side-nav a");
   const commitmentCard = cssBlock(css, ".commitment-card");
   const kaigesGrid = cssBlock(css, ".kaiges-grid");
@@ -1462,6 +1484,12 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const clientAccessGrid = cssBlock(css, ".client-access-grid");
   const clientAccessCard = cssBlock(css, ".client-access-card");
   const protectedAccessShell = cssBlock(css, ".protected-access-shell");
+  const accessPasswordRow = cssBlock(css, ".access-form__password-row");
+  const accessPasswordToggle = cssBlock(css, ".access-form__password-toggle");
+  const accessPasswordTogglePressed = cssBlock(
+    css,
+    '.access-form__password-toggle[aria-pressed="true"]',
+  );
   const clientServicesGrid = cssBlock(css, ".client-services-grid");
   const clientServiceCard = cssBlock(css, ".client-service-card");
   const portalShell = cssBlock(css, ".portal-shell");
@@ -1488,6 +1516,11 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(body, /text-rendering:\s*optimizeLegibility/);
   assert.match(body, /-webkit-font-smoothing:\s*antialiased/);
   assert.match(selection, /background:\s*rgba\(136,\s*98,\s*60,\s*0\.24\)/);
+  assert.match(globalScrollbar, /width:\s*10px/);
+  assert.match(globalScrollbar, /height:\s*10px/);
+  assert.match(globalScrollbarTrack, /background:\s*rgba\(12,\s*12,\s*12,\s*0\.08\)/);
+  assert.match(globalScrollbarThumb, /border-radius:\s*999px/);
+  assert.match(globalScrollbarThumb, /background:\s*rgba\(136,\s*98,\s*60,\s*0\.52\)/);
   assert.match(surfaceSection, /overflow:\s*hidden/);
   assert.match(surfaceCommand, /grid-template-columns:\s*minmax\(0,\s*0\.92fr\)\s*minmax\(0,\s*1\.08fr\)/);
   assert.match(surfaceCommand, /perspective:\s*1300px/);
@@ -1517,6 +1550,14 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(buyerGuidanceResult, /position:\s*sticky/);
   assert.match(buyerGuidanceResult, /transform:\s*translateZ\(22px\)/);
   assert.match(buyerGuidanceDetailGrid, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(conversionAssurance, /grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(conversionAssurance, /margin-top:\s*16px/);
+  assert.match(conversionAssuranceItem, /min-height:\s*220px/);
+  assert.match(conversionAssuranceItem, /transform-style:\s*preserve-3d/);
+  assert.match(conversionAssuranceItem, /box-shadow:/);
+  assert.match(conversionAssuranceItemHover, /transform:\s*translate3d\(0,\s*-3px,\s*12px\)/);
+  assert.match(css, /@media \(max-width:\s*1080px\)[\s\S]*?\.conversion-assurance\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(css, /@media \(max-width:\s*720px\)[\s\S]*?\.buyer-guidance__options,[\s\S]*?\.buyer-guidance__detail-grid,[\s\S]*?\.conversion-assurance\s*{[^}]*grid-template-columns:\s*1fr/);
   assert.match(css, /\n\.trust-signal-card \{[\s\S]*?transition:[\s\S]*?transform 180ms ease/);
   assert.match(sharedPerspective, /perspective:\s*1400px/);
   assert.match(pageHeroInnerRail, /linear-gradient\(180deg,\s*transparent,\s*rgba\(136,\s*98,\s*60,\s*0\.82\),\s*transparent\)/);
@@ -1602,7 +1643,11 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(brandTagline, /max-width:\s*420px/);
   assert.match(brandTagline, /line-height:\s*1\.15/);
   assert.match(siteHeaderActions, /overflow-x:\s*auto/);
-  assert.match(siteHeaderActions, /scrollbar-width:\s*none/);
+  assert.match(siteHeaderActions, /scrollbar-width:\s*thin/);
+  assert.match(siteHeaderActions, /scrollbar-gutter:\s*stable/);
+  assert.match(siteHeaderActionsScrollbar, /height:\s*7px/);
+  assert.match(siteHeaderActionsScrollbarThumb, /background:\s*rgba\(136,\s*98,\s*60,\s*0\.52\)/);
+  assert.doesNotMatch(siteHeaderActionsScrollbar, /display:\s*none/);
   assert.match(buttonAdmin, /border-color:\s*rgba\(121,\s*55,\s*53,\s*0\.36\)/);
   assert.match(buttonAdmin, /color:\s*var\(--oxblood\)/);
   assert.match(buttonInvestor, /border-color:\s*rgba\(136,\s*98,\s*60,\s*0\.42\)/);
@@ -1743,6 +1788,11 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(onboardingFormActions, /flex-wrap:\s*wrap/);
   assert.match(sideNav, /position:\s*sticky/);
   assert.match(sideNavLinks, /overflow-x:\s*auto/);
+  assert.match(sideNavLinks, /scrollbar-width:\s*thin/);
+  assert.match(sideNavLinks, /scrollbar-gutter:\s*stable/);
+  assert.match(sideNavLinksScrollbar, /height:\s*7px/);
+  assert.match(sideNavLinksScrollbarThumb, /background:\s*rgba\(136,\s*98,\s*60,\s*0\.52\)/);
+  assert.doesNotMatch(sideNavLinksScrollbar, /display:\s*none/);
   assert.match(sideNavAnchor, /min-height:\s*42px/);
   assert.match(css, /@media \(min-width:\s*1420px\)[\s\S]*?\.site-side-nav\s*{[^}]*position:\s*fixed/);
   assert.match(css, /@media \(min-width:\s*1420px\)[\s\S]*?\.site-side-nav\s*{[^}]*width:\s*146px/);
@@ -1845,6 +1895,10 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(clientAccessGrid, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(clientAccessCard, /min-height:\s*260px/);
   assert.match(protectedAccessShell, /grid-template-columns:\s*minmax\(0,\s*0\.92fr\)\s*minmax\(0,\s*1\.08fr\)/);
+  assert.match(accessPasswordRow, /grid-template-columns:\s*minmax\(0,\s*1fr\)\s*auto/);
+  assert.match(accessPasswordToggle, /min-height:\s*52px/);
+  assert.match(accessPasswordToggle, /text-transform:\s*uppercase/);
+  assert.match(accessPasswordTogglePressed, /background:\s*rgba\(136,\s*98,\s*60,\s*0\.14\)/);
   assert.match(clientServicesGrid, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(clientServiceCard, /min-height:\s*430px/);
   assert.match(portalShell, /grid-template-columns:\s*minmax\(238px,\s*0\.32fr\)\s*minmax\(0,\s*1fr\)/);

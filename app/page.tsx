@@ -3,11 +3,13 @@ import {
   ArrowRight,
   BadgeCheck,
   BookOpenCheck,
+  ClipboardCheck,
   CreditCard,
   Gauge,
   GitBranch,
   GraduationCap,
   Landmark,
+  Mail,
   Network,
   ShieldCheck,
   Target,
@@ -115,6 +117,37 @@ const confidenceMetrics = [
   {
     value: "729",
     label: "KAIGES|D client configuration paths",
+  },
+] as const;
+
+const conversionAssuranceSignals = [
+  {
+    label: "Decision Path",
+    title: "Selector to registered first move.",
+    body:
+      "The guidance tool routes a buyer into onboarding with the selected package ID; it does not collect sensitive client data.",
+    icon: ClipboardCheck,
+  },
+  {
+    label: "Data Boundary",
+    title: "Public-safe before private workspace.",
+    body:
+      "Identity, payment, protected records, and portal access stay gated until AGG validates scope, role, and access requirements.",
+    icon: ShieldCheck,
+  },
+  {
+    label: "Delivery Proof",
+    title: "Inputs and outputs visible before intake.",
+    body:
+      "Package detail shows required inputs, generated outputs, timeline, engagement expectations, satisfaction criteria, and delivery package.",
+    icon: Gauge,
+  },
+  {
+    label: "Escalation Route",
+    title: "A human briefing path remains open.",
+    body:
+      "If the fit is uncertain, the buyer can move to direct engagement or contact AGG before purchase expands.",
+    icon: Mail,
   },
 ] as const;
 
@@ -308,6 +341,16 @@ export default function Home() {
             title="Find Your First Move"
             intro="Answer five public-safe scoping questions before you register. Apex will recommend the most practical starting point and route the next action into controlled onboarding or the storefront listing."
           />
+          <div className="conversion-assurance" aria-label="Premium conversion assurance">
+            {conversionAssuranceSignals.map((signal) => (
+              <article className="conversion-assurance__item" key={signal.title}>
+                <signal.icon size={20} aria-hidden="true" />
+                <span>{signal.label}</span>
+                <h3>{signal.title}</h3>
+                <p>{signal.body}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

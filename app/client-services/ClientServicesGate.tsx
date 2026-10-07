@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import { FileText, LockKeyhole, ShieldCheck } from "lucide-react";
+import { useState } from "react";
+import { Eye, EyeOff, FileText, LockKeyhole, ShieldCheck } from "lucide-react";
 
 type ClientServicesGateProps = {
   accessState?: string;
@@ -16,6 +19,7 @@ export function ClientServicesGate({
   onboardingRecordId,
   returnTo = "/client-portal",
 }: ClientServicesGateProps) {
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const accessDenied = accessState === "denied";
   const registrationReceived = accessState === "registered";
   const rateLimited = accessState === "rate-limited";
@@ -80,15 +84,32 @@ export function ClientServicesGate({
               type="text"
             />
             <label htmlFor="client-services-password">Password</label>
-            <input
-              autoComplete="current-password"
-              id="client-services-password"
-              maxLength={180}
-              name="password"
-              placeholder="Enter password"
-              required
-              type="password"
-            />
+            <div className="access-form__password-row">
+              <input
+                autoComplete="current-password"
+                id="client-services-password"
+                maxLength={180}
+                name="password"
+                placeholder="Enter password"
+                required
+                type={passwordVisible ? "text" : "password"}
+              />
+              <button
+                aria-controls="client-services-password"
+                aria-label={passwordVisible ? "Hide password" : "Show password"}
+                aria-pressed={passwordVisible}
+                className="access-form__password-toggle"
+                onClick={() => setPasswordVisible((current) => !current)}
+                type="button"
+              >
+                {passwordVisible ? (
+                  <EyeOff size={17} aria-hidden="true" />
+                ) : (
+                  <Eye size={17} aria-hidden="true" />
+                )}
+                <span>{passwordVisible ? "Hide" : "Show"}</span>
+              </button>
+            </div>
             <button className="button button--primary" type="submit">
               <LockKeyhole size={18} aria-hidden="true" />
               Open dashboard portal
