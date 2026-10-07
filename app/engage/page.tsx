@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { PackageInclusions } from "../components/PackageInclusions";
 import { EngagementPackageDeepDive } from "../components/EngagementPackageDeepDive";
+import { BuyerGuidanceSelector } from "../components/BuyerGuidanceSelector";
 import {
   brandStandard,
   buyerFirstMoves,
@@ -144,6 +145,13 @@ export default async function EngagePage({ searchParams }: EngagePageProps) {
               </span>
             </div>
           )}
+          <BuyerGuidanceSelector
+            packages={engagementPackages}
+            headingId="engage-buyer-guidance-heading"
+            eyebrow="Storefront Fit Check"
+            title="Match the product to the problem before you register."
+            intro="Use the selector to compare timeline, output, audience, and readiness against the six checkout-backed Apex products. The result stays public-safe and becomes the cleanest onboarding path."
+          />
           <div className="pricing-grid">
             {engagementPackages.map((item) => (
               <article className="pricing-card" id={`storefront-${item.id}`} key={item.id}>

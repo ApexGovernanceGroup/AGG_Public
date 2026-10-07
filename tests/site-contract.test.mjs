@@ -45,6 +45,7 @@ test("AGG public site contract is present", async () => {
     publicTelemetry,
     packageInclusionsComponent,
     engagementPackageDeepDiveComponent,
+    buyerGuidanceSelectorComponent,
     clientServicesAuth,
     clientServicesAccessRoute,
     clientServicesLogoutRoute,
@@ -97,6 +98,7 @@ test("AGG public site contract is present", async () => {
       read("app/components/PublicTelemetry.tsx"),
       read("app/components/PackageInclusions.tsx"),
       read("app/components/EngagementPackageDeepDive.tsx"),
+      read("app/components/BuyerGuidanceSelector.tsx"),
       read("app/client-services/auth.ts"),
       read("app/api/client-services/access/route.ts"),
       read("app/api/client-services/logout/route.ts"),
@@ -150,6 +152,7 @@ test("AGG public site contract is present", async () => {
     publicTelemetry,
     packageInclusionsComponent,
     engagementPackageDeepDiveComponent,
+    buyerGuidanceSelectorComponent,
     clientServicesAuth,
     clientServicesAccessRoute,
     clientServicesLogoutRoute,
@@ -737,6 +740,9 @@ test("AGG public site contract is present", async () => {
   assert.match(engage, /<PackageInclusions inclusions=\{packageInclusions\} \/>/);
   assert.match(engage, /<EngagementPackageDeepDive packageItem=\{item\} \/>/);
   assert.match(home, /<EngagementPackageDeepDive packageItem=\{item\} variant="compact" \/>/);
+  assert.match(home, /<BuyerGuidanceSelector[\s\S]*packages=\{engagementPackages\}/);
+  assert.match(engage, /<BuyerGuidanceSelector[\s\S]*packages=\{engagementPackages\}/);
+  assert.match(home, /section--guidance/);
   assert.match(packageInclusionsComponent, /"use client"/);
   assert.match(packageInclusionsComponent, /aria-expanded=\{isOpen\}/);
   assert.match(packageInclusionsComponent, /role="region"/);
@@ -751,6 +757,18 @@ test("AGG public site contract is present", async () => {
   assert.match(engagementPackageDeepDiveComponent, /Finalization \| Satisfaction Criteria/);
   assert.match(engagementPackageDeepDiveComponent, /Final Client Delivery Package/);
   assert.match(engagementPackageDeepDiveComponent, /Scope deep dive/);
+  assert.match(buyerGuidanceSelectorComponent, /"use client"/);
+  assert.match(buyerGuidanceSelectorComponent, /guidanceQuestions/);
+  assert.match(
+    buyerGuidanceSelectorComponent,
+    /aria-pressed=\{selectedAnswers\[question\.id\] === option\.id\}/,
+  );
+  assert.match(buyerGuidanceSelectorComponent, /aria-live="polite"/);
+  assert.match(buyerGuidanceSelectorComponent, /guided-first-move/);
+  assert.match(buyerGuidanceSelectorComponent, /Recommended first move/);
+  assert.match(buyerGuidanceSelectorComponent, /Apex required inputs to prepare/);
+  assert.match(buyerGuidanceSelectorComponent, /Likely final outputs/);
+  assert.match(buyerGuidanceSelectorComponent, /Public-safe selector/);
   assert.match(commerce, /export type EngagementPackageDeepDive/);
   assert.equal((commerce.match(/deepDive:\s*\{/g) ?? []).length, 6);
   assert.equal((commerce.match(/exampleServices:\s*\[/g) ?? []).length, 6);
@@ -1252,6 +1270,13 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const confidenceMetric = cssBlock(css, ".confidence-metric");
   const trustSignalGrid = cssBlock(css, ".trust-signal-grid");
   const trustSignalCard = cssBlock(css, ".trust-signal-card");
+  const guidanceSection = cssBlock(css, ".section--guidance");
+  const buyerGuidance = cssBlock(css, ".buyer-guidance");
+  const buyerGuidanceMatrix = cssBlock(css, ".buyer-guidance__matrix");
+  const buyerGuidanceOptions = cssBlock(css, ".buyer-guidance__options");
+  const buyerGuidanceOptionPressed = cssBlock(css, '.buyer-guidance__option[aria-pressed="true"]');
+  const buyerGuidanceResult = cssBlock(css, ".buyer-guidance__result");
+  const buyerGuidanceDetailGrid = cssBlock(css, ".buyer-guidance__detail-grid");
   const sharedPerspective = cssBlock(css, ".hero,\n.page-hero,\n.section--dark,\n.section--trust,\n.callout");
   const pageHeroInnerRail = cssBlock(css, ".page-hero__inner::before");
   const heroContentContrast = cssBlock(css, ".hero__content::before");
@@ -1483,6 +1508,15 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(confidenceMetric, /box-shadow:\s*inset 0 1px 0 rgba\(244,\s*241,\s*234,\s*0\.08\)/);
   assert.match(trustSignalGrid, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(trustSignalCard, /transform-style:\s*preserve-3d/);
+  assert.match(guidanceSection, /background:/);
+  assert.match(buyerGuidance, /transform-style:\s*preserve-3d/);
+  assert.match(buyerGuidance, /var\(--maine-topographic-contours-smoke\)/);
+  assert.match(buyerGuidanceMatrix, /perspective:\s*1200px/);
+  assert.match(buyerGuidanceOptions, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(buyerGuidanceOptionPressed, /inset 4px 0 0 var\(--bronze\)/);
+  assert.match(buyerGuidanceResult, /position:\s*sticky/);
+  assert.match(buyerGuidanceResult, /transform:\s*translateZ\(22px\)/);
+  assert.match(buyerGuidanceDetailGrid, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(css, /\n\.trust-signal-card \{[\s\S]*?transition:[\s\S]*?transform 180ms ease/);
   assert.match(sharedPerspective, /perspective:\s*1400px/);
   assert.match(pageHeroInnerRail, /linear-gradient\(180deg,\s*transparent,\s*rgba\(136,\s*98,\s*60,\s*0\.82\),\s*transparent\)/);

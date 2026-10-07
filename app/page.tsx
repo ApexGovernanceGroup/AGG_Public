@@ -30,6 +30,7 @@ import {
 } from "./site-data";
 import { ClientLedSelfDeterminationCards } from "./components/ClientLedSelfDeterminationCards";
 import { EngagementPackageDeepDive } from "./components/EngagementPackageDeepDive";
+import { BuyerGuidanceSelector } from "./components/BuyerGuidanceSelector";
 import { HeroSolutionLanes } from "./components/HeroSolutionLanes";
 import {
   insidePerspectiveSurvey,
@@ -296,6 +297,17 @@ export default function Home() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section section--guidance" aria-labelledby="buyer-guidance-heading">
+        <div className="container">
+          <BuyerGuidanceSelector
+            packages={engagementPackages}
+            headingId="buyer-guidance-heading"
+            title="Find Your First Move"
+            intro="Answer five public-safe scoping questions before you register. Apex will recommend the most practical starting point and route the next action into controlled onboarding or the storefront listing."
+          />
         </div>
       </section>
 
