@@ -35,6 +35,10 @@ export default function ProofLibraryPage() {
               Register client
               <ArrowRight size={17} aria-hidden="true" />
             </Link>
+            <Link className="button button--quiet-on-dark" href="/proof-pack">
+              Public proof pack
+              <ArrowRight size={17} aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </section>

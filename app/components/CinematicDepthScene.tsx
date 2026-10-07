@@ -4,6 +4,13 @@ import { useEffect, useRef } from "react";
 import type { Object3D } from "three";
 
 type ThreeModule = typeof import("three");
+type IdleSchedulerWindow = Window & {
+  requestIdleCallback?: (
+    callback: (deadline: { didTimeout: boolean; timeRemaining: () => number }) => void,
+    options?: { timeout?: number },
+  ) => number;
+  cancelIdleCallback?: (handle: number) => void;
+};
 
 const GRID_SEGMENTS = 72;
 const GRID_LINES = 15;
@@ -109,13 +116,33 @@ export function CinematicDepthScene() {
   useEffect(() => {
     let disposed = false;
     let cleanupScene: (() => void) | undefined;
+    let idleHandle: number | undefined;
+    let timeoutHandle: number | undefined;
+    const idleScheduler = window as IdleSchedulerWindow;
 
     const loadScene = async () => {
-      const THREE = await import("three");
       const mount = mountRef.current;
       if (disposed || !mount) return;
 
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const connection = navigator as Navigator & {
+        connection?: { saveData?: boolean };
+      };
+      const shouldUseStaticBackdrop =
+        reduceMotion.matches ||
+        connection.connection?.saveData === true ||
+        window.innerWidth < 720;
+
+      if (shouldUseStaticBackdrop) {
+        mount.dataset.cinematicState = "static-css-backdrop";
+        return;
+      }
+
+      mount.dataset.cinematicState = "loading-webgl";
+      const THREE = await import("three");
+      if (disposed || !mountRef.current) return;
+      mount.dataset.cinematicState = "active-webgl";
+
       const scene = new THREE.Scene();
       scene.fog = new THREE.FogExp2(0xf4f1ea, 0.045);
 
@@ -207,7 +234,7 @@ export function CinematicDepthScene() {
       let pointerX = 0;
       let pointerY = 0;
       let animationFrame: number | null = null;
-      let motionReduced = reduceMotion.matches;
+      let motionReduced: boolean = reduceMotion.matches;
 
       const resize = () => {
         width = mount.clientWidth || window.innerWidth;
@@ -283,12 +310,36 @@ export function CinematicDepthScene() {
       };
     };
 
-    void loadScene().catch(() => {
-      cleanupScene = undefined;
-    });
+    const scheduleLoad = () => {
+      if (idleScheduler.requestIdleCallback) {
+        idleHandle = idleScheduler.requestIdleCallback(
+          () => {
+            void loadScene().catch(() => {
+              cleanupScene = undefined;
+            });
+          },
+          { timeout: 1600 },
+        );
+        return;
+      }
+
+      timeoutHandle = window.setTimeout(() => {
+        void loadScene().catch(() => {
+          cleanupScene = undefined;
+        });
+      }, 250);
+    };
+
+    scheduleLoad();
 
     return () => {
       disposed = true;
+      if (idleHandle !== undefined && idleScheduler.cancelIdleCallback) {
+        idleScheduler.cancelIdleCallback(idleHandle);
+      }
+      if (timeoutHandle !== undefined) {
+        window.clearTimeout(timeoutHandle);
+      }
       cleanupScene?.();
     };
   }, []);

@@ -16,7 +16,7 @@ import {
   ShieldCheck,
   TrendingUp,
 } from "lucide-react";
-import { contactEmail, site } from "../site-data";
+import { contactEmail, investorLegalGuardrails, site } from "../site-data";
 
 export const metadata: Metadata = {
   title: "Investor Opportunities",
@@ -605,6 +605,14 @@ export default function InvestorOpportunitiesPage() {
                 by AGG ownership and reviewed through appropriate professional counsel.
               </p>
             </div>
+          </div>
+          <div className="legal-guardrail-grid" aria-label="Investor legal guardrails">
+            {investorLegalGuardrails.map((guardrail) => (
+              <article className="legal-guardrail-card" key={guardrail}>
+                <ShieldCheck size={18} aria-hidden="true" />
+                <p>{guardrail}</p>
+              </article>
+            ))}
           </div>
           <div className="investor-availability" aria-label="Current investment availability">
             <div>

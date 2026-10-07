@@ -1783,6 +1783,36 @@ button.hero__solution-lane.is-active {
   line-height: 1.65;
 }
 
+.legal-guardrail-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 18px 0 24px;
+}
+
+.legal-guardrail-card {
+  display: grid;
+  min-height: 168px;
+  align-content: start;
+  gap: 10px;
+  border: 1px solid rgba(121, 55, 53, 0.18);
+  border-radius: var(--radius);
+  background: rgba(121, 55, 53, 0.07);
+  padding: 16px;
+}
+
+.legal-guardrail-card svg {
+  color: var(--oxblood);
+}
+
+.legal-guardrail-card p {
+  margin: 0;
+  color: rgba(62, 67, 70, 0.82);
+  font-size: 0.88rem;
+  font-weight: 780;
+  line-height: 1.46;
+}
+
 .investor-quick-sheet-link {
   display: flex;
   align-items: center;
@@ -7336,6 +7366,207 @@ button.configuration-relation-card:disabled {
   line-height: 1.5;
 }
 
+.artifact-pack-grid,
+.trust-boundary-grid,
+.role-profile-grid,
+.portal-preview-grid,
+.academy-catalog-grid,
+.briefing-path-grid,
+.vignette-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.artifact-pack-card,
+.trust-boundary-card,
+.role-profile-card,
+.portal-preview-card,
+.academy-catalog-card,
+.briefing-path-card,
+.vignette-card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-height: 360px;
+  border: 1px solid rgba(23, 44, 63, 0.14);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(244, 241, 234, 0.74)),
+    var(--maine-topographic-contours-smoke) center / 520px repeat;
+  box-shadow:
+    0 22px 54px rgba(12, 12, 12, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  padding: 22px;
+  transform-style: preserve-3d;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.artifact-pack-card::before,
+.trust-boundary-card::before,
+.role-profile-card::before,
+.portal-preview-card::before,
+.academy-catalog-card::before,
+.briefing-path-card::before,
+.vignette-card::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(136, 98, 60, 0.12), transparent 44%);
+  content: "";
+  pointer-events: none;
+}
+
+.artifact-pack-card > *,
+.trust-boundary-card > *,
+.role-profile-card > *,
+.portal-preview-card > *,
+.academy-catalog-card > *,
+.briefing-path-card > *,
+.vignette-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.artifact-pack-card svg,
+.trust-boundary-card svg,
+.role-profile-card svg,
+.portal-preview-card svg,
+.academy-catalog-card svg,
+.briefing-path-card svg,
+.vignette-card svg {
+  color: var(--bronze);
+}
+
+.artifact-pack-card h2,
+.trust-boundary-card h2,
+.role-profile-card h2,
+.portal-preview-card h2,
+.academy-catalog-card h2,
+.briefing-path-card h2,
+.vignette-card h2 {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(1.16rem, 1.8vw, 1.42rem);
+  line-height: 1.18;
+}
+
+.artifact-pack-card strong,
+.trust-boundary-card strong,
+.briefing-path-card strong {
+  color: var(--bronze-dark);
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.artifact-pack-card small {
+  margin-top: auto;
+  border-top: 1px solid rgba(23, 44, 63, 0.12);
+  color: var(--navy);
+  padding-top: 12px;
+  font-weight: 900;
+}
+
+.capability-statement {
+  display: grid;
+  align-items: stretch;
+  gap: 22px;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.46fr);
+}
+
+.capability-statement__facts {
+  border: 1px solid rgba(23, 44, 63, 0.16);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: var(--shadow-raised);
+  padding: 24px;
+}
+
+.capability-statement__facts dl,
+.vignette-card dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.capability-statement__facts dt,
+.vignette-card dt {
+  color: var(--bronze-dark);
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.capability-statement__facts dd,
+.vignette-card dd {
+  margin: 3px 0 0;
+  color: rgba(62, 67, 70, 0.82);
+  font-weight: 760;
+}
+
+.comparison-table-shell {
+  overflow-x: auto;
+  border: 1px solid rgba(12, 12, 12, 0.12);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: var(--shadow-raised);
+}
+
+.comparison-table {
+  width: 100%;
+  min-width: 1120px;
+  border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+  border-bottom: 1px solid rgba(12, 12, 12, 0.1);
+  padding: 16px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.comparison-table thead th {
+  background: rgba(23, 44, 63, 0.94);
+  color: var(--paper);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.comparison-table tbody th {
+  color: var(--navy);
+  font-weight: 950;
+}
+
+.comparison-table tr:last-child th,
+.comparison-table tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (hover: hover) {
+  .artifact-pack-card:hover,
+  .trust-boundary-card:hover,
+  .role-profile-card:hover,
+  .portal-preview-card:hover,
+  .academy-catalog-card:hover,
+  .briefing-path-card:hover,
+  .vignette-card:hover {
+    border-color: rgba(136, 98, 60, 0.42);
+    box-shadow:
+      0 28px 62px rgba(12, 12, 12, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.78);
+    transform: translate3d(0, -3px, 12px);
+  }
+}
+
 @media (hover: hover) {
   .conversion-assurance__item:hover {
     border-color: rgba(136, 98, 60, 0.44);
@@ -7351,12 +7582,29 @@ button.configuration-relation-card:disabled {
     transition: none;
   }
 
+  .artifact-pack-card,
+  .trust-boundary-card,
+  .role-profile-card,
+  .portal-preview-card,
+  .academy-catalog-card,
+  .briefing-path-card,
+  .vignette-card {
+    transition: none;
+  }
+
   .conversion-assurance__item {
     transition: none;
   }
 
   .buyer-guidance__option:hover,
   .buyer-guidance__option:focus-visible,
+  .artifact-pack-card:hover,
+  .trust-boundary-card:hover,
+  .role-profile-card:hover,
+  .portal-preview-card:hover,
+  .academy-catalog-card:hover,
+  .briefing-path-card:hover,
+  .vignette-card:hover,
   .conversion-assurance__item:hover {
     transform: none;
   }
@@ -7365,6 +7613,20 @@ button.configuration-relation-card:disabled {
 @media (max-width: 1080px) {
   .buyer-guidance__header,
   .buyer-guidance__matrix {
+    grid-template-columns: 1fr;
+  }
+
+  .artifact-pack-grid,
+  .trust-boundary-grid,
+  .role-profile-grid,
+  .portal-preview-grid,
+  .academy-catalog-grid,
+  .briefing-path-grid,
+  .vignette-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .capability-statement {
     grid-template-columns: 1fr;
   }
 
@@ -7385,6 +7647,13 @@ button.configuration-relation-card:disabled {
 
   .buyer-guidance__options,
   .buyer-guidance__detail-grid,
+  .artifact-pack-grid,
+  .trust-boundary-grid,
+  .role-profile-grid,
+  .portal-preview-grid,
+  .academy-catalog-grid,
+  .briefing-path-grid,
+  .vignette-grid,
   .conversion-assurance {
     grid-template-columns: 1fr;
   }
@@ -8834,6 +9103,7 @@ button.configuration-relation-card:disabled {
   .academy-program-grid,
   .academy-topic-panel,
   .academy-topic-list,
+  .legal-guardrail-grid,
   .investor-availability,
   .investor-signal-grid,
   .valuation-metric-grid,

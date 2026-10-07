@@ -3,19 +3,26 @@ import {
   BookOpenCheck,
   Bot,
   BriefcaseBusiness,
+  Building2,
+  CalendarClock,
   ClipboardCheck,
   Compass,
+  FileText,
   Gauge,
   GitBranch,
   GraduationCap,
   Home,
+  Layers3,
   Mail,
   LockKeyhole,
   Landmark,
   Network,
   Newspaper,
+  SearchCheck,
   ShieldCheck,
   Target,
+  UserRound,
+  Users,
   Workflow,
 } from "lucide-react";
 export { engagementPackages } from "./commerce";
@@ -424,7 +431,12 @@ export type NavItem = {
   icon?: LucideIcon;
 };
 
-export const topNavItems: NavItem[] = [];
+export const topNavItems: NavItem[] = [
+  { href: "/proof-pack", label: "Proof Pack", icon: FileText },
+  { href: "/buyer-roles", label: "Buyer Fit", icon: Users },
+  { href: "/trust-security", label: "Trust", icon: ShieldCheck },
+  { href: "/procurement", label: "Procurement", icon: BriefcaseBusiness },
+];
 
 export const sideNavItems: NavItem[] = [
   { href: "/", label: "Home", icon: Home },
@@ -434,6 +446,9 @@ export const sideNavItems: NavItem[] = [
   { href: "/solutions", label: "Solutions", icon: Compass },
   { href: "/doctrine", label: "Doctrine", icon: BookOpenCheck },
   { href: "/academy", label: "Apex Academy", icon: GraduationCap },
+  { href: "/proof-pack", label: "Proof Pack", icon: FileText },
+  { href: "/buyer-roles", label: "Buyer Fit", icon: Users },
+  { href: "/trust-security", label: "Trust", icon: ShieldCheck },
   { href: "/about", label: "About", icon: Landmark },
   { href: "/contact", label: "Contact", icon: Mail },
   { href: "/insights", label: "Insights", icon: Newspaper },
@@ -441,9 +456,13 @@ export const sideNavItems: NavItem[] = [
 
 export const navItems: NavItem[] = [
   ...sideNavItems,
+  { href: "/procurement", label: "Procurement", icon: BriefcaseBusiness },
+  { href: "/portal-preview", label: "Portal Preview", icon: Gauge },
+  { href: "/academy-catalog", label: "Academy Catalog", icon: GraduationCap },
+  { href: "/case-studies", label: "Vignettes", icon: SearchCheck },
+  { href: "/briefing", label: "Briefing Paths", icon: CalendarClock },
   { href: "/client-portal", label: "Client Portal", icon: Gauge },
   { href: "/client-services", label: "Client Services" },
-  ...topNavItems,
 ];
 
 export const contactEmail =
@@ -2596,6 +2615,619 @@ export const revenueHardeningSignals = [
     body:
       "Customer-facing navigation prioritizes engagement and login while staff/admin access is de-emphasized and rate-limited.",
   },
+] as const;
+
+export type PublicProofArtifact = {
+  title: string;
+  plainName: string;
+  purpose: string;
+  publicSafeSample: string[];
+  clientUse: string;
+  includedIn: string;
+  icon: LucideIcon;
+};
+
+export const publicProofArtifacts: PublicProofArtifact[] = [
+  {
+    title: "Executive Diagnostic Brief Sample",
+    plainName: "A first decision a sponsor can use",
+    purpose:
+      "Shows how AGG frames objective, decision required, evidence, assumptions, risks, options, RCOA, and the first 30/60/90-day path.",
+    publicSafeSample: [
+      "Decision required and sponsor question",
+      "Fact, assumption, and unknowns register",
+      "Recommended course of action with stop/go criteria",
+    ],
+    clientUse:
+      "Useful when the executive team needs a bounded first answer before scope, spend, or implementation grows.",
+    includedIn: "Executive Diagnostic Brief",
+    icon: Target,
+  },
+  {
+    title: "Decision Friction Map Sample",
+    plainName: "Where decisions slow or fail",
+    purpose:
+      "Shows how AGG makes ownership gaps, authority breaks, evidence delays, and process drag visible enough to fix.",
+    publicSafeSample: [
+      "Decision path and owner map",
+      "Friction point, effect, and evidence trail",
+      "Escalation and simplification opportunities",
+    ],
+    clientUse:
+      "Useful when leaders know the work is stuck but cannot see whether the cause is people, process, data, authority, or control.",
+    includedIn: "Executive Diagnostic Brief or Governance Design Sprint",
+    icon: Compass,
+  },
+  {
+    title: "Governance Charter Kit Sample",
+    plainName: "A governed document set",
+    purpose:
+      "Shows the shape of a usable charter, authority note, operating rhythm, review standard, and handoff checklist.",
+    publicSafeSample: [
+      "Purpose, scope, authority, and decision rights",
+      "Roles, review cadence, and exception path",
+      "Implementation checklist and acceptance criteria",
+    ],
+    clientUse:
+      "Useful when a new office, program, committee, division, or workflow needs legitimacy and repeatability.",
+    includedIn: "Governed Product Kit",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Continuity Exposure Register Sample",
+    plainName: "Knowledge-loss risk in plain view",
+    purpose:
+      "Shows how AGG identifies fragile handoffs, single points of failure, retrieval gaps, and critical knowledge owners.",
+    publicSafeSample: [
+      "Critical knowledge and owner inventory",
+      "Exposure score, trigger, and impact",
+      "Remediation backlog with named owner",
+    ],
+    clientUse:
+      "Useful before turnover, reorganization, surge operations, retirement, leadership change, or program handoff.",
+    includedIn: "Continuity Exposure Assessment",
+    icon: BookOpenCheck,
+  },
+  {
+    title: "Measure Dictionary and Action Rules Sample",
+    plainName: "Numbers that trigger action",
+    purpose:
+      "Shows how AGG converts metrics into definitions, baselines, thresholds, review rhythms, and owner action rules.",
+    publicSafeSample: [
+      "MOP, MOE, KPI, and KRI definitions",
+      "Baseline, threshold, target, and review cadence",
+      "Action rule, accountable owner, and evidence source",
+    ],
+    clientUse:
+      "Useful when dashboards exist but do not reliably trigger decisions, escalation, resource shifts, or improvement.",
+    includedIn: "Governance Design Sprint",
+    icon: Gauge,
+  },
+  {
+    title: "Apex Academy Lab Packet Sample",
+    plainName: "Training that leaves evidence",
+    purpose:
+      "Shows how AGG structures private learning objectives, applied exercises, role job aids, and completion evidence.",
+    publicSafeSample: [
+      "TLOs, practical scenario, and role expectations",
+      "Applied exercise and check-on-learning set",
+      "Completion evidence and follow-on adoption path",
+    ],
+    clientUse:
+      "Useful when a workforce needs to learn, practice, and prove governed AI, data, repository, or decision-support capability.",
+    includedIn: "Apex Academy Private Lab",
+    icon: GraduationCap,
+  },
+  {
+    title: "Closeout and Handoff Package Sample",
+    plainName: "Capability the client keeps",
+    purpose:
+      "Shows how AGG closes work with final outputs, evidence index, owner handoff, sustainment rhythm, and acceptance criteria.",
+    publicSafeSample: [
+      "Final deliverable inventory and evidence index",
+      "Owner, review cycle, and change-control note",
+      "Satisfaction criteria and next-decision record",
+    ],
+    clientUse:
+      "Useful when the sponsor needs proof that the client can own, operate, improve, and defend the work after AGG exits.",
+    includedIn: "All scoped engagements",
+    icon: ClipboardCheck,
+  },
+] as const;
+
+export type ProcurementCapabilityItem = {
+  title: string;
+  detail: string;
+  proof: string;
+  icon: LucideIcon;
+};
+
+export const procurementCapabilityItems: ProcurementCapabilityItem[] = [
+  {
+    title: "Capability Statement",
+    detail:
+      "AGG provides executive decision support, knowledge-management architecture, data governance application, AI and automation governance, measurement, repository discipline, and private workforce education.",
+    proof:
+      "Capability packet, service catalog, proof-pack examples, and controlled onboarding path.",
+    icon: BriefcaseBusiness,
+  },
+  {
+    title: "Engagement Authority",
+    detail:
+      "Work begins with a named sponsor, decision owner, access boundary, product or solution intent, and acceptance criteria.",
+    proof:
+      "Registration-controlled intake, credential-protected client services, and client portal delivery model.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Commercial Terms Path",
+    detail:
+      "Public anchors show the first commercial step. Final scope, terms, timeline, and access are confirmed during intake before protected work begins.",
+    proof:
+      "Server-owned product packages, checkout-ready offers, and briefing route for custom work.",
+    icon: FileText,
+  },
+  {
+    title: "Delivery Evidence",
+    detail:
+      "Every engagement is structured around inputs, final outputs, timeline, engagement expectations, satisfaction criteria, and final delivery package.",
+    proof:
+      "Deep-dive package cards, proof library, public proof pack, and closeout handoff standard.",
+    icon: ClipboardCheck,
+  },
+] as const;
+
+export type TrustSecurityControl = {
+  title: string;
+  boundary: string;
+  control: string;
+  clientAction: string;
+  icon: LucideIcon;
+};
+
+export const trustSecurityControls: TrustSecurityControl[] = [
+  {
+    title: "Public Form Boundary",
+    boundary:
+      "Public forms are for organization, contact, intent, access need, and scheduling context only.",
+    control:
+      "Do not submit CUI, classified data, regulated records, passwords, payment card data, proprietary files, or personal sensitive records through public intake.",
+    clientAction:
+      "Use public intake to request the conversation; wait for AGG to validate the controlled workspace before sharing protected material.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Client Portal Boundary",
+    boundary:
+      "Portal access is credential-protected and staged after AGG validates the client, scope, role, and service record.",
+    control:
+      "Portal content is treated as a controlled client service record and should not be treated as a public preview.",
+    clientAction:
+      "Register first, then use issued credentials once the client account and project boundary are confirmed.",
+    icon: LockKeyhole,
+  },
+  {
+    title: "AI and Automation Boundary",
+    boundary:
+      "AI and automation are used as governed assistants, not self-authorizing decision makers.",
+    control:
+      "Human review, source trace, confidence awareness, and authority checks remain part of governed work.",
+    clientAction:
+      "Identify which outputs require human approval, policy authority, counsel review, or executive decision before use.",
+    icon: Bot,
+  },
+  {
+    title: "Records and Retention Boundary",
+    boundary:
+      "Retention, deletion, repository, SharePoint, Dataverse, CRM, and dashboard requirements are confirmed during intake.",
+    control:
+      "AGG does not represent public-site telemetry or intake records as a client records system.",
+    clientAction:
+      "Bring records-control requirements into the first briefing so the operating environment can be scoped correctly.",
+    icon: FileText,
+  },
+] as const;
+
+export type BuyerRoleProfile = {
+  slug: string;
+  title: string;
+  audience: string;
+  decisionPressure: string;
+  wants: string[];
+  firstMove: string;
+  route: string;
+  icon: LucideIcon;
+};
+
+export const buyerRoleProfiles: BuyerRoleProfile[] = [
+  {
+    slug: "founder-ceo",
+    title: "Founder, CEO, or Executive Sponsor",
+    audience: "Visionary leader, founder, CEO, president, or executive sponsor",
+    decisionPressure:
+      "You need clarity, speed, and a defensible first move without surrendering the company to another tool or consultant dependency.",
+    wants: [
+      "A decision-grade problem frame",
+      "Proof of what changes first",
+      "A controlled path from intent to execution",
+    ],
+    firstMove: "Executive Diagnostic Brief",
+    route: "/engage#storefront-diagnostic",
+    icon: Landmark,
+  },
+  {
+    slug: "coo-chief-of-staff",
+    title: "COO or Chief of Staff",
+    audience: "COO, chief of staff, executive office, operating rhythm owner",
+    decisionPressure:
+      "You need meetings, actions, measures, risks, and decisions to connect without creating more theater around the work.",
+    wants: [
+      "Decision rhythm and action register control",
+      "Owner accountability and escalation rules",
+      "Proof that the operating model is improving",
+    ],
+    firstMove: "Governance Design Sprint",
+    route: "/engage#storefront-sprint",
+    icon: Workflow,
+  },
+  {
+    slug: "cio-cdo-cto",
+    title: "CIO, CDO, CTO, or Data Leader",
+    audience: "Technology, data, analytics, AI, automation, and interoperability leaders",
+    decisionPressure:
+      "You already own systems and data, but the organization still struggles to convert them into governed action.",
+    wants: [
+      "Data and AI governance application",
+      "Measure dictionary and action rules",
+      "Repository and source-of-truth discipline",
+    ],
+    firstMove: "Governance Design Sprint",
+    route: "/engage#storefront-sprint",
+    icon: Network,
+  },
+  {
+    slug: "chro-learning",
+    title: "CHRO, Learning, or Workforce Sponsor",
+    audience: "CHRO, L&D, workforce development, certification, and credentialing leaders",
+    decisionPressure:
+      "The workforce needs practical skill, not another abstract briefing on AI, governance, data, or transformation.",
+    wants: [
+      "Private cohort or lab design",
+      "Role-level job aids and exercises",
+      "Completion evidence and skill pathway",
+    ],
+    firstMove: "Apex Academy Private Lab",
+    route: "/engage#storefront-academy-lab",
+    icon: GraduationCap,
+  },
+  {
+    slug: "pmo-program-director",
+    title: "PMO or Program Director",
+    audience: "PMO, program director, project sponsor, transformation office",
+    decisionPressure:
+      "Programs are moving, but ownership, evidence, controls, and closeout proof are too weak to trust at scale.",
+    wants: [
+      "Program governance kit",
+      "Implementation backlog and acceptance criteria",
+      "Actionable status and handoff package",
+    ],
+    firstMove: "Governed Product Kit",
+    route: "/engage#storefront-product-kit",
+    icon: ClipboardCheck,
+  },
+  {
+    slug: "knowledge-governance-owner",
+    title: "Knowledge, Records, or Governance Owner",
+    audience: "CKO, records owner, governance lead, repository steward, institutional memory owner",
+    decisionPressure:
+      "Knowledge exists, but the enterprise cannot reliably find it, trust it, preserve it, or hand it off.",
+    wants: [
+      "Continuity exposure map",
+      "Critical knowledge owner inventory",
+      "Repository and handoff risk controls",
+    ],
+    firstMove: "Continuity Exposure Assessment",
+    route: "/engage#storefront-continuity-assessment",
+    icon: BookOpenCheck,
+  },
+  {
+    slug: "investor-strategic-partner",
+    title: "Investor or Strategic Partner",
+    audience: "Qualified investor, strategic partner, advisor, or long-horizon collaborator",
+    decisionPressure:
+      "You need to understand AGG's thesis, proof, risk, diligence path, and governance posture before any term discussion.",
+    wants: [
+      "Investment briefing path",
+      "Risk and forward-looking statement boundary",
+      "Leadership access and diligence sequence",
+    ],
+    firstMove: "Investor Briefing",
+    route: "/investor-opportunities",
+    icon: Building2,
+  },
+] as const;
+
+export type PortalPreviewModule = {
+  title: string;
+  purpose: string;
+  fields: string[];
+  icon: LucideIcon;
+};
+
+export const portalPreviewModules: PortalPreviewModule[] = [
+  {
+    title: "Commissioned Service Status",
+    purpose:
+      "Shows the current phase, status, progress, updated date, next action, and delivery risks for each commissioned AGG service.",
+    fields: ["Phase", "Status", "Progress", "Next step", "Due date"],
+    icon: Gauge,
+  },
+  {
+    title: "Client Administration Data",
+    purpose:
+      "Keeps the account boundary visible so the client, sponsor, and AGG know which organization, role, and service record are active.",
+    fields: ["Organization", "Sponsor", "Account role", "Access need", "Service ID"],
+    icon: Building2,
+  },
+  {
+    title: "Assigned Apex Contact",
+    purpose:
+      "Identifies the AGG point of contact, role, email, phone, and responsibility so escalation is not hidden.",
+    fields: ["Name", "Role", "Email", "Phone", "Escalation path"],
+    icon: UserRound,
+  },
+  {
+    title: "Delivery Package Tracker",
+    purpose:
+      "Shows required inputs, generated outputs, acceptance criteria, handoff products, and closeout status.",
+    fields: ["Required inputs", "Final outputs", "Acceptance", "Handoff", "Closeout"],
+    icon: FileText,
+  },
+] as const;
+
+export type AcademyCatalogCourse = {
+  title: string;
+  audience: string;
+  duration: string;
+  deliveryMode: string;
+  outcomes: string[];
+  finalEvidence: string;
+  icon: LucideIcon;
+};
+
+export const academyCatalogCourses: AcademyCatalogCourse[] = [
+  {
+    title: "Knowledge Management Ecosystems Lab",
+    audience: "Knowledge stewards, PMOs, records owners, executive staff",
+    duration: "Half-day, full-day, or two-session private cohort",
+    deliveryMode: "In-person, remote-distance learning, or hybrid",
+    outcomes: [
+      "Map knowledge owners, repositories, and source-of-truth gaps",
+      "Define continuity risk and handoff controls",
+      "Build a practical repository operating rhythm",
+    ],
+    finalEvidence: "Repository operations job aid, continuity map, and role action list.",
+    icon: BookOpenCheck,
+  },
+  {
+    title: "Data Governance Application and AI Control Lab",
+    audience: "CIO, CDO, analysts, product owners, data stewards, AI sponsors",
+    duration: "One-day lab or two-week applied cohort",
+    deliveryMode: "Remote, in-person, or hybrid with office hours",
+    outcomes: [
+      "Translate data governance into decision rules",
+      "Separate AI assistance from decision authority",
+      "Create source, confidence, and human-review controls",
+    ],
+    finalEvidence: "AI/data governance application checklist and decision-control worksheet.",
+    icon: Bot,
+  },
+  {
+    title: "Automation, Innovation, and Interoperability Sprint School",
+    audience: "Transformation teams, process owners, data/automation leads",
+    duration: "One-day lab or three-session sprint school",
+    deliveryMode: "Hybrid preferred for applied team work",
+    outcomes: [
+      "Identify where automation earns its keep",
+      "Map handoffs and interoperability points",
+      "Define modernization backlog with risk controls",
+    ],
+    finalEvidence: "Automation opportunity map, modernization backlog, and risk screen.",
+    icon: Layers3,
+  },
+  {
+    title: "Enterprise Strategic Planning and Decision Architecture",
+    audience: "Executives, strategy offices, chiefs of staff, PMOs",
+    duration: "Executive seminar or multi-week private cohort",
+    deliveryMode: "In-person seminar with remote sustainment available",
+    outcomes: [
+      "Convert intent into priorities, measures, owners, and review rhythm",
+      "Build COA, RCOA, risk, and decision-point discipline",
+      "Connect planning to execution and measurable improvement",
+    ],
+    finalEvidence: "Strategic decision architecture worksheet and 90-day execution path.",
+    icon: Compass,
+  },
+] as const;
+
+export type CommercialComparisonRow = {
+  problem: string;
+  bestFirstMove: string;
+  anchor: string;
+  timeline: string;
+  requiredInputs: string;
+  finalOutputs: string;
+  whenNotToBuy: string;
+};
+
+export const commercialComparisonRows: CommercialComparisonRow[] = [
+  {
+    problem: "The executive team needs one clear decision.",
+    bestFirstMove: "Executive Diagnostic Brief",
+    anchor: "$2,500 starting anchor",
+    timeline: "1-2 weeks",
+    requiredInputs: "Sponsor, operating problem, source material, constraints, deadline.",
+    finalOutputs: "Decision brief, friction map, RCOA, 90-day action path.",
+    whenNotToBuy: "Do not buy if the decision is already made and you only need staff augmentation.",
+  },
+  {
+    problem: "Knowledge loss, handoff risk, or fragile ownership is visible.",
+    bestFirstMove: "Continuity Exposure Assessment",
+    anchor: "$3,500 starting anchor",
+    timeline: "2 weeks",
+    requiredInputs: "Target function, role family, process list, repositories, known turnover risk.",
+    finalOutputs: "Exposure map, critical knowledge inventory, risk-ranked backlog.",
+    whenNotToBuy: "Do not buy if the organization will not name owners or allow evidence review.",
+  },
+  {
+    problem: "A policy, SOP, memo, checklist, or governing kit is needed.",
+    bestFirstMove: "Governed Product Kit",
+    anchor: "$4,500 starting anchor",
+    timeline: "2-3 weeks",
+    requiredInputs: "Product owner, intended users, current drafts, authority path, format needs.",
+    finalOutputs: "Tailored artifact set, implementation checklist, owner handoff note.",
+    whenNotToBuy: "Do not buy if the approval authority is unknown or unavailable.",
+  },
+  {
+    problem: "A team needs private education, certification evidence, or applied skill.",
+    bestFirstMove: "Apex Academy Private Lab",
+    anchor: "$6,500 starting anchor",
+    timeline: "Half-day to one day",
+    requiredInputs: "Audience, role mix, learning objective, delivery mode, evidence need.",
+    finalOutputs: "Cohort packet, exercises, job aids, readiness notes.",
+    whenNotToBuy: "Do not buy if the audience cannot attend or practice the material.",
+  },
+  {
+    problem: "The organization needs an operating model, not another report.",
+    bestFirstMove: "Governance Design Sprint",
+    anchor: "$9,500 starting anchor",
+    timeline: "3-4 weeks",
+    requiredInputs: "Decision owners, measures, workflows, constraints, implementation boundary.",
+    finalOutputs: "Operating model, measure dictionary, control points, backlog.",
+    whenNotToBuy: "Do not buy if leadership is not ready to change decision rights or cadence.",
+  },
+  {
+    problem: "Leadership needs recurring counsel and delivery control.",
+    bestFirstMove: "Executive Advisory Retainer",
+    anchor: "$18,000 monthly anchor",
+    timeline: "Monthly rhythm",
+    requiredInputs: "Sponsor, portfolio priorities, cadence, escalation authority, reporting needs.",
+    finalOutputs: "Decision briefs, action register, review notes, measured improvement rhythm.",
+    whenNotToBuy: "Do not buy if the need is a one-time product with no sustainment requirement.",
+  },
+] as const;
+
+export type SchedulingPath = {
+  title: string;
+  bestFor: string;
+  href: string;
+  requestedContext: string[];
+  icon: LucideIcon;
+};
+
+export const schedulingPaths: SchedulingPath[] = [
+  {
+    title: "Request 30-Minute Fit Call",
+    bestFor: "A buyer who knows the problem but not the first product.",
+    href: `mailto:${contactEmail}?subject=${encodeURIComponent("AGG 30-Minute Fit Call")}`,
+    requestedContext: ["Decision required", "Timeline", "Known constraints"],
+    icon: CalendarClock,
+  },
+  {
+    title: "Request Procurement Packet",
+    bestFor: "A sponsor who needs something forwardable before internal approval.",
+    href: `mailto:${contactEmail}?subject=${encodeURIComponent("AGG Procurement Packet Request")}`,
+    requestedContext: ["Organization type", "Buying path", "Required identifiers or forms"],
+    icon: FileText,
+  },
+  {
+    title: "Request Private Academy Cohort",
+    bestFor: "A workforce or executive team that needs private education.",
+    href: `mailto:${contactEmail}?subject=${encodeURIComponent("Apex Academy Cohort Request")}`,
+    requestedContext: ["Audience", "Delivery mode", "Topics and credentialing needs"],
+    icon: GraduationCap,
+  },
+  {
+    title: "Request Investor Briefing",
+    bestFor: "A qualified strategic partner or investor beginning diligence.",
+    href: `mailto:${contactEmail}?subject=${encodeURIComponent("AGG Investor Briefing Request")}`,
+    requestedContext: ["Investment goals", "Horizon", "Participation model"],
+    icon: Building2,
+  },
+] as const;
+
+export type CaseStudyVignette = {
+  title: string;
+  label: string;
+  situation: string;
+  friction: string;
+  aggIntervention: string;
+  productDelivered: string;
+  measuredChange: string;
+  whatClientRetains: string;
+  icon: LucideIcon;
+};
+
+export const caseStudyVignettes: CaseStudyVignette[] = [
+  {
+    title: "Executive Decision Friction",
+    label: "Representative scenario",
+    situation:
+      "A leadership team receives too many dashboards, too few decisions, and no single owner for action follow-through.",
+    friction:
+      "Meetings report activity but do not clarify decision rights, thresholds, or escalation rules.",
+    aggIntervention:
+      "AGG maps the decision path, creates action rules, and installs a measured review rhythm.",
+    productDelivered:
+      "Executive Diagnostic Brief, Decision Friction Map, and 90-day RCOA.",
+    measuredChange:
+      "The sponsor can see who owns each decision, what evidence is required, and what action follows a threshold change.",
+    whatClientRetains:
+      "Decision brief, action register, review cadence, and owner handoff note.",
+    icon: Target,
+  },
+  {
+    title: "Knowledge Continuity Exposure",
+    label: "Representative scenario",
+    situation:
+      "A mission-critical role depends on one experienced employee, scattered files, and informal memory.",
+    friction:
+      "The organization cannot identify which knowledge is critical, where it lives, or who can maintain it.",
+    aggIntervention:
+      "AGG builds an exposure register, owner inventory, and remediation backlog.",
+    productDelivered:
+      "Continuity Exposure Assessment and Critical Knowledge Inventory.",
+    measuredChange:
+      "Leadership can prioritize single-point-of-failure risk before turnover or reorganization occurs.",
+    whatClientRetains:
+      "Exposure map, owner model, repository action list, and handoff criteria.",
+    icon: BookOpenCheck,
+  },
+  {
+    title: "Private Academy Workforce Lab",
+    label: "Representative scenario",
+    situation:
+      "A team is expected to use AI, automation, and data governance but lacks common language and safe practice habits.",
+    friction:
+      "Staff adopt tools unevenly and cannot explain source trace, human review, or decision authority.",
+    aggIntervention:
+      "AGG runs a private lab with role-based exercises, check-on-learning, and follow-on job aids.",
+    productDelivered:
+      "Apex Academy Private Lab Packet and Skill Evidence Record.",
+    measuredChange:
+      "Participants leave with practical rules for governed AI and automation use in their own work context.",
+    whatClientRetains:
+      "TLOs, lab exercises, job aids, and completion evidence.",
+    icon: GraduationCap,
+  },
+] as const;
+
+export const investorLegalGuardrails = [
+  "This page is informational only and is not an offer to sell securities or a solicitation to buy securities.",
+  "No dividend, liquidity, valuation, buy-back, exit, tax, or return outcome is guaranteed.",
+  "Any investment discussion is subject to investor qualification, diligence, counsel review, final written agreements, and applicable law.",
+  "Forward-looking statements are planning assumptions only and may change with market, legal, operational, capital, customer, and execution conditions.",
+  "Prospective investors should consult independent legal, tax, accounting, and financial advisors before relying on any investment information.",
 ] as const;
 
 export const trustBuildingSignals = [

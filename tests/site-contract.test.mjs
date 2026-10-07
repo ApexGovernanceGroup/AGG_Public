@@ -60,8 +60,18 @@ test("AGG public site contract is present", async () => {
     contact,
     engage,
     proofLibrary,
+    proofPack,
+    procurement,
+    trustSecurity,
+    buyerRoles,
+    portalPreview,
+    academyCatalog,
+    caseStudies,
+    briefing,
     investorOpportunities,
     investorQuickSheet,
+    publicProofPack,
+    capabilityPacket,
     investorQuickSheetRoute,
     surveyData,
     strategicSurveyForm,
@@ -113,8 +123,18 @@ test("AGG public site contract is present", async () => {
       read("app/contact/page.tsx"),
       read("app/engage/page.tsx"),
       read("app/proof-library/page.tsx"),
+      read("app/proof-pack/page.tsx"),
+      read("app/procurement/page.tsx"),
+      read("app/trust-security/page.tsx"),
+      read("app/buyer-roles/page.tsx"),
+      read("app/portal-preview/page.tsx"),
+      read("app/academy-catalog/page.tsx"),
+      read("app/case-studies/page.tsx"),
+      read("app/briefing/page.tsx"),
       read("app/investor-opportunities/page.tsx"),
       read("public/agg-investor-quick-sheet.html"),
+      read("public/agg-public-proof-pack.html"),
+      read("public/agg-capability-packet.html"),
       read("app/agg-investor-quick-sheet/page.tsx"),
       read("app/surveys/survey-data.ts"),
       read("app/components/StrategicSurveyForm.tsx"),
@@ -167,8 +187,18 @@ test("AGG public site contract is present", async () => {
     contact,
     engage,
     proofLibrary,
+    proofPack,
+    procurement,
+    trustSecurity,
+    buyerRoles,
+    portalPreview,
+    academyCatalog,
+    caseStudies,
+    briefing,
     investorOpportunities,
     investorQuickSheet,
+    publicProofPack,
+    capabilityPacket,
     investorQuickSheetRoute,
     surveyData,
     strategicSurveyForm,
@@ -326,6 +356,14 @@ test("AGG public site contract is present", async () => {
   assert.match(sitemap, /"\/client-onboarding"/);
   assert.match(sitemap, /"\/doctrine"/);
   assert.match(sitemap, /"\/proof-library"/);
+  assert.match(sitemap, /"\/proof-pack"/);
+  assert.match(sitemap, /"\/procurement"/);
+  assert.match(sitemap, /"\/trust-security"/);
+  assert.match(sitemap, /"\/buyer-roles"/);
+  assert.match(sitemap, /"\/portal-preview"/);
+  assert.match(sitemap, /"\/academy-catalog"/);
+  assert.match(sitemap, /"\/case-studies"/);
+  assert.match(sitemap, /"\/briefing"/);
   assert.match(sitemap, /"\/investor-opportunities"/);
   assert.match(sitemap, /"\/inside-perspective-human-cost-executive-management"/);
   assert.match(sitemap, /"\/paralysis-from-analysis-needs-vs-systems"/);
@@ -436,12 +474,58 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Proof before scale\. Samples before commitment/);
   assert.match(data, /export const buyerFirstMoves/);
   assert.match(data, /export const proofLibraryItems/);
+  assert.match(data, /export const publicProofArtifacts/);
+  assert.match(data, /export const procurementCapabilityItems/);
+  assert.match(data, /export const trustSecurityControls/);
+  assert.match(data, /export const buyerRoleProfiles/);
+  assert.match(data, /export const portalPreviewModules/);
+  assert.match(data, /export const academyCatalogCourses/);
+  assert.match(data, /export const commercialComparisonRows/);
+  assert.match(data, /export const schedulingPaths/);
+  assert.match(data, /export const caseStudyVignettes/);
+  assert.match(data, /export const investorLegalGuardrails/);
   assert.match(data, /export const firstFourteenDays/);
   assert.match(data, /export const revenueHardeningSignals/);
   assert.match(proofLibrary, /See the artifact shape before the engagement grows/);
+  assert.match(proofLibrary, /href="\/proof-pack"/);
   assert.match(proofLibrary, /buyerFirstMoves\.map/);
   assert.match(proofLibrary, /proofLibraryItems\.map/);
   assert.match(proofLibrary, /revenueHardeningSignals\.map/);
+  assert.match(proofPack, /Public Proof Pack/);
+  assert.match(proofPack, /publicProofArtifacts\.map/);
+  assert.match(proofPack, /agg-public-proof-pack\.html/);
+  assert.match(publicProofPack, /Public Proof Pack/);
+  assert.match(publicProofPack, /Executive Diagnostic Brief/);
+  assert.match(publicProofPack, /Public-Safe Boundary/);
+  assert.match(procurement, /Procurement and Capability/);
+  assert.match(procurement, /procurementCapabilityItems\.map/);
+  assert.match(procurement, /agg-capability-packet\.html/);
+  assert.match(capabilityPacket, /Procurement and Capability Packet/);
+  assert.match(capabilityPacket, /Client-owned tools first/);
+  assert.match(trustSecurity, /Trust and Data Boundary/);
+  assert.match(trustSecurity, /trustSecurityControls\.map/);
+  assert.match(trustSecurity, /Register the need\. Do not upload the risk\./);
+  assert.match(buyerRoles, /Buyer Roles and First-Move Fit/);
+  assert.match(buyerRoles, /buyerRoleProfiles\.map/);
+  assert.match(buyerRoles, /commercialComparisonRows\.map/);
+  assert.match(portalPreview, /Portal Preview/);
+  assert.match(portalPreview, /portalPreviewModules\.map/);
+  assert.match(academyCatalog, /Apex Academy Course Catalog/);
+  assert.match(academyCatalog, /academyCatalogCourses\.map/);
+  assert.match(caseStudies, /Representative Vignettes/);
+  assert.match(caseStudies, /caseStudyVignettes\.map/);
+  assert.match(briefing, /Briefing and Scheduling Paths/);
+  assert.match(briefing, /schedulingPaths\.map/);
+  assert.match(home, /Buyer Confidence System/);
+  assert.match(home, /buyerSystemLinks\.map/);
+  assert.match(home, /\/proof-pack/);
+  assert.match(home, /\/procurement/);
+  assert.match(home, /\/trust-security/);
+  assert.match(home, /\/buyer-roles/);
+  assert.match(home, /\/portal-preview/);
+  assert.match(home, /\/academy-catalog/);
+  assert.match(home, /\/case-studies/);
+  assert.match(home, /\/briefing/);
   assert.match(services, /className="services-hero__title"/);
   assert.match(services, /Services, products, sprints, and seminars for governed advantage\./);
   assert.match(combined, /Buy the first move, then scale only what proves useful/);
@@ -488,10 +572,17 @@ test("AGG public site contract is present", async () => {
   );
   assert.doesNotMatch(siteHeader, /navItems\.map/);
   assert.match(sideNavigation, /sideNavItems\.map/);
-  assert.match(data, /export const topNavItems: NavItem\[\] = \[\];/);
+  assert.match(data, /export const topNavItems: NavItem\[\] = \[/);
+  assert.match(data, /href: "\/proof-pack", label: "Proof Pack", icon: FileText/);
+  assert.match(data, /href: "\/buyer-roles", label: "Buyer Fit", icon: Users/);
+  assert.match(data, /href: "\/trust-security", label: "Trust", icon: ShieldCheck/);
+  assert.match(data, /href: "\/procurement", label: "Procurement", icon: BriefcaseBusiness/);
   assert.doesNotMatch(sideNavData, /href: "\/client-portal"/);
   assert.match(sideNavData, /href: "\/client-onboarding", label: "Onboarding", icon: ClipboardCheck/);
   assert.match(sideNavData, /href: "\/doctrine", label: "Doctrine", icon: BookOpenCheck/);
+  assert.match(sideNavData, /href: "\/proof-pack", label: "Proof Pack", icon: FileText/);
+  assert.match(sideNavData, /href: "\/buyer-roles", label: "Buyer Fit", icon: Users/);
+  assert.match(sideNavData, /href: "\/trust-security", label: "Trust", icon: ShieldCheck/);
   assert.match(
     data,
     /sideNavItems: NavItem\[\] = \[[\s\S]*href: "\/about", label: "About", icon: Landmark[\s\S]*href: "\/contact", label: "Contact", icon: Mail[\s\S]*href: "\/insights", label: "Insights", icon: Newspaper/,
@@ -559,6 +650,8 @@ test("AGG public site contract is present", async () => {
   assert.match(investorOpportunities, /not an\s+offer to sell securities/i);
   assert.match(investorOpportunities, /promise of dividends/);
   assert.match(investorOpportunities, /certified valuation/);
+  assert.match(investorOpportunities, /investorLegalGuardrails\.map/);
+  assert.match(investorOpportunities, /Investor legal guardrails/);
   assert.match(investorOpportunities, /25% share availability/);
   assert.match(investorOpportunities, /Current Investment Availability/);
   assert.match(investorOpportunities, /Apex Governance Group currently has investment opportunities available/);

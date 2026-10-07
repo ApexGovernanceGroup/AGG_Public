@@ -165,6 +165,9 @@ export default function AcademyPage() {
             <ArrowRight size={18} aria-hidden="true" />
             Scope an academy cohort
           </Link>
+          <Link className="button button--quiet" href="/academy-catalog">
+            Review Academy catalog
+          </Link>
           <Link className="button button--quiet" href="/contact">
             Request private education briefing
           </Link>

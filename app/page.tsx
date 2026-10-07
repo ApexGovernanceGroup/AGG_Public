@@ -5,14 +5,18 @@ import {
   BookOpenCheck,
   ClipboardCheck,
   CreditCard,
+  CalendarClock,
+  FileText,
   Gauge,
   GitBranch,
   GraduationCap,
   Landmark,
   Mail,
   Network,
+  SearchCheck,
   ShieldCheck,
   Target,
+  Users,
   Workflow,
 } from "lucide-react";
 import {
@@ -163,6 +167,65 @@ const solutionSurveyActions = [
     label: paralysisFromAnalysisSurvey.buttonLabel,
     icon: Workflow,
     className: "button button--survey-systems",
+  },
+] as const;
+
+const buyerSystemLinks = [
+  {
+    href: "/proof-pack",
+    title: "Public Proof Pack",
+    body:
+      "Download public-safe artifact samples for diagnostics, charters, continuity, measurement, academy labs, and handoff.",
+    icon: FileText,
+  },
+  {
+    href: "/procurement",
+    title: "Procurement Packet",
+    body:
+      "Forward a capability statement, commercial boundary, contact route, and procurement-ready buying path.",
+    icon: ClipboardCheck,
+  },
+  {
+    href: "/trust-security",
+    title: "Trust and Data Boundary",
+    body:
+      "See what stays public, what stays gated, and how AGG handles AI, records, portal, and protected-content boundaries.",
+    icon: ShieldCheck,
+  },
+  {
+    href: "/buyer-roles",
+    title: "Buyer Role Fit",
+    body:
+      "Choose the first move by role: CEO, COO, CIO, CHRO, PMO, knowledge owner, investor, or strategic partner.",
+    icon: Users,
+  },
+  {
+    href: "/portal-preview",
+    title: "Portal Preview",
+    body:
+      "Review the public-safe dashboard model for commissioned services, client administration, contact, and delivery package status.",
+    icon: Gauge,
+  },
+  {
+    href: "/academy-catalog",
+    title: "Academy Catalog",
+    body:
+      "Review private education, certification evidence, and applied skill pathways for governed modern work.",
+    icon: GraduationCap,
+  },
+  {
+    href: "/case-studies",
+    title: "Representative Vignettes",
+    body:
+      "See public-safe scenarios for decision friction, continuity exposure, and private workforce labs.",
+    icon: SearchCheck,
+  },
+  {
+    href: "/briefing",
+    title: "Briefing Paths",
+    body:
+      "Request the right conversation: fit call, procurement packet, private Academy cohort, or investor briefing.",
+    icon: CalendarClock,
   },
 ] as const;
 
@@ -348,6 +411,35 @@ export default function Home() {
                 <span>{signal.label}</span>
                 <h3>{signal.title}</h3>
                 <p>{signal.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="buyer-system-heading">
+        <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow">Buyer Confidence System</p>
+            <h2 id="buyer-system-heading">
+              Proof, procurement, trust, role fit, and scheduling in one public path.
+            </h2>
+            <p>
+              The next step should not require a buyer to guess. AGG now gives
+              each serious visitor a public-safe inspection path before intake,
+              checkout, portal access, or investor diligence.
+            </p>
+          </div>
+          <div className="artifact-pack-grid" aria-label="Buyer confidence links">
+            {buyerSystemLinks.map((link) => (
+              <article className="artifact-pack-card" key={link.href}>
+                <link.icon size={24} aria-hidden="true" />
+                <h2>{link.title}</h2>
+                <p>{link.body}</p>
+                <Link className="text-link" href={link.href}>
+                  Open
+                  <ArrowRight size={16} aria-hidden="true" />
+                </Link>
               </article>
             ))}
           </div>
