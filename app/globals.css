@@ -1207,6 +1207,7 @@ button.hero__solution-lane.is-active {
 .large-copy {
   color: var(--charcoal);
   font-size: clamp(1.06rem, 1.8vw, 1.18rem);
+  overflow-wrap: anywhere;
 }
 
 .section--dark .large-copy {
@@ -7623,6 +7624,50 @@ button.configuration-relation-card:disabled {
   padding: 7px 10px;
   font-size: 0.78rem;
   font-weight: 900;
+}
+
+.taxonomy-level-code {
+  width: fit-content;
+  margin: 0;
+  border: 1px solid rgba(136, 98, 60, 0.32);
+  border-radius: 999px;
+  background: rgba(136, 98, 60, 0.1);
+  color: var(--bronze-dark);
+  padding: 7px 10px;
+  font-family: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.taxonomy-anatomy-stack {
+  display: grid;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.taxonomy-anatomy-card {
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(23, 44, 63, 0.12);
+  border-left: 4px solid rgba(136, 98, 60, 0.72);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.62);
+  padding: 12px;
+}
+
+.taxonomy-anatomy-card h3 {
+  margin: 0;
+  color: var(--black);
+  font-size: 0.96rem;
+  line-height: 1.28;
+}
+
+.taxonomy-anatomy-card p {
+  margin: 0;
+  color: rgba(62, 67, 70, 0.8);
+  font-size: 0.86rem;
+  line-height: 1.46;
 }
 
 .taxonomy-unlock {

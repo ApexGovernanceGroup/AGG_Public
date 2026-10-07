@@ -16,9 +16,9 @@ import {
 } from "../site-data";
 
 export const metadata: Metadata = {
-  title: "Taxonomy Starter Exchange",
+  title: "AGG Signature Taxonomy",
   description:
-    "Register with Apex Governance Group to receive a public-safe Level 1-2 organizational taxonomy starter, file naming convention, and lifecycle delineation.",
+    "Register with Apex Governance Group to receive a public-safe AGG signature taxonomy starter with Level 1 titling, Level 2 file anatomy, emerging-technology-friendly naming, and N.n lifecycle delineation.",
 };
 
 const registrationMessages: Record<string, string> = {
@@ -56,13 +56,14 @@ export default async function TaxonomyStarterPage({
     <main>
       <section className="page-hero page-hero--navy">
         <div className="container page-hero__inner">
-          <p className="eyebrow">Taxonomy Starter Exchange</p>
-          <h1>Trade a registration for a governed structure starter.</h1>
+          <p className="eyebrow">AGG Signature Taxonomy</p>
+          <h1>Trade a registration for a governed signature structure starter.</h1>
           <p>
-            Register with public-safe contact context and receive a Level 1-2
-            organizational taxonomy starter, a practical file naming convention,
-            and a lifecycle delineation your team can use to begin organizing
-            knowledge, records, files, and decision products.
+            Register with public-safe contact context and receive the Apex
+            Governance Group signature starter: full Level 1 titling, Level 2
+            file anatomy with README intent and 1-N subfolders,
+            emerging-technology-friendly naming, and lifecycle control in N.n
+            format.
           </p>
           <div className="page-hero__actions">
             <a className="button button--primary" href="#registration">
@@ -82,13 +83,13 @@ export default async function TaxonomyStarterPage({
           <article className="taxonomy-exchange-card taxonomy-exchange-card--featured">
             <Layers3 size={25} aria-hidden="true" />
             <p className="eyebrow">What You Receive</p>
-            <h2>Level 1-2 taxonomy starter</h2>
+            <h2>AGG signature taxonomy starter</h2>
             <p>
-              A plain-language starting structure for leadership, operations,
-              knowledge, data, people, governance, and lifecycle control. It is
-              not a finished client taxonomy; it is the first scaffold for a
-              cleaner repository, SharePoint, drive, knowledge base, or program
-              library.
+              A governed signature item for leadership, operations, knowledge,
+              data, AI, people, and lifecycle control. It is not a finished
+              client taxonomy; it is the first scaffold for a cleaner
+              repository, SharePoint estate, drive, knowledge base, program
+              library, or AI-ready corpus.
             </p>
           </article>
           <article className="taxonomy-exchange-card">
@@ -96,17 +97,19 @@ export default async function TaxonomyStarterPage({
             <p className="eyebrow">Naming Convention</p>
             <h2>{fileNamingConventionExample}</h2>
             <p>
-              A repeatable naming pattern built for retrieval, status clarity,
-              version control, ownership, and lifecycle disposition.
+              A repeatable naming pattern built for retrieval, automation,
+              model ingestion, search, status clarity, ownership, and lifecycle
+              disposition.
             </p>
           </article>
           <article className="taxonomy-exchange-card">
             <ClipboardCheck size={24} aria-hidden="true" />
             <p className="eyebrow">Lifecycle</p>
-            <h2>Intake to archive or disposal.</h2>
+            <h2>N.n lifecycle control.</h2>
             <p>
-              A controlled lifecycle map that distinguishes draft, review,
-              approved, active, superseded, archived, and disposed material.
+              A controlled lifecycle map that uses N.n codes to distinguish
+              intake, classification, draft, review, release, improvement,
+              archive, and disposition states.
             </p>
           </article>
         </div>
@@ -141,12 +144,12 @@ export default async function TaxonomyStarterPage({
         <div className="container">
           <div className="section-heading">
             <p className="eyebrow">Starter Preview</p>
-            <h2>The framework begins with six Level 1 lanes.</h2>
+            <h2>The framework begins with six titled Level 1 lanes.</h2>
             <p>
-              Each lane includes Level 2 examples and an operating use case.
-              The final client version should be calibrated to authority,
-              systems, records rules, sensitivity, retrieval behavior, and
-              the work your teams actually perform.
+              Each lane includes Level 2 file anatomy with a README purpose and
+              1-N subfolders. The final client version should be calibrated to
+              authority, systems, records rules, sensitivity, retrieval
+              behavior, and the work your teams actually perform.
             </p>
           </div>
           <div className="taxonomy-lane-grid">
@@ -154,12 +157,21 @@ export default async function TaxonomyStarterPage({
               <article className="taxonomy-lane-card" key={lane.levelOne}>
                 <p className="eyebrow">Level 1</p>
                 <h2>{lane.levelOne}</h2>
-                <ul className="taxonomy-chip-list" aria-label={`${lane.levelOne} Level 2 examples`}>
-                  {lane.levelTwo.map((levelTwo) => (
-                    <li key={levelTwo}>{levelTwo}</li>
-                  ))}
-                </ul>
+                <p className="taxonomy-level-code">{lane.levelOneCode}</p>
                 <p>{lane.clientUse}</p>
+                <div className="taxonomy-anatomy-stack" aria-label={`${lane.levelOneTitle} Level 2 file anatomy`}>
+                  {lane.levelTwo.map((levelTwo) => (
+                    <article className="taxonomy-anatomy-card" key={levelTwo.title}>
+                      <h3>{levelTwo.title}</h3>
+                      <p>{levelTwo.readme}</p>
+                      <ul className="taxonomy-chip-list">
+                        {levelTwo.subfolders.map((folder) => (
+                          <li key={folder}>{folder}</li>
+                        ))}
+                      </ul>
+                    </article>
+                  ))}
+                </div>
               </article>
             ))}
           </div>
@@ -170,7 +182,7 @@ export default async function TaxonomyStarterPage({
         <div className="container split split--center">
           <div>
             <p className="eyebrow">File Naming</p>
-            <h2>Make the filename carry authority, status, and retrieval.</h2>
+            <h2>Make the filename carry authority, retrieval, automation, and lifecycle state.</h2>
             <p className="large-copy">
               {fileNamingConventionExample}
             </p>
@@ -194,11 +206,11 @@ export default async function TaxonomyStarterPage({
             <h2>Every artifact needs a visible state and owner action.</h2>
           </div>
           <ol className="taxonomy-lifecycle">
-            {lifecycleDelineationSteps.map((step, index) => (
+            {lifecycleDelineationSteps.map((step) => (
               <li key={step.step}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
+                <span>{step.code}</span>
                 <div>
-                  <h3>{step.step}</h3>
+                  <h3>{step.code} | {step.step}</h3>
                   <p>{step.definition}</p>
                   <strong>{step.controlQuestion}</strong>
                 </div>

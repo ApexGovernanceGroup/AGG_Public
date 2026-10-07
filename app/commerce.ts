@@ -31,7 +31,7 @@ export type DownloadProduct = {
   sku: string;
   name: string;
   category: string;
-  tier: "Starter" | "Kit" | "Workbook" | "Playbook";
+  tier: "Starter" | "Kit" | "Workbook" | "Playbook" | "Signature";
   saleStatus: string;
   displayPrice: string;
   planningAnchor: string;
@@ -431,32 +431,32 @@ export const downloadProducts: DownloadProduct[] = [
   {
     id: "taxonomy-naming-lifecycle-starter",
     sku: "AGG-DL-001",
-    name: "Taxonomy, File Naming, and Lifecycle Starter Kit",
-    category: "Knowledge and Records",
-    tier: "Starter",
+    name: "AGG Signature Taxonomy, File Anatomy, and Lifecycle Kit",
+    category: "Apex Signature Item",
+    tier: "Signature",
     saleStatus: "Staged for sale - registration-controlled download",
     displayPrice: "Launch anchor: $149",
     planningAnchor:
-      "Low-friction starter kit for teams that need immediate order before a custom repository build.",
+      "Signature starter kit for teams that need an AI-ready organizing system before a custom repository build.",
     commercialNote:
-      "Creditable toward a custom taxonomy, repository architecture, or metadata sprint when scoped within 30 days.",
+      "Creditable toward a custom taxonomy, repository architecture, metadata model, or AI-ready corpus sprint when scoped within 30 days.",
     unitAmount: 14900,
-    format: "HTML starter, editable checklist, taxonomy table, lifecycle worksheet",
+    format: "HTML starter, Level 1 title system, Level 2 file anatomy, naming rule, lifecycle worksheet",
     bestFor:
       "Teams with shared-drive, SharePoint, repository, or file-naming disorder.",
     description:
-      "A practical starter for Level 1-2 taxonomy, file naming, lifecycle states, and ownership questions.",
+      "An AGG signature starter for Level 1 titling, Level 2 file anatomy with README and 1-N subfolders, emerging-technology-friendly file naming, and N.n lifecycle control.",
     previewUrl: "/agg-taxonomy-file-lifecycle-starter.html",
     includedFiles: [
-      "Level 1-2 taxonomy starter",
-      "File naming convention worksheet",
-      "Lifecycle delineation checklist",
-      "Repository owner questions",
+      "Full Level 1 titling system",
+      "Level 2 file anatomy with README and 1-N subfolders",
+      "COMPO_DIV_FUNCTION_Title_DTG__Author_LC naming rule",
+      "N.n lifecycle delineation checklist",
     ],
     useCases: [
       "Organize a messy shared drive or SharePoint library",
-      "Create consistent file naming and status discipline",
-      "Prepare for a repository or records-control sprint",
+      "Prepare an AI-ready corpus with consistent anatomy and lifecycle state",
+      "Create consistent file naming and status discipline for automation and search",
     ],
     upgradePath: "Knowledge-to-Decision Repository Sprint",
   },

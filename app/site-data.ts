@@ -2619,46 +2619,162 @@ export const revenueHardeningSignals = [
   },
 ] as const;
 
+export type TaxonomyLevelTwoAnatomy = {
+  title: string;
+  readme: string;
+  subfolders: string[];
+};
+
 export type TaxonomyStarterLane = {
   levelOne: string;
-  levelTwo: string[];
+  levelOneCode: string;
+  levelOneTitle: string;
+  levelTwo: TaxonomyLevelTwoAnatomy[];
   clientUse: string;
 };
 
 export const taxonomyStarterLanes: TaxonomyStarterLane[] = [
   {
-    levelOne: "Governance and Authority",
-    levelTwo: ["Charters", "Decision Rights", "Policies", "Review Rhythm"],
+    levelOne: "01 | Governance and Authority",
+    levelOneCode: "01-GOV",
+    levelOneTitle: "Governance and Authority",
+    levelTwo: [
+      {
+        title: "01.01 Charters and Mandates",
+        readme: "README explains authority source, decision body, scope, membership, review cadence, and approval evidence.",
+        subfolders: ["01_Source", "02_Working", "03_Review", "04_Approved", "05_Evidence", "99_Archive"],
+      },
+      {
+        title: "01.02 Decision Rights",
+        readme: "README defines who recommends, approves, is consulted, is informed, and owns exception resolution.",
+        subfolders: ["01_RACI", "02_Authority-Matrix", "03_Exception-Log", "04_Decision-Records", "99_Archive"],
+      },
+      {
+        title: "01.03 Policy and Review Rhythm",
+        readme: "README captures policy owner, effective date, review trigger, supersession rule, and operating battle rhythm.",
+        subfolders: ["01_Drafts", "02_Stakeholder-Review", "03_Published", "04_Review-Cycle", "99_Archive"],
+      },
+    ],
     clientUse:
       "Clarifies who can decide, who must review, which rules apply, and what evidence makes the decision defensible.",
   },
   {
-    levelOne: "Strategy and Execution",
-    levelTwo: ["Objectives", "COAs", "Roadmaps", "Measures"],
+    levelOne: "02 | Strategy and Execution",
+    levelOneCode: "02-STRAT",
+    levelOneTitle: "Strategy and Execution",
+    levelTwo: [
+      {
+        title: "02.01 Objectives and Outcomes",
+        readme: "README states intent, desired outcome, owner, decision horizon, assumptions, constraints, and success measures.",
+        subfolders: ["01_Source-Intent", "02_Objectives", "03_Assumptions", "04_Outcomes", "99_Archive"],
+      },
+      {
+        title: "02.02 COAs and Planning",
+        readme: "README preserves the planning question, COA comparison basis, decision criteria, recommendation, and risk posture.",
+        subfolders: ["01_Facts-Assumptions", "02_COAs", "03_Risk", "04_RCOA", "05_Decision", "99_Archive"],
+      },
+      {
+        title: "02.03 Roadmaps and Measures",
+        readme: "README connects milestones, owners, measures, thresholds, dependencies, and executive review cadence.",
+        subfolders: ["01_Roadmap", "02_Milestones", "03_Measures", "04_Reviews", "99_Archive"],
+      },
+    ],
     clientUse:
       "Connects executive intent to courses of action, funded work, milestones, measures, and accountable owners.",
   },
   {
-    levelOne: "Operations and Delivery",
-    levelTwo: ["Programs", "Projects", "SOPs", "Handoff"],
+    levelOne: "03 | Operations and Delivery",
+    levelOneCode: "03-OPS",
+    levelOneTitle: "Operations and Delivery",
+    levelTwo: [
+      {
+        title: "03.01 Programs and Portfolios",
+        readme: "README identifies program purpose, sponsor, operating cadence, risks, dependencies, and decision gates.",
+        subfolders: ["01_Program-Charter", "02_Workstreams", "03_Status", "04_Risks", "05_Decisions", "99_Archive"],
+      },
+      {
+        title: "03.02 Projects and Tasks",
+        readme: "README captures task owner, work package, acceptance criteria, due date, change log, and closeout proof.",
+        subfolders: ["01_Intake", "02_Planning", "03_Execution", "04_QAQC", "05_Closeout", "99_Archive"],
+      },
+      {
+        title: "03.03 SOPs and Handoff",
+        readme: "README defines procedure owner, trigger, steps, control points, handoff recipient, and sustainment review.",
+        subfolders: ["01_Current-State", "02_Draft-SOP", "03_Testing", "04_Training", "05_Handoff", "99_Archive"],
+      },
+    ],
     clientUse:
       "Keeps operating work traceable from tasking and performance to final delivery, closeout, and transfer.",
   },
   {
-    levelOne: "Knowledge and Records",
-    levelTwo: ["Lessons", "Critical Knowledge", "Records", "Archive"],
+    levelOne: "04 | Knowledge and Records",
+    levelOneCode: "04-KR",
+    levelOneTitle: "Knowledge and Records",
+    levelTwo: [
+      {
+        title: "04.01 Lessons and Critical Knowledge",
+        readme: "README records lesson source, context, insight, owner, reuse condition, and next application point.",
+        subfolders: ["01_Capture", "02_Context", "03_Validated-Lessons", "04_Reuse", "99_Archive"],
+      },
+      {
+        title: "04.02 Records and Evidence",
+        readme: "README states record type, authority, custodian, retention trigger, sensitivity, and retrieval path.",
+        subfolders: ["01_Source-Records", "02_Evidence", "03_Metadata", "04_Retention", "99_Archive"],
+      },
+      {
+        title: "04.03 Archive and Disposition",
+        readme: "README documents archive criteria, supersession relationship, final location, disposition rule, and approval.",
+        subfolders: ["01_Superseded", "02_Archive-Ready", "03_Disposition-Review", "04_Final", "99_Log"],
+      },
+    ],
     clientUse:
       "Protects institutional memory, retrieval, continuity, retention, and controlled disposition.",
   },
   {
-    levelOne: "Data, Analytics, and AI",
-    levelTwo: ["Data Assets", "Dashboards", "Models", "Automation"],
+    levelOne: "05 | Data, Analytics, AI, and Automation",
+    levelOneCode: "05-DAAI",
+    levelOneTitle: "Data, Analytics, AI, and Automation",
+    levelTwo: [
+      {
+        title: "05.01 Data Assets and Lineage",
+        readme: "README captures source, steward, lineage, refresh rhythm, quality checks, access boundary, and use limits.",
+        subfolders: ["01_Source", "02_Lineage", "03_Quality", "04_Access", "05_Approved-Use", "99_Archive"],
+      },
+      {
+        title: "05.02 Dashboards and Analytical Products",
+        readme: "README defines metric purpose, calculation, owner, refresh date, decision use, and confidence caveat.",
+        subfolders: ["01_Requirements", "02_Data-Model", "03_Reports", "04_Validation", "05_Release", "99_Archive"],
+      },
+      {
+        title: "05.03 AI, Automation, and Models",
+        readme: "README identifies model or automation purpose, human review gate, inputs, outputs, risks, and approval status.",
+        subfolders: ["01_Use-Case", "02_Prompt-Model", "03_Test-Evidence", "04_Human-Review", "05_Release", "99_Archive"],
+      },
+    ],
     clientUse:
       "Separates trusted data, analytical products, AI-assisted outputs, automation rules, and approval boundaries.",
   },
   {
-    levelOne: "People and Capability",
-    levelTwo: ["Roles", "Training", "Certification", "Succession"],
+    levelOne: "06 | People and Capability",
+    levelOneCode: "06-PC",
+    levelOneTitle: "People and Capability",
+    levelTwo: [
+      {
+        title: "06.01 Roles and Responsibilities",
+        readme: "README defines position purpose, responsibility boundary, knowledge dependency, backup owner, and authority lane.",
+        subfolders: ["01_Position-Context", "02_Roles", "03_Authorities", "04_Backups", "99_Archive"],
+      },
+      {
+        title: "06.02 Training, Certification, and Credentialing",
+        readme: "README tracks learning objective, evidence requirement, proficiency standard, evaluator, and renewal cycle.",
+        subfolders: ["01_Requirements", "02_Curriculum", "03_Evidence", "04_Certification", "99_Archive"],
+      },
+      {
+        title: "06.03 Succession and Continuity",
+        readme: "README captures critical role risk, knowledge owner, transition package, continuity gap, and mitigation owner.",
+        subfolders: ["01_Critical-Roles", "02_Knowledge-Transfer", "03_Continuity-Risk", "04_Mitigation", "99_Archive"],
+      },
+    ],
     clientUse:
       "Maps workforce capability to role expectations, training evidence, proficiency, and continuity risk.",
   },
@@ -2672,47 +2788,47 @@ export type FileNamingConventionPart = {
 
 export const fileNamingConventionParts: FileNamingConventionPart[] = [
   {
-    token: "ORG",
-    purpose: "Owning organization, business unit, program, or office.",
+    token: "COMPO",
+    purpose: "Component, company, command, or major operating body.",
     example: "AGG",
   },
   {
-    token: "L1",
-    purpose: "Level 1 taxonomy lane for the dominant body of work.",
-    example: "GOV",
+    token: "DIV",
+    purpose: "Division, directorate, portfolio, service line, or echelon.",
+    example: "OPS",
   },
   {
-    token: "L2",
-    purpose: "Level 2 category that makes retrieval and routing specific.",
-    example: "CHARTER",
+    token: "FUNCTION",
+    purpose: "Governed function, capability, or workstream.",
+    example: "KM",
   },
   {
-    token: "ARTIFACT",
-    purpose: "Plain-language product type or record family.",
-    example: "OPERATING-RHYTHM",
+    token: "Title",
+    purpose: "Human-readable title in machine-safe PascalCase or hyphenated form.",
+    example: "TaxonomyControlPlan",
   },
   {
-    token: "YYYYMMDD",
-    purpose: "Date of release, decision, approval, or controlled publication.",
-    example: "20261007",
+    token: "DTG",
+    purpose: "UTC date-time group for sorting, provenance, and emerging-technology parsing.",
+    example: "20261007T1522Z",
   },
   {
-    token: "STATUS",
-    purpose:
-      "Lifecycle state: DRAFT, REVIEW, APPROVED, ACTIVE, SUPERSEDED, or ARCHIVE.",
-    example: "ACTIVE",
+    token: "Author",
+    purpose: "Author, steward, or approved owner code.",
+    example: "BB",
   },
   {
-    token: "v##",
-    purpose: "Version number aligned to change control.",
-    example: "v02",
+    token: "LC",
+    purpose: "Lifecycle code in N.n format.",
+    example: "1.0",
   },
 ] as const;
 
 export const fileNamingConventionExample =
-  "AGG-GOV-CHARTER-OPERATING-RHYTHM-20261007-ACTIVE-v02.docx";
+  "AGG_OPS_KM_TaxonomyControlPlan_20261007T1522Z__BB_1.0.docx";
 
 export type LifecycleDelineationStep = {
+  code: string;
   step: string;
   definition: string;
   controlQuestion: string;
@@ -2720,18 +2836,21 @@ export type LifecycleDelineationStep = {
 
 export const lifecycleDelineationSteps: LifecycleDelineationStep[] = [
   {
+    code: "0.1",
     step: "Intake",
     definition: "A need, record, file, product, or evidence item enters the system.",
     controlQuestion:
       "Who owns it, why does it exist, and what decision or process does it support?",
   },
   {
+    code: "0.2",
     step: "Classify",
     definition:
       "Apply Level 1 and Level 2 taxonomy, owner, sensitivity, and retrieval metadata.",
     controlQuestion: "Can a future user find it without knowing who created it?",
   },
   {
+    code: "0.3",
     step: "Draft",
     definition:
       "Work is being built and should not be treated as approved guidance or authority.",
@@ -2739,6 +2858,7 @@ export const lifecycleDelineationSteps: LifecycleDelineationStep[] = [
       "Is the status obvious enough to prevent accidental operational use?",
   },
   {
+    code: "0.4",
     step: "Review",
     definition:
       "The right owner, stakeholder, counsel, or authority reviews the content.",
@@ -2746,6 +2866,7 @@ export const lifecycleDelineationSteps: LifecycleDelineationStep[] = [
       "What evidence proves the right people reviewed the right version?",
   },
   {
+    code: "1.0",
     step: "Approve and Publish",
     definition:
       "The approved version becomes active, discoverable, and usable by the intended audience.",
@@ -2753,6 +2874,7 @@ export const lifecycleDelineationSteps: LifecycleDelineationStep[] = [
       "Where is the authoritative copy, and what previous version did it replace?",
   },
   {
+    code: "1.1",
     step: "Operate and Improve",
     definition:
       "The artifact is used, measured, corrected, and improved through a defined review rhythm.",
@@ -2760,6 +2882,7 @@ export const lifecycleDelineationSteps: LifecycleDelineationStep[] = [
       "What signal tells the owner to update, retire, or escalate it?",
   },
   {
+    code: "9.0",
     step: "Archive or Dispose",
     definition:
       "The item is retained, archived, superseded, or disposed under the applicable rule.",

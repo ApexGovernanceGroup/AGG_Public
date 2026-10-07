@@ -174,9 +174,9 @@ const solutionSurveyActions = [
 const buyerSystemLinks = [
   {
     href: "/taxonomy-starter",
-    title: "Taxonomy Starter Exchange",
+    title: "AGG Signature Taxonomy",
     body:
-      "Register for a public-safe Level 1-2 taxonomy starter, file naming convention, and lifecycle delineation.",
+      "Register for a public-safe signature taxonomy with Level 1 titling, Level 2 file anatomy, emerging-technology-friendly naming, and N.n lifecycle control.",
     icon: Layers3,
   },
   {

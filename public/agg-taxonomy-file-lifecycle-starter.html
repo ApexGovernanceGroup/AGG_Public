@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AGG Taxonomy, File Naming, and Lifecycle Starter</title>
+    <title>AGG Signature Taxonomy, File Anatomy, and Lifecycle Kit</title>
     <style>
       :root {
         --onyx: #0c0c0c;
@@ -220,11 +220,12 @@
     <main class="sheet">
       <header>
         <p class="eyebrow">Apex Governance Group</p>
-        <h1>Level 1-2 Taxonomy, File Naming, and Lifecycle Starter</h1>
+        <h1>AGG Signature Taxonomy, File Anatomy, and Lifecycle Kit</h1>
         <p>
-          This public-safe starter gives leaders a practical structure for organizing
-          knowledge, records, files, decision products, and repository content before a
-          full client-specific taxonomy is designed.
+          This public-safe Apex Governance Group signature item gives leaders a
+          practical structure for organizing knowledge, records, files, decision
+          products, AI working products, and repository content before a full
+          client-specific taxonomy is designed.
         </p>
       </header>
 
@@ -240,37 +241,49 @@
       </section>
 
       <section>
-        <p class="eyebrow">Level 1-2 Starter Taxonomy</p>
-        <h2>Six top-level lanes with example Level 2 categories.</h2>
+        <p class="eyebrow">Level 1-2 Signature Taxonomy</p>
+        <h2>Six full Level 1 titles with Level 2 file anatomy.</h2>
         <div class="grid">
           <article class="card">
-            <h3>Governance and Authority</h3>
-            <p><strong>Level 2:</strong> Charters, Decision Rights, Policies, Review Rhythm</p>
+            <h3>01 | Governance and Authority</h3>
+            <p><strong>Level 2 anatomy:</strong> 01.01 Charters and Mandates; 01.02 Decision Rights; 01.03 Policy and Review Rhythm.</p>
+            <p><strong>README:</strong> authority source, decision body, scope, approval evidence, and review cadence.</p>
+            <p><strong>1-N subfolders:</strong> 01_Source, 02_Working, 03_Review, 04_Approved, 05_Evidence, 99_Archive.</p>
             <p>Use for the documents and evidence that define who can decide and how.</p>
           </article>
           <article class="card">
-            <h3>Strategy and Execution</h3>
-            <p><strong>Level 2:</strong> Objectives, COAs, Roadmaps, Measures</p>
+            <h3>02 | Strategy and Execution</h3>
+            <p><strong>Level 2 anatomy:</strong> 02.01 Objectives and Outcomes; 02.02 COAs and Planning; 02.03 Roadmaps and Measures.</p>
+            <p><strong>README:</strong> intent, assumptions, planning question, decision criteria, outcomes, and measures.</p>
+            <p><strong>1-N subfolders:</strong> 01_Source-Intent, 02_COAs, 03_Risk, 04_RCOA, 05_Decision, 99_Archive.</p>
             <p>Use for executive intent, planning choices, funded work, and outcome tracking.</p>
           </article>
           <article class="card">
-            <h3>Operations and Delivery</h3>
-            <p><strong>Level 2:</strong> Programs, Projects, SOPs, Handoff</p>
+            <h3>03 | Operations and Delivery</h3>
+            <p><strong>Level 2 anatomy:</strong> 03.01 Programs and Portfolios; 03.02 Projects and Tasks; 03.03 SOPs and Handoff.</p>
+            <p><strong>README:</strong> task owner, work package, acceptance criteria, control points, handoff, and closeout proof.</p>
+            <p><strong>1-N subfolders:</strong> 01_Intake, 02_Planning, 03_Execution, 04_QAQC, 05_Closeout, 99_Archive.</p>
             <p>Use for operating work that must move from tasking to delivery and closeout.</p>
           </article>
           <article class="card">
-            <h3>Knowledge and Records</h3>
-            <p><strong>Level 2:</strong> Lessons, Critical Knowledge, Records, Archive</p>
+            <h3>04 | Knowledge and Records</h3>
+            <p><strong>Level 2 anatomy:</strong> 04.01 Lessons and Critical Knowledge; 04.02 Records and Evidence; 04.03 Archive and Disposition.</p>
+            <p><strong>README:</strong> record type, custodian, sensitivity, retention trigger, archive rule, and retrieval path.</p>
+            <p><strong>1-N subfolders:</strong> 01_Capture, 02_Context, 03_Metadata, 04_Retention, 99_Archive.</p>
             <p>Use for continuity, retention, retrieval, lessons, and institutional memory.</p>
           </article>
           <article class="card">
-            <h3>Data, Analytics, and AI</h3>
-            <p><strong>Level 2:</strong> Data Assets, Dashboards, Models, Automation</p>
+            <h3>05 | Data, Analytics, AI, and Automation</h3>
+            <p><strong>Level 2 anatomy:</strong> 05.01 Data Assets and Lineage; 05.02 Dashboards and Analytical Products; 05.03 AI, Automation, and Models.</p>
+            <p><strong>README:</strong> source, steward, lineage, quality, human review gate, confidence caveat, and approved use.</p>
+            <p><strong>1-N subfolders:</strong> 01_Source, 02_Lineage, 03_Quality, 04_Human-Review, 05_Release, 99_Archive.</p>
             <p>Use for trusted data, analytical products, AI-assisted work, and automation rules.</p>
           </article>
           <article class="card">
-            <h3>People and Capability</h3>
-            <p><strong>Level 2:</strong> Roles, Training, Certification, Succession</p>
+            <h3>06 | People and Capability</h3>
+            <p><strong>Level 2 anatomy:</strong> 06.01 Roles and Responsibilities; 06.02 Training, Certification, and Credentialing; 06.03 Succession and Continuity.</p>
+            <p><strong>README:</strong> position purpose, responsibility boundary, evidence requirement, continuity risk, and backup owner.</p>
+            <p><strong>1-N subfolders:</strong> 01_Position-Context, 02_Roles, 03_Evidence, 04_Continuity-Risk, 99_Archive.</p>
             <p>Use for role expectations, proficiency, workforce evidence, and continuity risk.</p>
           </article>
         </div>
@@ -278,8 +291,8 @@
 
       <section>
         <p class="eyebrow">File Naming Convention</p>
-        <h2>Make the filename carry retrieval, status, and authority.</h2>
-        <p class="naming">ORG-L1-L2-ARTIFACT-YYYYMMDD-STATUS-v##.ext</p>
+        <h2>Make the filename carry retrieval, authority, automation, and lifecycle state.</h2>
+        <p class="naming">COMPO_DIV_FUNCTION_Title_DTG__Author_LC.ext</p>
         <table>
           <thead>
             <tr>
@@ -290,97 +303,97 @@
           </thead>
           <tbody>
             <tr>
-              <td>ORG</td>
-              <td>Owning organization, business unit, program, or office.</td>
+              <td>COMPO</td>
+              <td>Component, company, command, or major operating body.</td>
               <td>AGG</td>
             </tr>
             <tr>
-              <td>L1</td>
-              <td>Level 1 taxonomy lane for the dominant body of work.</td>
-              <td>GOV</td>
+              <td>DIV</td>
+              <td>Division, directorate, portfolio, service line, or echelon.</td>
+              <td>OPS</td>
             </tr>
             <tr>
-              <td>L2</td>
-              <td>Level 2 category that makes retrieval and routing specific.</td>
-              <td>CHARTER</td>
+              <td>FUNCTION</td>
+              <td>Governed function, capability, or workstream.</td>
+              <td>KM</td>
             </tr>
             <tr>
-              <td>ARTIFACT</td>
-              <td>Plain-language product type or record family.</td>
-              <td>OPERATING-RHYTHM</td>
+              <td>Title</td>
+              <td>Machine-safe title in PascalCase or hyphenated form.</td>
+              <td>TaxonomyControlPlan</td>
             </tr>
             <tr>
-              <td>YYYYMMDD</td>
-              <td>Date of release, decision, approval, or controlled publication.</td>
-              <td>20261007</td>
+              <td>DTG</td>
+              <td>UTC date-time group for sorting, provenance, and emerging-technology parsing.</td>
+              <td>20261007T1522Z</td>
             </tr>
             <tr>
-              <td>STATUS</td>
-              <td>DRAFT, REVIEW, APPROVED, ACTIVE, SUPERSEDED, or ARCHIVE.</td>
-              <td>ACTIVE</td>
+              <td>Author</td>
+              <td>Author, steward, or approved owner code.</td>
+              <td>BB</td>
             </tr>
             <tr>
-              <td>v##</td>
-              <td>Version number aligned to change control.</td>
-              <td>v02</td>
+              <td>LC</td>
+              <td>Lifecycle code in N.n format.</td>
+              <td>1.0</td>
             </tr>
           </tbody>
         </table>
         <p>
           Example:
-          <strong>AGG-GOV-CHARTER-OPERATING-RHYTHM-20261007-ACTIVE-v02.docx</strong>
+          <strong>AGG_OPS_KM_TaxonomyControlPlan_20261007T1522Z__BB_1.0.docx</strong>
         </p>
       </section>
 
       <section>
         <p class="eyebrow">Lifecycle Delineation</p>
-        <h2>Every artifact needs a visible state.</h2>
+        <h2>Every artifact needs a visible N.n lifecycle state.</h2>
         <ol class="lifecycle">
           <li>
             <div>
-              <h3>Intake</h3>
+              <h3>0.1 | Intake</h3>
               <p>A need, record, file, product, or evidence item enters the system.</p>
               <p><strong>Control question:</strong> Who owns it and why does it exist?</p>
             </div>
           </li>
           <li>
             <div>
-              <h3>Classify</h3>
+              <h3>0.2 | Classify</h3>
               <p>Apply Level 1 and Level 2 taxonomy, owner, sensitivity, and retrieval metadata.</p>
               <p><strong>Control question:</strong> Can a future user find it without knowing who created it?</p>
             </div>
           </li>
           <li>
             <div>
-              <h3>Draft</h3>
+              <h3>0.3 | Draft</h3>
               <p>Work is being built and should not be treated as approved guidance or authority.</p>
               <p><strong>Control question:</strong> Is status obvious enough to prevent accidental operational use?</p>
             </div>
           </li>
           <li>
             <div>
-              <h3>Review</h3>
+              <h3>0.4 | Review</h3>
               <p>The right owner, stakeholder, counsel, or authority reviews the content.</p>
               <p><strong>Control question:</strong> What proves the right people reviewed the right version?</p>
             </div>
           </li>
           <li>
             <div>
-              <h3>Approve and Publish</h3>
+              <h3>1.0 | Approve and Publish</h3>
               <p>The approved version becomes active, discoverable, and usable.</p>
               <p><strong>Control question:</strong> Where is the authoritative copy?</p>
             </div>
           </li>
           <li>
             <div>
-              <h3>Operate and Improve</h3>
+              <h3>1.1 | Operate and Improve</h3>
               <p>The artifact is used, measured, corrected, and improved through a review rhythm.</p>
               <p><strong>Control question:</strong> What signal tells the owner to update it?</p>
             </div>
           </li>
           <li>
             <div>
-              <h3>Archive or Dispose</h3>
+              <h3>9.0 | Archive or Dispose</h3>
               <p>The item is retained, archived, superseded, or disposed under the applicable rule.</p>
               <p><strong>Control question:</strong> Which retention or continuity rule governs final handling?</p>
             </div>
