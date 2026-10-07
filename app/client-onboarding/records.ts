@@ -14,6 +14,7 @@ export type StoredClientOnboardingRecord = {
   role: string | null;
   intent: string;
   packageId: string | null;
+  resourceSlug?: string | null;
   timeline: string;
   accessNeed: string;
   summary: string;

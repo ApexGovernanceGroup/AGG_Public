@@ -23,7 +23,10 @@ const VALID_INTENTS = new Set([
   "academy",
   "custom-solution",
   "admin-directed",
+  "taxonomy-starter",
 ]);
+const VALID_RESOURCE_SLUGS = new Set(["taxonomy-starter"]);
+const VALID_RETURN_PATHS = new Set(["/taxonomy-starter"]);
 
 const requestCounters = new Map<string, { count: number; resetAt: number }>();
 
@@ -40,15 +43,20 @@ function originFor(request: Request) {
   return new URL(request.url).origin;
 }
 
-function redirectTo(request: Request, state: string, recordId?: string) {
-  const target = new URL("/client-services", originFor(request));
+function redirectTo(
+  request: Request,
+  state: string,
+  recordId?: string,
+  returnPath?: string | null,
+) {
+  const target = new URL(returnPath ?? "/client-services", originFor(request));
   target.searchParams.set("access", state);
   if (recordId) target.searchParams.set("record", recordId);
   return NextResponse.redirect(target, 303);
 }
 
-function errorRedirect(request: Request, state: string) {
-  const target = new URL("/client-onboarding", originFor(request));
+function errorRedirect(request: Request, state: string, returnPath?: string | null) {
+  const target = new URL(returnPath ?? "/client-onboarding", originFor(request));
   target.searchParams.set("registration", state);
   return NextResponse.redirect(target, 303);
 }
@@ -158,6 +166,23 @@ function cleanPackageId(value: FormDataEntryValue | null) {
   return getEngagementPackage(packageId) ? packageId : null;
 }
 
+function cleanResourceSlug(value: FormDataEntryValue | null) {
+  const resourceSlug = cleanOptionalText(value, 80);
+  return resourceSlug && VALID_RESOURCE_SLUGS.has(resourceSlug) ? resourceSlug : null;
+}
+
+function cleanReturnPath(value: FormDataEntryValue | null) {
+  const returnPath = cleanOptionalText(value, 220);
+  if (!returnPath) return null;
+
+  try {
+    const parsed = new URL(returnPath, "https://apex.local");
+    return VALID_RETURN_PATHS.has(parsed.pathname) ? parsed.pathname : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function POST(request: Request) {
   if (!sourceIsAllowed(request)) return errorRedirect(request, "invalid-origin");
   if (declaredBodyExceedsLimit(request)) {
@@ -167,8 +192,9 @@ export async function POST(request: Request) {
 
   const form = await request.formData().catch(() => null);
   if (!form) return errorRedirect(request, "invalid-form");
+  const returnPath = cleanReturnPath(form.get("returnTo"));
   if (cleanOptionalText(form.get("website"), 120)) {
-    return errorRedirect(request, "received");
+    return errorRedirect(request, "received", returnPath);
   }
 
   const organization = cleanText(form.get("organization"));
@@ -178,6 +204,7 @@ export async function POST(request: Request) {
   const role = cleanOptionalText(form.get("role"));
   const intent = cleanIntent(form.get("intent"));
   const packageId = cleanPackageId(form.get("packageId"));
+  const resourceSlug = cleanResourceSlug(form.get("resourceSlug"));
   const timeline = cleanText(form.get("timeline"), 80);
   const accessNeed = cleanText(form.get("accessNeed"), 120);
   const summary = cleanText(form.get("summary"), MAX_SUMMARY_LENGTH);
@@ -193,7 +220,7 @@ export async function POST(request: Request) {
     !summary ||
     !consent
   ) {
-    return errorRedirect(request, "missing-required");
+    return errorRedirect(request, "missing-required", returnPath);
   }
 
   const record: StoredClientOnboardingRecord = {
@@ -209,6 +236,7 @@ export async function POST(request: Request) {
     role,
     intent,
     packageId,
+    resourceSlug,
     timeline,
     accessNeed,
     summary,
@@ -224,10 +252,10 @@ export async function POST(request: Request) {
     await appendClientOnboardingRecord(record);
   } catch (error) {
     console.error("AGG client onboarding record write failed", error);
-    return errorRedirect(request, "record-unavailable");
+    return errorRedirect(request, "record-unavailable", returnPath);
   }
 
-  return redirectTo(request, "registered", record.recordId);
+  return redirectTo(request, "registered", record.recordId, returnPath);
 }
 
 export function GET() {

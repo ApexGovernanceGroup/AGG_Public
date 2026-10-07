@@ -11,6 +11,7 @@ import {
   GitBranch,
   GraduationCap,
   Landmark,
+  Layers3,
   Mail,
   Network,
   SearchCheck,
@@ -171,6 +172,13 @@ const solutionSurveyActions = [
 ] as const;
 
 const buyerSystemLinks = [
+  {
+    href: "/taxonomy-starter",
+    title: "Taxonomy Starter Exchange",
+    body:
+      "Register for a public-safe Level 1-2 taxonomy starter, file naming convention, and lifecycle delineation.",
+    icon: Layers3,
+  },
   {
     href: "/proof-pack",
     title: "Public Proof Pack",

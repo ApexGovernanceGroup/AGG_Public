@@ -432,6 +432,7 @@ export type NavItem = {
 };
 
 export const topNavItems: NavItem[] = [
+  { href: "/taxonomy-starter", label: "Taxonomy Starter", icon: Layers3 },
   { href: "/proof-pack", label: "Proof Pack", icon: FileText },
   { href: "/buyer-roles", label: "Buyer Fit", icon: Users },
   { href: "/trust-security", label: "Trust", icon: ShieldCheck },
@@ -446,6 +447,7 @@ export const sideNavItems: NavItem[] = [
   { href: "/solutions", label: "Solutions", icon: Compass },
   { href: "/doctrine", label: "Doctrine", icon: BookOpenCheck },
   { href: "/academy", label: "Apex Academy", icon: GraduationCap },
+  { href: "/taxonomy-starter", label: "Taxonomy Starter", icon: Layers3 },
   { href: "/proof-pack", label: "Proof Pack", icon: FileText },
   { href: "/buyer-roles", label: "Buyer Fit", icon: Users },
   { href: "/trust-security", label: "Trust", icon: ShieldCheck },
@@ -2614,6 +2616,155 @@ export const revenueHardeningSignals = [
     title: "Reduced public attack surface",
     body:
       "Customer-facing navigation prioritizes engagement and login while staff/admin access is de-emphasized and rate-limited.",
+  },
+] as const;
+
+export type TaxonomyStarterLane = {
+  levelOne: string;
+  levelTwo: string[];
+  clientUse: string;
+};
+
+export const taxonomyStarterLanes: TaxonomyStarterLane[] = [
+  {
+    levelOne: "Governance and Authority",
+    levelTwo: ["Charters", "Decision Rights", "Policies", "Review Rhythm"],
+    clientUse:
+      "Clarifies who can decide, who must review, which rules apply, and what evidence makes the decision defensible.",
+  },
+  {
+    levelOne: "Strategy and Execution",
+    levelTwo: ["Objectives", "COAs", "Roadmaps", "Measures"],
+    clientUse:
+      "Connects executive intent to courses of action, funded work, milestones, measures, and accountable owners.",
+  },
+  {
+    levelOne: "Operations and Delivery",
+    levelTwo: ["Programs", "Projects", "SOPs", "Handoff"],
+    clientUse:
+      "Keeps operating work traceable from tasking and performance to final delivery, closeout, and transfer.",
+  },
+  {
+    levelOne: "Knowledge and Records",
+    levelTwo: ["Lessons", "Critical Knowledge", "Records", "Archive"],
+    clientUse:
+      "Protects institutional memory, retrieval, continuity, retention, and controlled disposition.",
+  },
+  {
+    levelOne: "Data, Analytics, and AI",
+    levelTwo: ["Data Assets", "Dashboards", "Models", "Automation"],
+    clientUse:
+      "Separates trusted data, analytical products, AI-assisted outputs, automation rules, and approval boundaries.",
+  },
+  {
+    levelOne: "People and Capability",
+    levelTwo: ["Roles", "Training", "Certification", "Succession"],
+    clientUse:
+      "Maps workforce capability to role expectations, training evidence, proficiency, and continuity risk.",
+  },
+] as const;
+
+export type FileNamingConventionPart = {
+  token: string;
+  purpose: string;
+  example: string;
+};
+
+export const fileNamingConventionParts: FileNamingConventionPart[] = [
+  {
+    token: "ORG",
+    purpose: "Owning organization, business unit, program, or office.",
+    example: "AGG",
+  },
+  {
+    token: "L1",
+    purpose: "Level 1 taxonomy lane for the dominant body of work.",
+    example: "GOV",
+  },
+  {
+    token: "L2",
+    purpose: "Level 2 category that makes retrieval and routing specific.",
+    example: "CHARTER",
+  },
+  {
+    token: "ARTIFACT",
+    purpose: "Plain-language product type or record family.",
+    example: "OPERATING-RHYTHM",
+  },
+  {
+    token: "YYYYMMDD",
+    purpose: "Date of release, decision, approval, or controlled publication.",
+    example: "20261007",
+  },
+  {
+    token: "STATUS",
+    purpose:
+      "Lifecycle state: DRAFT, REVIEW, APPROVED, ACTIVE, SUPERSEDED, or ARCHIVE.",
+    example: "ACTIVE",
+  },
+  {
+    token: "v##",
+    purpose: "Version number aligned to change control.",
+    example: "v02",
+  },
+] as const;
+
+export const fileNamingConventionExample =
+  "AGG-GOV-CHARTER-OPERATING-RHYTHM-20261007-ACTIVE-v02.docx";
+
+export type LifecycleDelineationStep = {
+  step: string;
+  definition: string;
+  controlQuestion: string;
+};
+
+export const lifecycleDelineationSteps: LifecycleDelineationStep[] = [
+  {
+    step: "Intake",
+    definition: "A need, record, file, product, or evidence item enters the system.",
+    controlQuestion:
+      "Who owns it, why does it exist, and what decision or process does it support?",
+  },
+  {
+    step: "Classify",
+    definition:
+      "Apply Level 1 and Level 2 taxonomy, owner, sensitivity, and retrieval metadata.",
+    controlQuestion: "Can a future user find it without knowing who created it?",
+  },
+  {
+    step: "Draft",
+    definition:
+      "Work is being built and should not be treated as approved guidance or authority.",
+    controlQuestion:
+      "Is the status obvious enough to prevent accidental operational use?",
+  },
+  {
+    step: "Review",
+    definition:
+      "The right owner, stakeholder, counsel, or authority reviews the content.",
+    controlQuestion:
+      "What evidence proves the right people reviewed the right version?",
+  },
+  {
+    step: "Approve and Publish",
+    definition:
+      "The approved version becomes active, discoverable, and usable by the intended audience.",
+    controlQuestion:
+      "Where is the authoritative copy, and what previous version did it replace?",
+  },
+  {
+    step: "Operate and Improve",
+    definition:
+      "The artifact is used, measured, corrected, and improved through a defined review rhythm.",
+    controlQuestion:
+      "What signal tells the owner to update, retire, or escalate it?",
+  },
+  {
+    step: "Archive or Dispose",
+    definition:
+      "The item is retained, archived, superseded, or disposed under the applicable rule.",
+    controlQuestion:
+      "What retention, legal, operational, or knowledge-continuity rule governs final handling?",
   },
 ] as const;
 

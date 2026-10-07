@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AGG Taxonomy, File Naming, and Lifecycle Starter</title>
+    <style>
+      :root {
+        --onyx: #0c0c0c;
+        --graphite: #3e4346;
+        --platinum: #c3c2bd;
+        --navy: #172c3f;
+        --bronze: #88623c;
+        --oxblood: #793735;
+        --paper: #f4f1ea;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--onyx);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        line-height: 1.55;
+      }
+
+      main {
+        min-height: 100vh;
+      }
+
+      .sheet {
+        width: min(1120px, calc(100% - 32px));
+        margin: 32px auto;
+        background:
+          linear-gradient(135deg, rgba(23, 44, 63, 0.08), transparent 34%),
+          #fff;
+        border: 1px solid rgba(12, 12, 12, 0.12);
+        box-shadow: 0 28px 90px rgba(12, 12, 12, 0.16);
+      }
+
+      header {
+        background:
+          linear-gradient(135deg, rgba(136, 98, 60, 0.18), transparent 40%),
+          var(--onyx);
+        color: #fff;
+        padding: 42px;
+      }
+
+      header p,
+      header h1 {
+        max-width: 860px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4vw, 4rem);
+        line-height: 0.98;
+        letter-spacing: 0;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        font-size: clamp(1.45rem, 2.4vw, 2.15rem);
+        line-height: 1.08;
+        letter-spacing: 0;
+        margin-bottom: 14px;
+      }
+
+      h3 {
+        font-size: 1.05rem;
+        letter-spacing: 0;
+        margin-bottom: 8px;
+      }
+
+      .eyebrow {
+        color: var(--bronze);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      header .eyebrow {
+        color: var(--platinum);
+      }
+
+      section {
+        padding: 34px 42px;
+        border-top: 1px solid rgba(12, 12, 12, 0.1);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        min-height: 100%;
+        padding: 22px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(12, 12, 12, 0.12);
+        box-shadow: 0 14px 34px rgba(12, 12, 12, 0.08);
+      }
+
+      .card strong,
+      td:first-child {
+        color: var(--navy);
+      }
+
+      ul {
+        padding-left: 20px;
+        margin-bottom: 0;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        border: 1px solid rgba(12, 12, 12, 0.14);
+      }
+
+      th,
+      td {
+        padding: 14px;
+        border: 1px solid rgba(12, 12, 12, 0.12);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: rgba(23, 44, 63, 0.1);
+        color: var(--navy);
+      }
+
+      .naming {
+        padding: 20px;
+        background: var(--navy);
+        color: #fff;
+        font-family:
+          "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        font-size: clamp(0.95rem, 2vw, 1.15rem);
+        overflow-wrap: anywhere;
+      }
+
+      .lifecycle {
+        counter-reset: lifecycle;
+        display: grid;
+        gap: 12px;
+        padding: 0;
+        list-style: none;
+      }
+
+      .lifecycle li {
+        counter-increment: lifecycle;
+        display: grid;
+        grid-template-columns: 54px 1fr;
+        gap: 16px;
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(12, 12, 12, 0.12);
+      }
+
+      .lifecycle li::before {
+        content: counter(lifecycle, decimal-leading-zero);
+        display: grid;
+        place-items: center;
+        width: 46px;
+        height: 46px;
+        background: var(--bronze);
+        color: #fff;
+        font-weight: 800;
+      }
+
+      .boundary {
+        background: rgba(121, 55, 53, 0.08);
+        border-left: 5px solid var(--oxblood);
+      }
+
+      footer {
+        padding: 24px 42px 40px;
+        color: var(--graphite);
+      }
+
+      @media (max-width: 760px) {
+        .sheet {
+          width: min(100% - 20px, 1120px);
+          margin: 10px auto;
+        }
+
+        header,
+        section,
+        footer {
+          padding: 26px 20px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        th,
+        td {
+          padding: 11px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="sheet">
+      <header>
+        <p class="eyebrow">Apex Governance Group</p>
+        <h1>Level 1-2 Taxonomy, File Naming, and Lifecycle Starter</h1>
+        <p>
+          This public-safe starter gives leaders a practical structure for organizing
+          knowledge, records, files, decision products, and repository content before a
+          full client-specific taxonomy is designed.
+        </p>
+      </header>
+
+      <section class="boundary">
+        <p class="eyebrow">Public-Safe Boundary</p>
+        <h2>Use this as a scaffold, not as a final authority model.</h2>
+        <p>
+          This starter does not replace legal, records, security, privacy, classification,
+          contract, or enterprise architecture requirements. A final client taxonomy should
+          be calibrated to actual authority, systems, roles, sensitivity, retention, and
+          retrieval behavior.
+        </p>
+      </section>
+
+      <section>
+        <p class="eyebrow">Level 1-2 Starter Taxonomy</p>
+        <h2>Six top-level lanes with example Level 2 categories.</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Governance and Authority</h3>
+            <p><strong>Level 2:</strong> Charters, Decision Rights, Policies, Review Rhythm</p>
+            <p>Use for the documents and evidence that define who can decide and how.</p>
+          </article>
+          <article class="card">
+            <h3>Strategy and Execution</h3>
+            <p><strong>Level 2:</strong> Objectives, COAs, Roadmaps, Measures</p>
+            <p>Use for executive intent, planning choices, funded work, and outcome tracking.</p>
+          </article>
+          <article class="card">
+            <h3>Operations and Delivery</h3>
+            <p><strong>Level 2:</strong> Programs, Projects, SOPs, Handoff</p>
+            <p>Use for operating work that must move from tasking to delivery and closeout.</p>
+          </article>
+          <article class="card">
+            <h3>Knowledge and Records</h3>
+            <p><strong>Level 2:</strong> Lessons, Critical Knowledge, Records, Archive</p>
+            <p>Use for continuity, retention, retrieval, lessons, and institutional memory.</p>
+          </article>
+          <article class="card">
+            <h3>Data, Analytics, and AI</h3>
+            <p><strong>Level 2:</strong> Data Assets, Dashboards, Models, Automation</p>
+            <p>Use for trusted data, analytical products, AI-assisted work, and automation rules.</p>
+          </article>
+          <article class="card">
+            <h3>People and Capability</h3>
+            <p><strong>Level 2:</strong> Roles, Training, Certification, Succession</p>
+            <p>Use for role expectations, proficiency, workforce evidence, and continuity risk.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <p class="eyebrow">File Naming Convention</p>
+        <h2>Make the filename carry retrieval, status, and authority.</h2>
+        <p class="naming">ORG-L1-L2-ARTIFACT-YYYYMMDD-STATUS-v##.ext</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Purpose</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ORG</td>
+              <td>Owning organization, business unit, program, or office.</td>
+              <td>AGG</td>
+            </tr>
+            <tr>
+              <td>L1</td>
+              <td>Level 1 taxonomy lane for the dominant body of work.</td>
+              <td>GOV</td>
+            </tr>
+            <tr>
+              <td>L2</td>
+              <td>Level 2 category that makes retrieval and routing specific.</td>
+              <td>CHARTER</td>
+            </tr>
+            <tr>
+              <td>ARTIFACT</td>
+              <td>Plain-language product type or record family.</td>
+              <td>OPERATING-RHYTHM</td>
+            </tr>
+            <tr>
+              <td>YYYYMMDD</td>
+              <td>Date of release, decision, approval, or controlled publication.</td>
+              <td>20261007</td>
+            </tr>
+            <tr>
+              <td>STATUS</td>
+              <td>DRAFT, REVIEW, APPROVED, ACTIVE, SUPERSEDED, or ARCHIVE.</td>
+              <td>ACTIVE</td>
+            </tr>
+            <tr>
+              <td>v##</td>
+              <td>Version number aligned to change control.</td>
+              <td>v02</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Example:
+          <strong>AGG-GOV-CHARTER-OPERATING-RHYTHM-20261007-ACTIVE-v02.docx</strong>
+        </p>
+      </section>
+
+      <section>
+        <p class="eyebrow">Lifecycle Delineation</p>
+        <h2>Every artifact needs a visible state.</h2>
+        <ol class="lifecycle">
+          <li>
+            <div>
+              <h3>Intake</h3>
+              <p>A need, record, file, product, or evidence item enters the system.</p>
+              <p><strong>Control question:</strong> Who owns it and why does it exist?</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Classify</h3>
+              <p>Apply Level 1 and Level 2 taxonomy, owner, sensitivity, and retrieval metadata.</p>
+              <p><strong>Control question:</strong> Can a future user find it without knowing who created it?</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Draft</h3>
+              <p>Work is being built and should not be treated as approved guidance or authority.</p>
+              <p><strong>Control question:</strong> Is status obvious enough to prevent accidental operational use?</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Review</h3>
+              <p>The right owner, stakeholder, counsel, or authority reviews the content.</p>
+              <p><strong>Control question:</strong> What proves the right people reviewed the right version?</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Approve and Publish</h3>
+              <p>The approved version becomes active, discoverable, and usable.</p>
+              <p><strong>Control question:</strong> Where is the authoritative copy?</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Operate and Improve</h3>
+              <p>The artifact is used, measured, corrected, and improved through a review rhythm.</p>
+              <p><strong>Control question:</strong> What signal tells the owner to update it?</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Archive or Dispose</h3>
+              <p>The item is retained, archived, superseded, or disposed under the applicable rule.</p>
+              <p><strong>Control question:</strong> Which retention or continuity rule governs final handling?</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <footer>
+        <p>
+          Apex Governance Group can convert this starter into a client-specific taxonomy,
+          metadata model, SharePoint or repository structure, naming standard, lifecycle
+          control, and implementation plan after controlled intake.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

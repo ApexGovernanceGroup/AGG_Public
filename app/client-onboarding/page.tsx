@@ -29,6 +29,16 @@ const registrationMessages: Record<string, string> = {
   received: "Registration received.",
 };
 
+const allowedDefaultIntents = new Set([
+  "product-purchase",
+  "long-term-solution",
+  "assessment",
+  "academy",
+  "custom-solution",
+  "admin-directed",
+  "taxonomy-starter",
+]);
+
 type ClientOnboardingPageProps = {
   searchParams?: Promise<{
     intent?: string;
@@ -45,7 +55,9 @@ export default async function ClientOnboardingPage({
     (item) => item.id === params?.packageId,
   );
   const defaultIntent =
-    params?.intent === "long-term-solution" ? "long-term-solution" : "product-purchase";
+    params?.intent && allowedDefaultIntents.has(params.intent)
+      ? params.intent
+      : "product-purchase";
   const message = params?.registration
     ? registrationMessages[params.registration] ?? null
     : null;
@@ -200,6 +212,7 @@ export default async function ClientOnboardingPage({
                   <option value="academy">Academy or workforce education</option>
                   <option value="custom-solution">Custom solution</option>
                   <option value="admin-directed">AGG-directed admin onboarding</option>
+                  <option value="taxonomy-starter">Taxonomy starter exchange</option>
                 </select>
               </label>
               <label>

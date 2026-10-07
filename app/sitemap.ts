@@ -4,6 +4,7 @@ const routes = [
   "",
   "/services",
   "/client-onboarding",
+  "/taxonomy-starter",
   "/methodology",
   "/solutions",
   "/doctrine",

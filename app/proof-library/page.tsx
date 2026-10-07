@@ -39,6 +39,10 @@ export default function ProofLibraryPage() {
               Public proof pack
               <ArrowRight size={17} aria-hidden="true" />
             </Link>
+            <Link className="button button--quiet-on-dark" href="/taxonomy-starter">
+              Taxonomy starter
+              <ArrowRight size={17} aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </section>

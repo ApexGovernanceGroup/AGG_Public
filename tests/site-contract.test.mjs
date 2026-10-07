@@ -61,6 +61,7 @@ test("AGG public site contract is present", async () => {
     engage,
     proofLibrary,
     proofPack,
+    taxonomyStarter,
     procurement,
     trustSecurity,
     buyerRoles,
@@ -72,6 +73,7 @@ test("AGG public site contract is present", async () => {
     investorQuickSheet,
     publicProofPack,
     capabilityPacket,
+    taxonomyStarterDownload,
     investorQuickSheetRoute,
     surveyData,
     strategicSurveyForm,
@@ -124,6 +126,7 @@ test("AGG public site contract is present", async () => {
       read("app/engage/page.tsx"),
       read("app/proof-library/page.tsx"),
       read("app/proof-pack/page.tsx"),
+      read("app/taxonomy-starter/page.tsx"),
       read("app/procurement/page.tsx"),
       read("app/trust-security/page.tsx"),
       read("app/buyer-roles/page.tsx"),
@@ -135,6 +138,7 @@ test("AGG public site contract is present", async () => {
       read("public/agg-investor-quick-sheet.html"),
       read("public/agg-public-proof-pack.html"),
       read("public/agg-capability-packet.html"),
+      read("public/agg-taxonomy-file-lifecycle-starter.html"),
       read("app/agg-investor-quick-sheet/page.tsx"),
       read("app/surveys/survey-data.ts"),
       read("app/components/StrategicSurveyForm.tsx"),
@@ -188,6 +192,7 @@ test("AGG public site contract is present", async () => {
     engage,
     proofLibrary,
     proofPack,
+    taxonomyStarter,
     procurement,
     trustSecurity,
     buyerRoles,
@@ -199,6 +204,7 @@ test("AGG public site contract is present", async () => {
     investorQuickSheet,
     publicProofPack,
     capabilityPacket,
+    taxonomyStarterDownload,
     investorQuickSheetRoute,
     surveyData,
     strategicSurveyForm,
@@ -354,6 +360,7 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Operational Cognition/);
   assert.match(combined, /Sustain Decision Advantage/);
   assert.match(sitemap, /"\/client-onboarding"/);
+  assert.match(sitemap, /"\/taxonomy-starter"/);
   assert.match(sitemap, /"\/doctrine"/);
   assert.match(sitemap, /"\/proof-library"/);
   assert.match(sitemap, /"\/proof-pack"/);
@@ -474,6 +481,10 @@ test("AGG public site contract is present", async () => {
   assert.match(combined, /Proof before scale\. Samples before commitment/);
   assert.match(data, /export const buyerFirstMoves/);
   assert.match(data, /export const proofLibraryItems/);
+  assert.match(data, /export const taxonomyStarterLanes/);
+  assert.match(data, /export const fileNamingConventionParts/);
+  assert.match(data, /export const fileNamingConventionExample/);
+  assert.match(data, /export const lifecycleDelineationSteps/);
   assert.match(data, /export const publicProofArtifacts/);
   assert.match(data, /export const procurementCapabilityItems/);
   assert.match(data, /export const trustSecurityControls/);
@@ -488,6 +499,7 @@ test("AGG public site contract is present", async () => {
   assert.match(data, /export const revenueHardeningSignals/);
   assert.match(proofLibrary, /See the artifact shape before the engagement grows/);
   assert.match(proofLibrary, /href="\/proof-pack"/);
+  assert.match(proofLibrary, /href="\/taxonomy-starter"/);
   assert.match(proofLibrary, /buyerFirstMoves\.map/);
   assert.match(proofLibrary, /proofLibraryItems\.map/);
   assert.match(proofLibrary, /revenueHardeningSignals\.map/);
@@ -497,6 +509,17 @@ test("AGG public site contract is present", async () => {
   assert.match(publicProofPack, /Public Proof Pack/);
   assert.match(publicProofPack, /Executive Diagnostic Brief/);
   assert.match(publicProofPack, /Public-Safe Boundary/);
+  assert.match(taxonomyStarter, /Taxonomy Starter Exchange/);
+  assert.match(taxonomyStarter, /Trade a registration for a governed structure starter/);
+  assert.match(taxonomyStarter, /taxonomyStarterLanes\.map/);
+  assert.match(taxonomyStarter, /fileNamingConventionParts\.map/);
+  assert.match(taxonomyStarter, /lifecycleDelineationSteps\.map/);
+  assert.match(taxonomyStarter, /name="intent" type="hidden" value="taxonomy-starter"/);
+  assert.match(taxonomyStarter, /name="returnTo" type="hidden" value="\/taxonomy-starter"/);
+  assert.match(taxonomyStarter, /agg-taxonomy-file-lifecycle-starter\.html/);
+  assert.match(taxonomyStarterDownload, /Level 1-2 Taxonomy, File Naming, and Lifecycle Starter/);
+  assert.match(taxonomyStarterDownload, /ORG-L1-L2-ARTIFACT-YYYYMMDD-STATUS-v##\.ext/);
+  assert.match(taxonomyStarterDownload, /Public-Safe Boundary/);
   assert.match(procurement, /Procurement and Capability/);
   assert.match(procurement, /procurementCapabilityItems\.map/);
   assert.match(procurement, /agg-capability-packet\.html/);
@@ -518,6 +541,7 @@ test("AGG public site contract is present", async () => {
   assert.match(briefing, /schedulingPaths\.map/);
   assert.match(home, /Buyer Confidence System/);
   assert.match(home, /buyerSystemLinks\.map/);
+  assert.match(home, /\/taxonomy-starter/);
   assert.match(home, /\/proof-pack/);
   assert.match(home, /\/procurement/);
   assert.match(home, /\/trust-security/);
@@ -573,6 +597,7 @@ test("AGG public site contract is present", async () => {
   assert.doesNotMatch(siteHeader, /navItems\.map/);
   assert.match(sideNavigation, /sideNavItems\.map/);
   assert.match(data, /export const topNavItems: NavItem\[\] = \[/);
+  assert.match(data, /href: "\/taxonomy-starter", label: "Taxonomy Starter", icon: Layers3/);
   assert.match(data, /href: "\/proof-pack", label: "Proof Pack", icon: FileText/);
   assert.match(data, /href: "\/buyer-roles", label: "Buyer Fit", icon: Users/);
   assert.match(data, /href: "\/trust-security", label: "Trust", icon: ShieldCheck/);
@@ -580,6 +605,7 @@ test("AGG public site contract is present", async () => {
   assert.doesNotMatch(sideNavData, /href: "\/client-portal"/);
   assert.match(sideNavData, /href: "\/client-onboarding", label: "Onboarding", icon: ClipboardCheck/);
   assert.match(sideNavData, /href: "\/doctrine", label: "Doctrine", icon: BookOpenCheck/);
+  assert.match(sideNavData, /href: "\/taxonomy-starter", label: "Taxonomy Starter", icon: Layers3/);
   assert.match(sideNavData, /href: "\/proof-pack", label: "Proof Pack", icon: FileText/);
   assert.match(sideNavData, /href: "\/buyer-roles", label: "Buyer Fit", icon: Users/);
   assert.match(sideNavData, /href: "\/trust-security", label: "Trust", icon: ShieldCheck/);
@@ -959,12 +985,18 @@ test("AGG public site contract is present", async () => {
   assert.match(clientOnboardingRoute, /runtime\s*=\s*"nodejs"/);
   assert.match(clientOnboardingRoute, /MAX_BODY_BYTES/);
   assert.match(clientOnboardingRoute, /VALID_INTENTS/);
+  assert.match(clientOnboardingRoute, /"taxonomy-starter"/);
+  assert.match(clientOnboardingRoute, /VALID_RESOURCE_SLUGS/);
+  assert.match(clientOnboardingRoute, /VALID_RETURN_PATHS/);
+  assert.match(clientOnboardingRoute, /cleanReturnPath/);
+  assert.match(clientOnboardingRoute, /returnTo/);
   assert.match(clientOnboardingRoute, /sourceIsAllowed/);
   assert.match(clientOnboardingRoute, /rateLimitAllows/);
   assert.match(clientOnboardingRoute, /appendClientOnboardingRecord/);
   assert.match(clientOnboardingRoute, /record-unavailable/);
   assert.match(clientOnboardingRoute, /write-only/);
   assert.match(clientOnboardingRecords, /CLIENT_ONBOARDING_RECORD_FILE\s*=\s*"client-onboarding-registrations\.jsonl"/);
+  assert.match(clientOnboardingRecords, /resourceSlug\?: string \| null/);
   assert.match(clientOnboardingRecords, /readRecentClientOnboardingRecords/);
   assert.match(clientOnboardingRecords, /appendClientOnboardingRecord/);
   assert.match(combined, /Client Portal/);
@@ -1541,6 +1573,12 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   const onboardingFormTrap = cssBlock(css, ".onboarding-form__trap");
   const onboardingAcknowledgement = cssBlock(css, ".onboarding-form__acknowledgement");
   const onboardingFormActions = cssBlock(css, ".onboarding-form__actions");
+  const taxonomyExchangeFeatured = cssBlock(css, ".taxonomy-exchange-card--featured");
+  const taxonomyChipList = cssBlock(css, ".taxonomy-chip-list");
+  const taxonomyUnlock = cssBlock(css, ".taxonomy-unlock");
+  const taxonomyToken = cssBlock(css, ".taxonomy-token");
+  const taxonomyLifecycle = cssBlock(css, ".taxonomy-lifecycle");
+  const taxonomyLifecycleItem = cssBlock(css, ".taxonomy-lifecycle li");
   const methodologyGrid = cssBlock(css, ".methodology-grid");
   const methodologyCard = cssBlock(css, ".methodology-card");
   const configurationHero = cssBlock(css, ".configuration-hero");
@@ -1879,6 +1917,14 @@ test("masthead keeps distressed backdrop separate from clean symbol", async () =
   assert.match(onboardingFormTrap, /left:\s*-10000px/);
   assert.match(onboardingAcknowledgement, /align-items:\s*flex-start/);
   assert.match(onboardingFormActions, /flex-wrap:\s*wrap/);
+  assert.match(css, /\.taxonomy-exchange-grid/);
+  assert.match(css, /\.taxonomy-lane-grid/);
+  assert.match(taxonomyExchangeFeatured, /grid-column:\s*span 2/);
+  assert.match(taxonomyChipList, /flex-wrap:\s*wrap/);
+  assert.match(taxonomyUnlock, /grid-template-columns:\s*minmax\(0,\s*1fr\)\s*auto/);
+  assert.match(taxonomyToken, /grid-template-columns:\s*minmax\(96px,\s*0\.24fr\)\s*minmax\(0,\s*1fr\)\s*minmax\(80px,\s*auto\)/);
+  assert.match(taxonomyLifecycle, /list-style:\s*none/);
+  assert.match(taxonomyLifecycleItem, /grid-template-columns:\s*58px minmax\(0,\s*1fr\)/);
   assert.match(sideNav, /position:\s*sticky/);
   assert.match(sideNavLinks, /overflow-x:\s*auto/);
   assert.match(sideNavLinks, /scrollbar-width:\s*thin/);

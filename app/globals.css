@@ -7367,6 +7367,8 @@ button.configuration-relation-card:disabled {
 }
 
 .artifact-pack-grid,
+.taxonomy-exchange-grid,
+.taxonomy-lane-grid,
 .trust-boundary-grid,
 .role-profile-grid,
 .portal-preview-grid,
@@ -7379,6 +7381,8 @@ button.configuration-relation-card:disabled {
 }
 
 .artifact-pack-card,
+.taxonomy-exchange-card,
+.taxonomy-lane-card,
 .trust-boundary-card,
 .role-profile-card,
 .portal-preview-card,
@@ -7408,6 +7412,8 @@ button.configuration-relation-card:disabled {
 }
 
 .artifact-pack-card::before,
+.taxonomy-exchange-card::before,
+.taxonomy-lane-card::before,
 .trust-boundary-card::before,
 .role-profile-card::before,
 .portal-preview-card::before,
@@ -7422,6 +7428,8 @@ button.configuration-relation-card:disabled {
 }
 
 .artifact-pack-card > *,
+.taxonomy-exchange-card > *,
+.taxonomy-lane-card > *,
 .trust-boundary-card > *,
 .role-profile-card > *,
 .portal-preview-card > *,
@@ -7433,6 +7441,7 @@ button.configuration-relation-card:disabled {
 }
 
 .artifact-pack-card svg,
+.taxonomy-exchange-card svg,
 .trust-boundary-card svg,
 .role-profile-card svg,
 .portal-preview-card svg,
@@ -7443,6 +7452,8 @@ button.configuration-relation-card:disabled {
 }
 
 .artifact-pack-card h2,
+.taxonomy-exchange-card h2,
+.taxonomy-lane-card h2,
 .trust-boundary-card h2,
 .role-profile-card h2,
 .portal-preview-card h2,
@@ -7456,6 +7467,7 @@ button.configuration-relation-card:disabled {
 }
 
 .artifact-pack-card strong,
+.taxonomy-token strong,
 .trust-boundary-card strong,
 .briefing-path-card strong {
   color: var(--bronze-dark);
@@ -7471,6 +7483,131 @@ button.configuration-relation-card:disabled {
   color: var(--navy);
   padding-top: 12px;
   font-weight: 900;
+}
+
+.taxonomy-exchange-card--featured {
+  grid-column: span 2;
+  background:
+    linear-gradient(145deg, rgba(23, 44, 63, 0.94), rgba(12, 12, 12, 0.92)),
+    var(--maine-topographic-contours-bronze) center / 620px repeat;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.taxonomy-exchange-card--featured h2,
+.taxonomy-exchange-card--featured .eyebrow {
+  color: var(--paper);
+}
+
+.taxonomy-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.taxonomy-chip-list li {
+  border: 1px solid rgba(23, 44, 63, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--navy);
+  padding: 7px 10px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.taxonomy-unlock {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  border: 1px solid rgba(136, 98, 60, 0.28);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(120deg, rgba(136, 98, 60, 0.16), transparent 44%),
+    rgba(255, 255, 255, 0.76);
+  box-shadow: 0 24px 60px rgba(12, 12, 12, 0.12);
+  padding: 28px;
+}
+
+.taxonomy-token-stack {
+  display: grid;
+  gap: 10px;
+}
+
+.taxonomy-token {
+  display: grid;
+  grid-template-columns: minmax(96px, 0.24fr) minmax(0, 1fr) minmax(80px, auto);
+  gap: 14px;
+  align-items: center;
+  border: 1px solid rgba(23, 44, 63, 0.14);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 14px 34px rgba(12, 12, 12, 0.08);
+  padding: 14px;
+}
+
+.taxonomy-token p {
+  margin: 0;
+  color: rgba(62, 67, 70, 0.82);
+  font-size: 0.9rem;
+}
+
+.taxonomy-token span {
+  justify-self: end;
+  border-radius: 999px;
+  background: rgba(23, 44, 63, 0.1);
+  color: var(--navy);
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.taxonomy-lifecycle {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.taxonomy-lifecycle li {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  border: 1px solid rgba(23, 44, 63, 0.14);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.86), rgba(244, 241, 234, 0.76)),
+    var(--maine-topographic-contours-smoke) center / 520px repeat;
+  box-shadow: 0 16px 40px rgba(12, 12, 12, 0.1);
+  padding: 18px;
+}
+
+.taxonomy-lifecycle li > span {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bronze);
+  color: var(--paper);
+  font-weight: 950;
+}
+
+.taxonomy-lifecycle h3 {
+  margin: 0 0 6px;
+  color: var(--navy);
+}
+
+.taxonomy-lifecycle p {
+  margin: 0 0 8px;
+}
+
+.taxonomy-lifecycle strong {
+  color: var(--bronze-dark);
 }
 
 .capability-statement {
@@ -7553,6 +7690,8 @@ button.configuration-relation-card:disabled {
 
 @media (hover: hover) {
   .artifact-pack-card:hover,
+  .taxonomy-exchange-card:hover,
+  .taxonomy-lane-card:hover,
   .trust-boundary-card:hover,
   .role-profile-card:hover,
   .portal-preview-card:hover,
@@ -7583,6 +7722,8 @@ button.configuration-relation-card:disabled {
   }
 
   .artifact-pack-card,
+  .taxonomy-exchange-card,
+  .taxonomy-lane-card,
   .trust-boundary-card,
   .role-profile-card,
   .portal-preview-card,
@@ -7599,6 +7740,8 @@ button.configuration-relation-card:disabled {
   .buyer-guidance__option:hover,
   .buyer-guidance__option:focus-visible,
   .artifact-pack-card:hover,
+  .taxonomy-exchange-card:hover,
+  .taxonomy-lane-card:hover,
   .trust-boundary-card:hover,
   .role-profile-card:hover,
   .portal-preview-card:hover,
@@ -7617,6 +7760,8 @@ button.configuration-relation-card:disabled {
   }
 
   .artifact-pack-grid,
+  .taxonomy-exchange-grid,
+  .taxonomy-lane-grid,
   .trust-boundary-grid,
   .role-profile-grid,
   .portal-preview-grid,
@@ -7628,6 +7773,15 @@ button.configuration-relation-card:disabled {
 
   .capability-statement {
     grid-template-columns: 1fr;
+  }
+
+  .taxonomy-unlock,
+  .taxonomy-token {
+    grid-template-columns: 1fr;
+  }
+
+  .taxonomy-token span {
+    justify-self: start;
   }
 
   .conversion-assurance {
@@ -7648,6 +7802,8 @@ button.configuration-relation-card:disabled {
   .buyer-guidance__options,
   .buyer-guidance__detail-grid,
   .artifact-pack-grid,
+  .taxonomy-exchange-grid,
+  .taxonomy-lane-grid,
   .trust-boundary-grid,
   .role-profile-grid,
   .portal-preview-grid,
@@ -7655,6 +7811,14 @@ button.configuration-relation-card:disabled {
   .briefing-path-grid,
   .vignette-grid,
   .conversion-assurance {
+    grid-template-columns: 1fr;
+  }
+
+  .taxonomy-exchange-card--featured {
+    grid-column: auto;
+  }
+
+  .taxonomy-lifecycle li {
     grid-template-columns: 1fr;
   }
 
